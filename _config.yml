@@ -107,7 +107,7 @@ deploy:
   type: git
   repo: https://github.com/OnClick9927/OnClick9927.github.io
   # example, https://github.com/hexojs/hexojs.github.io
-  branch: main
+  branch: gh-pages
 
 search:
   path: search.xml
