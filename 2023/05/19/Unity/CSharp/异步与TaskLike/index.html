@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>异步与Task-Like | 灵</title>
+  <meta name="keywords" content=" Unity , Async ">
+  <meta name="description" content="异步与Task-Like | 灵">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="sadasda57d8a 哈哈哈 康康康 777 888   999  public class A&amp;#123;     public void DO()&amp;#123;&amp;#125; &amp;#125;     表头 表头    单元格 单元格   单元格 单元格">
+<meta property="og:type" content="website">
+<meta property="og:title" content="书写方式">
+<meta property="og:url" content="http://example.com/_posts/README.html">
+<meta property="og:site_name" content="灵">
+<meta property="og:description" content="sadasda57d8a 哈哈哈 康康康 777 888   999  public class A&amp;#123;     public void DO()&amp;#123;&amp;#125; &amp;#125;     表头 表头    单元格 单元格   单元格 单元格">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/Pic/R-C.jpg">
+<meta property="article:published_time" content="2023-05-15T15:57:04.000Z">
+<meta property="article:modified_time" content="2023-05-19T08:33:06.214Z">
+<meta property="article:author" content="灵">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/Pic/R-C.jpg">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/sublime.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/gh.gif"/>
+</a>
+<div class="author">
+    <span>灵</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/OnClick9927"
+               target="_blank">
+                
+                    <i class="iconfont icon-github"></i>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="csdn"
+               href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&amp;k=UW9-u52I3QfiRmPyIN0jOh6LzUYLd_Ja&amp;authKey=pluNJorQrw2TCR%2F4V4y8YxVwDRu8jvY7LLes97fvqYCS0vQD10Bxoziseh978U9T&amp;noverify=0&amp;group_code=782290296"
+               target="_blank">
+                
+                    <i class="iconfont icon-csdn"></i>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(5)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="文档">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        文档
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="文档<--->WooAsset">
+                                        
+                                        WooAsset
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Unity">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        Unity
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="Unity<--->Coroutine">
+                                        
+                                        Coroutine
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Unity<--->Shader">
+                                        
+                                        Shader
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Unity<--->YooAsset">
+                                        
+                                        YooAsset
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="5">
+<input type="hidden" id="yelog_site_word_count" value="4.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Async</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Shader</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Unity</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WooAsset</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>YooAsset</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a id="top" class="全部文章 "
+           href="/2023/05/15/README/"
+           data-tag=""
+           data-author="灵" >
+            <span class="post-title" title="书写方式">书写方式</span>
+            <span class="post-date" title="2023-05-15 23:57:04">2023/05/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 文档 WooAsset "
+           href="/2023/05/19/Doc/WooAsset/WooAsset-1/"
+           data-tag="WooAsset"
+           data-author="灵" >
+            <span class="post-title" title="WooAsset-1">WooAsset-1</span>
+            <span class="post-date" title="2023-05-19 13:37:15">2023/05/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 Unity YooAsset "
+           href="/2023/05/19/Unity/YooAsset/YooAsset%E5%88%9D%E5%A7%8B%E5%8C%96/"
+           data-tag="Unity,YooAsset"
+           data-author="YueZhenpeng" >
+            <span class="post-title" title="YooAsset初始化">YooAsset初始化</span>
+            <span class="post-date" title="2023-05-19 07:57:04">2023/05/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 Unity Coroutine "
+           href="/2023/05/19/Unity/CSharp/%E5%BC%82%E6%AD%A5%E4%B8%8ETaskLike/"
+           data-tag="Unity,Async"
+           data-author="YueZhenpeng" >
+            <span class="post-title" title="异步与Task-Like">异步与Task-Like</span>
+            <span class="post-date" title="2023-05-19 07:57:04">2023/05/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 Unity Shader "
+           href="/2023/05/16/Unity/Shader/%E6%A8%A1%E7%B3%8A-%E6%AF%9B%E7%8E%BB%E7%92%83/"
+           data-tag="Unity,Shader"
+           data-author="灵" >
+            <span class="post-title" title="模糊-毛玻璃">模糊-毛玻璃</span>
+            <span class="post-date" title="2023-05-16 07:57:04">2023/05/16</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Unity/CSharp/异步与TaskLike" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">异步与Task-Like</h1>
+    
+    <div class="article-meta">
+        
+        
+        <span class="author"><a>YueZhenpeng</a></span>
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Unity">Unity</a> > 
+            
+            <a  data-rel="Unity&lt;---&gt;Coroutine">Coroutine</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Unity</a>
+            
+            <a class="color1">Async</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2023-05-19 17:09:52'>2023-05-19 07:57</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:1.9k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AB%E6%9C%89%E5%8F%8D%E7%BC%96%E8%AF%91IL%E4%BB%A3%E7%A0%81%EF%BC%8C%E6%96%87%E9%A6%96%E6%9C%89%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%EF%BC%81%EF%BC%81%EF%BC%81"><span class="toc-text">文末有反编译IL代码，文首有原理分析！！！</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%BC%82%E6%AD%A5"><span class="toc-text">1.异步</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90-%E7%BB%93%E5%90%88%E5%90%8E%E9%9D%A2%E4%B8%80%E8%B5%B7%E7%9C%8B"><span class="toc-text">原理分析(结合后面一起看)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E8%87%AA%E5%AE%9A%E4%B9%89await%E6%94%AF%E6%8C%81"><span class="toc-text">2.自定义await支持</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E8%87%AA%E5%AE%9A%E4%B9%89Awaiter"><span class="toc-text">3.自定义Awaiter</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3"><span class="toc-text">3. 自定义异步任务接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E7%B1%BB"><span class="toc-text">4.实现异步任务类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-AsyncTaskMethodBuilder"><span class="toc-text">5.AsyncTaskMethodBuilder</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-Delay%E6%96%B9%E6%B3%95"><span class="toc-text">6.Delay方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-3-0-%E5%8F%8D%E7%BC%96%E8%AF%91-System-Tasks-Task-%E7%9A%84-IL-%E4%BB%A3%E7%A0%81"><span class="toc-text">C # 3.0 反编译 System.Tasks.Task 的 IL 代码</span></a>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="文末有反编译IL代码，文首有原理分析！！！"><a href="#文末有反编译IL代码，文首有原理分析！！！" class="headerlink" title="文末有反编译IL代码，文首有原理分析！！！"></a>文末有反编译IL代码，文首有原理分析！！！</h3><p><a target="_blank" rel="noopener" href="https://github.com/yueh0607/AirFramework/tree/main/Framework/Core/Async">我的项目地址-github</a>这个地址有可能要求梯子，球球了，觉得好就点个star吧<br>如果上面地址进不去，就进这个<a target="_blank" rel="noopener" href="https://gitee.com/imyueh/AirFramework/tree/main/Assets/Framework/Core/Async">”gitee地址“</a>这个更新可能不及时，但是作为参考没问题</p>
+<h1 id="1-异步"><a href="#1-异步" class="headerlink" title="1.异步"></a>1.异步</h1><p><img src="https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202303241053728.png" alt="在这里插入图片描述"></p>
+<pre><code class="csharp">//这个方法在开始时自动被调用
+void Start()
+&#123;
+    AAA();
+    //这个代表输出到控制台”666“
+    666.L();
+&#125;
+//每隔一秒将输出一个数字，同时不会阻塞主线程的行为
+public async void AAA()
+    &#123;
+        await Async.Delay(1);
+        1.L();
+        await Async.Delay(1);
+        2.L();
+        await Async.Delay(1);
+        3.L();
+        await Async.Delay(1);
+        4.L();
+    &#125;
+</code></pre>
+<p>按照同步的逻辑分析，666应该输出在1234之后，但是在异步中不同，AAA方法不会停留，而是继续向下，可以理解为新开了一个线程执行AAA方法，但是是假的，实际上还是在主线程里。</p>
+<h2 id="原理分析-结合后面一起看"><a href="#原理分析-结合后面一起看" class="headerlink" title="原理分析(结合后面一起看)"></a>原理分析(结合后面一起看)</h2><p>1.Start方法执行到AAA进入方法<br>2.调用AsyncTaskMethodBuilder.Create静态创建并返回Builder<br>3.进入Delay获取Delay返回的AsyncTask对象<br>4.await等待AsyncTask时调用AsyncTask.GetAwaiter返回AsyncTask(IAwiter)<br>5.调用OnCompleted方法，将continuation委托更新为await以后的代码<br>5.等待Dealy方法内的Timer对象完成回调AsyncTask.SetResult方法<br>6.调用SetResult后，执行continuation委托，执行await之后的代码<br>7.进入下一个await</p>
+<p>以上大错特错，其实这个过程是在编译时生成了一个异步状态机。用代码生成的方式展开了这个异步的过程，而不是在调用来调用去。</p>
+<p>总结：OnCompleted的continuation就是await之后，直到方法结束的代码，每次执行到await都会执行来更新到下一个段落，此前会检查IsCompleted，然后需要我们调用SetResult才能切换到下一个状态。</p>
+<h1 id="2-自定义await支持"><a href="#2-自定义await支持" class="headerlink" title="2.自定义await支持"></a>2.自定义await支持</h1><p>首先毫无道理的讲，<strong>C#就要求我们定义的类满足这个要求才能像下面这么写</strong>，原因简单粗暴：编译器要调用这个方法，按照要求做就可以。</p>
+<pre><code class="csharp">await new AsyncTask();
+</code></pre>
+<p><font color=red>  <strong>要想使得类支持await关键字的唯一要求：</strong> <strong>包含GetAwaiter方法</strong></font>(也可以是拓展方法)<br>我们当然不允许项目内出现这样的无礼要求！！！用接口约束可等待的类，<font color=red>  <strong>只要实现了这个接口，就能被await关键字支持。</strong></font></p>
+<pre><code class="csharp">    public interface IAwaitable&lt;out TAwaiter&gt; where TAwaiter : IAwaiter
+    &#123;
+        TAwaiter GetAwaiter();
+    &#125;
+    public interface IAwaitable&lt;out TAwaiter,out TResult&gt; where TAwaiter : IAwaiter&lt;TResult&gt;
+    &#123;
+        TAwaiter GetAwaiter();
+    &#125;
+</code></pre>
+<p>我们可以看到GetAwaiter方法返回了一个IAwaiter，接下来我们尝试自定义Awaiter</p>
+<h1 id="3-自定义Awaiter"><a href="#3-自定义Awaiter" class="headerlink" title="3.自定义Awaiter"></a>3.自定义Awaiter</h1><p><font color=red><strong>System.Runtime.CompilerServices</strong></font>命名空间下提供了这样两个接口，<font color=red><strong>编译器要求Awaiter必须实现其中一个接口</strong></font></p>
+<pre><code class="csharp">    public interface INotifyCompletion
+    &#123;
+        void OnCompleted(Action continuation);
+    &#125;
+    public interface ICriticalNotifyCompletion : INotifyCompletion
+    &#123;
+        void UnsafeOnCompleted(Action continuation);
+    &#125;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202303241053728.jpeg" alt="在这里插入图片描述"><br><strong>关于Awaiter的要求：</strong></p>
+<ol>
+<li><font color=red><strong>有bool IsCompleted { get; }</strong>   </font></li>
+<li><font color=red><strong>有GetResult方法</strong></font></li>
+</ol>
+<p>关于IsCompleted，异步流程执行到await时，会检查IsCompleted，如果为true，则表明任务已经完成，await直接结束。</p>
+<pre><code class="csharp">int value = await GetValueAsync();
+</code></pre>
+<p>关于GetResult也很好理解，我们不陌生上面这样的语法，在await被结束时，会调用GetResult方法返回一个值。</p>
+<pre><code class="csharp">    public interface IAwaiter : INotifyCompletion
+    &#123;
+        bool IsCompleted &#123; get; &#125;
+        void GetResult();
+    &#125;
+    
+    public interface IAwaiter&lt;T&gt; : INotifyCompletion
+    &#123;
+        bool IsCompleted &#123; get; &#125;
+        T GetResult();
+    &#125;
+
+    public interface ICriticalAwaiter :ICriticalNotifyCompletion,IAwaiter
+    &#123;
+    &#125;
+
+    public interface ICriticalAwaiter&lt;T&gt;:ICriticalNotifyCompletion,IAwaiter&lt;T&gt;
+    &#123;
+    &#125;
+</code></pre>
+<p>在上面我们定义了四个接口，都是与Awaiter相关的，CriticalAwaiter不同的是UnsafeOnCompleted方法，在异步执行的代码可能给程序产生负面影响(如异常)时，我们可以使用这个Awaiter接口。</p>
+<h1 id="3-自定义异步任务接口"><a href="#3-自定义异步任务接口" class="headerlink" title="3. 自定义异步任务接口"></a>3. 自定义异步任务接口</h1><p>我们进一步拓展，给异步任务更多的功能，这些不是编译器的要求了，而是我们自己的需要。<br>当任务完成时，<strong>我们可以手动调用</strong>SetResult，在出现异常时调用SetException。</p>
+<pre><code class="csharp"> public interface IAsyncTask : ICriticalAwaiter
+    &#123;   
+        void SetResult();
+        void SetException(Exception exception);
+    &#125;
+
+
+    public interface IAsyncTask&lt;T&gt; : ICriticalAwaiter&lt;T&gt; 
+    &#123;
+        //参数就是GetResult拿到的结果
+        void SetResult(T result);
+        void SetException(Exception exception);
+    &#125;
+</code></pre>
+<h1 id="4-实现异步任务类"><a href="#4-实现异步任务类" class="headerlink" title="4.实现异步任务类"></a>4.实现异步任务类</h1><p><strong>千万记住要加上这个特性</strong>，只有这样才能指定AsyncTask作为返回值时进行AsyncTaskMethodBuilder自动创建，泛型时写	<strong>[AsyncMethodBuilder(typeof(AsyncTaskMethodBuilder&lt;&gt;))]</strong></p>
+<pre><code class="csharp">    //特性指定AsyncMethodBuilder
+    [AsyncMethodBuilder(typeof(AsyncTaskMethodBuilder))]
+    public partial class AsyncTask : PoolableObject&lt;AsyncTask&gt;, IAsyncTask
+    &#123;
+        public AsyncTask GetAwaiter() =&gt; this;
+        public Action continuation;
+        public Exception Exception &#123; get; private set; &#125;
+        public bool IsCompleted &#123; get; set; &#125;
+       
+        public void OnCompleted(Action continuation)
+        &#123;
+            UnsafeOnCompleted(continuation);
+        &#125;
+
+        public void UnsafeOnCompleted(Action continuation)
+        &#123;
+            this.continuation = continuation;
+        &#125;
+
+        public void SetException(Exception exception)
+        &#123;
+            IsCompleted= true;
+            this.Exception = exception;
+        &#125;
+        //啥也不返回
+        public void GetResult()&#123; &#125;
+
+        public void SetResult()
+        &#123;
+            //执行await以后的代码
+            continuation?.Invoke();
+            //回收到Pool内
+            this.Dispose();
+        &#125;
+    &#125;
+</code></pre>
+<h1 id="5-AsyncTaskMethodBuilder"><a href="#5-AsyncTaskMethodBuilder" class="headerlink" title="5.AsyncTaskMethodBuilder"></a>5.AsyncTaskMethodBuilder</h1><p>没错，这些又是编译器的无礼要求，已经快要成模板了</p>
+<pre><code class="csharp"> public struct AsyncTaskMethodBuilder
+    &#123;
+        private AsyncTask task;
+
+        // 1. Static Create method 编译器调用静态创建方法来创建Builder
+        [DebuggerHidden]
+        public static AsyncTaskMethodBuilder Create() =&gt; new AsyncTaskMethodBuilder(AsyncTask.Create(fromPool:true));
+
+        //2.Construct Method 构造Builder时调用
+        public AsyncTaskMethodBuilder(AsyncTask task) =&gt; this.task = task;
+
+
+        // . TaskLike Task property.
+        [DebuggerHidden]
+        public AsyncTask Task =&gt; task;
+
+        // 3. Start 构造之后开启状态机
+        [DebuggerHidden]
+        public void Start&lt;TStateMachine&gt;(ref TStateMachine stateMachine) where TStateMachine : IAsyncStateMachine
+        &#123;
+            stateMachine.MoveNext();
+        &#125;
+
+        // 4. SetException 当出现异常时编译器调用，将异常绑定到任务
+        [DebuggerHidden]
+        public void SetException(Exception exception)
+        &#123;
+            task.SetException(exception);
+        &#125;
+
+        // 5. SetResult 当任务成功完成时编译器调用这个方法,将该任务标记为已成功完成
+        [DebuggerHidden]
+        public void SetResult()
+        &#123;
+            task.SetResult();
+        &#125;
+
+        // 6. AwaitOnCompleted  在SetResult之后编译器调用OnCompleted
+        [DebuggerHidden]
+
+        public void AwaitOnCompleted&lt;TAwaiter, TStateMachine&gt;(ref TAwaiter awaiter, ref TStateMachine stateMachine) where TAwaiter : INotifyCompletion where TStateMachine : IAsyncStateMachine
+        &#123;
+            awaiter.OnCompleted(stateMachine.MoveNext);
+        &#125;
+
+        // 7. AwaitUnsafeOnCompleted 同OnCompleted
+        [SecuritySafeCritical]
+        public void AwaitUnsafeOnCompleted&lt;TAwaiter, TStateMachine&gt;(ref TAwaiter awaiter, ref TStateMachine stateMachine) where TAwaiter : ICriticalNotifyCompletion where TStateMachine : IAsyncStateMachine
+        &#123;
+            awaiter.OnCompleted(stateMachine.MoveNext);
+        &#125;
+
+        // 9. SetStateMachine  将生成器与指定的状态机相关联
+        [DebuggerHidden]
+        public void SetStateMachine(IAsyncStateMachine stateMachine)
+        &#123;
+
+        &#125;
+    &#125;
+</code></pre>
+<p>不用担心这个OnCompleted参数委托的GC问题，因为代码会在编译时被静态编译为一个状态机，实际上编译后的IL代码不是我们所见的这样。</p>
+<h1 id="6-Delay方法"><a href="#6-Delay方法" class="headerlink" title="6.Delay方法"></a>6.Delay方法</h1><p>我写了一个例子来使用这个AsyncTask，由于全部从池内取出，并没有GC产出，而C#原生的Task类型显得十分臃肿，带有高昂的GC代价。</p>
+<pre><code class="csharp"> public static AsyncTask Delay(float seconds)
+        &#123;
+            var task = Framework.Pool.Allocate&lt;AsyncTask&gt;();
+            var timer = Framework.Pool.Allocate&lt;TimerCall&gt;();
+            timer.OnCompleted += task.SetResult;
+            timer.OnCompleted += timer.Dispose;
+            timer.Start(TimeSpan.FromSeconds(seconds));
+            return task;
+        &#125;
+</code></pre>
+<h1 id="C-3-0-反编译-System-Tasks-Task-的-IL-代码"><a href="#C-3-0-反编译-System-Tasks-Task-的-IL-代码" class="headerlink" title="C # 3.0 反编译 System.Tasks.Task 的 IL 代码"></a>C # 3.0 反编译 System.Tasks.Task 的 IL 代码</h1><p>被反编译的代码</p>
+<pre><code class="csharp">        public async Task TaskTest()
+        &#123;
+            await Task.Run(() =&gt; &#123; &#125;);
+        &#125;
+</code></pre>
+<p>反编译结果IL代码</p>
+<pre><code class="csharp">    [CompilerGenerated]
+    private sealed class &lt;TaskTest&gt;d__1 : IAsyncStateMachine
+    &#123;
+        public int &lt;&gt;1__state;
+
+        public AsyncTaskMethodBuilder &lt;&gt;t__builder;
+
+        public ClassA &lt;&gt;4__this;
+
+        private TaskAwaiter &lt;&gt;u__1;
+
+        private void MoveNext()
+        &#123;
+            int num = &lt;&gt;1__state;
+            try
+            &#123;
+                TaskAwaiter awaiter;
+                if (num != 0)
+                &#123;
+                    awaiter = Task.Run(delegate
+                    &#123;
+                    &#125;).GetAwaiter();
+                    if (!awaiter.IsCompleted) //await修饰的状态未完成？把控制器交由该类
+                    &#123;
+                        num = (&lt;&gt;1__state = 0);
+                        &lt;&gt;u__1 = awaiter;
+                        &lt;TaskTest&gt;d__1 stateMachine = this;
+                        &lt;&gt;t__builder.AwaitUnsafeOnCompleted(ref awaiter, ref stateMachine);
+                        return;
+                    &#125;
+                &#125;
+                else
+                &#123;
+                    awaiter = &lt;&gt;u__1;
+                    &lt;&gt;u__1 = default(TaskAwaiter);
+                    num = (&lt;&gt;1__state = -1);
+                &#125;
+                awaiter.GetResult();
+            &#125;
+            catch (Exception exception)
+            &#123;
+                &lt;&gt;1__state = -2;
+                &lt;&gt;t__builder.SetException(exception);
+                return;
+            &#125;
+            &lt;&gt;1__state = -2;
+            &lt;&gt;t__builder.SetResult();
+        &#125;
+
+        void IAsyncStateMachine.MoveNext()
+        &#123;
+            //ILSpy generated this explicit interface implementation from .override directive in MoveNext
+            this.MoveNext();
+        &#125;
+
+        [DebuggerHidden]
+        private void SetStateMachine(IAsyncStateMachine stateMachine)
+        &#123;
+        &#125;
+
+        void IAsyncStateMachine.SetStateMachine(IAsyncStateMachine stateMachine)
+        &#123;
+            //ILSpy generated this explicit interface implementation from .override directive in SetStateMachine
+            this.SetStateMachine(stateMachine);
+        &#125;
+    &#125;
+
+    [AsyncStateMachine(typeof(&lt;TaskTest&gt;d__1))]
+    [DebuggerStepThrough]
+    public Task TaskTest()
+    &#123;
+        &lt;TaskTest&gt;d__1 stateMachine = new &lt;TaskTest&gt;d__1();
+        stateMachine.&lt;&gt;4__this = this;
+        stateMachine.&lt;&gt;t__builder = AsyncTaskMethodBuilder.Create(); //创那就状态机
+        stateMachine.&lt;&gt;1__state = -1; //初始状态-1
+        AsyncTaskMethodBuilder &lt;&gt;t__builder = stateMachine.&lt;&gt;t__builder;
+        &lt;&gt;t__builder.Start(ref stateMachine); //启动状态机
+        return stateMachine.&lt;&gt;t__builder.Task; //返回值
+    &#125;
+</code></pre>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '040d9469a7a1d8b8bd45',
+            clientSecret: 'd5a4e6da89d0c7148ddae018218977a6898bcaf6',
+            repo: 'OnClick9927.github.io',
+            owner: 'OnClick9927',
+            admin: ['OnClick9927'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('18',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2017 灵
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 622px;
+    }
+    .nav.fullscreen {
+        margin-left: -622px;
+    }
+    .nav-left {
+        width: 200px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
