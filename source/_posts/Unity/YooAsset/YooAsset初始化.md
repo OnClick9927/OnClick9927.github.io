@@ -12,6 +12,8 @@ category:
 
 date: 2023-05-19 07:57:04
 
+
+
 ---
 
 #  零、导入YooAsset
@@ -21,6 +23,7 @@ date: 2023-05-19 07:57:04
 > [官方文档](https://www.yooasset.com/docs/Introduce)
 
 ## 1.UPM导入
+
 在ProjectSetting里找到这个，这么填
 ![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191648812.png)
 
@@ -29,15 +32,18 @@ date: 2023-05-19 07:57:04
 > com.tuyoogame.yooasset
 
 然后在PackageManager里，选择MyRegistry ，导入YooAsset
+
 # 一、编辑器
 
 ## 0.创建YooAsset设置文件
-![在这里插入图片描述](https://img-blog.csdnimg.cn/fdf9851314224fe68cc3e5f82ecbbaf4.png)
+
+![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191745164.png)
 在使用这些东西之前，我们需要在Project面板右键，选择YooAsset/Create Setting创建这个文件
-然后MainfestFileName就是我们的资源清单文件名，(不改也没事，不影响使用，只是名字)![在这里插入图片描述](https://img-blog.csdnimg.cn/e34908e9d0cb4866adf1c86f4c923eba.png)![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191648751.png)
+然后MainfestFileName就是我们的资源清单文件名，(不改也没事，不影响使用，只是名字)![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191745229.png)![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191648751.png)
 
 ## 1.AssetBundle Collector
-![在这里插入图片描述](https://img-blog.csdnimg.cn/d000d17c75f64b3b9c3e38d5c523b1d2.png)
+
+![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191745698.png)
 第一个是是否显示包，第二个是是否采用中文，第三个是是否开启寻址，第四个是在包名前面加东西保证包名唯一。
 接下来我们把前三个打勾，按下面的加号创建一些东西。
 ![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191648779.png)
@@ -45,9 +51,11 @@ date: 2023-05-19 07:57:04
 我们能编写自定义的收集规则，当Collector选择目录时，我们可以用自己的脚本来控制选择什么样的资源。
 
 我们简单选择几个资源
-![在这里插入图片描述](https://img-blog.csdnimg.cn/4707ea7b40cb40a89df3741e9c0564a1.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191745153.png)
+
 ## 2. Builder
-![在这里插入图片描述](https://img-blog.csdnimg.cn/9e4f904fbc8d46b7afa47ee064d60e90.png)
+
+![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191745705.png)
 第二个是构建管线，默认是默认的，否则可以改成可编程的（不介绍）。
 第三是构建模式，**ForceRebuild会删除原来的AB，重新打新的**。
 而**Incremental是增量更构建，也就是打出来的包是多出来的资源，不会移除也不会生成之前的**，所以在**更新到CDN时可以直接覆盖到原来的包上**，或者差异分析上传
@@ -57,17 +65,21 @@ date: 2023-05-19 07:57:04
 Compressaion是压缩方式，LZ4时间略微优异，性价比比较高，LZMA保证最大的压缩率，其实差距不大，太大不会放在这里，说明都可用。
 Encryption是加密方式，需要自己写一个，好像要实现一个接口，在[YooAsset官方文档](https://www.yooasset.com/docs/api/YooAsset/IEncryptionServices)有的
 最后一个就是是否拷贝到StreamingAsset
-![在这里插入图片描述](https://img-blog.csdnimg.cn/28eecdbd5e324027ab08a370e84a618a.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191745139.png)
 我们能根据Group的标签区分。
+
 ## 3.Reporter
+
 ![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191648070.png)
 在目录里，Bundles是打包输出路径，SandBox是AB从服务器下载缓存的路径
 我们进入Reporter，选择导入，选择这个打出的以时间命名的包下面的一个文件
 ![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191648309.png)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/b1b82b44f209442780bf264c5f3e8695.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191745483.png)
 ![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191648064.png)
 就这个用处，简单吧，还有一个调试器，这个是在运行时检测资源直接有没有循环引用问题的，基于引用计数的方案最害怕这个。
+
 # 二、代码
+
 ## 0.每一个模式都要做的初始化
 
 ```csharp
@@ -78,6 +90,7 @@ var package = YooAssets.CreatePackage("DefaultPackage");
 // 设置该资源包为默认的资源包，可以使用YooAssets相关加载接口加载该资源包内容。
 YooAssets.SetDefaultPackage(package);
 ```
+
 ## 0.1 选择一个运行模式
 
 ```csharp
@@ -103,7 +116,9 @@ switch (PlayMode)
 ```
 
 ## 1.编辑器模拟运行
+
 执行完这个协程之后，就可以任意加载，不过**注意只能在编辑器里用**，传入的package就是上面创建的DefaultPackage
+
 ```csharp
   private IEnumerator EditorInitializeYooAsset(ResourcePackage package)
     {
@@ -112,8 +127,11 @@ switch (PlayMode)
         yield return package.InitializeAsync(initParameters);
     }
 ```
+
 ## 2. 单机模式运行
+
 这个运行模式**要求在打AB包的时候，在调整最后一个设置选择，把AB包拷贝到streamingAsset/buildIn里面**，不然加载资源会失败！！注意不是自己手动拷贝
+
 ```csharp
  private IEnumerator SingleInitializeYooAsset(ResourcePackage package)
     {
@@ -123,14 +141,17 @@ switch (PlayMode)
 ```
 
 ## 3.联网模式运行
+
 ### （0）本地测试环境
+
 首先我们从网上找个软件叫做HFS，Http File Server，搜一下就有。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/ba7f19fc165941ff94b95d6e71807fbc.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191745493.png)
 把右边的FTP文件夹拖进去。我们就能访问这个地址了
 ![在这里插入图片描述](https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191648399.png)
 然后把我们的AB包扔进去
 
 ### （1）初始化资源包
+
 ```csharp
 public string netPath = "http://127.0.0.1:9999/FTP/2023-04-20-1108";
 
@@ -160,10 +181,10 @@ public string netPath = "http://127.0.0.1:9999/FTP/2023-04-20-1108";
         }
     }
 ```
+
 ### （2）更新资源版本
 
 ```csharp
-
 string packageVersion = "2023-4-20-1108";
  IEnumerator UpdatePack(ResourcePackage package)
  {
@@ -194,10 +215,10 @@ string packageVersion = "2023-4-20-1108";
         }
     }
 ```
+
 ### （4）下载补丁包
 
 ```csharp
-
 int downloadingMaxNum = 10;
 int failedTryAgain = 3;
 int timeout = 60;
@@ -237,12 +258,18 @@ int timeout = 60;
 当这些步骤执行完，初始化完毕。随心所欲的使用yooasset吧。
 
 # 三、针对各个平台的方案
+
 ## 1.编辑器模拟
+
 为了加载更快，我们可以专门的按照上面的编辑器模拟初始化方式进行运行，节约开发时间。
+
 ## 2.纯单机不联网
+
 只需要在打AB的时候调最后一个选择，拷贝到streamingAsset/BuiltIn
 然后按照上面给出的单机初始化方式进行即可。
+
 ## 3.单机弱连网
+
 先按照联网模式的初始化步骤走，然后在获取版本号那一步，如果成功则继续按联网的走，否则直接按
 
 ```csharp
@@ -293,4 +320,5 @@ private IEnumerator Start()
 
 
 ## 4.联网
+
 按照联网模式走就行，有一步失败就不能让玩家进去
