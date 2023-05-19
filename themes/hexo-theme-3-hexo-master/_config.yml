@@ -244,7 +244,7 @@ gitalk:
   githubID: Ling Wen
   repo: OnClick9927.github.io
   ClientID: 040d9469a7a1d8b8bd45
-  ClientSecret: c759c6094800c635d9edde628d5e395fbfd5cfa5
+  ClientSecret: d5a4e6da89d0c7148ddae018218977a6898bcaf6
   adminUser: Ling Wen
   distractionFreeMode: true
   language: zh-CN
