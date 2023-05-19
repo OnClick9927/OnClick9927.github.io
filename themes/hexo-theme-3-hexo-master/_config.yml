@@ -241,11 +241,11 @@ disqus:
 
 
 gitalk:
-  githubID: Ling Wen
+  githubID: OnClick9927
   repo: OnClick9927.github.io
   ClientID: 040d9469a7a1d8b8bd45
   ClientSecret: d5a4e6da89d0c7148ddae018218977a6898bcaf6
-  adminUser: Ling Wen
+  adminUser: 牛逼王
   distractionFreeMode: true
   language: zh-CN
   perPage: 18
