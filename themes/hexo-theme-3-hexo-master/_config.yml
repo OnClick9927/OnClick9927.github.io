@@ -245,7 +245,7 @@ gitalk:
   repo: OnClick9927.github.io
   ClientID: 040d9469a7a1d8b8bd45
   ClientSecret: d5a4e6da89d0c7148ddae018218977a6898bcaf6
-  adminUser: 牛逼王
+  adminUser: OnClick9927
   distractionFreeMode: true
   language: zh-CN
   perPage: 18
