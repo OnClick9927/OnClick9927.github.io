@@ -242,7 +242,7 @@ disqus:
 
 gitalk:
   githubID: OnClick9927
-  repo: onclick9927.github.io
+  repo: OnClick9927.github.io
   ClientID: 040d9469a7a1d8b8bd45
   ClientSecret: c759c6094800c635d9edde628d5e395fbfd5cfa5
   adminUser: OnClick9927
