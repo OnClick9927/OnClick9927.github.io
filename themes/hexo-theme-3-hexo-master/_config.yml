@@ -229,7 +229,7 @@ mermaid:
 ##########评论设置#############
 comment:
   on: true
-  type: utteranc  # 评论系统：gitalk、disqus、gitment、utteranc、livere,注意：使用时，在下方对应位置进行配置
+  type: gitalk  # 评论系统：gitalk、disqus、gitment、utteranc、livere,注意：使用时，在下方对应位置进行配置
   comment_count: true  # 文章标题下方显示评论数 目前仅支持 gitalk 和 disqus
   ## 使用说明 https://yelog.org//2020/05/23/3-hexo-comment/
 # 各评论系统配置 ↓↓
@@ -242,9 +242,9 @@ disqus:
 
 gitalk:
   githubID: OnClick9927
-  repo: OnClick9927.github.io
-  ClientID:
-  ClientSecret:
+  repo: onclick9927.github.io
+  ClientID: 040d9469a7a1d8b8bd45
+  ClientSecret: c759c6094800c635d9edde628d5e395fbfd5cfa5
   adminUser: OnClick9927
   distractionFreeMode: true
   language: zh-CN
