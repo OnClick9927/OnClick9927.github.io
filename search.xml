@@ -31,35 +31,6 @@
     
     
     <entry>
-      <title>圆角</title>
-      <link href="/2023/05/16/Unity/Shader/%E5%9C%86%E8%A7%92/"/>
-      <url>/2023/05/16/Unity/Shader/%E5%9C%86%E8%A7%92/</url>
-      
-        <content type="html"><![CDATA[<h1 id="一、-效果与引言"><a href="#一、-效果与引言" class="headerlink" title="一、 效果与引言"></a>一、 效果与引言</h1><p><img src="https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191728219.png" alt="在这里插入图片描述"><br>相信很多小伙伴都会遇到做<strong>圆角矩形</strong>的需求，网上的shader还不明白是怎么实现的，甚至还有一部分是错误的，本文讲从原理到代码讲解<strong>圆角矩形shader</strong>的实现</p><h1 id="二、-原理分析"><a href="#二、-原理分析" class="headerlink" title="二、 原理分析"></a>二、 原理分析</h1><p>想要实现一个圆角矩形，常见的是抽象成一个数学模型，如下图紫色区域，就是我们应该保留的区域，为了更准确的描述这个图形，我们在四个角创建四个相等的圆形。<br><img src="https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191728401.png" alt="在这里插入图片描述"><br>因为控制每个像素的颜色主要是由<strong>片元着色器</strong>负责的，所以我们也通过<strong>Fragment Shader</strong>去实现这个效果，可以看到在这个函数里我们只能拿到 <strong>uv</strong>和vertex，所以我们<strong>根据uv坐标判定是否在上图的紫色区域，如果在则返回原本的颜色，如果不在返回完全透明的颜色。</strong><br><strong>(对每个像素都会执行一次frag函数获取真正渲染的颜色)</strong></p><pre><code class="c">struct v2f            &#123;                float2 uv : TEXCOORD0;                UNITY_FOG_COORDS(1)                float4 vertex : SV_POSITION;            &#125;;             fixed4 frag (v2f i) : SV_Target &#123;     //....省略 &#125;</code></pre><p>因为我们通过uv来判断是否是紫色区域，所以我们需要先了解uv坐标系<br>首先我们要了解<strong>UV坐标系</strong>，这并不是什么高深的数学概念，而是一个简单的道理。<br>首先，我们<strong>把水平方向定义为X轴，竖直方向为Y轴</strong>，<strong>把图片左下角定义为(0,0)，右上角定义为(1,1)，其他的坐标以此类推</strong></p><p><img src="https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191728852.png" alt="在这里插入图片描述"></p><p>读者可能会产生疑惑，为什么xy两个轴长度不同，但是坐标却不相同？<br>笔者暂时只能这样描述：我们就如此定义一个坐标系，x轴和y轴单位长度不同</p><p>我们需要用户去调整四个<strong>圆形的半径 设为Radius</strong>，因为uv坐标系的xy单位长度不同，我们设<strong>Ratio &#x3D; Height&#x2F;Width</strong>，Ratio即为y轴单位长度与x轴单位长度之比。</p><blockquote><p>float Radius   圆形半径<br>float Ratio  Y单位长度&#x2F;X单位长度</p></blockquote><p>接下来我们在图上画四个圆形并作辅助线</p><p><img src="https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191728534.png" alt="在这里插入图片描述"><br>通过观察，我们可以发现以下特征</p><blockquote><p>1.<strong>只有在红色区域才有可能被舍弃</strong><br>2.<strong>三个圆形R2，R3，R4对应红色区域的任意一个位置，都能在R1内找到等价位置</strong><br>3. <strong>UV坐标转正常坐标的公式为 f (x ,y)&#x3D; (uv.x  , uv.y * Ratio)</strong></p></blockquote><p>在UV坐标内，我们无法通过x^2^ + y^2^ 来计算长度，因为uv坐标的xy单位不同，所以我们通过上述的坐标转换公式来转化为相同的坐标系</p><p>我们需要按以下步骤进行处理</p><blockquote><p>1.<strong>将白色区域坐标在左下角找到等价uv坐标，position &#x3D; abs(step(0.5,uv) - uv)</strong><br><img src="https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191728432.png" alt="在这里插入图片描述"><br>2.<strong>判断等价uv是否在左下角可能舍弃区域，</strong>uv.x&lt;Raduis &amp;&amp; uv.y &lt;  Radius * Ratio**<br>如果不在，则返回原色，如果在则进入下一步**<br><img src="https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191728553.png" alt="在这里插入图片描述"></p><ol start="3"><li><strong>求圆心距 distance &#x3D;   [f(uv.x,uv.y) - f(Radius,Radius)]的长度<br>如果大于半径则返回fixed(0,0,0,0)，否则返回原色</strong><br><img src="https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191728084.png" alt="在这里插入图片描述"></li></ol></blockquote><h1 id="三、着色器代码"><a href="#三、着色器代码" class="headerlink" title="三、着色器代码"></a>三、着色器代码</h1><p>在shader内尽量不要使用if语句<br><img src="https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305191729794.png" alt="在这里插入图片描述"><br>以上来着自Hking_Auditore 大大的Shader入门书，通常我们用step和lerp等来代替if<br>step函数的逻辑可以等价为</p><pre><code class="c">step (a, x)&#123;  if (a&gt;x)  return 0;  else return 1;&#125;</code></pre><p>接下来的代码虽然看着多，实际上我们只写了两行<br>这就是这两行</p><pre><code class="csharp"> float2 p = abs(step(0.5,i.uv) - i.uv); fixed4 col =  tex2D(_MainTex, i.uv) * (step(_Radius,p.x) ||step( _Radius  ,p.y*_Ratio) || step(length(float2(p.x-_Radius,p.y*_Ratio-_Radius)),_Radius));</code></pre><p>这是完整的着色器代码</p><pre><code class="c">Shader &quot;Unlit/MyShader&quot;&#123;    Properties    &#123;        _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;        _Radius (&quot;Radius&quot;,float) = 0        _Ratio(&quot;Height/Width&quot;,float )= 1    &#125;    SubShader    &#123;        Tags &#123; &quot;RenderType&quot;=&quot;Transparent&quot; &quot;Queue&quot; = &quot;Transparent&quot;&#125;        LOD 100        Blend SrcAlpha OneMinusSrcAlpha        Pass        &#123;            CGPROGRAM            #pragma vertex vert            #pragma fragment frag            // make fog work            #pragma multi_compile_fog            #include &quot;UnityCG.cginc&quot;            struct appdata            &#123;                float4 vertex : POSITION;                float2 uv : TEXCOORD0;            &#125;;            struct v2f            &#123;                float2 uv : TEXCOORD0;                UNITY_FOG_COORDS(1)                float4 vertex : SV_POSITION;            &#125;;            sampler2D _MainTex;            float4 _MainTex_ST;            float _Radius;            float _Ratio;            v2f vert (appdata v)            &#123;                v2f o;                o.vertex = UnityObjectToClipPos(v.vertex);                o.uv = TRANSFORM_TEX(v.uv, _MainTex);                UNITY_TRANSFER_FOG(o,o.vertex);                return o;            &#125;            fixed4 frag (v2f i) : SV_Target            &#123;                  //坐标等价到左下角                float2 p = abs(step(0.5,i.uv) - i.uv);                //三个条件同时成立则乘0，否则乘1                //1.在左下角  ，2.长度超过半径                fixed4 col =  tex2D(_MainTex, i.uv) * (step(_Radius,p.x) ||step( _Radius  ,p.y*_Ratio) || step(length(float2(p.x-_Radius,p.y*_Ratio-_Radius)),_Radius));                UNITY_APPLY_FOG(i.fogCoord, col);                return col;            &#125;            ENDCG        &#125;    &#125;&#125;</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> Unity </category>
-          
-          <category> Shader </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Unity </tag>
-            
-            <tag> Shader </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>模糊-毛玻璃</title>
       <link href="/2023/05/16/Unity/Shader/%E6%A8%A1%E7%B3%8A-%E6%AF%9B%E7%8E%BB%E7%92%83/"/>
       <url>/2023/05/16/Unity/Shader/%E6%A8%A1%E7%B3%8A-%E6%AF%9B%E7%8E%BB%E7%92%83/</url>
