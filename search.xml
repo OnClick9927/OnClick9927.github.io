@@ -4,33 +4,6 @@
   
     
     <entry>
-      <title>CoEvent</title>
-      <link href="/2023/05/19/Doc/CoEvent/CoEvent-1/"/>
-      <url>/2023/05/19/Doc/CoEvent/CoEvent-1/</url>
-      
-        <content type="html"><![CDATA[<h1 id="CoEvent"><a href="#CoEvent" class="headerlink" title="CoEvent"></a>CoEvent</h1><p>CoEvent是一个能约束参数类型的，能约束调用类型的，参数和调用类型安全的轻量级本地消息系统，支持一切能支持Unsafe.As类似API的CSharp编程平台。</p><p>目前了解的支持平台有.NET CORE和Unity3D 2020.1 OR NEWER。</p><p>理论上版本更低的Unity3D也能实现(可能在后续版本提供支持)，不过没有提供原生的UnsafeUtility.As，可以自己实现一个替换上去。</p><p>CoEvent最近新增的单线程异步(Task-Like)，旨在完全消灭回调的使用，让您能像写同步方法一样去书写异步方法，而不需要设置无数个bool标记，也不需要设置无数个回调，极大的优化了回调书写体验，在异步方法能畅通无阻的访问Unity主线程能访问的一切资源。</p><h2 id="一、优势"><a href="#一、优势" class="headerlink" title="一、优势"></a>一、优势</h2><p>CoEvent 的优势主要在于“约束”  ，现在传统的消息系统一般有如下方式实现</p><ul><li>1.反射(Unity的SendMessage已经被无情抛弃了)</li><li>2.int，string，enum做消息标识(注册和取消要手动写一大串泛型参数，调用要手动写泛型参数，如果写错了…后果不堪设想)</li><li>3.接口化的，基类化的(部分类似的基于观察者模式写了接口，继承基类可以比较容易实现这种约束，但是继承接口的很难去做约束，不好判断消息类型，很多接口约束只能有唯一消息)</li></ul><p>给大家看看主流实现的方式怎么调用和实现的</p><pre><code class="csharp">//Unity原生SendMessage，通过反射，效率低，容易写错名字，写错时候字符串是没提示的，很难查错Monobehaviour.SendMessage(&quot;Ttt&quot;);//int，string，enum做标识的EventCenter.Add&lt;int,int&gt;(&quot;name&quot;,MyAction);//在注册时需要写泛型EventCenter.Send(&quot;name&quot;,10,20);  //调用时没有约束，我也可以传入错误的参数类型，当写多了就变成了灾难。//基类和接口继承的//基类不用说了，侵入性太强了//接口继承的，一般一个类只能有一个事件，不然很难判断类型的参数//当然也有写分析器的，那都是大牛，QAQ，本渣做不到</code></pre><p>而CoEvent是怎么实现的？<br>CoEvent采用了第二种方式，但是不同的是消息标识是接口，很巧妙的利用协变实现了约束.</p><p>CoEvent能根据泛型推断省略注册和取消时的泛型参数，也能限制发布事件时的参数类型。</p><p>也就是说，CoEvent是不会发生那种写错泛型参数的类型情况的，也不会发生Send注册，结果Call调用这种情况。</p><p>极大的降低了开发者的代码失误几率，减少了Debug的时间,提高了协作效率。</p><h2 id="二、使用"><a href="#二、使用" class="headerlink" title="二、使用"></a>二、使用</h2><p>CoEvent本着简单易用的原则实现了基于观察者模式的一个事件系统。能很轻松实现跨对象，跨模块之间的事件通信。</p><p>1.前期配置：</p><pre><code>如果你是在Unity3D 2020.1以上使用，无需配置任何内容。如果你是在.NetCore使用，需要在任意一个参与编译的文件里加上宏定义，#define NETCORE如果你在其他平台使用，可以在CoUnsafeAs.cs里去给出Unsafe.As的类似实现。无法实现？不支持该平台QAQ</code></pre><p>2.事件定义</p><pre><code class="csharp">//通用事件，可以Send可以Call，但是只能用一个！！！public interface MyEvent: IGenericEvent&lt;参数类型,参数类型...&gt;//可发送public interface MyEvent: ISendEvent&lt;...&gt;//可调用(最后一个泛型参数是返回值)public interface MyEvent: ICallEvent&lt;...&gt;</code></pre><p>3.注册和取消事件(MyAction也是被约束类型的)</p><pre><code class="csharp">this.Operator&lt;消息类型接口&gt;().Subcribe(MyAction);this.Operator&lt;消息类型接口&gt;().UnSubcribe(MyAction);</code></pre><p>4.调用和发送</p><pre><code class="csharp">this.Operator&lt;消息类型接口&gt;().Send(...参数们);var results = this.Operator&lt;消息类型接口&gt;().Call(...参数们);</code></pre><h2 id="三、例子"><a href="#三、例子" class="headerlink" title="三、例子"></a>三、例子</h2><pre><code class="csharp">using CoEvent;using UnityEngine;public interface IMyTest : ISendEvent&lt;int, int&gt; &#123; &#125;public class Test : MonoBehaviour&#123;    void Ttt(int t,int k)    &#123;        Debug.Log($&quot;&#123;t&#125;:&#123;k&#125;&quot;);    &#125;    void Start()    &#123;        this.Operator&lt;IMyTest&gt;().Subscribe(Ttt);        this.Operator&lt;IMyTest&gt;().UnSubscribe(Ttt);        this.Operator&lt;IMyTest&gt;().Send(10,100);    &#125;&#125;</code></pre><h2 id="四、单线程异步"><a href="#四、单线程异步" class="headerlink" title="四、单线程异步"></a>四、单线程异步</h2><p>CoEvent提供了一种极佳的方式来处理回调等异步逻辑</p><pre><code class="csharp">using CoEvent.Async;    //可等待的任务   public async CoTask mTest()    &#123;    //等待600帧        await Async.WaitForFrame(600);        Debug.Log(&quot;Hha&quot;);        //等待3秒        await Async.Delay(3);        Debug.Log(&quot;111&quot;);    &#125;</code></pre><p>使用方式非常的简单，都放在了Async类里，当然也支持取消，挂起等，只需要对CoTask调用拓展方法WithToken</p><pre><code class="csharp">mTest().WithToken(out var token);token.Yield();</code></pre><p>如果您需要进一步的拓展CoTask，只需要写一个方法,CoTask.Create拿到新的CoTask，然后在任务结束时调用它的SetResult即可，可以参考Async类的实现。<br>可以简单的与YooAsset等进行对接</p><h2 id="欢迎加入"><a href="#欢迎加入" class="headerlink" title="欢迎加入"></a>欢迎加入</h2><p><img src="https://raw.githubusercontent.com/yueh0607/MyPicueres/main/202305201805505.png" alt="GameDev游研社群聊二维码"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> CoEvent </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CoEvent </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>WooAsset-1</title>
       <link href="/2023/05/19/Doc/WooAsset/WooAsset-1/"/>
       <url>/2023/05/19/Doc/WooAsset/WooAsset-1/</url>
