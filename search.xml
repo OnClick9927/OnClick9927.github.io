@@ -4,6 +4,267 @@
   
     
     <entry>
+      <title>WooPool-接口及其他定义的说明</title>
+      <link href="/2023/06/09/Doc/WooPool/WooPool-%E6%8E%A5%E5%8F%A3%E5%8F%8A%E5%85%B6%E4%BB%96%E5%AE%9A%E4%B9%89%E7%9A%84%E8%AF%B4%E6%98%8E/"/>
+      <url>/2023/06/09/Doc/WooPool/WooPool-%E6%8E%A5%E5%8F%A3%E5%8F%8A%E5%85%B6%E4%BB%96%E5%AE%9A%E4%B9%89%E7%9A%84%E8%AF%B4%E6%98%8E/</url>
+      
+        <content type="html"><![CDATA[<h2 id="IObjectPool"><a href="#IObjectPool" class="headerlink" title="IObjectPool"></a>IObjectPool</h2><p>定义了对象池的<strong>对象数量</strong>、<strong>对象类型</strong>和<strong>回收方法</strong></p><pre><code class="csharp">public interface IObjectPool:IDisposable</code></pre><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><table><thead><tr><th>属性名</th><th>说明</th></tr></thead><tbody><tr><td>count</td><td>获取当前对象池里对象的个数</td></tr><tr><td>type</td><td>获取当前对象池中对应对象的对象类型</td></tr></tbody></table><h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><table><thead><tr><th>方法名</th><th>说明</th></tr></thead><tbody><tr><td>Set(object,IPoolArgs)</td><td>将对象回收，也就是将对象放回到对象池中<br />回收成功时返回<code>true</code>，失败时返回<code>false</code></td></tr></tbody></table><h2 id="IPoolObject"><a href="#IPoolObject" class="headerlink" title="IPoolObject"></a>IPoolObject</h2><p>定义了对象池对象的生命周期的三个阶段</p><pre><code class="csharp">public interface IPoolObject : IDisposable</code></pre><h4 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h4><table><thead><tr><th>方法名</th><th>说明</th></tr></thead><tbody><tr><td>OnAllocate()</td><td>在对象被创建时调用</td></tr><tr><td>OnGet()</td><td>在对象从对象池中被取出时调用</td></tr><tr><td>OnSet()</td><td>在对象被回收回对象池时调用</td></tr></tbody></table><h2 id="IPoolArgs"><a href="#IPoolArgs" class="headerlink" title="IPoolArgs"></a>IPoolArgs</h2><p>此接口用于抽象构造的参数</p><pre><code class="csharp">public interface IPoolArgs</code></pre><h2 id="PoolUnit"><a href="#PoolUnit" class="headerlink" title="PoolUnit"></a>PoolUnit</h2><p>定义对象池的销毁状态和销毁方法</p><pre><code class="csharp">public abstract class PoolUnit : IDisposable</code></pre><h4 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h4><table><thead><tr><th>属性名</th><th>说明</th></tr></thead><tbody><tr><td>disposed</td><td>当前对象池是否被销毁</td></tr></tbody></table><h3 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h3><table><thead><tr><th>方法名</th><th>说明</th></tr></thead><tbody><tr><td>OnDispose()</td><td>在对象池被销毁时调用</td></tr><tr><td>Dispose()</td><td>销毁对象池</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooPool </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pool </tag>
+            
+            <tag> 接口介绍 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooPool-全局对象池</title>
+      <link href="/2023/06/08/Doc/WooPool/WooPool-%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1%E6%B1%A0/"/>
+      <url>/2023/06/08/Doc/WooPool/WooPool-%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1%E6%B1%A0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>全局的对象池，不用考虑创建对象池，不用考虑对象的类型，即拿即用，用完归还。</p><ul><li>全局对象池操作使用PoolEx类</li><li><em><strong>注意回收时要自己初始化数据！！！</strong></em></li></ul><pre><code class="csharp">public static class PoolEx</code></pre><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><table><thead><tr><th>方法名</th><th>可见性级别</th><th>说明</th></tr></thead><tbody><tr><td>GetGlbalPoolCount&lt;T&gt;()</td><td>public</td><td>从对象池中获取对应类型的数组对象</td></tr><tr><td>SetGlbalPool&lt;T&gt;(ObjectPool&lt;T&gt;)</td><td>public</td><td>将数组对象放回对象池</td></tr><tr><td>GlobalAllocate&lt;T&gt;(IPoolArgs)</td><td>public</td><td>全局分配对应类型的对象</td></tr><tr><td>GlobalAllocate(Type,IPoolArgs)</td><td>public</td><td>全局分配对应类型的对象</td></tr><tr><td>GlobalRecyle&lt;T&gt;(T,IPoolArgs)</td><td>public</td><td>全局回收</td></tr><tr><td>GlobalAllocateArray&lt;T&gt;(int)</td><td>public</td><td>获取对应类型和长度的数组对象</td></tr></tbody></table><h2 id="使用例子"><a href="#使用例子" class="headerlink" title="使用例子"></a>使用例子</h2><pre><code class="csharp">//全局对象池示例void GlobalPoolExample() &#123;    //全局获取一个对象    var human = PoolEx.GlobalAllocate&lt;Human&gt;();    //全局回收一个对象    PoolEx.GlobalRecyle(human);    //从全局对象池中获取一个长度为10的数组对象    var arr = PoolEx.GlobalAllocateArray&lt;Human&gt;(10);    //Human类的定义在第一个示例    arr[0] = new Human(33, &quot;吉良吉影&quot;);    arr[0].Say();    //回收掉这个数组对象    PoolEx.GlobalRecyle(arr);    //重新从全局对象池中获取长度为10的数组对象    arr = PoolEx.GlobalAllocateArray&lt;Human&gt;(10);    arr[0].Say();    PoolEx.GlobalRecyle(arr);    //可以发现是和原先同样的对象    //因此回收的时候需要注意初始化数据！！！！&#125;//示例所需的类public class Human&#123;    public readonly int age;    public readonly string name;    public Human(int age, string name)    &#123;        this.age = age;        this.name = name;    &#125;    public Human()     &#123;        age= 0;        name = &quot;无名&quot;;    &#125;    public void Say()    &#123;        Console.WriteLine($&quot;我的名字叫&#123;name&#125;,&#123;age&#125;岁&quot;);    &#125;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooPool </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pool </tag>
+            
+            <tag> 数组对象池 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooPool-基类对象池</title>
+      <link href="/2023/06/07/Doc/WooPool/WooPool-%E5%9F%BA%E7%B1%BB%E5%AF%B9%E8%B1%A1%E6%B1%A0/"/>
+      <url>/2023/06/07/Doc/WooPool/WooPool-%E5%9F%BA%E7%B1%BB%E5%AF%B9%E8%B1%A1%E6%B1%A0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>设置一个基类，可以从这个对象池中拿出继承这个基类的对象</p><pre><code class="csharp">public abstract class BaseTypePool&lt;T&gt; : PoolUnit</code></pre><h4 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h4><p>基类对象池的本质是一个Key为 类型，Value为 对应类型对象池 的字典。获取对象时，根据类型找到对应的对象池，并从对应的对象池中获取对象。</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>注：下面的<code>Object</code>类型是泛型类型，为了区分基类的泛型<code>T</code></p><table><thead><tr><th>方法名</th><th>可见性级别</th><th>说明</th></tr></thead><tbody><tr><td>SetPool&lt;Object&gt;(ObjectPool&lt;Object&gt;)</td><td>public</td><td>将对象池放入基类对象池中</td></tr><tr><td>SetPool(Type, IObjectPool)</td><td>public</td><td>将对应类型的对象池放入基类对象池中</td></tr><tr><td>GetPool&lt;Object&gt;()</td><td>public</td><td>根据类型获取对象池</td></tr><tr><td>GetPool(Type)</td><td>public</td><td>根据类型获取对象池</td></tr><tr><td>CreatePool(Type)</td><td>protected virtual</td><td>创建对象池</td></tr><tr><td>Get&lt;Object&gt;(IPoolArgs)</td><td>public</td><td>从对象池中获取对应类型的对象</td></tr><tr><td>Get(Type,IPoolArgs)</td><td>public</td><td>从对象池中获取对应类型的对象</td></tr><tr><td>Set&lt;Object&gt;(Object,IPoolArgs)</td><td>public</td><td>将对应类型的对象放回对象池</td></tr><tr><td>Set(Type,T,IPoolArgs)</td><td>public</td><td>将对应类型的对象放回对象池</td></tr><tr><td>GetPoolCount&lt;Object&gt;()</td><td>public</td><td>获取对应类型的对象池中对象的数量</td></tr><tr><td>GetPoolCount(Type)</td><td>public</td><td>获取对应类型的对象池中对象的数量</td></tr><tr><td>Dispose()</td><td>public</td><td>销毁基类对象池</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooPool </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pool </tag>
+            
+            <tag> 基类对象池 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooPool-数组对象池</title>
+      <link href="/2023/06/06/Doc/WooPool/WooPool-%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E6%B1%A0/"/>
+      <url>/2023/06/06/Doc/WooPool/WooPool-%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E6%B1%A0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>能拿出数组对象的对象池</p><pre><code class="csharp">public class ArrayPool&lt;T&gt; : ObjectPool&lt;T[]&gt;</code></pre><h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><p>参数ArrayPoolArg用于传入数组长度</p><pre><code class="csharp">public struct ArrayPoolArg : IPoolArgs</code></pre><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><table><thead><tr><th>属性名</th><th>说明</th></tr></thead><tbody><tr><td>length</td><td>数组长度</td></tr></tbody></table><h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><pre><code class="csharp">public ArrayPoolArg(int length)</code></pre><h5 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h5><table><thead><tr><th>参数名</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>length</td><td>int</td><td>用于参数构造时传入数组长度</td></tr></tbody></table><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><table><thead><tr><th>方法名</th><th>可见性级别</th><th>说明</th></tr></thead><tbody><tr><td>Get(IPoolArgs)</td><td>public</td><td>从对象池中获取对应类型的数组对象</td></tr><tr><td>Set(T[],IPoolArgs)</td><td>public</td><td>将数组对象放回对象池</td></tr><tr><td>Dispose()</td><td>public</td><td>销毁基类对象池</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooPool </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pool </tag>
+            
+            <tag> 数组对象池 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooPool-Activator构建对象池</title>
+      <link href="/2023/06/05/Doc/WooPool/WooPool-Activator%E5%AF%B9%E8%B1%A1%E6%B1%A0/"/>
+      <url>/2023/06/05/Doc/WooPool/WooPool-Activator%E5%AF%B9%E8%B1%A1%E6%B1%A0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>使用Activator自动构建对象的对象池，支持传入对象创建时所需的参数</p><pre><code class="csharp">public class ActivatorCreatePool&lt;T&gt; : ObjectPool&lt;T&gt;</code></pre><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><pre><code class="csharp">public ActivatorCreatePool(params object[] args)</code></pre><h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><table><thead><tr><th>参数名</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td><code>args</code></td><td>object[]</td><td>用于对象构造时所需的参数</td></tr></tbody></table><h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><table><thead><tr><th>属性名</th><th>说明</th></tr></thead><tbody><tr><td>count</td><td>获取当前对象池里对象的个数（继承自 ObjectPool&lt;T&gt;）</td></tr><tr><td>type</td><td>获取当前对象池中对应对象的对象类型（继承自 ObjectPool&lt;T&gt;）</td></tr><tr><td>disposed</td><td>当前对象池是否被销毁（继承自 PoolUnit）</td></tr></tbody></table><h2 id="关键方法"><a href="#关键方法" class="headerlink" title="关键方法"></a>关键方法</h2><table><thead><tr><th>方法名</th><th>说明</th></tr></thead><tbody><tr><td>Get()</td><td>从对象池中获取对象（继承自 ObjectPool&lt;T&gt;）</td></tr><tr><td>Set(T)</td><td>将对象回收到对象池中（继承自 ObjectPool&lt;T&gt;）</td></tr><tr><td>Clear()</td><td>清空对象池中的所有对象（继承自 ObjectPool&lt;T&gt;）</td></tr><tr><td>Clear(int)</td><td>清除对象池里一定数量的对象（继承自 ObjectPool&lt;T&gt;）</td></tr><tr><td>Dispose()</td><td>销毁对象池（继承自 PoolUnit）</td></tr></tbody></table><h2 id="使用例子"><a href="#使用例子" class="headerlink" title="使用例子"></a>使用例子</h2><pre><code class="csharp">/// &lt;summary&gt;/// 示例将会用到的示例类型，构造函数不含参数/// &lt;/summary&gt;public class Bottle &#123; &#125;/// &lt;summary&gt;/// 示例将会用到的示例类型，构造函数包含age和name两个参数/// &lt;/summary&gt;public class Human&#123;    public readonly int age;    public readonly string name;    public Human(int age, string name)    &#123;        this.age = age;        this.name = name;    &#125;    public void Say()    &#123;        Console.WriteLine($&quot;我的名字叫&#123;name&#125;,&#123;age&#125;岁&quot;);    &#125;&#125;/// &lt;summary&gt;/// ActivatorPool的使用示例/// &lt;/summary&gt;private void ActivatorPoolExample()&#123;    //创建一个存放Bottle的对象池    ActivatorCreatePool&lt;Bottle&gt; pool = new ActivatorCreatePool&lt;Bottle&gt;();        //从对象池中获取一个对象    var bottle = pool.Get();        //用对象池的Set方法将对象放回对象池    pool.Set(bottle);        //创建一个能够根据参数创建对象的对象池    //此处以Human类为例，传入age和name    ActivatorCreatePool&lt;Human&gt; humanPool = new ActivatorCreatePool&lt;Human&gt;(33, &quot;吉良吉影&quot;);    var human = humanPool.Get();    //调用对象的Say方法    human.Say();    //输出内容为 我的名字叫吉良吉影,33岁&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooPool </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pool </tag>
+            
+            <tag> Activator构建对象池 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooPool-委托对象池</title>
+      <link href="/2023/06/04/Doc/WooPool/WooPool-%E5%A7%94%E6%89%98%E5%AF%B9%E8%B1%A1%E6%B1%A0/"/>
+      <url>/2023/06/04/Doc/WooPool/WooPool-%E5%A7%94%E6%89%98%E5%AF%B9%E8%B1%A1%E6%B1%A0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>创建对象时会调用委托的对象池</p><pre><code class="csharp">public abstract class DelegatePool&lt;T&gt; : ObjectPool&lt;T&gt;</code></pre><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><pre><code class="csharp">public DelegatePool(Func&lt;T&gt; create)</code></pre><h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><table><thead><tr><th>参数名</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>create</td><td>Func&lt;T&gt;</td><td>创建对象时所需要调用的委托</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooPool </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pool </tag>
+            
+            <tag> 委托对象池 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooPool-有容量的对象池</title>
+      <link href="/2023/06/03/Doc/WooPool/WooPool-%E6%9C%89%E5%AE%B9%E9%87%8F%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%B1%A0/"/>
+      <url>/2023/06/03/Doc/WooPool/WooPool-%E6%9C%89%E5%AE%B9%E9%87%8F%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%B1%A0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>限制容量大小的对象池</p><pre><code class="csharp">public abstract class CapicityPool&lt;T&gt;: ObjectPool&lt;T&gt;</code></pre><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><pre><code class="csharp">protected CapicityPool(int capacity) : base() &#123; this._capacity = capacity; &#125;</code></pre><h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><table><thead><tr><th>参数名</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>capacity</td><td>int</td><td>对象池的最大容量</td></tr></tbody></table><h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><table><thead><tr><th>属性名</th><th>说明</th></tr></thead><tbody><tr><td>capacity</td><td>对象池的最大容量，创建后可重新修改</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooPool </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pool </tag>
+            
+            <tag> 有容量的对象池 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooPool-基本定义</title>
+      <link href="/2023/06/02/Doc/WooPool/WooPool-%E5%AF%B9%E8%B1%A1%E6%B1%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89/"/>
+      <url>/2023/06/02/Doc/WooPool/WooPool-%E5%AF%B9%E8%B1%A1%E6%B1%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>对象池的基本定义，包括基本属性、基本方法、生命周期</p><pre><code class="csharp">public abstract class ObjectPool&lt;T&gt; : PoolUnit, IDisposable, IObjectPool</code></pre><h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><table><thead><tr><th>属性名</th><th>可见性级别</th><th>说明</th></tr></thead><tbody><tr><td>count</td><td>public</td><td>获取当前对象池里对象的个数</td></tr><tr><td>type</td><td>public</td><td>获取当前对象池中对应对象的对象类型</td></tr><tr><td>pool</td><td>protected</td><td>对象池的数据容器，默认是队列</td></tr><tr><td>para</td><td>protected</td><td>锁</td></tr></tbody></table><h2 id="关键方法"><a href="#关键方法" class="headerlink" title="关键方法"></a>关键方法</h2><table><thead><tr><th>方法名</th><th>可见性级别</th><th>说明</th></tr></thead><tbody><tr><td>Get(IPoolArgs)</td><td>public virtual</td><td>从对象池中获取对象</td></tr><tr><td>Set(object,IPoolArgs)</td><td>public</td><td>将对象回收到对象池中，回收成功时返回true，失败时返回false</td></tr><tr><td>Set(T,IPoolArgs)</td><td>public virtual</td><td>将对象回收到对象池中，回收成功时返回true，失败时返回false</td></tr><tr><td>RealSet(T,IPoolArgs)</td><td>protected</td><td>对象回收的实际方法，上面两个只是用于调用的</td></tr><tr><td>Clear(IPoolArgs)</td><td>public</td><td>清空对象池中的所有对象</td></tr><tr><td>Clear(int,IPoolArgs)</td><td>public</td><td>清除对象池里一定数量的对象</td></tr><tr><td>CreateNew(IPoolArgs )</td><td>protected abstract</td><td>创建对象的方法，需要子类实现</td></tr><tr><td>Dispose()</td><td>public</td><td>销毁对象池（继承自 PoolUnit）</td></tr></tbody></table><h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>需要在对应周期增加操作时可以重写对应的方法</p><table><thead><tr><th>生命周期名</th><th>说明</th></tr></thead><tbody><tr><td>OnCreate(T, IPoolArgs)</td><td>对象池创建对象时调用</td></tr><tr><td>OnGet(T, IPoolArgs)</td><td>对象池中的对象被获取时调用</td></tr><tr><td>OnSet(T, IPoolArgs)</td><td>对象被回收时调用，返回false时表示不能回收</td></tr><tr><td>OnClear(T, IPoolArgs)</td><td>对象池中的对象被清除时调用</td></tr><tr><td>OnDispose()</td><td>对象池被销毁时调用</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooPool </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pool </tag>
+            
+            <tag> 基本定义 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooPool-简介</title>
+      <link href="/2023/06/01/Doc/WooPool/WooPool-%E7%AE%80%E4%BB%8B/"/>
+      <url>/2023/06/01/Doc/WooPool/WooPool-%E7%AE%80%E4%BB%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h4 id="为什么要使用对象池？"><a href="#为什么要使用对象池？" class="headerlink" title="为什么要使用对象池？"></a>为什么要使用对象池？</h4><p>对象在生成和销毁时都是需要一定开销的，如果某个类型频繁地生成对象和销毁对象，会导致开销过大，影响性能。</p><p>举个例子：</p><ol><li><p>我们厨房里的碗架（对象池），容纳着很多个碗（对象）。</p></li><li><p>我们在盛饭的时候，从碗架里拿出一个碗（从对象池中拿出一个对象）。</p></li><li><p>在吃完饭之后，洗碗（对象的初始化）、放回碗架（将对象回收，放回到对象池中）。</p></li></ol><p>上述例子中，如果不使用对象池，也就意味着碗是一次性的，也就是吃完就把碗摔了，然后要用的时候再花钱买个新的碗，这样的做法很明显是特别烧钱（浪费资源）的。</p><h4 id="WooPool特点"><a href="#WooPool特点" class="headerlink" title="WooPool特点"></a>WooPool特点</h4><ul><li><p>支持传入参数构建对象</p></li><li><p>支持对象池创建对象时调用委托</p></li><li><p>支持限定对象池大小</p></li><li><p>支持从基类对象池中取出子类</p></li><li><p>支持数组对象池</p></li><li><p>支持操作非常简单的全局对象池</p></li><li><p>支持多个生命周期</p></li><li><p>支持自己扩展对象池</p></li></ul><h3 id="感谢使用WooPool！"><a href="#感谢使用WooPool！" class="headerlink" title="感谢使用WooPool！"></a>感谢使用WooPool！</h3><h3 id="欢迎加入QQ交流群782290296，各路大佬给你解惑！"><a href="#欢迎加入QQ交流群782290296，各路大佬给你解惑！" class="headerlink" title="欢迎加入QQ交流群782290296，各路大佬给你解惑！"></a>欢迎加入QQ交流群<a href="https://jq.qq.com/?_wv=1027&k=sbKbmsTY">782290296</a>，各路大佬给你解惑！</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooPool </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pool </tag>
+            
+            <tag> 简介 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Navicat 安装教程</title>
       <link href="/2023/05/23/DB/Navicat/"/>
       <url>/2023/05/23/DB/Navicat/</url>
@@ -53,9 +314,9 @@
       
         <tags>
             
-            <tag> WooTween </tag>
-            
             <tag> 简介 </tag>
+            
+            <tag> WooTween </tag>
             
         </tags>
       
