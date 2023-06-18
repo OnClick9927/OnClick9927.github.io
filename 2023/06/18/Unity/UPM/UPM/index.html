@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>WooTween-简介 | 灵</title>
-  <meta name="keywords" content=" 简介 , WooTween ">
-  <meta name="description" content="WooTween-简介 | 灵">
+  <title>通过github 发布package | 灵</title>
+  <meta name="keywords" content=" Unity ">
+  <meta name="description" content="通过github 发布package | 灵">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="sadasda57d8a 哈哈哈 康康康 777 888   999  public class A&amp;#123;     public void DO()&amp;#123;&amp;#125; &amp;#125;     表头 表头    单元格 单元格   单元格 单元格">
 <meta property="og:type" content="website">
@@ -549,23 +549,23 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Doc/WooTween/WooTween-简介" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Unity/UPM/UPM" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">WooTween-简介</h1>
+        <h1 class="article-title">通过github 发布package</h1>
     
     <div class="article-meta">
         
         
-        <span class="author"><a>yy</a></span>
+        <span class="author"><a>灵</a></span>
         
         
         <span class="book">
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="文档">文档</a> > 
+            <a  data-rel="Unity">Unity</a> > 
             
-            <a  data-rel="文档&lt;---&gt;WooTween">WooTween</a>
+            <a  data-rel="Unity&lt;---&gt;UPM">UPM</a>
             
         </span>
         
@@ -573,21 +573,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color3">简介</a>
-            
-            <a class="color4">WooTween</a>
+            <a class="color1">Unity</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-06-18 13:43:47'>2023-05-22 20:59</time>
+            发布时间 : <time class="date" title='最后更新: 2023-06-18 13:43:47'>2023-06-18 21:29</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:49</span>
+        <span>字数:121</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -617,7 +615,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E7%BB%84%E6%88%90"><span class="toc-text">内容组成</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8C%85"><span class="toc-text">发布自己的包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -633,7 +631,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="内容组成"><a href="#内容组成" class="headerlink" title="内容组成"></a>内容组成</h2><p>  0、对象池           默默无闻的螺丝钉<br>  1、驱动器           好司机<br>  2、转换器           翻译官<br>  3、TweenValue      单程车<br>  4、Tween           花样百出的乘客<br>  5、Component       好保姆</p>
+        <h3 id="发布自己的包"><a href="#发布自己的包" class="headerlink" title="发布自己的包"></a>发布自己的包</h3><ul>
+<li>1、创建一个正常的unity项目</li>
+<li>2、在Assets 目录下 创建好内容（必须包含内容如下图）</li>
+<li>3、把做好的内容推送到主分支</li>
+<li>4、git subtree split –prefix&#x3D;Assets&#x2F;xxx –branch upm</li>
+<li>5、推送 upm 分支到github</li>
+<li>6、git tag 1.0.0 upm</li>
+<li>7、git push origin upm –tags</li>
+</ul>
+<p>后续修改只需要重复执行3-7即可</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li>打开unity package manager</li>
+<li>点击 add package form git</li>
+<li>填写 <a target="_blank" rel="noopener" href="https://github.com/OnClick9927/NodeGraph.git#1.0.1">https://github.com/OnClick9927/NodeGraph.git#1.0.1</a></li>
+</ul>
+<p><img src="/../../../Pic/Unity/UPM/1.png"></p>
 
       
        

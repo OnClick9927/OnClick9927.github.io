@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>通过github 发布package</title>
+      <link href="/2023/06/18/Unity/UPM/UPM/"/>
+      <url>/2023/06/18/Unity/UPM/UPM/</url>
+      
+        <content type="html"><![CDATA[<h3 id="发布自己的包"><a href="#发布自己的包" class="headerlink" title="发布自己的包"></a>发布自己的包</h3><ul><li>1、创建一个正常的unity项目</li><li>2、在Assets 目录下 创建好内容（必须包含内容如下图）</li><li>3、把做好的内容推送到主分支</li><li>4、git subtree split –prefix&#x3D;Assets&#x2F;xxx –branch upm</li><li>5、推送 upm 分支到github</li><li>6、git tag 1.0.0 upm</li><li>7、git push origin upm –tags</li></ul><p>后续修改只需要重复执行3-7即可</p><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul><li>打开unity package manager</li><li>点击 add package form git</li><li>填写 <a href="https://github.com/OnClick9927/NodeGraph.git#1.0.1">https://github.com/OnClick9927/NodeGraph.git#1.0.1</a></li></ul><p><img src="/../../../Pic/Unity/UPM/1.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Unity </category>
+          
+          <category> UPM </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>WooPool-接口及其他定义的说明</title>
       <link href="/2023/06/09/Doc/WooPool/WooPool-%E6%8E%A5%E5%8F%A3%E5%8F%8A%E5%85%B6%E4%BB%96%E5%AE%9A%E4%B9%89%E7%9A%84%E8%AF%B4%E6%98%8E/"/>
       <url>/2023/06/09/Doc/WooPool/WooPool-%E6%8E%A5%E5%8F%A3%E5%8F%8A%E5%85%B6%E4%BB%96%E5%AE%9A%E4%B9%89%E7%9A%84%E8%AF%B4%E6%98%8E/</url>
