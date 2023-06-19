@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>书写方式 | 灵</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="书写方式 | 灵">
+  <title>图片交叉移动 | 灵</title>
+  <meta name="keywords" content=" Shader ">
+  <meta name="description" content="图片交叉移动 | 灵">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="sadasda57d8a 哈哈哈 康康康 777 888   999  public class A&amp;#123;     public void DO()&amp;#123;&amp;#125; &amp;#125;     表头 表头    单元格 单元格   单元格 单元格">
 <meta property="og:type" content="website">
@@ -566,28 +566,43 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-README" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Unity/Shader/图片交叉移动" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">书写方式</h1>
+        <h1 class="article-title">图片交叉移动</h1>
     
     <div class="article-meta">
-        
-        <span class="top"><a>置顶</a></span>
         
         
         <span class="author"><a>灵</a></span>
         
         
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Unity">Unity</a> > 
+            
+            <a  data-rel="Unity&lt;---&gt;Shader">Shader</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">Shader</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-06-19 10:15:06'>2023-05-15 23:57</time>
+            发布时间 : <time class="date" title='最后更新: 2023-06-19 10:15:06'>2023-06-19 18:08</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:36</span>
+        <span>字数:272</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -617,7 +632,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sadasda"><span class="toc-text">sadasda</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#57d8a"><span class="toc-text">57d8a</span></a></li></ol></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -633,36 +648,100 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="sadasda"><a href="#sadasda" class="headerlink" title="sadasda"></a>sadasda</h2><h4 id="57d8a"><a href="#57d8a" class="headerlink" title="57d8a"></a>57d8a</h4><ul>
-<li>哈哈哈</li>
-<li>康康康<ul>
-<li>777</li>
-<li>888</li>
-</ul>
-</li>
-<li>999</li>
-</ul>
-<pre><code class="csharp">public class A&#123;
-    public void DO()&#123;&#125;
+        <pre><code class="cg">Shader &quot;UIEffect/UV Cross&quot;
+&#123;
+    Properties
+    &#123;
+      [PerRendererData]  _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;
+
+        _Vector(&quot;Count And Move&quot;,Vector)=(1,1,1,1)
+    _xOffset(&quot;xOffset&quot;,float)=10
+    //_yOffset(&quot;_yOffset&quot;,float)=10
+    _Rotate(&quot;Rotate&quot;,float)=10
+    _Scale(&quot;Scale&quot;,float)=1
+
+
+    &#125;
+    SubShader
+    &#123;
+        // No culling or depth
+        Cull Off ZWrite Off ZTest Always
+        Blend SrcAlpha OneMinusSrcAlpha
+        Tags &#123;&quot;Queue&quot;=&quot;Transparent&quot;
+&#125;
+        Pass
+        &#123;
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include &quot;UnityCG.cginc&quot;
+
+            struct appdata
+            &#123;
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+float4 color:COLOR;
+            &#125;;
+
+            struct v2f
+            &#123;
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+float4 color:COLOR;
+
+            &#125;;
+
+            v2f vert (appdata v)
+            &#123;
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
+o.color=v.color;
+                return o;
+            &#125;
+
+            sampler2D _MainTex;
+            float4 _Vector;
+float _xOffset;
+//float _yOffset;
+float _Rotate;
+float _Scale;
+
+            fixed4 frag (v2f i) : SV_Target
+            &#123;
+                float2 count=_Vector.xy;
+i.uv=i.uv-0.5;
+
+                float2 uv=i.uv*count* ((sin(_Time.x*_Scale)+1)/2+1);
+                float2 finalUV = uv;
+float angle=_Rotate*_Time.x;
+                finalUV.x = uv.x * cos(angle) - uv.y * sin(angle);
+
+                finalUV.y = uv.x * sin(angle) + uv.y * cos(angle);
+
+                finalUV += float2(0.5f, 0.5f);
+
+
+                uv=finalUV;
+
+                uv.y+=_Time.x*_Vector.w;
+                uv.x+=_Time.x*_Vector.z*(((floor(uv.y)%2)-0.5)*2);
+
+                uv.x+=(floor(uv.y)%2)*_xOffset;
+                //uv.y+=(floor(uv.x)%2)*_yOffset;
+
+
+                fixed4 col = tex2D(_MainTex, uv);
+
+//return fixed4(1,1,1,1);
+                return col*i.color;
+            &#125;
+            ENDCG
+        &#125;
+    &#125;
 &#125;
 </code></pre>
-<table>
-<thead>
-<tr>
-<th>表头</th>
-<th>表头</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>单元格</td>
-<td>单元格</td>
-</tr>
-<tr>
-<td>单元格</td>
-<td>单元格</td>
-</tr>
-</tbody></table>
-<p><img src="/../Pic/R-C.jpg"></p>
 
       
        

@@ -4,6 +4,141 @@
   
     
     <entry>
+      <title>图片过渡</title>
+      <link href="/2023/06/19/Unity/Shader/%E5%9B%BE%E7%89%87%E8%BF%87%E6%B8%A1/"/>
+      <url>/2023/06/19/Unity/Shader/%E5%9B%BE%E7%89%87%E8%BF%87%E6%B8%A1/</url>
+      
+        <content type="html"><![CDATA[<pre><code class="cg">Shader &quot;Hidden/UI/Default (UITransition)&quot;&#123;    Properties    &#123;        [PerRendererData] _MainTex (&quot;Main Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;        _Color (&quot;Tint&quot;, Color) = (1,1,1,1)        _StencilComp (&quot;Stencil Comparison&quot;, Float) = 8        _Stencil (&quot;Stencil ID&quot;, Float) = 0        _StencilOp (&quot;Stencil Operation&quot;, Float) = 0        _StencilWriteMask (&quot;Stencil Write Mask&quot;, Float) = 255        _StencilReadMask (&quot;Stencil Read Mask&quot;, Float) = 255        _ColorMask (&quot;Color Mask&quot;, Float) = 15        [Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip (&quot;Use Alpha Clip&quot;, Float) = 0        [Header(Transition)]        _TransitionTex (&quot;Transition Texture (A)&quot;, 2D) = &quot;white&quot; &#123;&#125;        _ParamTex (&quot;Parameter Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;    &#125;    SubShader    &#123;        Tags        &#123;            &quot;Queue&quot;=&quot;Transparent&quot;            &quot;IgnoreProjector&quot;=&quot;True&quot;            &quot;RenderType&quot;=&quot;Transparent&quot;            &quot;PreviewType&quot;=&quot;Plane&quot;            &quot;CanUseSpriteAtlas&quot;=&quot;True&quot;        &#125;        Stencil        &#123;            Ref [_Stencil]            Comp [_StencilComp]            Pass [_StencilOp]            ReadMask [_StencilReadMask]            WriteMask [_StencilWriteMask]        &#125;        Cull Off        Lighting Off        ZWrite Off        ZTest [unity_GUIZTestMode]        Blend SrcAlpha OneMinusSrcAlpha        ColorMask [_ColorMask]        Pass        &#123;            Name &quot;Default&quot;        CGPROGRAM            #pragma vertex vert            #pragma fragment frag            #pragma target 2.0            #define REVERSE 1            #define ADD 1            #pragma multi_compile __ UNITY_UI_ALPHACLIP            #pragma multi_compile __ FADE CUTOFF DISSOLVE            #include &quot;UnityCG.cginc&quot;            #include &quot;UnityUI.cginc&quot;            #define UI_TRANSITION 1            #include &quot;UIEffect.cginc&quot;            #include &quot;UIEffectSprite.cginc&quot;            fixed4 frag(v2f IN) : SV_Target            &#123;                half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd);                color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);                color = ApplyTransitionEffect(color, IN.eParam) * IN.color;                #if UNITY_UI_ALPHACLIP                clip (color.a - 0.001);                #endif                return color;            &#125;        ENDCG        &#125;    &#125;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Unity </category>
+          
+          <category> Shader </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Shader </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图片溶解</title>
+      <link href="/2023/06/19/Unity/Shader/%E5%9B%BE%E7%89%87%E6%BA%B6%E8%A7%A3/"/>
+      <url>/2023/06/19/Unity/Shader/%E5%9B%BE%E7%89%87%E6%BA%B6%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<pre><code class="cg">Shader &quot;Hidden/UI/Default (UIDissolve)&quot;&#123;    Properties    &#123;        [PerRendererData] _MainTex (&quot;Main Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;        _Color (&quot;Tint&quot;, Color) = (1,1,1,1)        _StencilComp (&quot;Stencil Comparison&quot;, Float) = 8        _Stencil (&quot;Stencil ID&quot;, Float) = 0        _StencilOp (&quot;Stencil Operation&quot;, Float) = 0        _StencilWriteMask (&quot;Stencil Write Mask&quot;, Float) = 255        _StencilReadMask (&quot;Stencil Read Mask&quot;, Float) = 255        _ColorMask (&quot;Color Mask&quot;, Float) = 15        [Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip (&quot;Use Alpha Clip&quot;, Float) = 0        [Header(Dissolve)]        _TransitionTex (&quot;Transition Texture (A)&quot;, 2D) = &quot;white&quot; &#123;&#125;        _ParamTex (&quot;Parameter Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;    &#125;    SubShader    &#123;        Tags        &#123;            &quot;Queue&quot;=&quot;Transparent&quot;            &quot;IgnoreProjector&quot;=&quot;True&quot;            &quot;RenderType&quot;=&quot;Transparent&quot;            &quot;PreviewType&quot;=&quot;Plane&quot;            &quot;CanUseSpriteAtlas&quot;=&quot;True&quot;        &#125;        Stencil        &#123;            Ref [_Stencil]            Comp [_StencilComp]            Pass [_StencilOp]            ReadMask [_StencilReadMask]            WriteMask [_StencilWriteMask]        &#125;        Cull Off        Lighting Off        ZWrite Off        ZTest [unity_GUIZTestMode]        Blend SrcAlpha OneMinusSrcAlpha        ColorMask [_ColorMask]        Pass        &#123;            Name &quot;Default&quot;        CGPROGRAM            #pragma vertex vert            #pragma fragment frag            #pragma target 2.0            #define DISSOLVE 1            #pragma multi_compile __ UNITY_UI_ALPHACLIP            #pragma multi_compile __ ADD SUBTRACT FILL            #include &quot;UnityCG.cginc&quot;            #include &quot;UnityUI.cginc&quot;            #define UI_DISSOLVE 1            #include &quot;UIEffect.cginc&quot;            #include &quot;UIEffectSprite.cginc&quot;            fixed4 frag(v2f IN) : SV_Target            &#123;                half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;                color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);                // Dissolve                color = ApplyTransitionEffect(color, IN.eParam);                #ifdef UNITY_UI_ALPHACLIP                clip (color.a - 0.001);                #endif                return color;            &#125;        ENDCG        &#125;    &#125;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Unity </category>
+          
+          <category> Shader </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Shader </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图片交叉移动</title>
+      <link href="/2023/06/19/Unity/Shader/%E5%9B%BE%E7%89%87%E4%BA%A4%E5%8F%89%E7%A7%BB%E5%8A%A8/"/>
+      <url>/2023/06/19/Unity/Shader/%E5%9B%BE%E7%89%87%E4%BA%A4%E5%8F%89%E7%A7%BB%E5%8A%A8/</url>
+      
+        <content type="html"><![CDATA[<pre><code class="cg">Shader &quot;UIEffect/UV Cross&quot;&#123;    Properties    &#123;      [PerRendererData]  _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;        _Vector(&quot;Count And Move&quot;,Vector)=(1,1,1,1)    _xOffset(&quot;xOffset&quot;,float)=10    //_yOffset(&quot;_yOffset&quot;,float)=10    _Rotate(&quot;Rotate&quot;,float)=10    _Scale(&quot;Scale&quot;,float)=1    &#125;    SubShader    &#123;        // No culling or depth        Cull Off ZWrite Off ZTest Always        Blend SrcAlpha OneMinusSrcAlpha        Tags &#123;&quot;Queue&quot;=&quot;Transparent&quot;&#125;        Pass        &#123;            CGPROGRAM            #pragma vertex vert            #pragma fragment frag            #include &quot;UnityCG.cginc&quot;            struct appdata            &#123;                float4 vertex : POSITION;                float2 uv : TEXCOORD0;float4 color:COLOR;            &#125;;            struct v2f            &#123;                float2 uv : TEXCOORD0;                float4 vertex : SV_POSITION;float4 color:COLOR;            &#125;;            v2f vert (appdata v)            &#123;                v2f o;                o.vertex = UnityObjectToClipPos(v.vertex);                o.uv = v.uv;o.color=v.color;                return o;            &#125;            sampler2D _MainTex;            float4 _Vector;float _xOffset;//float _yOffset;float _Rotate;float _Scale;            fixed4 frag (v2f i) : SV_Target            &#123;                float2 count=_Vector.xy;i.uv=i.uv-0.5;                float2 uv=i.uv*count* ((sin(_Time.x*_Scale)+1)/2+1);                float2 finalUV = uv;float angle=_Rotate*_Time.x;                finalUV.x = uv.x * cos(angle) - uv.y * sin(angle);                finalUV.y = uv.x * sin(angle) + uv.y * cos(angle);                finalUV += float2(0.5f, 0.5f);                uv=finalUV;                uv.y+=_Time.x*_Vector.w;                uv.x+=_Time.x*_Vector.z*(((floor(uv.y)%2)-0.5)*2);                uv.x+=(floor(uv.y)%2)*_xOffset;                //uv.y+=(floor(uv.x)%2)*_yOffset;                fixed4 col = tex2D(_MainTex, uv);//return fixed4(1,1,1,1);                return col*i.color;            &#125;            ENDCG        &#125;    &#125;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Unity </category>
+          
+          <category> Shader </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Shader </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图片闪亮</title>
+      <link href="/2023/06/19/Unity/Shader/%E5%9B%BE%E7%89%87%E9%97%AA%E4%BA%AE/"/>
+      <url>/2023/06/19/Unity/Shader/%E5%9B%BE%E7%89%87%E9%97%AA%E4%BA%AE/</url>
+      
+        <content type="html"><![CDATA[<pre><code class="cg">Shader &quot;Hidden/UI/Default (UIShiny)&quot;&#123;    Properties    &#123;        [PerRendererData] _MainTex (&quot;Main Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;        _Color (&quot;Tint&quot;, Color) = (1,1,1,1)        _StencilComp (&quot;Stencil Comparison&quot;, Float) = 8        _Stencil (&quot;Stencil ID&quot;, Float) = 0        _StencilOp (&quot;Stencil Operation&quot;, Float) = 0        _StencilWriteMask (&quot;Stencil Write Mask&quot;, Float) = 255        _StencilReadMask (&quot;Stencil Read Mask&quot;, Float) = 255        _ColorMask (&quot;Color Mask&quot;, Float) = 15        [Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip (&quot;Use Alpha Clip&quot;, Float) = 0        _ParamTex (&quot;Parameter Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;    &#125;    SubShader    &#123;        Tags        &#123;            &quot;Queue&quot;=&quot;Transparent&quot;            &quot;IgnoreProjector&quot;=&quot;True&quot;            &quot;RenderType&quot;=&quot;Transparent&quot;            &quot;PreviewType&quot;=&quot;Plane&quot;            &quot;CanUseSpriteAtlas&quot;=&quot;True&quot;        &#125;        Stencil        &#123;            Ref [_Stencil]            Comp [_StencilComp]            Pass [_StencilOp]            ReadMask [_StencilReadMask]            WriteMask [_StencilWriteMask]        &#125;        Cull Off        Lighting Off        ZWrite Off        ZTest [unity_GUIZTestMode]        Blend SrcAlpha OneMinusSrcAlpha        ColorMask [_ColorMask]        Pass        &#123;            Name &quot;Default&quot;        CGPROGRAM            #pragma vertex vert            #pragma fragment frag            #pragma target 2.0            #pragma multi_compile __ UNITY_UI_ALPHACLIP            #include &quot;UnityCG.cginc&quot;            #include &quot;UnityUI.cginc&quot;            #define UI_SHINY 1            #include &quot;UIEffect.cginc&quot;            #include &quot;UIEffectSprite.cginc&quot;            fixed4 frag(v2f IN) : SV_Target            &#123;                half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;                color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);                color = ApplyShinyEffect(color, IN.eParam);                #ifdef UNITY_UI_ALPHACLIP                clip (color.a - 0.001);                #endif                return color;            &#125;        ENDCG        &#125;    &#125;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Unity </category>
+          
+          <category> Shader </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Shader </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图片置灰</title>
+      <link href="/2023/06/19/Unity/Shader/%E5%9B%BE%E7%89%87%E7%BD%AE%E7%81%B0/"/>
+      <url>/2023/06/19/Unity/Shader/%E5%9B%BE%E7%89%87%E7%BD%AE%E7%81%B0/</url>
+      
+        <content type="html"><![CDATA[<pre><code class="cg">Shader &quot;UI/ImageGrey&quot;&#123;    Properties    &#123;        [PerRendererData] _MainTex(&quot;Sprite Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;        _Color(&quot;Tint&quot;, Color) = (1,1,1,1)        _StencilComp(&quot;Stencil Comparison&quot;, Float) = 8        _Stencil(&quot;Stencil ID&quot;, Float) = 0        _StencilOp(&quot;Stencil Operation&quot;, Float) = 0        _StencilWriteMask(&quot;Stencil Write Mask&quot;, Float) = 255        _StencilReadMask(&quot;Stencil Read Mask&quot;, Float) = 255        _ColorMask(&quot;Color Mask&quot;, Float) = 15        _Gray(&quot;Gray&quot;,Range(0,1)) = 0    &#125;        SubShader        &#123;            Tags            &#123;                &quot;Queue&quot; = &quot;Transparent&quot;                &quot;IgnoreProjector&quot; = &quot;True&quot;                &quot;RenderType&quot; = &quot;Transparent&quot;                &quot;PreviewType&quot; = &quot;Plane&quot;                &quot;CanUseSpriteAtlas&quot; = &quot;True&quot;            &#125;            Stencil            &#123;                Ref[_Stencil]                Comp[_StencilComp]                Pass[_StencilOp]                ReadMask[_StencilReadMask]                WriteMask[_StencilWriteMask]            &#125;            Cull back            Lighting Off            ZWrite Off            ZTest[unity_GUIZTestMode]            Blend SrcAlpha OneMinusSrcAlpha            ColorMask[_ColorMask]            Pass            &#123;                CGPROGRAM                #pragma vertex vert                #pragma fragment frag                #include &quot;UnityCG.cginc&quot;                #include &quot;UnityUI.cginc&quot;                #pragma multi_compile_local _ UNITY_UI_CLIP_RECT                struct appdata_t                &#123;                    float4 vertex   : POSITION;                    float4 color    : COLOR;                    float2 texcoord : TEXCOORD0;                &#125;;                struct v2f                &#123;                    float4 vertex   : SV_POSITION;                    fixed4 color : COLOR;                    half2 texcoord  : TEXCOORD0;                    float4 worldPosition : TEXCOORD1;                &#125;;                fixed4 _Color;                v2f vert(appdata_t IN)                &#123;                    v2f OUT;                    OUT.worldPosition = IN.vertex;                    OUT.vertex = UnityObjectToClipPos(IN.vertex);                    OUT.texcoord = IN.texcoord;                    #ifdef UNITY_HALF_TEXEL_OFFSET                        OUT.vertex.xy += (_ScreenParams.zw - 1.0) * float2(-1,1);                    #endif                    OUT.color = IN.color * _Color;                    return OUT;                &#125;                sampler2D _MainTex;                fixed _Gray;                float4 _ClipRect;                fixed4 frag(v2f IN) : SV_Target                &#123;                    half4 color = tex2D(_MainTex, IN.texcoord) * IN.color;                    clip(color.a - 0.01);                    if (_Gray &gt; 0) &#123;                        fixed gray = dot(color.rgb, fixed3(0.299, 0.587, 0.114));                        color.rgb = lerp(color.rgb,fixed3(gray, gray, gray),_Gray);                    &#125;                    #ifdef UNITY_UI_CLIP_RECT                        color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);                    #endif                    return color;                &#125;                ENDCG            &#125;        &#125;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Unity </category>
+          
+          <category> Shader </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Shader </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>通过github 发布package</title>
       <link href="/2023/06/18/Unity/UPM/UPM/"/>
       <url>/2023/06/18/Unity/UPM/UPM/</url>
@@ -378,8 +513,6 @@
       
       
         <tags>
-            
-            <tag> Unity </tag>
             
             <tag> Shader </tag>
             
