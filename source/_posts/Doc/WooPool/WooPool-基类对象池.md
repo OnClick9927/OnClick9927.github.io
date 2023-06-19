@@ -4,8 +4,7 @@ author: 叶子三分青
 comment: on
 
 tags:
-  - Pool 
-  - 基类对象池
+  - Pool
 category:
   - 文档
   - WooPool
@@ -44,4 +43,55 @@ public abstract class BaseTypePool<T> : PoolUnit
 | GetPoolCount&lt;Object&gt;()                    | public            | 获取对应类型的对象池中对象的数量   |
 | GetPoolCount(Type)                              | public            | 获取对应类型的对象池中对象的数量   |
 | Dispose()                                       | public            | 销毁基类对象池                     |
+
+
+
+## 使用示例
+
+```csharp
+//定义一个叫IObject的接口
+public interface IObject { }
+
+//创建两个实现IObject接口的类
+public class Obj_A : IObject { }
+public class Obj_B : IObject { }
+
+//以IObject为基类定义一个基类对象池
+public class MyBaseTypePool : BaseTypePool<IObject> { }
+
+//定义一个存放Obj_A对象的对象池
+public class ObjectPoolA : ObjectPool<Obj_A>
+{
+    protected override Obj_A CreateNew(IPoolArgs arg)
+    {
+        return new Obj_A();
+    }
+}
+
+//基类对象池使用示例方法
+void BaseTypePoolExample()
+{
+    //创建基类对象池
+    MyBaseTypePool pool = new MyBaseTypePool();
+
+    //从基类对象池中获取Obj_A类型的对象
+    IObject _obj = pool.Get<Obj_A>();
+    //将对象放回
+    pool.Set(_obj);
+
+    //从基类对象池中获取Obj_B类型的对象
+    _obj = pool.Get(typeof(Obj_B));
+    //将对象放回
+    pool.Set(_obj);
+
+    //从基类对象池中获取Obj_A类型的对象池
+    ObjectPool<Obj_A> objPoolA = pool.GetPool<Obj_A>();
+    //也可使用如下方法
+    //ObjectPool<Obj_A> objPoolA = (ObjectPool<Obj_A>)pool.GetPool(typeof(Obj_A));
+
+    //创建一个Obj_A的对象池，替换基类对象池中的对应对象池
+    pool.SetPool(new ObjectPoolA());
+}
+
+```
 

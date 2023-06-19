@@ -4,8 +4,7 @@ author: 叶子三分青
 comment: on
 
 tags:
-  - Pool 
-  - 接口介绍
+  - Pool
 category:
   - 文档
   - WooPool
