@@ -8,7 +8,7 @@
       <link href="/2023/06/18/Unity/UPM/UPM/"/>
       <url>/2023/06/18/Unity/UPM/UPM/</url>
       
-        <content type="html"><![CDATA[<h3 id="发布自己的包"><a href="#发布自己的包" class="headerlink" title="发布自己的包"></a>发布自己的包</h3><ul><li>1、创建一个正常的unity项目</li><li>2、在Assets 目录下 创建好内容（必须包含内容如下图）</li><li>3、把做好的内容推送到主分支</li><li>4、git subtree split –prefix&#x3D;Assets&#x2F;xxx –branch upm</li><li>5、推送 upm 分支到github（git push origin upm:upm）</li><li>6、git tag 1.0.0 upm</li><li>7、git push origin upm –tags</li></ul><p>后续修改只需要重复执行3-7即可</p><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul><li>打开unity package manager</li><li>点击 add package form git</li><li>填写 <a href="https://github.com/OnClick9927/NodeGraph.git#1.0.1">https://github.com/OnClick9927/NodeGraph.git#1.0.1</a></li></ul><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul><li>删除远程tag git push origin :refs&#x2F;tags&#x2F;标签名  </li><li>删除本地 tag git tag -d 标签名</li></ul><p><img src="/../../../Pic/Unity/UPM/1.png"></p>]]></content>
+        <content type="html"><![CDATA[<h3 id="发布自己的包"><a href="#发布自己的包" class="headerlink" title="发布自己的包"></a>发布自己的包</h3><ul><li>1、创建一个正常的unity项目</li><li>2、在Assets 目录下 创建好内容（必须包含内容如下图）</li><li>3、把做好的内容推送到主分支</li><li>4、<code>git subtree split --prefix=Assets/xxx --branch upm</code></li><li>5、推送 upm 分支到github（<code>git push origin upm:upm</code>）</li><li>6、<code>git tag 1.0.0 upm</code></li><li>7、<code>git push origin upm --tags</code></li></ul><p>后续修改只需要重复执行3-7即可</p><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul><li>打开unity package manager</li><li>点击 add package form git</li><li>填写 <a href="https://github.com/OnClick9927/NodeGraph.git#1.0.1">https://github.com/OnClick9927/NodeGraph.git#1.0.1</a></li></ul><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul><li>删除远程tag git push origin :refs&#x2F;tags&#x2F;标签名  </li><li>删除本地 tag git tag -d 标签名</li></ul><p><img src="/../../../Pic/Unity/UPM/1.png"></p>]]></content>
       
       
       <categories>
@@ -51,8 +51,6 @@
             
             <tag> Pool </tag>
             
-            <tag> 接口介绍 </tag>
-            
         </tags>
       
     </entry>
@@ -80,8 +78,6 @@
             
             <tag> Pool </tag>
             
-            <tag> 数组对象池 </tag>
-            
         </tags>
       
     </entry>
@@ -93,7 +89,7 @@
       <link href="/2023/06/07/Doc/WooPool/WooPool-%E5%9F%BA%E7%B1%BB%E5%AF%B9%E8%B1%A1%E6%B1%A0/"/>
       <url>/2023/06/07/Doc/WooPool/WooPool-%E5%9F%BA%E7%B1%BB%E5%AF%B9%E8%B1%A1%E6%B1%A0/</url>
       
-        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>设置一个基类，可以从这个对象池中拿出继承这个基类的对象</p><pre><code class="csharp">public abstract class BaseTypePool&lt;T&gt; : PoolUnit</code></pre><h4 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h4><p>基类对象池的本质是一个Key为 类型，Value为 对应类型对象池 的字典。获取对象时，根据类型找到对应的对象池，并从对应的对象池中获取对象。</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>注：下面的<code>Object</code>类型是泛型类型，为了区分基类的泛型<code>T</code></p><table><thead><tr><th>方法名</th><th>可见性级别</th><th>说明</th></tr></thead><tbody><tr><td>SetPool&lt;Object&gt;(ObjectPool&lt;Object&gt;)</td><td>public</td><td>将对象池放入基类对象池中</td></tr><tr><td>SetPool(Type, IObjectPool)</td><td>public</td><td>将对应类型的对象池放入基类对象池中</td></tr><tr><td>GetPool&lt;Object&gt;()</td><td>public</td><td>根据类型获取对象池</td></tr><tr><td>GetPool(Type)</td><td>public</td><td>根据类型获取对象池</td></tr><tr><td>CreatePool(Type)</td><td>protected virtual</td><td>创建对象池</td></tr><tr><td>Get&lt;Object&gt;(IPoolArgs)</td><td>public</td><td>从对象池中获取对应类型的对象</td></tr><tr><td>Get(Type,IPoolArgs)</td><td>public</td><td>从对象池中获取对应类型的对象</td></tr><tr><td>Set&lt;Object&gt;(Object,IPoolArgs)</td><td>public</td><td>将对应类型的对象放回对象池</td></tr><tr><td>Set(Type,T,IPoolArgs)</td><td>public</td><td>将对应类型的对象放回对象池</td></tr><tr><td>GetPoolCount&lt;Object&gt;()</td><td>public</td><td>获取对应类型的对象池中对象的数量</td></tr><tr><td>GetPoolCount(Type)</td><td>public</td><td>获取对应类型的对象池中对象的数量</td></tr><tr><td>Dispose()</td><td>public</td><td>销毁基类对象池</td></tr></tbody></table>]]></content>
+        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>设置一个基类，可以从这个对象池中拿出继承这个基类的对象</p><pre><code class="csharp">public abstract class BaseTypePool&lt;T&gt; : PoolUnit</code></pre><h4 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h4><p>基类对象池的本质是一个Key为 类型，Value为 对应类型对象池 的字典。获取对象时，根据类型找到对应的对象池，并从对应的对象池中获取对象。</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>注：下面的<code>Object</code>类型是泛型类型，为了区分基类的泛型<code>T</code></p><table><thead><tr><th>方法名</th><th>可见性级别</th><th>说明</th></tr></thead><tbody><tr><td>SetPool&lt;Object&gt;(ObjectPool&lt;Object&gt;)</td><td>public</td><td>将对象池放入基类对象池中</td></tr><tr><td>SetPool(Type, IObjectPool)</td><td>public</td><td>将对应类型的对象池放入基类对象池中</td></tr><tr><td>GetPool&lt;Object&gt;()</td><td>public</td><td>根据类型获取对象池</td></tr><tr><td>GetPool(Type)</td><td>public</td><td>根据类型获取对象池</td></tr><tr><td>CreatePool(Type)</td><td>protected virtual</td><td>创建对象池</td></tr><tr><td>Get&lt;Object&gt;(IPoolArgs)</td><td>public</td><td>从对象池中获取对应类型的对象</td></tr><tr><td>Get(Type,IPoolArgs)</td><td>public</td><td>从对象池中获取对应类型的对象</td></tr><tr><td>Set&lt;Object&gt;(Object,IPoolArgs)</td><td>public</td><td>将对应类型的对象放回对象池</td></tr><tr><td>Set(Type,T,IPoolArgs)</td><td>public</td><td>将对应类型的对象放回对象池</td></tr><tr><td>GetPoolCount&lt;Object&gt;()</td><td>public</td><td>获取对应类型的对象池中对象的数量</td></tr><tr><td>GetPoolCount(Type)</td><td>public</td><td>获取对应类型的对象池中对象的数量</td></tr><tr><td>Dispose()</td><td>public</td><td>销毁基类对象池</td></tr></tbody></table><h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><pre><code class="csharp">//定义一个叫IObject的接口public interface IObject &#123; &#125;//创建两个实现IObject接口的类public class Obj_A : IObject &#123; &#125;public class Obj_B : IObject &#123; &#125;//以IObject为基类定义一个基类对象池public class MyBaseTypePool : BaseTypePool&lt;IObject&gt; &#123; &#125;//定义一个存放Obj_A对象的对象池public class ObjectPoolA : ObjectPool&lt;Obj_A&gt;&#123;    protected override Obj_A CreateNew(IPoolArgs arg)    &#123;        return new Obj_A();    &#125;&#125;//基类对象池使用示例方法void BaseTypePoolExample()&#123;    //创建基类对象池    MyBaseTypePool pool = new MyBaseTypePool();    //从基类对象池中获取Obj_A类型的对象    IObject _obj = pool.Get&lt;Obj_A&gt;();    //将对象放回    pool.Set(_obj);    //从基类对象池中获取Obj_B类型的对象    _obj = pool.Get(typeof(Obj_B));    //将对象放回    pool.Set(_obj);    //从基类对象池中获取Obj_A类型的对象池    ObjectPool&lt;Obj_A&gt; objPoolA = pool.GetPool&lt;Obj_A&gt;();    //也可使用如下方法    //ObjectPool&lt;Obj_A&gt; objPoolA = (ObjectPool&lt;Obj_A&gt;)pool.GetPool(typeof(Obj_A));    //创建一个Obj_A的对象池，替换基类对象池中的对应对象池    pool.SetPool(new ObjectPoolA());&#125;</code></pre>]]></content>
       
       
       <categories>
@@ -108,8 +104,6 @@
         <tags>
             
             <tag> Pool </tag>
-            
-            <tag> 基类对象池 </tag>
             
         </tags>
       
@@ -122,7 +116,7 @@
       <link href="/2023/06/06/Doc/WooPool/WooPool-%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E6%B1%A0/"/>
       <url>/2023/06/06/Doc/WooPool/WooPool-%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E6%B1%A0/</url>
       
-        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>能拿出数组对象的对象池</p><pre><code class="csharp">public class ArrayPool&lt;T&gt; : ObjectPool&lt;T[]&gt;</code></pre><h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><p>参数ArrayPoolArg用于传入数组长度</p><pre><code class="csharp">public struct ArrayPoolArg : IPoolArgs</code></pre><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><table><thead><tr><th>属性名</th><th>说明</th></tr></thead><tbody><tr><td>length</td><td>数组长度</td></tr></tbody></table><h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><pre><code class="csharp">public ArrayPoolArg(int length)</code></pre><h5 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h5><table><thead><tr><th>参数名</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>length</td><td>int</td><td>用于参数构造时传入数组长度</td></tr></tbody></table><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><table><thead><tr><th>方法名</th><th>可见性级别</th><th>说明</th></tr></thead><tbody><tr><td>Get(IPoolArgs)</td><td>public</td><td>从对象池中获取对应类型的数组对象</td></tr><tr><td>Set(T[],IPoolArgs)</td><td>public</td><td>将数组对象放回对象池</td></tr><tr><td>Dispose()</td><td>public</td><td>销毁基类对象池</td></tr></tbody></table>]]></content>
+        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>能拿出数组对象的对象池</p><pre><code class="csharp">public class ArrayPool&lt;T&gt; : ObjectPool&lt;T[]&gt;</code></pre><h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><p>参数ArrayPoolArg用于传入数组长度</p><pre><code class="csharp">public struct ArrayPoolArg : IPoolArgs</code></pre><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><table><thead><tr><th>属性名</th><th>说明</th></tr></thead><tbody><tr><td>length</td><td>数组长度</td></tr></tbody></table><h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><pre><code class="csharp">public ArrayPoolArg(int length)</code></pre><h5 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h5><table><thead><tr><th>参数名</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>length</td><td>int</td><td>用于参数构造时传入数组长度</td></tr></tbody></table><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><table><thead><tr><th>方法名</th><th>可见性级别</th><th>说明</th></tr></thead><tbody><tr><td>Get(IPoolArgs)</td><td>public</td><td>从对象池中获取对应类型的数组对象</td></tr><tr><td>Set(T[],IPoolArgs)</td><td>public</td><td>将数组对象放回对象池</td></tr><tr><td>Dispose()</td><td>public</td><td>销毁基类对象池</td></tr></tbody></table><h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><pre><code class="csharp">void ArrayPoolExample()&#123;    //创建数组对象池，示例使用存放int值的数组    var pool = new ArrayPool&lt;int&gt;();    //从数组对象池中拿出一个长度为2的数组    var objA = pool.Get(new ArrayPoolArg(2));    Console.WriteLine(&quot;取出的数组长度为&quot;+objA.Length);    //将数组中的第一个元素设置成1    objA[0] = 1;    //将数组回收，再拿出一个长度为2的数组    pool.Set(objA);    objA = pool.Get(new ArrayPoolArg(2));    //打印第一个元素    Console.WriteLine(&quot;数组的第一个元素的值为：&quot;+ objA[0]);    //因此需要注意放回数组时 根据自己需求判断是否需要重置一下数组&#125;</code></pre>]]></content>
       
       
       <categories>
@@ -137,8 +131,6 @@
         <tags>
             
             <tag> Pool </tag>
-            
-            <tag> 数组对象池 </tag>
             
         </tags>
       
@@ -167,8 +159,6 @@
             
             <tag> Pool </tag>
             
-            <tag> Activator构建对象池 </tag>
-            
         </tags>
       
     </entry>
@@ -180,7 +170,7 @@
       <link href="/2023/06/04/Doc/WooPool/WooPool-%E5%A7%94%E6%89%98%E5%AF%B9%E8%B1%A1%E6%B1%A0/"/>
       <url>/2023/06/04/Doc/WooPool/WooPool-%E5%A7%94%E6%89%98%E5%AF%B9%E8%B1%A1%E6%B1%A0/</url>
       
-        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>创建对象时会调用委托的对象池</p><pre><code class="csharp">public abstract class DelegatePool&lt;T&gt; : ObjectPool&lt;T&gt;</code></pre><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><pre><code class="csharp">public DelegatePool(Func&lt;T&gt; create)</code></pre><h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><table><thead><tr><th>参数名</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>create</td><td>Func&lt;T&gt;</td><td>创建对象时所需要调用的委托</td></tr></tbody></table>]]></content>
+        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>使用委托创建对象的对象池，用于在CreateNew()中调用,方便外部动态修改创建对象的方法</p><pre><code class="csharp">public abstract class DelegatePool&lt;T&gt; : ObjectPool&lt;T&gt;</code></pre><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><pre><code class="csharp">public DelegatePool(Func&lt;T&gt; create)</code></pre><h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><table><thead><tr><th>参数名</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>create</td><td>Func&lt;T&gt;</td><td>创建对象的委托</td></tr></tbody></table><h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><pre><code class="csharp">//用于示例的类型public class Obj_A &#123; &#125;//定义一个存放Obj_A对象的委托对象池public class DelegatePoolA : DelegatePool&lt;Obj_A&gt;&#123;    public DelegatePoolA(Func&lt;Obj_A&gt; create) : base(create)    &#123;    &#125;&#125;//创建Obj_A对象的方法Obj_A CreateObject()&#123;    Console.WriteLine(&quot;我创建了一个对象，哈哈哈哈哈哈！&quot;);    return new Obj_A();&#125;void DelegatePoolExample()&#123;    //创建委托对象池    var pool = new DelegatePoolA(CreateObject);    //获取一个对象，内部创建新对象时会调用方法    var objA = pool.Get();&#125;</code></pre>]]></content>
       
       
       <categories>
@@ -195,8 +185,6 @@
         <tags>
             
             <tag> Pool </tag>
-            
-            <tag> 委托对象池 </tag>
             
         </tags>
       
@@ -209,7 +197,7 @@
       <link href="/2023/06/03/Doc/WooPool/WooPool-%E6%9C%89%E5%AE%B9%E9%87%8F%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%B1%A0/"/>
       <url>/2023/06/03/Doc/WooPool/WooPool-%E6%9C%89%E5%AE%B9%E9%87%8F%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%B1%A0/</url>
       
-        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>限制容量大小的对象池</p><pre><code class="csharp">public abstract class CapicityPool&lt;T&gt;: ObjectPool&lt;T&gt;</code></pre><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><pre><code class="csharp">protected CapicityPool(int capacity) : base() &#123; this._capacity = capacity; &#125;</code></pre><h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><table><thead><tr><th>参数名</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>capacity</td><td>int</td><td>对象池的最大容量</td></tr></tbody></table><h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><table><thead><tr><th>属性名</th><th>说明</th></tr></thead><tbody><tr><td>capacity</td><td>对象池的最大容量，创建后可重新修改</td></tr></tbody></table>]]></content>
+        <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>限制容量大小的对象池</p><pre><code class="csharp">public abstract class CapacityPool&lt;T&gt;: ObjectPool&lt;T&gt;</code></pre><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><pre><code class="csharp">protected CapacityPool(int capacity) : base() &#123; this._capacity = capacity; &#125;</code></pre><h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><table><thead><tr><th>参数名</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>capacity</td><td>int</td><td>对象池的最大容量</td></tr></tbody></table><h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><table><thead><tr><th>属性名</th><th>说明</th></tr></thead><tbody><tr><td>capacity</td><td>对象池的最大容量，创建后可重新修改</td></tr></tbody></table><h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><pre><code class="csharp">//用于示例的类型public class Obj_A &#123; &#125;//定义一个存放Obj_A对象的对象池public class CapacityPoolA : CapacityPool&lt;Obj_A&gt;&#123;    public CapacityPoolA(int capacity) : base(capacity)    &#123;    &#125;    protected override Obj_A CreateNew(IPoolArgs arg)    &#123;        return new Obj_A();    &#125;&#125;//限制大小对象池的示例void CapacityPoolExample()&#123;    //创建对象池，设置大小为1    var pool = new CapacityPoolA(1);    //放入一个对象，不会报错    Console.WriteLine(&quot;回收第一个对象，结果为：&quot; + pool.Set(new Obj_A()));    //再放入一个对象，会发现存放失败    Console.WriteLine(&quot;回收第二个对象，结果为：&quot; + pool.Set(new Obj_A()));&#125;</code></pre>]]></content>
       
       
       <categories>
@@ -224,8 +212,6 @@
         <tags>
             
             <tag> Pool </tag>
-            
-            <tag> 有容量的对象池 </tag>
             
         </tags>
       
@@ -254,8 +240,6 @@
             
             <tag> Pool </tag>
             
-            <tag> 基本定义 </tag>
-            
         </tags>
       
     </entry>
@@ -282,8 +266,6 @@
         <tags>
             
             <tag> Pool </tag>
-            
-            <tag> 简介 </tag>
             
         </tags>
       
@@ -341,9 +323,9 @@
       
         <tags>
             
-            <tag> 简介 </tag>
-            
             <tag> WooTween </tag>
+            
+            <tag> 简介 </tag>
             
         </tags>
       
