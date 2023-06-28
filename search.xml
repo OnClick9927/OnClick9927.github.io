@@ -247,6 +247,209 @@
     
     
     <entry>
+      <title>WooTween-Document</title>
+      <link href="/2023/06/23/Doc/WooTween/WooTween-Document/"/>
+      <url>/2023/06/23/Doc/WooTween/WooTween-Document/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooTween </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooTween </tag>
+            
+            <tag> Document </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooTween-Tween</title>
+      <link href="/2023/06/23/Doc/WooTween/WooTween-Tween/"/>
+      <url>/2023/06/23/Doc/WooTween/WooTween-Tween/</url>
+      
+        <content type="html"><![CDATA[<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><ul><li>我们需要实现开始、重新开始、结束，回去</li><li>所以必须有四个方法</li><li>Run、ReStart、Rewind、Complete</li><li>因为要可以设置转换器，所以必须有一个引用</li><li>因为需要可以循环动画，所以必须要有一个方向、循环类型</li></ul><h2 id="呼之欲出的结果"><a href="#呼之欲出的结果" class="headerlink" title="呼之欲出的结果"></a>呼之欲出的结果</h2><pre><code class="csharp">///环境public enum TweenDirection&#123;    Forward,    Back&#125;public enum LoopType&#123;    ReStart,    PingPong&#125;public abstract class Tween : TweenObject, ITween&#123;    private TweenDirection _direction = TweenDirection.Forward;    public LoopType loopType &#123; get; set; &#125;    public abstract IPercentConverter converter &#123; get; set; &#125;    public abstract void Run();    public abstract void ReStart();    public abstract void Rewind(float duration,bool snap=false);    public abstract void Complete(bool invoke);&#125;</code></pre><h1 id="再次开始"><a href="#再次开始" class="headerlink" title="再次开始"></a>再次开始</h1><ul><li>动画的变化有可能是从一个值到另一个值</li><li>比如0-1</li><li>也有可能需要变化一组数值</li><li>比如dotween 经典的 dopath</li><li>所以我们有两种tween,SingleTween,ArrayTween</li></ul><h1 id="凉鞋专用"><a href="#凉鞋专用" class="headerlink" title="凉鞋专用"></a>凉鞋专用</h1><ul><li>为什么要有 WaitToRun 这个方法</li><li>因为需要支持链式编程，所以tween都是等到下一帧才会真的开始跑</li><li>对于为什么要有 UnbindTweenValue 这个方法</li><li>TweenValue 其实是一直跑的，直到他自己跑结束，会被驱动统一回收</li><li>tween想要中断被当前 TweenValue 控制数值，只要把 TweenValue 的plugin制空即可</li><li>还想继续跑，那就重新分配一个即可</li><li>这个就是我之前困扰的bug</li></ul><h1 id="更方便的书写"><a href="#更方便的书写" class="headerlink" title="更方便的书写"></a>更方便的书写</h1><ul><li>众所周知，dotween最出名的就是链式编程</li><li>我们也不能少</li></ul><pre><code class="csharp">public static ISingleTween&lt;T&gt; AllocateSingleTween&lt;T&gt;(EnvironmentType env)&#123;    if (env != EnvironmentType.Editor)        TweenSingleton.Initialized();    return TweenObject.Allocate&lt;SingleTween&lt;T&gt;&gt;(env);&#125;public static ITween&lt;T&gt; DoGoto&lt;T&gt;(T start, T end, float duration, Func&lt;T&gt; getter, Action&lt;T&gt; setter, bool snap, EnvironmentType env= EnvironmentType.RT)&#123;#if UNITY_EDITOR    if (!UnityEditor.EditorApplication.isPlaying &amp;&amp; !Application.isPlaying)    &#123;        env = EnvironmentType.Editor;    &#125;#endif    var tween = AllocateSingleTween&lt;T&gt;(env);    tween.Config(start, end, duration, getter, setter, snap);    (tween as Tween).WaitToRun();    return tween;&#125;public static ITween&lt;Vector3&gt; DoMove(this Transform target, Vector3 end, float duration, bool snap = false)&#123;    return DoGoto(target.position, end, duration, () =&gt; &#123; return target.position; &#125;,            (value) =&gt; &#123;                target.position = value;            &#125;, snap        );&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooTween </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooTween </tag>
+            
+            <tag> Tween </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooTween-TweenValue</title>
+      <link href="/2023/06/23/Doc/WooTween/WooTween-TweenValue/"/>
+      <url>/2023/06/23/Doc/WooTween/WooTween-TweenValue/</url>
+      
+        <content type="html"><![CDATA[<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><ul><li>这是一个单程车，</li><li>所以他的功能就是在曲线转换器的作用下</li><li>从一个值跑到另一个值即可</li><li>那么他肯定有一个 开始跑（run）和update</li><li>run 很简单</li><li>update ，在那里运行呢？</li><li>还记得我们的好司机吗？</li><li>对了，就是他带着我们的 TweenValue 跑</li><li>我们需要具有曲线的运行跑完这个单程</li><li>所以我们TweenValue得有一个 转换器</li><li>我们变化的值，也不可能是一种</li><li>有可能是 float、int、Vector3等等</li><li>所以 TweenValue 是一个泛型</li></ul><h2 id="呼之欲出的结果"><a href="#呼之欲出的结果" class="headerlink" title="呼之欲出的结果"></a>呼之欲出的结果</h2><pre><code class="csharp">///环境public abstract class TweenValue : TweenObject&#123;    ///提供统一的获取接口    public static TweenValue&lt;T&gt; Get&lt;T&gt;(EnvironmentType envType) where T : struct &#123;&#125;    private IPercentConverter _converter = EaseCoverter.Default;    private float _time;    public abstract float duration &#123; get; &#125;    public static float deltaTime = 0.02f;    protected abstract void MoveNext();    public void Run()    &#123;        TweenDrive container = TweenDrive.GetDrive(envType);        container.Subscribe(this);    &#125;    public void Update()    &#123;        _time += deltaTime ;        if (_time &gt;= duration)        &#123;            OnCompelete();        &#125;        else        &#123;            MoveNext();        &#125;    &#125;    protected virtual void OnCompelete()&#123;&#125;&#125;public abstract class TweenValue&lt;T&gt; : TweenValue where T : struct&#123;    ///对Tween传过来的设置打个包    private IPlugin&lt;T&gt; _plugin;    private T _current;    protected T pluginValue &#123; get &#123; return _plugin.getter.Invoke(); &#125; &#125;    ///设置当前的值    protected void SetCurrent(T value)    &#123;        if (_plugin != null)        &#123;            if (_plugin.snap)                _current = Snap(value);            else                _current = value;            if (_plugin.setter != null)            &#123;                _plugin.setter(_current);            &#125;        &#125;    &#125;    public T end &#123; get &#123; return _plugin.end; &#125; &#125;    public T start &#123; get &#123; return _plugin.start; &#125; &#125;    public override float duration &#123; get &#123; return _plugin != null ? _plugin.duration : 0; &#125; &#125;&#125;</code></pre><h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>基础的结构已经有了，接下来就是各种类型（float，int，Vector3）各自实现即可</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooTween </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooTween </tag>
+            
+            <tag> TweenValue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooTween-转换器</title>
+      <link href="/2023/06/23/Doc/WooTween/WooTween-%E8%BD%AC%E6%8D%A2%E5%99%A8/"/>
+      <url>/2023/06/23/Doc/WooTween/WooTween-%E8%BD%AC%E6%8D%A2%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="这是个什么东西"><a href="#这是个什么东西" class="headerlink" title="这是个什么东西"></a>这是个什么东西</h2><p>在dotween 里面有一个Ease的概念</p><p>我们要实现的就是这个</p><p>那么这个东西很简单</p><p>只需要实现从一个值到另一个值的映射即可</p><h2 id="呼之欲出的结果"><a href="#呼之欲出的结果" class="headerlink" title="呼之欲出的结果"></a>呼之欲出的结果</h2><pre><code class="csharp">///环境public interface IPercentConverter&#123;    float Convert(float percent, float time, float duration);    void Recyle();&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooTween </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooTween </tag>
+            
+            <tag> 转换器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooTween-驱动器</title>
+      <link href="/2023/06/23/Doc/WooTween/WooTween-%E9%A9%B1%E5%8A%A8%E5%99%A8/"/>
+      <url>/2023/06/23/Doc/WooTween/WooTween-%E9%A9%B1%E5%8A%A8%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><ul><li>驱动器需要逐帧运行，所以需要update</li><li>因为需要分为编辑器和运行时，所以要有一个环境的概念</li><li>但是驱动总得有一个指挥他运行的东西<ul><li>运行时：单例</li><li>编辑器：绑定到编辑器的update</li></ul></li></ul><h3 id="呼之欲出的结果"><a href="#呼之欲出的结果" class="headerlink" title="呼之欲出的结果"></a>呼之欲出的结果</h3><pre><code class="csharp">///环境public enum EnvironmentType&#123;    RT,    Editor&#125;public class TweenDrive : System.IDisposable&#123;    //各自的指挥，调用这个方法即可    public void Update()    &#123;    &#125;    private static Dictionary&lt;EnvironmentType, TweenDrive&gt; dic = new Dictionary&lt;EnvironmentType, TweenDrive&gt;();    public static TweenDrive GetDrive(EnvironmentType env)    &#123;        if (!dic.ContainsKey(env))        &#123;            dic.Add(env, new TweenDrive());        &#125;        return dic[env];    &#125;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooTween </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooTween </tag>
+            
+            <tag> 驱动器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooTween-对象池</title>
+      <link href="/2023/06/23/Doc/WooTween/WooTween-%E5%AF%B9%E8%B1%A1%E6%B1%A0/"/>
+      <url>/2023/06/23/Doc/WooTween/WooTween-%E5%AF%B9%E8%B1%A1%E6%B1%A0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="如何实现一个对象池"><a href="#如何实现一个对象池" class="headerlink" title="如何实现一个对象池"></a>如何实现一个对象池</h2><ul><li>有最基本的存取能力</li><li>最好是可以通用</li><li>有一定的能力</li></ul><h3 id="基础的存取能力"><a href="#基础的存取能力" class="headerlink" title="基础的存取能力"></a>基础的存取能力</h3><ul><li>存 Set</li><li>取 Get ,如果不够 CreateNew</li><li>内部需要维护一个可以保存对象的集合</li></ul><h3 id="通用-x2F-扩展能力"><a href="#通用-x2F-扩展能力" class="headerlink" title="通用&#x2F;扩展能力"></a>通用&#x2F;扩展能力</h3><ul><li>使用泛型</li><li>方法可以重写</li></ul><h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><pre><code class="csharp">public abstract ObjectPool&lt;T&gt;&#123;    protected Queue&lt;T&gt; pool ;    public T Get()&#123;        T t;            if (pool.Count &gt; 0)                t = pool.Dequeue();            else            &#123;                t = CreateNew();                OnCreate(t);            &#125;            OnGet(t);            return t;    &#125;    protected abstract T CreateNew();    protected virtual void OnGet(T t) &#123; &#125;    ///在被创建时候个性化的设置    protected virtual void OnCreate(T t) &#123; &#125;    public virtual bool Set(T t)    &#123;        if (!pool.Contains(t))        &#123;            if (OnSet(t))            pool.Enqueue(t);            return true;        &#125;        else        return false;    &#125;    ///为了实现可以控制数量的对象池    protected virtual bool OnSet(T t)    &#123;        return true;    &#125;&#125;</code></pre><h2 id="更加容易使用的对象池"><a href="#更加容易使用的对象池" class="headerlink" title="更加容易使用的对象池"></a>更加容易使用的对象池</h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul><li>上边的对象池已经可以实现对象的存取</li><li>但是每一个类型都得写一个子类</li><li>C#可以反射创建对象，但是需要类型</li></ul><h3 id="结果-1"><a href="#结果-1" class="headerlink" title="结果"></a>结果</h3><pre><code class="csharp">public abstract ActivatorCreatePool&lt;T&gt;: ObjectPool&lt;T&gt;&#123;    ///反射创建对象    protected abstract T CreateNew()    &#123;        Type type = typeof(T);        return (T)Activator.CreateInstance(type);    &#125;&#125;</code></pre><h2 id="基类对象池"><a href="#基类对象池" class="headerlink" title="基类对象池"></a>基类对象池</h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><ul><li>现在我们可以各种类型都使用同一个对象池</li><li>但是我们获取对象的时候，我们需要拿到具体的对象池</li><li>如果我们可以问一个对象池要各种对象该有多好<ul><li>例子：</li><li>假设我们想看动物</li><li>看鲨鱼-》海洋馆</li><li>看熊猫-》熊猫馆</li><li>就像上面，我们需要知道具体的展馆在哪里才行</li><li>但是大部分情况，她们都是在动物园里面的</li><li>动物园的路边是有指路牌的</li><li>因此我们的对象池也可以以做成动物园这种</li></ul></li><li>由此而言，我们有一个基类的概念，不能去动物园看飞机、坦克</li><li>我们需要一个对象池集合、并且需要指路牌</li><li>指路牌很简单、Type即可</li><li>所以用一个字典 Dictionary&lt;Type,Pool?&gt;</li><li>但是我们的对象池是泛型，后面这个类型咋写？</li><li>所以我们需要把之前额对象池再次抽象一次</li></ul><h3 id="结果-2"><a href="#结果-2" class="headerlink" title="结果"></a>结果</h3><pre><code class="csharp">///更抽象public interface IObjectPool:IDisposable &#123;    /// 回收，解决不能使用泛型问题    void Set(object obj);&#125;public abstract class BaseTypePool&lt;T&gt;&#123;    private Dictionary&lt;Type, IObjectPool&gt; _poolMap;    /// 获取内部对象池    public ObjectPool&lt;Object&gt; GetPool&lt;Object&gt;() where Object : T    &#123;        Type type = typeof(Object);        var pool = GetPool(type);        return pool as ObjectPool&lt;Object&gt;;    &#125;    /// 获取内部对象池    public IObjectPool GetPool(Type type)    &#123;        IObjectPool pool;        if (!_poolMap.TryGetValue(type, out pool))        &#123;            var pooType = typeof(ActivatorCreatePool&lt;&gt;).MakeGenericType(type);            pool = Activator.CreateInstance(pooType, null) as IObjectPool;            _poolMap.Add(type, pool);        &#125;        return pool;    &#125;    /// 获取数据    public Object Get&lt;Object&gt;() where Object : T    &#123;        var pool = GetPool&lt;Object&gt;();        Object t = pool.Get();        return t;    &#125;    /// 回收数据    public void Set&lt;Object&gt;(Object t) where Object : T    &#123;        Type type = t.GetType();        var pool = GetPool(type);        pool.Set(t);    &#125;&#125;</code></pre><h2 id="全局扩展"><a href="#全局扩展" class="headerlink" title="全局扩展"></a>全局扩展</h2><h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><ul><li>现在我们已经实现了只要去动物园就可以观赏各种动物</li><li>很爽，但是呢我们必须知道动物园在哪里</li><li>还有就是，我们可能还想看飞机、坦克，并不是动物园<ul><li>关于飞机坦克，还有动物，</li><li>我们可以抽象一点，他们都是一个东西</li><li>所以我们可以搞一个东西池子</li><li>也就是说，我们池子的 T 是 object</li><li>关于知道动物园在哪里</li><li>反正他是个东西，问东西池子要即可</li><li>所以我们实现一个全局的池子就好了</li><li>如何全局？C#正是个好语言-》静态扩展</li></ul></li></ul><h3 id="结果-3"><a href="#结果-3" class="headerlink" title="结果"></a>结果</h3><pre><code class="csharp">public static class PoolEx&#123;    private class GlobalPool : BaseTypePool&lt;object&gt; &#123; &#125;    static private GlobalPool _globalPool = new GlobalPool();    /// 全局分配    public static T GlobalAllocate&lt;T&gt;()where T: class    &#123;        return _globalPool.Get&lt;T&gt;();    &#125;    /// 全局回收    public static void GlobalRecyle&lt;T&gt;(this T t)where T :class    &#123;        _globalPool.Set(t);    &#125;&#125;</code></pre><h3 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h3><p>目前对象池，可以获取任何对象了 </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooTween </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooTween </tag>
+            
+            <tag> 对象池 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooTween-Component</title>
+      <link href="/2023/06/23/Doc/WooTween/WooTween-Component/"/>
+      <url>/2023/06/23/Doc/WooTween/WooTween-Component/</url>
+      
+        <content type="html"><![CDATA[<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><ul><li>有时候 效果很简单、很重复</li><li>有时候 效果是让策划美术调整</li><li>但是他们不会写代码</li><li>所以我们来编辑器扩展</li><li>具体代码项目看</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooTween </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooTween </tag>
+            
+            <tag> Component </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>图片过渡</title>
       <link href="/2023/06/19/Unity/Shader/%E5%9B%BE%E7%89%87%E8%BF%87%E6%B8%A1/"/>
       <url>/2023/06/19/Unity/Shader/%E5%9B%BE%E7%89%87%E8%BF%87%E6%B8%A1/</url>
@@ -687,7 +890,7 @@
       <link href="/2023/05/22/Doc/WooTween/WooTween-%E7%AE%80%E4%BB%8B/"/>
       <url>/2023/05/22/Doc/WooTween/WooTween-%E7%AE%80%E4%BB%8B/</url>
       
-        <content type="html"><![CDATA[<h2 id="内容组成"><a href="#内容组成" class="headerlink" title="内容组成"></a>内容组成</h2><p>  0、对象池           默默无闻的螺丝钉<br>  1、驱动器           好司机<br>  2、转换器           翻译官<br>  3、TweenValue      单程车<br>  4、Tween           花样百出的乘客<br>  5、Component       好保姆</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="WooTween介绍"><a href="#WooTween介绍" class="headerlink" title="WooTween介绍"></a>WooTween介绍</h2><ul><li>内容：实现一个简易的、易扩展、支持编辑器预览的动画模块</li><li>适合人群<ul><li>高手 切磋</li><li>中手 理解、提高代码设计能力</li><li>低手 感受代码的魅力，扩展思路</li></ul></li></ul><h2 id="内容组成"><a href="#内容组成" class="headerlink" title="内容组成"></a>内容组成</h2><ul><li>0、对象池           默默无闻的螺丝钉</li><li>1、驱动器           好司机</li><li>2、转换器           翻译官</li><li>3、TweenValue      单程车</li><li>4、Tween           花样百出的乘客</li><li>5、Component       好保姆</li></ul><h3 id="对象池"><a href="#对象池" class="headerlink" title="对象池"></a>对象池</h3><ul><li>为什么要使用对象池？<ul><li>频繁的 new 对象，会对GC 有压力</li><li>在tween的实现中 ，需要大量的的对象，这些对象并不是一直在使用</li></ul></li><li>包含内容：<ul><li>通用对象池，最简单的对象池</li><li>自动对象对象池，当对象不够时候，自动创建对象</li><li>全局对象池扩展，全局分配任意对象，简化使用</li></ul></li></ul><h2 id="驱动器"><a href="#驱动器" class="headerlink" title="驱动器"></a>驱动器</h2><ul><li>这是什么玩意儿？<ul><li>整个tween 模块的驱动器</li></ul></li><li>为什么需要？<ul><li>整个模块需要逐帧的运行，他的作用就是驱动模块运行</li><li>我们的tween是支持编辑器预览的，所以编辑器和运行时需要各自的驱动</li></ul></li></ul><h2 id="转换器"><a href="#转换器" class="headerlink" title="转换器"></a>转换器</h2><ul><li>这是什么玩意儿？<ul><li>曲线转换器</li></ul></li><li>为什么需要？<ul><li>我们的tween是具有曲线运行能力的</li><li>我们的tween需要支持多种曲线</li><li>我们的tween需要支持多种曲线类型</li></ul></li></ul><h2 id="TweenValue"><a href="#TweenValue" class="headerlink" title="TweenValue"></a>TweenValue</h2><ul><li>这是什么玩意儿？<ul><li>负责把一个值 逐帧的变化到目标值</li></ul></li><li>为什么需要？<ul><li>他是单向的</li><li>他是整个tween的核心之一</li></ul></li></ul><h2 id="Tween"><a href="#Tween" class="headerlink" title="Tween"></a>Tween</h2><ul><li>这是什么玩意儿？<ul><li>建立于 TweenValue 之上，与用户交互</li></ul></li><li>为什么需要？<ul><li>提供 双方向运行能力</li><li>提供 中断、重启、恢复能力</li></ul></li></ul><h2 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h2><ul><li>这是什么玩意儿？<ul><li>直接在编辑器的环境之下，运行动画</li></ul></li><li>为什么需要？<ul><li>更加直观的看到效果</li><li>不再需要超多的代码</li></ul></li></ul>]]></content>
       
       
       <categories>
