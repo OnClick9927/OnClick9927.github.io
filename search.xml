@@ -251,7 +251,7 @@
       <link href="/2023/06/23/Doc/WooTween/WooTween-Document/"/>
       <url>/2023/06/23/Doc/WooTween/WooTween-Document/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><ul><li>此篇文章讲一下如何快速使用WooTween</li><li>根据自己需求怎么去扩展</li><li>以及重点内容</li></ul><h2 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h2><ul><li><p>之前已经讲解过了Component是个什么东西 </p></li><li><p>这里我们看看如何使用</p></li><li><p>选择物体-添加组件</p></li><li><p>我们可以看到自带的三个组件</p><p><img src="/../../../Pic/Doc/WooTween/%E6%B7%BB%E5%8A%A0%E7%BB%84%E4%BB%B6.png" alt="Alt text"></p></li><li><p>autoPlay: 自动播放 autoRecycle: 自动回收</p></li><li><p>Duration：持续时间</p></li><li><p>Snap: 简单理解就是勾选后整数的数值来运动</p></li><li><p>Curve: 动画曲线 内置了5种曲线 可以自定义 并保存</p></li><li><p>LoopType: 循环模式 ReStart PingPong</p></li><li><p>Loop: 循环次数 -1无限 1..次数</p><ul><li>Type: 运动数值的模式 </li><li>Single 起始点和终点值</li></ul></li><li><p>Array 多个数值组成一条线路</p><ul><li>Play Rewind Complete 无需运行立即播放动画 倒放回原点 停止动画</li></ul></li></ul><p> <img src="/../../../Pic/Doc/WooTween/%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D.png" alt="Alt text"><br> <img src="/../../../Pic/Doc/WooTween/ComponentGif.gif" alt="Alt text"></p><ul><li>使用方法一目了然这里就不过多讲解了 </li><li>如何扩展呢 我们以BoxCollider2D的Offset为例 </li><li>我们需要更改的数值为Vector2</li><li>新建两个脚本</li></ul><pre><code class="csharp">using UnityEngine;namespace WooTween&#123;    public class DoBoxCollider2DComponent : TweenComponent&lt;Vector2,BoxCollider2D&gt;    &#123;        protected override Vector2 GetTargetValue()        &#123;            //返回物体的缩放值            return transform.GetComponent&lt;BoxCollider2D&gt;().offset;         &#125;        protected override  void SetTargetValue(Vector2 value)        &#123;            //物体的缩放值等于value            transform.GetComponent&lt;BoxCollider2D&gt;().offset = value;        &#125;    &#125;&#125;using UnityEditor;using UnityEngine;namespace WooTween&#123;    [CustomEditor(typeof(DoBoxCollider2DComponent))]    public class DoBoxCollider2DComponentEditor : TweenComponentEditor&lt;Vector2 , BoxCollider2D&gt; &#123; &#125;&#125;</code></pre><h2 id="TweenEx"><a href="#TweenEx" class="headerlink" title="TweenEx"></a>TweenEx</h2><ul><li>所有会调用的方法都在TweenEx脚本里面 </li><li>此篇内容讲解一下如何使用和如何扩展</li></ul><pre><code class="csharp">transform.DoMove(new Vecotr3(0,1,2),2,false) .SetLoop(4, LoopType.PingPong)                  .SetAnimationCurve(curve)                  .SetRecycle(false)                  .OnComplete(() =&gt;                  &#123;                      Debug.Log(Time.time);                  &#125;);</code></pre><ul><li>传入位置 持续时间 移动数值是否为整型 设置循环 循环类型 设置动画曲线 设置回收 完成时委托内容</li></ul><pre><code class="csharp">ITween t = cube.DoMove(new Vector3[] &#123;               Vector3.zero,               Vector3.one,               Vector3.one * 2,               Vector3.one * 3,               Vector3.one * -4,               Vector3.one * 5,               Vector3.one * 6,            &#125;, 5, false)            .SetRecyle(false);</code></pre><ul><li>也可以以数组的形势传入参数</li></ul><pre><code class="csharp">        private void Update()        &#123;            if (Input.GetKeyDown(KeyCode.Space))            &#123;                t.Rewind(1);            &#125;            if (Input.GetKey(KeyCode.A))            &#123;                t.ReStart();            &#125;            if (Input.GetKey(KeyCode.Q))            &#123;                t.Complete(false);            &#125;        &#125;</code></pre><ul><li>也可以对动画进行一系列操作</li></ul><pre><code class="csharp">tc.SetUpdateType(TweenUpdateType.Update).SetDeltaTime(0.1f).SetDelta(0.2f).SetTimeScale(2);</code></pre><ul><li>设置动画的一系列参数</li></ul><p> <img src="/../../../Pic/Doc/WooTween/%E4%BB%A3%E7%A0%81Gif.gif" alt="Alt text"></p><h2 id="如何扩展"><a href="#如何扩展" class="headerlink" title="如何扩展"></a>如何扩展</h2><pre><code class="csharp">public static ITween&lt;T&gt; DoGoto&lt;T&gt;(T start, T end, float duration, Func&lt;T&gt; getter, Action&lt;T&gt; setter, bool snap, EnvironmentType env= EnvironmentType.RT) where T : struct        &#123;#if UNITY_EDITOR            if (!UnityEditor.EditorApplication.isPlaying &amp;&amp; !Application.isPlaying)            &#123;                env = EnvironmentType.Editor;            &#125;#endif            var tween = AllocateSingleTween&lt;T&gt;(env);            tween.Config(start, end, duration, getter, setter, snap);                        (tween as Tween).WaitToRun();            return tween;        &#125;        public static ITween&lt;T&gt; DoGoto&lt;T&gt;(T[] array, float duration, Func&lt;T&gt; getter, Action&lt;T&gt; setter, bool snap, EnvironmentType env = EnvironmentType.RT) where T : struct        &#123;#if UNITY_EDITOR            if (!UnityEditor.EditorApplication.isPlaying &amp;&amp; !Application.isPlaying)            &#123;                env = EnvironmentType.Editor;            &#125;#endif            var tween = AllocateArrayTween&lt;T&gt;(env);            tween.Config(array, duration, getter, setter, snap);            (tween as Tween).WaitToRun();            return tween;        &#125;</code></pre><ul><li>所有的方法扩展主要依靠于这两个函数 传入一个值还是数组</li><li>现在所支持的包括Transform、Material、Graphic、Light、Camera、CanvasGroup、Text、Image、ScrollRect、GameObject、Behaviour、Toggle、AudioSource、Rigidbody、Rigidbody2D、SpriteRenderer、LayoutElement、Outline、RectTransform、Slider</li><li>大部分经常会用到的扩展方法都在其中</li></ul><pre><code class="csharp">public static ITween&lt;float&gt; DoFieldOfView(this Camera target, float value, float duration, bool snap = false)&#123;   return DoGoto(target.fieldOfView,           value,           duration,           () =&gt; &#123; return target.fieldOfView; &#125;,          (value) =&gt; &#123; target.fieldOfView = value; &#125;,           snap);&#125;</code></pre><ul><li>以修改相机的FieldOfView为例</li><li>写一个静态方法 返回值为ITween&lt;数据类型&gt;  </li><li>第一个方法参数需要是 this + 类型 + 名称 | 传入值 持续时间 Snap</li><li>方法体里面可以写对传入值的判断 ，比如： 不能小于0 不能大于180</li><li>return 调用DoGoto方法 将之前写的参数一一对应 </li><li>剩下的事情就不需要我们去管了</li></ul>]]></content>
       
       
       <categories>
@@ -266,8 +266,6 @@
         <tags>
             
             <tag> WooTween </tag>
-            
-            <tag> Document </tag>
             
         </tags>
       
@@ -296,8 +294,6 @@
             
             <tag> WooTween </tag>
             
-            <tag> Tween </tag>
-            
         </tags>
       
     </entry>
@@ -324,8 +320,6 @@
         <tags>
             
             <tag> WooTween </tag>
-            
-            <tag> TweenValue </tag>
             
         </tags>
       
@@ -354,8 +348,6 @@
             
             <tag> WooTween </tag>
             
-            <tag> 转换器 </tag>
-            
         </tags>
       
     </entry>
@@ -382,8 +374,6 @@
         <tags>
             
             <tag> WooTween </tag>
-            
-            <tag> 驱动器 </tag>
             
         </tags>
       
@@ -412,8 +402,6 @@
             
             <tag> WooTween </tag>
             
-            <tag> 对象池 </tag>
-            
         </tags>
       
     </entry>
@@ -440,8 +428,6 @@
         <tags>
             
             <tag> WooTween </tag>
-            
-            <tag> Component </tag>
             
         </tags>
       
@@ -905,8 +891,6 @@
         <tags>
             
             <tag> WooTween </tag>
-            
-            <tag> 简介 </tag>
             
         </tags>
       
