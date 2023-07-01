@@ -4,7 +4,6 @@ author: yy
 comment: 'on'
 tags:
   - WooTween
-  - 转换器
 category:
   - 文档
   - WooTween

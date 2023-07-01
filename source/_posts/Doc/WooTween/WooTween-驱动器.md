@@ -4,7 +4,6 @@ author: yy
 comment: 'on'
 tags:
   - WooTween
-  - 驱动器
 category:
   - 文档
   - WooTween

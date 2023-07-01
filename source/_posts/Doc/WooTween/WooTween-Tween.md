@@ -4,7 +4,6 @@ author: yy
 comment: 'on'
 tags:
   - WooTween
-  - Tween
 category:
   - 文档
   - WooTween
