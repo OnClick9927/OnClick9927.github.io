@@ -20,7 +20,7 @@ date: 2023-06-27 15:58:38
 # 方法三：通过Git安装
 * 打开想要存放代码的文件夹
 * 在此目录打开cmd 窗口
-* git clone -b src https://github.com/OnClick9927/WooAsset
+* 'git clone -b src https://github.com/OnClick9927/WooAsset'
 * 等待片刻即可看到此目录最新的源码
 更新 
 * 打开源码所在目录
