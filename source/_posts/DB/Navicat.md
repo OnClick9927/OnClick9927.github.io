@@ -3,9 +3,7 @@ title: Navicat 安装教程
 author: 灵
 comment: 'on'
 tags:
-  - 工具
   - DB
-  - Navicat 安装教程
 category:
   - 工具
   - DB
