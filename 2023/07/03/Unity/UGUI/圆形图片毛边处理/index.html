@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>WooAsset-简介 | 灵</title>
-  <meta name="keywords" content=" WooAsset ">
-  <meta name="description" content="WooAsset-简介 | 灵">
+  <title>圆形图片毛边处理 | 灵</title>
+  <meta name="keywords" content=" Unity , UGUI , [object Object] ">
+  <meta name="description" content="圆形图片毛边处理 | 灵">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="sadasda57d8a 哈哈哈 康康康 777 888   999  public class A&amp;#123;     public void DO()&amp;#123;&amp;#125; &amp;#125;     表头 表头    单元格 单元格   单元格 单元格">
 <meta property="og:type" content="website">
@@ -741,9 +741,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Doc/WooAsset/0-WooAsset-简介" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Unity/UGUI/圆形图片毛边处理" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">WooAsset-简介</h1>
+        <h1 class="article-title">圆形图片毛边处理</h1>
     
     <div class="article-meta">
         
@@ -751,33 +751,27 @@
         <span class="author"><a>灵</a></span>
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="文档">文档</a> > 
-            
-            <a  data-rel="文档&lt;---&gt;WooAsset">WooAsset</a>
-            
-        </span>
-        
         
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">WooAsset</a>
+            <a class="color1">Unity</a>
+            
+            <a class="color5">UGUI</a>
+            
+            <a class="color1">[object Object]</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-07-03 03:56:53'>2023-05-19 13:37</time>
+            发布时间 : <time class="date" title='最后更新: 2023-07-03 03:56:53'>2023-07-03 10:36</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:615</span>
+        <span>字数:858</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -807,7 +801,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-text">地址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%89%B9%E7%82%B9"><span class="toc-text">系统特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E6%A8%A1%E5%BC%8F"><span class="toc-text">支持的模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E5%8C%BA%E5%88%AB"><span class="toc-text">模式区别</span></a></li></ol></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -823,59 +817,222 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a target="_blank" rel="noopener" href="https://github.com/OnClick9927/WooAsset">地址</a></h1><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>WooAsset可以满足以下任何需求：</p>
-<ul>
-<li>我想发布一个不包含任何游戏资源的安装包，然后玩家边玩边下载。</li>
-<li>我想发布一个可以保证前期体验的安装包，然后玩家自己选择下载关卡内容。</li>
-<li>我想发布一个保证300MB以下内容的安装包，然后进入游戏之前把剩余内容下载完毕。</li>
-<li>我想发布一个偏单机的游戏安装包，在网络畅通的时候，支持正常更新。在没有网络的时候，支持游玩老版本。</li>
-<li>我想发布一个MOD游戏安装包，玩家可以把自己制作的MOD内容上传到服务器，其它玩家可以下载游玩。</li>
-<li>我们在制作一个超大体量的项目，有上百GB的资源内容，每次构建都花费大量时间，是否可以分工程构建？</li>
-</ul>
-<h2 id="系统特点"><a href="#系统特点" class="headerlink" title="系统特点"></a>系统特点</h2><ul>
-<li>Editor、Runtime均支持同步、异步、委托、携程</li>
-<li>支持各个模式切换（无需修改代码）</li>
-<li>支持自定义资源加密</li>
-<li>支持分布式构建(支持mod)</li>
-<li>支持 shader 变体收集</li>
-<li>支持 构建 spriteAtlas</li>
-<li>支持打包&#x2F;加载Unity无法识别的文件</li>
-<li>支持打包流程自定义（自定义分包、版本规划、结束流程、自定义标签）</li>
-<li>包含本地资源服务器</li>
-<li>支持快速版本切换，回退</li>
-<li>支持资源模糊搜索</li>
-<li>支持自定义下载器</li>
-<li>支持子资源加载</li>
-<li>支持资源懒卸载&#x2F;内存大小控制</li>
-<li>支持WebGL</li>
-<li>支持加载Resources文件夹内容</li>
-</ul>
-<h2 id="支持的模式"><a href="#支持的模式" class="headerlink" title="支持的模式"></a>支持的模式</h2><p>各个模式切换无需修改代码</p>
-<ul>
-<li>0 编辑器模拟加载         (纯粹编辑器模拟)</li>
-<li>1 纯粹的C#空包，   （注意：本地不会有任何ab）</li>
-<li>2 发布 正常流程包       （比模式1 多一个版本检查）</li>
-<li>3 发布 游戏前期的体验包  (把资源拷贝到stream)</li>
-<li>4 边玩边下载</li>
-<li>5 先准备一部分，后续靠下载</li>
-</ul>
-<h3 id="模式区别"><a href="#模式区别" class="headerlink" title="模式区别"></a>模式区别</h3><table>
-<tr><th></th><th>模式/流程</th><th>编辑器模拟</th><th>纯C#空包</th><th>正常流程</th><th>前期的体验</th><th>边玩边下载</th><th>先准备一部分</th></tr>
-<tr ><td rowspan="5">打包</td></tr>
-<tr><th>选择FastMode        </th><th>✔</th><th> </th><th> </th><th> </th><th> </th><th> </th></tr>
-<tr><th>打包资源            </th><th>  </th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th></tr>
-<tr><th>拷贝资源到stream     </th><th>  </th><th> </th><th> </th><th>✔</th><th> </th><th>按tag拷贝</th></tr>
-<tr><th>上传资源到服务器     </th><th>  </th><th>✔</th><th>✔</th><th> </th><th>✔</th><th>✔</th></tr>
-<tr ><td rowspan="7">加载</td></tr>
-<tr><th>设置AssetsSetting   </th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th></tr>
-<tr><th>拷贝资源到沙盒路径   </th><th> </th><th> </th><th> </th><th>✔</th><th> </th><th>✔</th></tr>
-<tr><th>版本检查            </th><th> </th><th> </th><th>✔</th><th> </th><th>可选</th><th>可选</th></tr>
-<tr><th>下载变化资源        </th><th> </th><th> </th><th>✔</th><th> </th><th> </th><th>可选</th></tr>
-<tr><th>初始化              </th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th></tr>
-<tr><th>正常加载            </th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th></tr>
-</table>
+        <pre><code class="csharp">using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Sprites;
+using UnityEngine.UI;
+
+public class CircleImage : Image
+&#123;
+    /// &lt;summary&gt;
+    ///圆形由多少块三角形拼成即圆形精度，值越大精度越高
+    /// &lt;/summary&gt;
+    [SerializeField]
+    private int segements = 100;
+    /// &lt;summary&gt;
+    /// 显示部分占圆形的百分比.
+    /// &lt;/summary&gt;
+    [SerializeField]
+    private float showPercent = 1f;
+    private readonly Color32 GRAY_COLOR = new Color32(60, 60, 60, 255);
+    private List&lt;Vector3&gt; _vertexList;
 
 
+    protected override void OnPopulateMesh(VertexHelper vh)
+    &#123;
+        vh.Clear();
+
+        _vertexList = new List&lt;Vector3&gt;();
+
+        AddVertex(vh, segements);
+
+        AddTriangle(vh, segements);
+    &#125;
+
+    private void AddVertex(VertexHelper vh, int segements)
+    &#123;
+        float width = rectTransform.rect.width;
+        float heigth = rectTransform.rect.height;
+        int realSegments = (int)(segements * showPercent);
+
+        //四维向量可代表着二维平面的四个坐标（uv.x,uv.y）,(uv.z,uv.y),(uv.x,uv.w)(uv.z,uv.w)
+        Vector4 uv = overrideSprite != null ? DataUtility.GetOuterUV(overrideSprite) : Vector4.zero;
+        float uvWidth = uv.z - uv.x;
+        float uvHeight = uv.w - uv.y;
+        //获取贴图uv平面中心点
+        Vector2 uvCenter = new Vector2(uvWidth * 0.5f, uvHeight * 0.5f);
+        Vector2 convertRatio = new Vector2(uvWidth / width, uvHeight / heigth);
+
+        float radian = (2 * Mathf.PI) / segements;
+        float radius = width * 0.5f;
+
+        //轴心点设置
+        Vector2 originPos = new Vector2((0.5f - rectTransform.pivot.x) * width, (0.5f - rectTransform.pivot.y) * heigth);
+        Vector2 vertPos = Vector2.zero;
+
+        Color32 colorTemp = GetOriginColor();
+        UIVertex origin = GetUIVertex(colorTemp, originPos, vertPos, uvCenter, convertRatio);
+        vh.AddVert(origin);
+
+        int vertexCount = realSegments + 1;
+        float curRadian = 0;
+        Vector2 posTermp = Vector2.zero;
+        //遍历所有顶点信息
+        for (int i = 0; i &lt; segements + 1; i++)
+        &#123;
+            float x = Mathf.Cos(curRadian) * radius;
+            float y = Mathf.Sin(curRadian) * radius;
+            curRadian += radian;
+
+            if (i &lt; vertexCount)
+            &#123;
+                colorTemp = color;
+            &#125;
+            else
+            &#123;
+                colorTemp = GRAY_COLOR;
+            &#125;
+            posTermp = new Vector2(x, y);
+            UIVertex vertexTemp = GetUIVertex(colorTemp, posTermp + originPos, posTermp, uvCenter, convertRatio);
+            vh.AddVert(vertexTemp);
+            _vertexList.Add(posTermp + originPos);
+        &#125;
+    &#125;
+
+    /// &lt;summary&gt;
+    /// 设置颜色比重
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    private Color32 GetOriginColor()
+    &#123;
+        Color32 colorTemp = (Color.white - GRAY_COLOR) * showPercent;
+        return new Color32(
+            (byte)(GRAY_COLOR.r + colorTemp.r),
+            (byte)(GRAY_COLOR.g + colorTemp.g),
+            (byte)(GRAY_COLOR.b + colorTemp.b),
+            255);
+    &#125;
+
+    private void AddTriangle(VertexHelper vh, int realSegements)
+    &#123;
+        int id = 1;
+        for (int i = 0; i &lt; realSegements; i++)
+        &#123;
+            vh.AddTriangle(id, 0, id + 1);//顺时针生成面片
+            id++;
+        &#125;
+    &#125;
+
+    private UIVertex GetUIVertex(Color32 col, Vector3 pos, Vector2 uvPos, Vector2 uvCenter, Vector2 uvScale)
+    &#123;
+        UIVertex vertexTemp = new UIVertex();
+        vertexTemp.color = col;
+        vertexTemp.position = pos;
+        vertexTemp.uv0 = new Vector2(uvPos.x * uvScale.x + uvCenter.x, uvPos.y * uvScale.y + uvCenter.y);
+        return vertexTemp;
+    &#125;
+
+    //设置图形的点击响应区域
+    public override bool IsRaycastLocationValid(Vector2 screenPoint, Camera eventCamera)
+    &#123;
+        Vector2 localPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenPoint, eventCamera, out localPoint);
+        return IsValid(localPoint);
+    &#125;
+
+    private bool IsValid(Vector2 localPoint)
+    &#123;
+        return GetCrossPointNum(localPoint, _vertexList) % 2 == 1;
+    &#125;
+
+    /// &lt;summary&gt;
+    /// 获取该点与图形区域相交点的数量 奇数表示在区域内 偶数表示在区域外
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;localPoint&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;vertexList&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    private int GetCrossPointNum(Vector2 localPoint, List&lt;Vector3&gt; vertexList)
+    &#123;
+        int count = 0;
+        Vector3 vert1 = Vector3.zero;
+        Vector3 vert2 = Vector3.zero;
+        int vertCount = vertexList.Count;
+
+        for (int i = 0; i &lt; vertCount; i++)
+        &#123;
+            vert1 = vertexList[i];
+            vert2 = vertexList[(i + 1) % vertCount];
+
+            if (IsYInRang(localPoint, vert1, vert2))
+            &#123;
+                if (localPoint.x &lt; GetX(vert1, vert2, localPoint.y))
+                &#123;
+                    count++;
+                &#125;
+            &#125;
+        &#125;
+
+        return count;
+    &#125;
+
+    //筛选 
+    private bool IsYInRang(Vector2 localPoint, Vector3 vert1, Vector3 vert2)
+    &#123;
+        //该点y值是否在两点y值之间
+        if (vert1.y &gt; vert2.y)
+        &#123;
+            return localPoint.y &lt; vert1.y &amp;&amp; localPoint.y &gt; vert2.y;
+        &#125;
+        else
+        &#123;
+            return localPoint.y &lt; vert2.y &amp;&amp; localPoint.y &gt; vert1.y;
+        &#125;
+    &#125;
+    //两点求一直线再带入y值得出x值
+    private float GetX(Vector3 vert1, Vector3 vert2, float y)
+    &#123;
+        float k = (vert1.y - vert2.y) / (vert1.x - vert2.x);
+        return vert1.x + (y - vert1.y) / k;//vert2.x + (y - vert2.y)
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="csharp">//Editor文件下属性设置类
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+
+[CustomEditor(typeof(CircleImage), true)]
+[CanEditMultipleObjects]
+public class CircleImageEditor : UnityEditor.UI.ImageEditor
+&#123;
+    SerializedProperty _fillPercent;
+    SerializedProperty _segements;
+
+    protected override void OnEnable()
+    &#123;
+        base.OnEnable();
+        _fillPercent = serializedObject.FindProperty(&quot;showPercent&quot;);
+        _segements = serializedObject.FindProperty(&quot;segements&quot;);
+    &#125;
+
+    public override void OnInspectorGUI()
+    &#123;
+        base.OnInspectorGUI();
+
+        serializedObject.Update();
+        EditorGUILayout.Slider(_fillPercent, 0, 1, new GUIContent(&quot;显示比率&quot;));
+        EditorGUILayout.PropertyField(_segements, new GUIContent(&quot;显示精度&quot;));
+
+        serializedObject.ApplyModifiedProperties();
+        if (GUI.changed)
+        &#123;
+            EditorUtility.SetDirty(target);
+        &#125;
+
+    &#125;
+&#125;
+</code></pre>
 
       
        
