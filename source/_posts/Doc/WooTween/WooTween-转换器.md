@@ -26,6 +26,6 @@ date: 2023-06-23 02:06:02
 public interface IPercentConverter
 {
     float Convert(float percent, float time, float duration);
-    void Recyle();
+    void Recycle();
 }
 ```

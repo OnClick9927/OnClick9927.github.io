@@ -175,7 +175,7 @@ public static class PoolEx
         return _globalPool.Get<T>();
     }
     /// 全局回收
-    public static void GlobalRecyle<T>(this T t)where T :class
+    public static void GlobalRecycle<T>(this T t)where T :class
     {
         _globalPool.Set(t);
     }
