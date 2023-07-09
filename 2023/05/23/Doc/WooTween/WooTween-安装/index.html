@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>WooPool-有容量的对象池 | 灵</title>
-  <meta name="keywords" content=" Pool ">
-  <meta name="description" content="WooPool-有容量的对象池 | 灵">
+  <title>WooTween-安装 | 灵</title>
+  <meta name="keywords" content=" WooTween ">
+  <meta name="description" content="WooTween-安装 | 灵">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="sadasda57d8a 哈哈哈 康康康 777 888   999  public class A&amp;#123;     public void DO()&amp;#123;&amp;#125; &amp;#125;     表头 表头    单元格 单元格   单元格 单元格">
 <meta property="og:type" content="website">
@@ -879,14 +879,14 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Doc/WooPool/WooPool-有容量的对象池" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Doc/WooTween/WooTween-安装" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">WooPool-有容量的对象池</h1>
+        <h1 class="article-title">WooTween-安装</h1>
     
     <div class="article-meta">
         
         
-        <span class="author"><a>叶子三分青</a></span>
+        <span class="author"><a>yy</a></span>
         
         
         <span class="book">
@@ -895,7 +895,7 @@
             
             <a  data-rel="文档">文档</a> > 
             
-            <a  data-rel="文档&lt;---&gt;WooPool">WooPool</a>
+            <a  data-rel="文档&lt;---&gt;WooTween">WooTween</a>
             
         </span>
         
@@ -903,19 +903,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">Pool</a>
+            <a class="color4">WooTween</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-07-09 15:51:57'>2023-06-03 16:00</time>
+            发布时间 : <time class="date" title='最后更新: 2023-07-09 15:51:57'>2023-05-23 02:01</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:227</span>
+        <span>字数:26</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -945,7 +945,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0"><span class="toc-text">参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-text">使用示例</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85"><span class="toc-text">如何安装</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -961,67 +961,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>限制容量大小的对象池</p>
-<pre><code class="csharp">public abstract class CapacityPool&lt;T&gt;: ObjectPool&lt;T&gt;
-</code></pre>
-<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><pre><code class="csharp">protected CapacityPool(int capacity) : base() &#123; this._capacity = capacity; &#125;
-</code></pre>
-<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><table>
-<thead>
-<tr>
-<th>参数名</th>
-<th>类型</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>capacity</td>
-<td>int</td>
-<td>对象池的最大容量</td>
-</tr>
-</tbody></table>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>capacity</td>
-<td>对象池的最大容量，创建后可重新修改</td>
-</tr>
-</tbody></table>
-<h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><pre><code class="csharp">//用于示例的类型
-public class Obj_A &#123; &#125;
-
-//定义一个存放Obj_A对象的对象池
-public class CapacityPoolA : CapacityPool&lt;Obj_A&gt;
-&#123;
-    public CapacityPoolA(int capacity) : base(capacity)
-    &#123;
-
-    &#125;
-
-    protected override Obj_A CreateNew(IPoolArgs arg)
-    &#123;
-        return new Obj_A();
-    &#125;
-&#125;
-
-//限制大小对象池的示例
-void CapacityPoolExample()
-&#123;
-    //创建对象池，设置大小为1
-    var pool = new CapacityPoolA(1);
-
-    //放入一个对象，不会报错
-    Console.WriteLine(&quot;回收第一个对象，结果为：&quot; + pool.Set(new Obj_A()));
-
-    //再放入一个对象，会发现存放失败
-    Console.WriteLine(&quot;回收第二个对象，结果为：&quot; + pool.Set(new Obj_A()));
-&#125;
-</code></pre>
+        <h2 id="如何安装"><a href="#如何安装" class="headerlink" title="如何安装"></a>如何安装</h2><ul>
+<li>打开 unity package manager</li>
+<li>点击 add package form git</li>
+<li>输入 <a target="_blank" rel="noopener" href="https://github.com/OnClick9927/WooTween.git#1.0.0">https://github.com/OnClick9927/WooTween.git#1.0.0</a></li>
+</ul>
 
       
        
