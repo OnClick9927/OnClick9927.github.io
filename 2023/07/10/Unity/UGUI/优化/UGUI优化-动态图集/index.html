@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>0-WooNet-简介 | 灵</title>
-  <meta name="keywords" content=" WooNet ">
-  <meta name="description" content="0-WooNet-简介 | 灵">
+  <title>UGUI优化-动态图集 | 灵</title>
+  <meta name="keywords" content=" UGUI ">
+  <meta name="description" content="UGUI优化-动态图集 | 灵">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="sadasda57d8a 哈哈哈 康康康 777 888   999  public class A&amp;#123;     public void DO()&amp;#123;&amp;#125; &amp;#125;     表头 表头    单元格 单元格   单元格 单元格">
 <meta property="og:type" content="website">
@@ -888,9 +888,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Doc/WooNet/0-WooNet-简介" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Unity/UGUI/优化/UGUI优化-动态图集" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">0-WooNet-简介</h1>
+        <h1 class="article-title">UGUI优化-动态图集</h1>
     
     <div class="article-meta">
         
@@ -902,9 +902,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="文档">文档</a> > 
+            <a  data-rel="Unity">Unity</a> > 
             
-            <a  data-rel="文档&lt;---&gt;WooNet">WooNet</a>
+            <a  data-rel="Unity&lt;---&gt;UGUI">UGUI</a>
             
         </span>
         
@@ -912,19 +912,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">WooNet</a>
+            <a class="color5">UGUI</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-07-10 10:30:22'>2023-07-05 00:53</time>
+            发布时间 : <time class="date" title='最后更新: 2023-07-10 10:30:22'>2023-07-10 18:27</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:582</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -954,7 +954,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BB%E6%84%8F"><span class="toc-text">主意</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -970,7 +970,136 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="主意"><a href="#主意" class="headerlink" title="主意"></a>主意</h1><p>Graphics.CopyTexture 貌似只能图片格式是RGBA32</p>
+<p>不能这个格式就读写像素</p>
+<pre><code class="csharp">
+    public RawImage raw;
+    class Content
+    &#123;
+        public Rect rect;
+
+        private Page root;
+        List&lt;Page&gt; work = new List&lt;Page&gt;();
+        List&lt;Page&gt; empty = new List&lt;Page&gt;();
+        public Content(Rect rect)
+        &#123;
+            this.rect = rect;
+            work = new List&lt;Page&gt;() &#123;
+                new Page()
+                &#123;
+                    rect=rect,
+                &#125;
+            &#125;;
+            root = work[0];
+        &#125;
+        private List&lt;Page&gt; success = new List&lt;Page&gt;();
+        private void Split(Rect rect, Vector2 size, Vector2 smallest)
+        &#123;
+            float x = rect.width - size.x;
+            float y = rect.height - size.y;
+            var page1 = new Page();
+            var page2 = new Page();
+
+            if (x &lt; smallest.x &amp;&amp; y &gt; smallest.y)
+            &#123;
+                page1.rect = new Rect(rect.x + size.x, rect.y, x, size.y);
+                page2.rect = new Rect(rect.x, rect.y + size.y, rect.width, y);
+            &#125;
+            else
+            &#123;
+                page1.rect = new Rect(rect.x + size.x, rect.y, x, rect.height);
+                page2.rect = new Rect(rect.x, rect.y + size.y, size.x, y);
+            &#125;
+            empty.Add(page1);
+            empty.Add(page2);
+        &#125;
+        public Page RealAdd(Page page, Vector2 size, Vector2 smallest)
+        &#123;
+            work.Remove(page);
+            Page page0 = new Page()
+            &#123;
+                rect = new Rect(page.rect.position, size)
+            &#125;;
+            work.Add(page0);
+            Split(page.rect, size, smallest);
+            return page0;
+        &#125;
+        public static bool Try(Page page, Vector2 size)
+        &#123;
+            if (page.rect.size.x &lt; size.x || page.rect.height &lt; size.y)
+                return false;
+            return true;
+        &#125;
+
+        public Page Add(Vector2 size, Vector2 smallest)
+        &#123;
+            if (rect.size.x &lt; size.x || rect.height &lt; size.y)
+                return null;
+            if (root != null)
+            &#123;
+                if (Try(root, size))
+                &#123;
+                    Page p = RealAdd(root, size, smallest);
+                    root = null;
+                    return p;
+                &#125;
+                return null;
+            &#125;
+            else
+            &#123;
+                for (int i = 0; i &lt; empty.Count; i++)
+                &#123;
+                    Page page = empty[i];
+                    if (Try(page, size))
+                    &#123;
+                        success.Add(page);
+                    &#125;
+                &#125;
+                if (success.Count &gt; 0)
+                &#123;
+                    success.Sort((a, b) =&gt; &#123; return a.rect.size.x * a.rect.size.y &lt; b.rect.size.x * b.rect.size.y ? -1 : 1; &#125;);
+                    Page p = RealAdd(success[0], size, smallest);
+                    success.Clear();
+                    return p;
+                &#125;
+                return null;
+            &#125;
+
+        &#125;
+    &#125;
+    class Page
+    &#123;
+        public Rect rect;
+    &#125;
+    public void GG(Image[] images)
+    &#123;
+        var dic = images.ToDictionary(x =&gt; x.sprite);
+        var sprites = images.ToList().ConvertAll(x =&gt; x.sprite).ToList();
+        int size = 2048;
+
+        Content c = new Content(new Rect(Vector2.zero, Vector2.one * size));
+
+        sprites.Sort((a, b) =&gt; &#123; return a.rect.width * a.rect.height &lt; b.rect.width * b.rect.height ? 1 : -1; &#125;);
+        var last = sprites.Last();
+        Vector2 smallest = new Vector2(last.rect.width, last.rect.height);
+        Texture2D tx = new Texture2D(size, size, TextureFormat.RGBA32, false);
+        raw.texture = tx;
+        foreach (Sprite item in sprites)
+        &#123;
+            Page p = c.Add(new Vector2(item.rect.width, item.rect.height), smallest);
+            if (p == null) continue;
+            Graphics.CopyTexture(item.texture, 0, 0,
+                (int)item.rect.x, (int)item.rect.y, (int)item.rect.width, (int)item.rect.height,
+                tx, 0, 0, (int)p.rect.x, (int)p.rect.y);
+            //tx.SetPixels((int)p.rect.x, (int)p.rect.y, (int)item.rect.width, (int)item.rect.height,
+            //    item.texture.GetPixels());
+            //tx.Apply();
+            Rect r = new Rect(item.rect.position + p.rect.position, item.rect.size);
+            dic[item].sprite = Sprite.Create(tx, r, Vector2.zero);
+        &#125;
+    &#125;
+</code></pre>
+
       
        
     </div>
