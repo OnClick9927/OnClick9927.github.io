@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>WooAsset-运行时扩展功能 | 灵</title>
-  <meta name="keywords" content=" WooAsset ">
-  <meta name="description" content="WooAsset-运行时扩展功能 | 灵">
+  <title>1-WooBind-例子 | 灵</title>
+  <meta name="keywords" content=" WooBind ">
+  <meta name="description" content="1-WooBind-例子 | 灵">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="sadasda57d8a 哈哈哈 康康康 777 888   999  public class A&amp;#123;     public void DO()&amp;#123;&amp;#125; &amp;#125;     表头 表头    单元格 单元格   单元格 单元格">
 <meta property="og:type" content="website">
@@ -906,14 +906,14 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Doc/WooAsset/8-WooAsset-运行时扩展功能" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Doc/WooBind/1-WooBind-案例" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">WooAsset-运行时扩展功能</h1>
+        <h1 class="article-title">1-WooBind-例子</h1>
     
     <div class="article-meta">
         
         
-        <span class="author"><a>灵</a></span>
+        <span class="author"><a>yy</a></span>
         
         
         <span class="book">
@@ -922,7 +922,7 @@
             
             <a  data-rel="文档">文档</a> > 
             
-            <a  data-rel="文档&lt;---&gt;WooAsset">WooAsset</a>
+            <a  data-rel="文档&lt;---&gt;WooBind">WooBind</a>
             
         </span>
         
@@ -930,19 +930,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">WooAsset</a>
+            <a class="color3">WooBind</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-07-12 08:10:24'>2023-06-27 15:58</time>
+            发布时间 : <time class="date" title='最后更新: 2023-07-12 08:10:24'>2023-07-05 00:53</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:486</span>
+        <span>字数:414</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -972,7 +972,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E6%A8%A1%E7%B3%8A%E6%90%9C%E7%B4%A2"><span class="toc-text">资源模糊搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E7%BB%84%E5%8A%A0%E8%BD%BD"><span class="toc-text">资源组加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E4%BE%BF%E7%9A%84%E8%B5%84%E6%BA%90%E5%8D%B8%E8%BD%BD"><span class="toc-text">方便的资源卸载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%96%B9%E5%BC%8F"><span class="toc-text">基础方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%8A%A0%E6%96%B9%E4%BE%BF%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%88%E6%9C%89%E9%A3%8E%E9%99%A9%EF%BC%89"><span class="toc-text">更加方便的方式（有风险）</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%90%91%E7%BB%91%E5%AE%9A%EF%BC%88%E6%95%B0%E6%8D%AE%E7%9B%91%E5%90%AC%EF%BC%89"><span class="toc-text">单向绑定（数据监听）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%90%91%E7%BB%91%E5%AE%9A%EF%BC%88%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5%E5%8F%98%E5%8C%96%EF%BC%89"><span class="toc-text">多向绑定（数据同步变化）</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -988,79 +988,104 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="资源模糊搜索"><a href="#资源模糊搜索" class="headerlink" title="资源模糊搜索"></a>资源模糊搜索</h2><pre><code class="csharp">public class AssetsSearch
-    &#123;
-
-///以下是交集
-        public static IReadOnlyList&lt;string&gt; IntersectNameAndTag(string assetName, params string[] tags);
-        public static IReadOnlyList&lt;string&gt; IntersectTag(params string[] tags);
-
-        public static IReadOnlyList&lt;string&gt; IntersectTypeAndNameAndTag(AssetType type, string assetName, params string[] tags);
-        public static IReadOnlyList&lt;string&gt; IntersectTypeAndTag(AssetType type, params string[] tags);
-
-///以下是并集
-
-        public static IReadOnlyList&lt;string&gt; Union(params string[] nameOrTags);
-        public static IReadOnlyList&lt;string&gt; UnionTag(params string[] tags);
-        public static IReadOnlyList&lt;string&gt; UnionName(params string[] names);
-        public static IReadOnlyList&lt;string&gt; UnionNameAndTag(string assetName, params string[] tags);
-        public static IReadOnlyList&lt;string&gt; UnionTypeAndNameAndTag(AssetType type, string assetName, params string[] tags);
-        public static IReadOnlyList&lt;string&gt; UnionTypeAndTag(AssetType type, params string[] tags);
-
-        public static IReadOnlyList&lt;string&gt; AssetPathByType(AssetType type);
-
-    &#125;
-</code></pre>
-<h2 id="资源组加载"><a href="#资源组加载" class="headerlink" title="资源组加载"></a>资源组加载</h2><pre><code class="csharp">//准备一组资源
-string[] groups ;
-var assets= await Assets.PrepareAssets(groups)
-///加载对应的资源方法一
-string path;
-var asset = assets.FindAsset(path)
-///加载对应的资源方法二
-var asset = Assets.LoadAssetAsync(path)
-
-///把整组资源全都卸载了
-assets.Release();
-
-///配合资源模糊搜索一起使用
-//使用场景，进入战斗场景之前把战斗需要的资源全加载
-</code></pre>
-<h2 id="方便的资源卸载"><a href="#方便的资源卸载" class="headerlink" title="方便的资源卸载"></a>方便的资源卸载</h2><h3 id="基础方式"><a href="#基础方式" class="headerlink" title="基础方式"></a>基础方式</h3><ul>
-<li>场景</li>
-<li>一个ui界面上面有一个image</li>
-<li>运行时候需要不停的替换image的sprite</li>
-<li>界面关闭的时候需要把image的sprite卸载</li>
+        <h2 id="单向绑定（数据监听）"><a href="#单向绑定（数据监听）" class="headerlink" title="单向绑定（数据监听）"></a>单向绑定（数据监听）</h2><ul>
+<li>特点：<ul>
+<li>监听单个值的变化</li>
 </ul>
-<pre><code class="csharp">///所有的设置图片都走这个方法
-public static async void SetSprite(Image image, string path)
+</li>
+<li>单向绑定使用示例:</li>
+</ul>
+<pre><code class="csharp">//监听的类需要继承ObservableObject
+class Observable_A : ObservableObject
 &#123;
-    var asset = await Assets.LoadAssetAsync(path);
-    if (asset.isErr) return;
-    image.sprite = asset.GetAsset&lt;Sprite&gt;();
-    Assets.AddBridge(new GameObjectBridge(image.gameObject,asset));
-&#125;
-///在合适的时候调用一次即可（比如：切换场景时候）
-public static void ReleaseUselessBridges()
-&#123;
-    Assets.ReleaseUselessBridges();
-&#125;
-</code></pre>
-<h3 id="更加方便的方式（有风险）"><a href="#更加方便的方式（有风险）" class="headerlink" title="更加方便的方式（有风险）"></a>更加方便的方式（有风险）</h3><pre><code class="csharp">public class LocalSetting : AssetsSetting
-&#123;
-    public override IAssetLife GetAssetLife()
+    private int _value;
+
+    public int value
     &#123;
-      /// 参数是缓存的内存大小，超过这个数字会自动卸载最早的资源
-        return new LRULife(1024 * 50);
+        get
+        &#123;
+            return GetProperty(ref _value);
+        &#125;
+        set
+        &#123;
+            SetProperty(ref _value, value);
+        &#125;
     &#125;
 &#125;
-Assets.SetAssetsSetting(new LocalSetting());
+
+//创建一个监听器
+ObservableObjectHandler binder = new ObservableObjectHandler();
+//创建监听的实例
+Observable_A observedA = new Observable_A();
+
+//监听value
+binder.BindProperty(
+    (value) =&gt;
+    &#123;
+        observedA.value = value;
+        Log.L($&quot;值被改变，新值为&#123;value&#125;&quot;);
+    &#125;,
+    () =&gt;
+    &#123;
+        return observedA.value;
+    &#125;
+);
+
+observedA.value = 1;
+
+observedA.value = 2;
+//观察控制台的输出
 </code></pre>
-<ul>
-<li>可以实现 bundle 不自动卸载，到达一定大小在开始卸载</li>
-<li>如果内存不足时候，最早被使用的资源会被优先卸载</li>
-<li>内存设置的别太小，容易出现资源丢失</li>
+<h2 id="多向绑定（数据同步变化）"><a href="#多向绑定（数据同步变化）" class="headerlink" title="多向绑定（数据同步变化）"></a>多向绑定（数据同步变化）</h2><ul>
+<li>特点：<ul>
+<li>多个绑定，值同步变化</li>
 </ul>
+</li>
+<li>多向绑定使用示例:</li>
+</ul>
+<pre><code class="csharp">  //监听的类需要继承BindableObject
+class Binder_A : BindableObject
+&#123;
+    private int _value;
+
+    public int value &#123; get &#123; return GetProperty(ref _value); &#125; set &#123; SetProperty(ref _value, value); &#125; &#125;
+&#125;
+class Binder_B : BindableObject
+&#123;
+    private int _value;
+
+    public int value &#123; get &#123; return GetProperty(ref _value); &#125; set &#123; SetProperty(ref _value, value); &#125; &#125;
+&#125;
+
+class Binder_C : BindableObject
+&#123;
+    private int _value;
+
+    public int value &#123; get &#123; return GetProperty(ref _value); &#125; set &#123; SetProperty(ref _value, value); &#125; &#125;
+&#125;
+
+//创建监听器
+BindableObjectHandler binder = new BindableObjectHandler();
+
+//创建实例
+Binder_A a = new Binder_A();
+Binder_B b = new Binder_B();
+Binder_C c = new Binder_C();
+
+//绑定
+binder.BindProperty((value) =&gt; &#123; a.value = value; &#125;, () =&gt; &#123; return a.value; &#125;);
+binder.BindProperty((value) =&gt; &#123; b.value = value; &#125;, () =&gt; &#123; return b.value; &#125;);
+binder.BindProperty((value) =&gt; &#123; c.value = value; &#125;, () =&gt; &#123; return c.value; &#125;);
+
+
+Log.L($&quot;a的value值为&#123;a.value&#125;\tb的value值为&#123;b.value&#125;\tc的value值为&#123;c.value&#125;\n&quot;);
+a.value = 1;
+Log.L($&quot;a的value值为&#123;a.value&#125;\tb的value值为&#123;b.value&#125;\tc的value值为&#123;c.value&#125;\n&quot;);
+c.value = 2;
+Log.L($&quot;a的value值为&#123;a.value&#125;\tb的value值为&#123;b.value&#125;\tc的value值为&#123;c.value&#125;\n&quot;);
+
+  
+</code></pre>
 
       
        
