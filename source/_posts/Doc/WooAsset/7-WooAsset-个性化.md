@@ -18,7 +18,7 @@ public interface IAssetBuild
     //自定义 资源 Tag （可以按照tag加载一组资源）
     IReadOnlyList<string> GetTags(EditorAssetData info);
     // 自定义资源分组
-    void Create(AssetTagCollection tags,List<EditorAssetData> assets, Dictionary<EditorAssetData, List<EditorAssetData>> dpsDic, List<BundleGroup> result);
+    void Create(AssetTagCollection tags,List<EditorAssetData> assets, List<BundleGroup> result);
     //自定义打包结束之后需要执行的任务
     //比如输出一些Log、上传文件到服务器等
     List<AssetTask> GetPipelineFinishTasks(AssetTaskContext context);
