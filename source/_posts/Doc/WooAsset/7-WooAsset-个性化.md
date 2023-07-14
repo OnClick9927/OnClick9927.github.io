@@ -24,6 +24,8 @@ public interface IAssetBuild
     List<AssetTask> GetPipelineFinishTasks(AssetTaskContext context);
     //更具一个路径返回资源类型
     AssetType GetAssetType(string path);
+    //是否忽略这个路径
+    bool IsIgnorePath(string path);
 }
 ```
 ## 加载个性化

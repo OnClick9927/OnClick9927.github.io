@@ -20,9 +20,7 @@ date: 2023-06-27 15:58:38
 | 名字                    | 描述                                                             |
 | ----------------------- | ---------------------------------------------------------------- |
 | BuildGroups             | 打包的资源组                                                     |
-| ignoreFileExtend        | 不需要打包的文件后缀                                             |
 | Version                 | 此次打包出去的版本                                               |
-| Bundle Size             | 打出来的bundle最大大小                                           |
 | ignore Type Tree change |                                                                  |
 | Compress                | 资源压缩格式                                                     |
 | Asset Build             | 自定义打包流程（可扩展）                                         |
