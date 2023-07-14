@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>UGUI-适配</title>
+      <link href="/2023/07/14/Unity/UGUI/UGUI-%E9%80%82%E9%85%8D/"/>
+      <url>/2023/07/14/Unity/UGUI/UGUI-%E9%80%82%E9%85%8D/</url>
+      
+        <content type="html"><![CDATA[<h1 id="分辨率适配"><a href="#分辨率适配" class="headerlink" title="分辨率适配"></a>分辨率适配</h1><pre><code class="csharp">/// CanvasScaler 设置为Scale with Screen Sizepublic void FitScreen(CanvasScaler scaler)&#123;    var width = (float) Screen.width;    var height = (float) Screen.height;    var percent = width / height;    var min = 0.48f; //1125*2346    var max = 0.75f; //768*1024    var length = max - min;    percent = (percent - min) / length;    scaler.matchWidthOrHeight = percent;&#125;</code></pre><h1 id="刘海屏"><a href="#刘海屏" class="headerlink" title="刘海屏"></a>刘海屏</h1><p>做一个空物体，如下图布局，挂脚本，要是配的放这个空物体下边<br><img src="/../../../Pic/Unity/UGUI/Ugui%E5%88%98%E6%B5%B7%E5%B1%8F%E9%80%82%E9%85%8D.png" alt="Alt text"></p><pre><code class="csharp">[RequireComponent(typeof(RectTransform))]public class UINotch : MonoBehaviour&#123;    private RectTransform rectTransform;    private void Awake()    &#123;        rectTransform = GetComponent&lt;RectTransform&gt;();    &#125;    private void Start()    &#123;        NotchUISafeAreaSize(rectTransform);    &#125;    public static void NotchUISafeAreaSize(RectTransform transform)    &#123;        Rect safeArea = Screen.safeArea;        //下边        &#123;            float offset = safeArea.yMin;            float ratio = offset / Screen.height;            offset = transform.rect.height * ratio;            transform.offsetMin = new Vector2(transform.offsetMin.x, offset);        &#125;        //上边        &#123;            float offset = Screen.height - safeArea.yMax;            float ratio = offset / Screen.height;            offset = transform.rect.height * ratio;            transform.offsetMax = new Vector2(transform.offsetMax.x, -offset);        &#125;        //左边        &#123;            float offset = safeArea.xMin;            float ratio = offset / Screen.width;            offset = transform.rect.width * ratio;            transform.offsetMin = new Vector2(offset, transform.offsetMin.y);        &#125;        //右边        &#123;            float offset = Screen.width - safeArea.xMax;            float ratio = offset / Screen.width;            offset = transform.rect.width * ratio;            transform.offsetMax = new Vector2(-offset, transform.offsetMax.y);        &#125;    &#125;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Unity </category>
+          
+          <category> UGUI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UGUI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>UGUI优化-动态图集</title>
       <link href="/2023/07/10/Unity/UGUI/%E4%BC%98%E5%8C%96/UGUI%E4%BC%98%E5%8C%96-%E5%8A%A8%E6%80%81%E5%9B%BE%E9%9B%86/"/>
       <url>/2023/07/10/Unity/UGUI/%E4%BC%98%E5%8C%96/UGUI%E4%BC%98%E5%8C%96-%E5%8A%A8%E6%80%81%E5%9B%BE%E9%9B%86/</url>
@@ -238,9 +265,9 @@
       
         <tags>
             
-            <tag> Unity </tag>
-            
             <tag> UGUI </tag>
+            
+            <tag> Unity </tag>
             
         </tags>
       
@@ -267,9 +294,9 @@
       
         <tags>
             
-            <tag> Unity </tag>
-            
             <tag> UGUI </tag>
+            
+            <tag> Unity </tag>
             
         </tags>
       
@@ -359,11 +386,11 @@
     
     
     <entry>
-      <title>WooAsset-着色器变体与图集</title>
-      <link href="/2023/06/27/Doc/WooAsset/4-WooAsset-%E7%9D%80%E8%89%B2%E5%99%A8%E5%8F%98%E4%BD%93%E4%B8%8E%E5%9B%BE%E9%9B%86/"/>
-      <url>/2023/06/27/Doc/WooAsset/4-WooAsset-%E7%9D%80%E8%89%B2%E5%99%A8%E5%8F%98%E4%BD%93%E4%B8%8E%E5%9B%BE%E9%9B%86/</url>
+      <title>WooAsset-更新与初始化</title>
+      <link href="/2023/06/27/Doc/WooAsset/5-WooAsset-%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96%20copy/"/>
+      <url>/2023/06/27/Doc/WooAsset/5-WooAsset-%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96%20copy/</url>
       
-        <content type="html"><![CDATA[<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p><img src="/../../../Pic/Doc/WooAsset/svcandsa.png" alt="Alt text"></p><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>shaderVariantDirectory</td><td>svc   输出的文件夹</td></tr><tr><td>atlasPaths</td><td>需要做图集的文件夹（给一个根路径即可）</td></tr><tr><td>packSetting</td><td>图集设置</td></tr><tr><td>textureSetting</td><td>图集设置</td></tr><tr><td>PlatformSetting</td><td>图集设置</td></tr></tbody></table><h1 id="收集着色器变体"><a href="#收集着色器变体" class="headerlink" title="收集着色器变体"></a>收集着色器变体</h1><ul><li>设置好shaderVariantDirectory</li><li>点击Tools&#x2F;WooAsset&#x2F;Help&#x2F;ShaderVariant</li><li>稍等片刻即可完成，内容全都在shaderVariantDirectory目录下<br><img src="/../../../Pic/Doc/WooAsset/firstopen.png" alt="Alt text"></li></ul><h1 id="生成图集"><a href="#生成图集" class="headerlink" title="生成图集"></a>生成图集</h1><ul><li>设置好图集相关设置</li><li>点击Tools&#x2F;WooAsset&#x2F;Help&#x2F;SpriteAtlas</li><li>稍等片刻即可完成<br><img src="/../../../Pic/Doc/WooAsset/firstopen.png" alt="Alt text"></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><pre><code class="csharp">Assets.SetAssetsSetting(new LocalSetting());//拉取远端版本信息var op = await Assets.VersionCheck();//远端的所有版本数据，内容是buildGroupvar versions = op.versions;//远端和本地进行版本比较//可选参数 versionIndex 和远端的第几个版本比较，不传入就是最后一个版本//可选参数 tags 只比较包含标签的组，不传入就是所有组var compare = await op.Compare(op.versions.Count);//下载所有需要更新的资源for (int i = 0; i &lt; compare.add.Count; i++)    await Assets.DownLoadBundle(compare.add[i].name);for (int i = 0; i &lt; compare.change.Count; i++)    await Assets.DownLoadBundle(compare.change[i].name);</code></pre><h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><pre><code class="csharp">Assets.SetAssetsSetting(new LocalSetting());//初始化//可选参数 version 初始化哪一个版本，不传就是本地版本，本地没有就是远端最新版本//可选参数 again 再一次初始化（使用场景，热更新界面也热更）//可选参数 tags 只初始化包含标签的组，不传入就是所有组await Assets.InitAsync();</code></pre>]]></content>
       
       
       <categories>
@@ -386,11 +413,11 @@
     
     
     <entry>
-      <title>WooAsset-更新与初始化</title>
-      <link href="/2023/06/27/Doc/WooAsset/5-WooAsset-%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96%20copy/"/>
-      <url>/2023/06/27/Doc/WooAsset/5-WooAsset-%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96%20copy/</url>
+      <title>WooAsset-着色器变体与图集</title>
+      <link href="/2023/06/27/Doc/WooAsset/4-WooAsset-%E7%9D%80%E8%89%B2%E5%99%A8%E5%8F%98%E4%BD%93%E4%B8%8E%E5%9B%BE%E9%9B%86/"/>
+      <url>/2023/06/27/Doc/WooAsset/4-WooAsset-%E7%9D%80%E8%89%B2%E5%99%A8%E5%8F%98%E4%BD%93%E4%B8%8E%E5%9B%BE%E9%9B%86/</url>
       
-        <content type="html"><![CDATA[<h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><pre><code class="csharp">Assets.SetAssetsSetting(new LocalSetting());//拉取远端版本信息var op = await Assets.VersionCheck();//远端的所有版本数据，内容是buildGroupvar versions = op.versions;//远端和本地进行版本比较//可选参数 versionIndex 和远端的第几个版本比较，不传入就是最后一个版本//可选参数 tags 只比较包含标签的组，不传入就是所有组var compare = await op.Compare(op.versions.Count);//下载所有需要更新的资源for (int i = 0; i &lt; compare.add.Count; i++)    await Assets.DownLoadBundle(compare.add[i].name);for (int i = 0; i &lt; compare.change.Count; i++)    await Assets.DownLoadBundle(compare.change[i].name);</code></pre><h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><pre><code class="csharp">Assets.SetAssetsSetting(new LocalSetting());//初始化//可选参数 version 初始化哪一个版本，不传就是本地版本，本地没有就是远端最新版本//可选参数 again 再一次初始化（使用场景，热更新界面也热更）//可选参数 tags 只初始化包含标签的组，不传入就是所有组await Assets.InitAsync();</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p><img src="/../../../Pic/Doc/WooAsset/svcandsa.png" alt="Alt text"></p><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>shaderVariantDirectory</td><td>svc   输出的文件夹</td></tr><tr><td>atlasPaths</td><td>需要做图集的文件夹（给一个根路径即可）</td></tr><tr><td>packSetting</td><td>图集设置</td></tr><tr><td>textureSetting</td><td>图集设置</td></tr><tr><td>PlatformSetting</td><td>图集设置</td></tr></tbody></table><h1 id="收集着色器变体"><a href="#收集着色器变体" class="headerlink" title="收集着色器变体"></a>收集着色器变体</h1><ul><li>设置好shaderVariantDirectory</li><li>点击Tools&#x2F;WooAsset&#x2F;Help&#x2F;ShaderVariant</li><li>稍等片刻即可完成，内容全都在shaderVariantDirectory目录下<br><img src="/../../../Pic/Doc/WooAsset/firstopen.png" alt="Alt text"></li></ul><h1 id="生成图集"><a href="#生成图集" class="headerlink" title="生成图集"></a>生成图集</h1><ul><li>设置好图集相关设置</li><li>点击Tools&#x2F;WooAsset&#x2F;Help&#x2F;SpriteAtlas</li><li>稍等片刻即可完成<br><img src="/../../../Pic/Doc/WooAsset/firstopen.png" alt="Alt text"></li></ul>]]></content>
       
       
       <categories>
