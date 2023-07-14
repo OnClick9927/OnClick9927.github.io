@@ -15,7 +15,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/Pic/R-C.jpg">
 <meta property="article:published_time" content="2023-05-15T23:57:04.000Z">
-<meta property="article:modified_time" content="2023-07-13T07:57:00.098Z">
+<meta property="article:modified_time" content="2023-07-14T08:37:00.379Z">
 <meta property="article:author" content="灵">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/Pic/R-C.jpg">
@@ -937,12 +937,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-07-13 07:57:00'>2023-06-27 15:58</time>
+            发布时间 : <time class="date" title='最后更新: 2023-07-14 08:37:00'>2023-06-27 15:58</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:331</span>
+        <span>字数:343</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1002,6 +1002,8 @@ public interface IAssetBuild
     List&lt;AssetTask&gt; GetPipelineFinishTasks(AssetTaskContext context);
     //更具一个路径返回资源类型
     AssetType GetAssetType(string path);
+    //是否忽略这个路径
+    bool IsIgnorePath(string path);
 &#125;
 </code></pre>
 <h2 id="加载个性化"><a href="#加载个性化" class="headerlink" title="加载个性化"></a>加载个性化</h2><pre><code class="csharp">///写一个 class 继承于 AssetsSetting
