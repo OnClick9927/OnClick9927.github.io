@@ -15,7 +15,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/Pic/R-C.jpg">
 <meta property="article:published_time" content="2023-05-15T23:57:04.000Z">
-<meta property="article:modified_time" content="2023-07-18T16:46:43.131Z">
+<meta property="article:modified_time" content="2023-07-21T19:38:41.387Z">
 <meta property="article:author" content="灵">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/Pic/R-C.jpg">
@@ -358,7 +358,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="49">
-<input type="hidden" id="yelog_site_word_count" value="17k">
+<input type="hidden" id="yelog_site_word_count" value="18k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -946,12 +946,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-07-18 16:46:43'>2023-07-05 00:53</time>
+            发布时间 : <time class="date" title='最后更新: 2023-07-21 19:38:41'>2023-07-05 00:53</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:210</span>
+        <span>字数:1.2k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -981,7 +981,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ObservableObject"><span class="toc-text">ObservableObject</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Subscribe"><span class="toc-text">Subscribe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UnSubscribe"><span class="toc-text">UnSubscribe</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ObservableObject"><span class="toc-text">ObservableObject</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Subscribe"><span class="toc-text">Subscribe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UnSubscribe"><span class="toc-text">UnSubscribe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GetProperty"><span class="toc-text">GetProperty</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SetProperty"><span class="toc-text">SetProperty</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GetProperty-1"><span class="toc-text">GetProperty</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ObservableObjectHandler"><span class="toc-text">ObservableObjectHandler</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Subscribe-1"><span class="toc-text">Subscribe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UnSubscribe-1"><span class="toc-text">UnSubscribe()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BindableObject"><span class="toc-text">BindableObject</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Subscribe-2"><span class="toc-text">Subscribe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UnSubscribe-2"><span class="toc-text">UnSubscribe</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Subscribe-3"><span class="toc-text">Subscribe</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GetValue"><span class="toc-text">GetValue</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PublishProperty"><span class="toc-text">PublishProperty</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UnBind"><span class="toc-text">UnBind</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1025,6 +1025,105 @@
     Console.WriteLine(&quot;属性Name发生了变化！&quot;);
 &#125;);
 </code></pre>
+<h2 id="GetProperty"><a href="#GetProperty" class="headerlink" title="GetProperty"></a>GetProperty</h2><pre><code class="csharp">protected T GetProperty&lt;T&gt;(ref T property, [CallerMemberName]string propertyName = &quot;&quot;)
+</code></pre>
+<ul>
+<li><p>T：属性值的类型。</p>
+</li>
+<li><p>property：表示要获取的属性的变量的引用。</p>
+</li>
+<li><p>propertyName：表示属性的名称，默认值为调用该方法的成员的名称（通过[CallerMemberName]属性实现）。</p>
+</li>
+<li><p>GetProperty函数用于获取属性的值。它接收一个属性变量的引用以及可选的属性名称。如果使用可选的属性名称参数，则可以在调用时指定属性的名称，例如GetProperty(ref myVariable, “MyProperty”)；如果不提供属性名称参数，则默认使用调用该方法的成员的名称作为属性的名称。该函数会返回属性的当前值。</p>
+</li>
+</ul>
+<h2 id="SetProperty"><a href="#SetProperty" class="headerlink" title="SetProperty"></a>SetProperty</h2><h2 id="GetProperty-1"><a href="#GetProperty-1" class="headerlink" title="GetProperty"></a>GetProperty</h2><pre><code class="csharp">protected void SetProperty&lt;T&gt;(ref T property, T value, [CallerMemberName]string propertyName = &quot;&quot;)
+</code></pre>
+<ul>
+<li>T：属性值的类型。</li>
+<li>property：表示要设置的属性的变量的引用。</li>
+<li>value：表示要设置的属性的新值。</li>
+<li>propertyName：表示属性的名称，默认值为调用该方法的成员的名称（通过[CallerMemberName]属性实现）。</li>
+<li>SetProperty函数用于设置属性的值。它接收一个属性变量的引用、新的属性值以及可选的属性名称。如果使用可选的属性名称参数，则可以在调用时指定属性的名称，例如SetProperty(ref myVariable, newValue, “MyProperty”)；如果不提供属性名称参数，则默认使用调用该方法的成员的名称作为属性的名称。该函数会更新属性的值，并在值发生变化时发布属性更改通知。</li>
+</ul>
+<h1 id="ObservableObjectHandler"><a href="#ObservableObjectHandler" class="headerlink" title="ObservableObjectHandler"></a>ObservableObjectHandler</h1><h2 id="Subscribe-1"><a href="#Subscribe-1" class="headerlink" title="Subscribe"></a>Subscribe</h2><pre><code class="csharp">internal ObservableObjectHandler Subscribe(ObservableObject _object, string propertyName)
+</code></pre>
+<ul>
+<li><p>ObservableObjectHandler：方法的返回类型为 ObservableObjectHandler，表示该方法将返回一个可观察对象处理器的实例。这个处理器可以用来管理和控制属性变化的监听。</p>
+</li>
+<li><p>_object：ObservableObject 类型的参数 _object 是要订阅的可观察对象实例。你可以将你感兴趣的可观察对象传递给该参数。</p>
+</li>
+<li><p>propertyName：string 类型的参数 propertyName 是要订阅的属性名称。你可以指定你希望监听的特定属性的名称。</p>
+</li>
+</ul>
+<pre><code class="csharp">  public ObservableObjectHandler Subscribe(ObservableObject _object, string propertyName, Action listener)
+</code></pre>
+<ul>
+<li>listener：Action 类型的参数 listener 是一个回调函数，表示在属性变化时要执行的操作。你可以将你希望在属性变化时执行的逻辑封装在这个回调函数中，例如更新 UI、执行其他方法等。</li>
+</ul>
+<h2 id="UnSubscribe-1"><a href="#UnSubscribe-1" class="headerlink" title="UnSubscribe()"></a>UnSubscribe()</h2><pre><code class="csharp"> public void UnSubscribe()
+</code></pre>
+<ul>
+<li>取消所有监听</li>
+</ul>
+<pre><code class="csharp">public void UnSubscribe(ObservableObject _object, string propertyName)
+</code></pre>
+<ul>
+<li>取消符合条件的监听</li>
+</ul>
+<h1 id="BindableObject"><a href="#BindableObject" class="headerlink" title="BindableObject"></a>BindableObject</h1><h2 id="Subscribe-2"><a href="#Subscribe-2" class="headerlink" title="Subscribe"></a>Subscribe</h2><pre><code class="csharp">public void Subscribe(string propertyName, Action&lt;string, object&gt; listener)
+</code></pre>
+<ul>
+<li><p>注册监听器，订阅属性变化事件。</p>
+</li>
+<li><p>propertyName：要监听的属性名称。</p>
+</li>
+<li><p>listener：当属性变化时要执行的回调方法。</p>
+</li>
+</ul>
+<h2 id="UnSubscribe-2"><a href="#UnSubscribe-2" class="headerlink" title="UnSubscribe"></a>UnSubscribe</h2><pre><code class="csharp">public void UnSubscribe(string propertyName, Action&lt;string, object&gt; listener)
+</code></pre>
+<ul>
+<li><p>移除监听器，取消订阅属性变化事件。</p>
+</li>
+<li><p>propertyName：要取消监听的属性名称。</p>
+</li>
+<li><p>listener：要移除的监听器回调方法。</p>
+</li>
+</ul>
+<h1 id="Subscribe-3"><a href="#Subscribe-3" class="headerlink" title="Subscribe"></a>Subscribe</h1><pre><code class="csharp">internal BindableObjectHandler Subscribe(BindableObject _object, Type propertyType, string propertyName)
+</code></pre>
+<ul>
+<li>用于订阅对象的属性变化。</li>
+<li>_object：需要订阅属性变化的对象。</li>
+<li>propertyType：属性的数据类型，用于指定要订阅的属性的类型。</li>
+<li>propertyName：要订阅的属性名称。</li>
+</ul>
+<h1 id="GetValue"><a href="#GetValue" class="headerlink" title="GetValue"></a>GetValue</h1><pre><code class="csharp">public T GetValue&lt;T&gt;(string name)
+public object GetValue(Type type,string name)
+</code></pre>
+<ul>
+<li>用于获取指定名称的属性值</li>
+</ul>
+<h1 id="PublishProperty"><a href="#PublishProperty" class="headerlink" title="PublishProperty"></a>PublishProperty</h1><pre><code class="csharp">   public BindableObjectHandler PublishProperty(Type type,object value, string propertyName)
+   public BindableObjectHandler PublishProperty&lt;T&gt;(T value, string propertyName)
+</code></pre>
+<ul>
+<li>用于发布属性的变化，通知所有订阅了该属性的监听者。</li>
+</ul>
+<h1 id="UnBind"><a href="#UnBind" class="headerlink" title="UnBind"></a>UnBind</h1><pre><code class="csharp">public void UnBind()
+public void UnBind(BindableObject _object)
+public void UnBind(string propertyName)
+public void UnBind(BindableObject _object, string propertyName)
+public void UnBind(BindableObject _object, Type type, string propertyName)
+</code></pre>
+<ul>
+<li>解绑全部绑定的属性。</li>
+<li>按照对象解绑属性。</li>
+<li>按照属性名称解绑属性。</li>
+<li>按照对象和属性名称解绑属性。</li>
+<li>按照对象、属性类型和属性名称解绑属性。</li>
+</ul>
 
       
        
