@@ -58,11 +58,11 @@
     
     
     <entry>
-      <title>1-IFramework-简介</title>
-      <link href="/2023/07/24/Doc/IFramework/1-IFramework-%E7%AE%80%E4%BB%8B/"/>
-      <url>/2023/07/24/Doc/IFramework/1-IFramework-%E7%AE%80%E4%BB%8B/</url>
+      <title>10-IFramework-模块-模块与环境</title>
+      <link href="/2023/07/24/Doc/IFramework/10-IFramework-%E6%A8%A1%E5%9D%97-%E6%A8%A1%E5%9D%97%E4%B8%8E%E7%8E%AF%E5%A2%83/"/>
+      <url>/2023/07/24/Doc/IFramework/10-IFramework-%E6%A8%A1%E5%9D%97-%E6%A8%A1%E5%9D%97%E4%B8%8E%E7%8E%AF%E5%A2%83/</url>
       
-        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/IFramework">地址</a></h1><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>IFramework（任何C#环境均可）包含以下内容：</p><ul><li>Log （框架的log）</li><li>Singleton （通用C#单例）</li><li>PriorityQueue （优先级队列）</li><li>Modules （模块合集）</li><li>Environment （环境，包含模块合集与计时）</li></ul><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul><li><code>git clone -b src https://github.com/OnClick9927/IFramework</code></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul><li>从文档  记录模块 到 自定义模块 ，我们获取任意一个模块的代码都是如下</li><li>为什么这么做：<ul><li>写例子方便，环境是对模块的包装</li><li>少写一些重复代码</li></ul></li><li>为什么要总结：<ul><li>模块可以拿出来单独使用</li></ul></li></ul><pre><code class="csharp">//获取模块容器IModules moduleContainer= Framework.GetEnv(EnvironmentType.Ev0).modules;//创建模块实例moduleContainer.CreateModule&lt;MyModule&gt;();</code></pre><h1 id="单独使用模块"><a href="#单独使用模块" class="headerlink" title="单独使用模块"></a>单独使用模块</h1><ul><li>自定义一个脚本用于存储模块实例</li><li>提供外部可以访问的获取模块方法</li><li>下面是 自定义模块 的写法</li></ul><pre><code class="csharp">Modules modules = new Modules();modules.GetModule&lt;MyModule&gt;();</code></pre><h1 id="环境包含内容"><a href="#环境包含内容" class="headerlink" title="环境包含内容"></a>环境包含内容</h1><ul><li>对模块实例的持有</li><li>一个计时器</li><li>生命周期绑定</li><li>生命周期等待（处理多线程）</li></ul>]]></content>
       
       
       <categories>
@@ -85,11 +85,11 @@
     
     
     <entry>
-      <title>10-IFramework-模块-模块与环境</title>
-      <link href="/2023/07/24/Doc/IFramework/10-IFramework-%E6%A8%A1%E5%9D%97-%E6%A8%A1%E5%9D%97%E4%B8%8E%E7%8E%AF%E5%A2%83/"/>
-      <url>/2023/07/24/Doc/IFramework/10-IFramework-%E6%A8%A1%E5%9D%97-%E6%A8%A1%E5%9D%97%E4%B8%8E%E7%8E%AF%E5%A2%83/</url>
+      <title>1-IFramework-简介</title>
+      <link href="/2023/07/24/Doc/IFramework/1-IFramework-%E7%AE%80%E4%BB%8B/"/>
+      <url>/2023/07/24/Doc/IFramework/1-IFramework-%E7%AE%80%E4%BB%8B/</url>
       
-        <content type="html"><![CDATA[<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul><li>从文档  记录模块 到 自定义模块 ，我们获取任意一个模块的代码都是如下</li><li>为什么这么做：<ul><li>写例子方便，环境是对模块的包装</li><li>少写一些重复代码</li></ul></li><li>为什么要总结：<ul><li>模块可以拿出来单独使用</li></ul></li></ul><pre><code class="csharp">//获取模块容器IModules moduleContainer= Framework.GetEnv(EnvironmentType.Ev0).modules;//创建模块实例moduleContainer.CreateModule&lt;MyModule&gt;();</code></pre><h1 id="单独使用模块"><a href="#单独使用模块" class="headerlink" title="单独使用模块"></a>单独使用模块</h1><ul><li>自定义一个脚本用于存储模块实例</li><li>提供外部可以访问的获取模块方法</li><li>下面是 自定义模块 的写法</li></ul><pre><code class="csharp">Modules modules = new Modules();modules.GetModule&lt;MyModule&gt;();</code></pre><h1 id="环境包含内容"><a href="#环境包含内容" class="headerlink" title="环境包含内容"></a>环境包含内容</h1><ul><li>对模块实例的持有</li><li>一个计时器</li><li>生命周期绑定</li><li>生命周期等待（处理多线程）</li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/IFramework">地址</a></h1><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>IFramework（任何C#环境均可）包含以下内容：</p><ul><li>Log （框架的log）</li><li>Singleton （通用C#单例）</li><li>PriorityQueue （优先级队列）</li><li>Modules （模块合集）</li><li>Environment （环境，包含模块合集与计时）</li></ul><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul><li><code>git clone -b src https://github.com/OnClick9927/IFramework</code></li></ul>]]></content>
       
       
       <categories>
