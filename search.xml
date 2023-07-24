@@ -4,6 +4,330 @@
   
     
     <entry>
+      <title>1-IFramework-Unity-简介</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/1-IFramework-Unity-%E7%AE%80%E4%BB%8B/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/1-IFramework-Unity-%E7%AE%80%E4%BB%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/IFramework-Unity">地址</a></h1><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul><li>简单好用的unity框架</li><li>依赖 IFramework</li><li>支持内容<ul><li>项目统一设置</li><li>可扩展高效UI</li><li>lua框架</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework-Unity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework-Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2-IFramework-Unity-安装与设置</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/2-IFramework-Unity-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/2-IFramework-Unity-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul><li>创建unity项目</li><li>打开 Assets 目录</li><li><code>git clone -b src https://github.com/OnClick9927/IFramework-Unity</code></li></ul><h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><ul><li>打开面板 ctrl+shift+i</li><li>参数</li></ul><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>UserName</td><td>用户名字（unity账户名字）</td></tr><tr><td>Version</td><td>工程的版本</td></tr><tr><td>NameSpace</td><td>工程命名空间</td></tr><tr><td>Project Path</td><td>项目内容所在文件夹</td></tr><tr><td></td><td></td></tr><tr><td>Dock EditorWindow</td><td>打开的窗口是否依附</td></tr><tr><td></td><td></td></tr><tr><td>Enable</td><td>log 总开关</td></tr><tr><td>Log Enable</td><td>开启log</td></tr><tr><td>Warning Enable</td><td>开启Warning</td></tr><tr><td>Error Enable</td><td>开启Error</td></tr></tbody></table><p><img src="/../../../Pic/Doc/IFramework-Unity/%E8%AE%BE%E7%BD%AE.png" alt="Alt text"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework-Unity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework-Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>1-IFramework-简介</title>
+      <link href="/2023/07/24/Doc/IFramework/1-IFramework-%E7%AE%80%E4%BB%8B/"/>
+      <url>/2023/07/24/Doc/IFramework/1-IFramework-%E7%AE%80%E4%BB%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/IFramework">地址</a></h1><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>IFramework（任何C#环境均可）包含以下内容：</p><ul><li>Log （框架的log）</li><li>Singleton （通用C#单例）</li><li>PriorityQueue （优先级队列）</li><li>Modules （模块合集）</li><li>Environment （环境，包含模块合集与计时）</li></ul><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul><li><code>git clone -b src https://github.com/OnClick9927/IFramework</code></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>10-IFramework-模块-模块与环境</title>
+      <link href="/2023/07/24/Doc/IFramework/10-IFramework-%E6%A8%A1%E5%9D%97-%E6%A8%A1%E5%9D%97%E4%B8%8E%E7%8E%AF%E5%A2%83/"/>
+      <url>/2023/07/24/Doc/IFramework/10-IFramework-%E6%A8%A1%E5%9D%97-%E6%A8%A1%E5%9D%97%E4%B8%8E%E7%8E%AF%E5%A2%83/</url>
+      
+        <content type="html"><![CDATA[<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul><li>从文档  记录模块 到 自定义模块 ，我们获取任意一个模块的代码都是如下</li><li>为什么这么做：<ul><li>写例子方便，环境是对模块的包装</li><li>少写一些重复代码</li></ul></li><li>为什么要总结：<ul><li>模块可以拿出来单独使用</li></ul></li></ul><pre><code class="csharp">//获取模块容器IModules moduleContainer= Framework.GetEnv(EnvironmentType.Ev0).modules;//创建模块实例moduleContainer.CreateModule&lt;MyModule&gt;();</code></pre><h1 id="单独使用模块"><a href="#单独使用模块" class="headerlink" title="单独使用模块"></a>单独使用模块</h1><ul><li>自定义一个脚本用于存储模块实例</li><li>提供外部可以访问的获取模块方法</li><li>下面是 自定义模块 的写法</li></ul><pre><code class="csharp">Modules modules = new Modules();modules.GetModule&lt;MyModule&gt;();</code></pre><h1 id="环境包含内容"><a href="#环境包含内容" class="headerlink" title="环境包含内容"></a>环境包含内容</h1><ul><li>对模块实例的持有</li><li>一个计时器</li><li>生命周期绑定</li><li>生命周期等待（处理多线程）</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2-IFramework-单例</title>
+      <link href="/2023/07/24/Doc/IFramework/2-IFramework-%E5%8D%95%E4%BE%8B/"/>
+      <url>/2023/07/24/Doc/IFramework/2-IFramework-%E5%8D%95%E4%BE%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="单例"><a href="#单例" class="headerlink" title="单例"></a>单例</h1><p>快速创建单例类，使其全局唯一</p><p>使用方式：继承<code>SingletonPropertyClass</code>&lt;<code>T</code>&gt;</p><p>特点：</p><ul><li>在第一次调用时会调用构造函数和初始化函数</li><li>使用静态方法，<strong>不允许</strong>外部访问<code>instance</code></li></ul><p>使用示例:</p><pre><code class="csharp">//继承SingletonPropertyClasspublic class MySingletonClass : SingletonPropertyClass&lt;MySingletonClass&gt;&#123;    private int a;    private string b;    private MySingletonClass()    &#123;        //构造函数        a = 1;        b = &quot;this is a string&quot;;    &#125;    protected override void OnSingletonInit()    &#123;        //初始化    &#125;    public static void DO()    &#123;        //注意：使用【静态方法】访问实例化对象instance,instance 【不能】 在外部访问        System.Console.WriteLine($&quot;int:&#123;instance.a&#125; string :&#123;instance.b&#125;&quot;);    &#125;    protected override void OnDispose()    &#123;    &#125;&#125;//方法调用MySingletonClass.DO();</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>3-IFramework-优先级队列</title>
+      <link href="/2023/07/24/Doc/IFramework/3-IFramework-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/"/>
+      <url>/2023/07/24/Doc/IFramework/3-IFramework-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/</url>
+      
+        <content type="html"><![CDATA[<h1 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h1><blockquote><p>A:请不要插队<br><br>B:我有VIP<br><br>A:前面全是SVIP在等</p></blockquote><p>根据优先级自动排序的队列，消息模块就用到了这个队列来根据紧急程度排序</p><h2 id="1、快速优先级队列"><a href="#1、快速优先级队列" class="headerlink" title="1、快速优先级队列"></a>1、快速优先级队列</h2><p>特点:</p><ul><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>随机的</strong></li></ul><p>使用示例:</p><pre><code class="csharp">//节点public class FastNode : FastPriorityQueueNode&#123;    public int value;&#125;//创建优先级队列FastPriorityQueue&lt;FastNode&gt; nodes = new FastPriorityQueue&lt;FastNode&gt;(10);//节点元素入队for (int i = 10; i &gt; 0; i--)&#123;    nodes.Enqueue(new FastNode() &#123; value = i &#125;, 10 - i);&#125;//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue().value&#125;&quot;);&#125;</code></pre><h2 id="2、泛型优先级队列"><a href="#2、泛型优先级队列" class="headerlink" title="2、泛型优先级队列"></a>2、泛型优先级队列</h2><p>特点:</p><ul><li>优先级值使用可以对比值大小的泛型</li><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>使用示例:</p><pre><code class="csharp">//节点public class GenericNode : GenericPriorityQueueNode&lt;char&gt;&#123;    public int value;&#125;//创建队列，这里以char为例GenericPriorityQueue&lt;GenericNode, char&gt; nodes = new GenericPriorityQueue&lt;GenericNode, char&gt;(10);//节点元素入队for (int i = 10; i &gt; 0; i--)&#123;    nodes.Enqueue(new GenericNode() &#123; value = i &#125;, Convert.ToChar(64 + i));&#125;//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue().value&#125;&quot;);&#125;</code></pre><h2 id="3、稳定优先级队列"><a href="#3、稳定优先级队列" class="headerlink" title="3、稳定优先级队列"></a>3、稳定优先级队列</h2><p>特点:</p><ul><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>和快速优先级队列的区别就只在于出现相同优先级的判断……</p><h2 id="4、简单优先级队列"><a href="#4、简单优先级队列" class="headerlink" title="4、简单优先级队列"></a>4、简单优先级队列</h2><p>特点:</p><ul><li>队列没有大小限制</li><li>支持添加空节点元素和重复的节点元素</li><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>使用示例：</p><pre><code class="csharp">//创建队列SimplePriorityQueue&lt;string&gt; nodes = new SimplePriorityQueue&lt;string&gt;();//节点元素入队for (int i = 1; i &lt;= 10; i++)&#123;    nodes.Enqueue($&quot;&#123;i&#125;&quot;, i);&#125;//空节点元素和重复节点元素入队string item = &quot;重复值&quot;;nodes.Enqueue(null, 1);nodes.Enqueue(null, 3);nodes.Enqueue(item, 4);nodes.Enqueue(item, 5);//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue()&#125;&quot;);&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>4-IFramework-模块-记录模块</title>
+      <link href="/2023/07/24/Doc/IFramework/4-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%B0%E5%BD%95%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/4-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%B0%E5%BD%95%E6%A8%A1%E5%9D%97/</url>
+      
+        <content type="html"><![CDATA[<h1 id="记录模块"><a href="#记录模块" class="headerlink" title="记录模块"></a>记录模块</h1><p>拿小本本记下一举一动</p><p>模块特点:</p><ul><li>撤销与反撤销</li><li>支持以Command或Action作为操作</li><li>支持将多个操作合并成一个组调用</li></ul><p>使用示例:</p><pre><code class="csharp">//获取模块IOperationRecorderModule recorderModule=Framework.GetEnv(EnvironmentType.Ev0).modules.Recoder;static int value = 0;//增加数值Commandstruct AddValueCommand : ICommand&#123;    public void Excute()    &#123;        value++;    &#125;&#125;//减少数值Commandstruct SubValueCommand : ICommand&#123;    public void Excute()    &#123;        value--;    &#125;&#125;//注册Action操作和其回退操作var actionState = recorderModule.AllocateAction().SetCommand(() =&gt; &#123; value += 16; &#125;, () =&gt; &#123; value -= 16; &#125;);actionState.SetName(&quot;增加了16&quot;);actionState.Subscribe();//State可以多次调用//但是请【不要】在注册之后修改State，否则会对前面的操作有影响actionState.Subscribe();actionState.Subscribe();//注册Command操作和其回退操作var commandState = recorderModule.AllocateCommand().SetCommand(new AddValueCommand(), new SubValueCommand());commandState.SetName(&quot;增加了1&quot;);commandState.Subscribe();//注册Action一组操作和其回退操作var actionGroupState =     recorderModule.AllocateActionGroup()    .SetGroupCommand(() =&gt; &#123; value += 1; &#125;, () =&gt; &#123; value -= 1; &#125;)    .SetGroupCommand(() =&gt; &#123; value += 2; &#125;, () =&gt; &#123; value -= 2; &#125;)actionGroupState.SetName(&quot;增加了3&quot;);actionGroupState.Subscribe();Log.L(value);//撤销操作 返回值为是否撤销成功bool bo = recorderModule.Undo();Log.L(value);//反撤销操作 返回值为是否反撤销成功bool bo = recorderModule.Redo();Log.L(value);</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>5-IFramework-模块-消息模块</title>
+      <link href="/2023/07/24/Doc/IFramework/5-IFramework-%E6%A8%A1%E5%9D%97-%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/5-IFramework-%E6%A8%A1%E5%9D%97-%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9D%97/</url>
+      
+        <content type="html"><![CDATA[<h1 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h1><blockquote><p>A:回复T即可退订<br><br>B:T<br><br>A:回复T即可退订<br><br>B:T即可<br><br>A:退订成功</p></blockquote><p>消息是软件开发中减少模块耦合的有效方式</p><p>模块特点:</p><ul><li>支持流量控制</li><li>支持子类型匹配(根据子类型监听父类型)</li><li>支持异步等待</li><li>支持消息优先级</li></ul><p>使用示例:</p><pre><code class="csharp">//需要监听的类public interface IPub &#123; &#125;public class Pub : IPub &#123; &#125;//自定义监听器类 public class Listener : IMessageListener&#123;    public Listener()    &#123;        //构造函数，在这里可以直接写对某个类型的监听    &#125;    //实现接口里的消息回调方法    public void Listen(IMessage message)    &#123;        Log.L($&quot;收到类型为&#123;message.subject&#125;的消息，消息值为&#123;message.code&#125;&quot;);    &#125;&#125;//获取消息模块messageModule = Framework.GetEnv(EnvironmentType.Ev0).modules.Message;//匹配子类型开关messageModule.fitSubType = true;//每帧处理的消息量messageModule.processesPerFrame = 1;//实例化一个消息监听器Listener listenner = new Listener(); //根据IPub监听messageModule.Subscribe&lt;IPub&gt;(listenner);//发送一条重要程度为Important的消息，消息值为100messageModule.Publish&lt;Pub&gt;(null,MessageUrgencyType.Important).SetCode(100);</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>6-IFramework-模块-协程模块</title>
+      <link href="/2023/07/24/Doc/IFramework/6-IFramework-%E6%A8%A1%E5%9D%97-%E5%8D%8F%E7%A8%8B%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/6-IFramework-%E6%A8%A1%E5%9D%97-%E5%8D%8F%E7%A8%8B%E6%A8%A1%E5%9D%97/</url>
+      
+        <content type="html"><![CDATA[<h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>更好地利用线程资源</p><p>模块特点:</p><ul><li>支持多种等待时间延迟执行</li><li>支持多种等待判断</li><li>支持快速结束某个协程</li><li>支持异步等待</li></ul><p>使用示例:</p><pre><code class="csharp">//tip:环境的Update需要定时执行//获取协程模块coroutineModule = Framework.GetEnv(EnvironmentType.Ev0).modules.Coroutine;//开启协程WaitExamplecoroutineModule.StartCoroutine(WaitExample());IEnumerator WaitExample()&#123;    Log.L(&quot;协程WaitExample开始&quot;);    yield return new WaitForFrame();    Log.L(&quot;一帧过去了&quot;);    yield return new WaitForFrames(20);    Log.L(&quot;20帧过去了&quot;);    yield return new WaitForHours(0.0004);    Log.L(&quot;0.0004小时过去了&quot;);&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>7-IFramework-模块-依赖注入模块</title>
+      <link href="/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/</url>
+      
+        <content type="html"><![CDATA[<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>放什么拿什么</p><p>特点:</p><ul><li>支持直接注入和反射注入</li><li>支持根据name注入同类型的多个实例</li></ul><p>直接注入使用示例:</p><pre><code class="csharp">public interface ICommonInjectObject&#123;    void ToDo();&#125;public class CommonObject : ICommonInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//获取容器container = Framework.GetEnv(EnvironmentType.Ev0).container;//往容器中注册实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject());//获取实例var _commonObject = container.GetValue&lt;ICommonInjectObject&gt;();//通过name区分来注册多个同类型实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject(), &quot;Instance1&quot;);//根据name获取指定类型的实例_commonObject = container.GetValue&lt;ICommonInjectObject&gt;(&quot;Instance1&quot;);//使用容器的Clear方法清除当前所有注入的实例container.Clear();</code></pre><hr><p><em><strong>反射注入强调性能之处慎用</strong></em></p><p>反射注入使用示例:</p><pre><code class="csharp">public interface IReflectInjectObject&#123;    void ToDo();&#125;public class ReflectObject : IReflectInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//使用Inject这个Attribute标记需要反射注入的变量[Inject]public IReflectInjectObject _reflectObject;//Attribute增加name属性[Inject(&quot;Instance1&quot;)]public IReflectInjectObject _reflectMultiObject1; //以IReflectInjectObject的名义注入ReflectObject类型container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;();container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;(&quot;Instance1&quot;);//为当前类的含有[Inject]这个Attribute的对应类型的变量注入数据container.Inject(this);</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>8-IFramework-模块-计时器模块</title>
+      <link href="/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/</url>
+      
+        <content type="html"><![CDATA[<h1 id="计时器模块"><a href="#计时器模块" class="headerlink" title="计时器模块"></a>计时器模块</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>9-IFramework-模块-自定义模块</title>
+      <link href="/2023/07/24/Doc/IFramework/9-IFramework-%E6%A8%A1%E5%9D%97-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/9-IFramework-%E6%A8%A1%E5%9D%97-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9D%97/</url>
+      
+        <content type="html"><![CDATA[<h1 id="自定义模块"><a href="#自定义模块" class="headerlink" title="自定义模块"></a>自定义模块</h1><p>自己造轮子</p><p>特点:</p><ul><li>自己定义一个符合框架生命周期的模块</li></ul><p>使用示例:</p><pre><code class="csharp">//继承UpdateModule创建一个自定义模块private class MyModule : IFramework.Modules.UpdateModule&#123;    protected override void Awake()    &#123;        Log.L(&quot;Awake&quot;);    &#125;    protected override void OnEnable()    &#123;        Log.L(&quot;OnEnable&quot;);    &#125;    protected override void OnUpdate()    &#123;        Log.L(&quot;OnUpdate&quot;);    &#125;    protected override void OnDisable()    &#123;        Log.L(&quot;OnDisable&quot;);    &#125;    public void Do()    &#123;        //Do sth    &#125;    protected override void OnDispose()    &#123;        Log.L(&quot;OnDispose&quot;);    &#125;&#125;//获取模块容器IModules moduleContainer= Framework.GetEnv(EnvironmentType.Ev0).modules;//创建模块实例moduleContainer.CreateModule&lt;MyModule&gt;();//获取模块实例//也可以使用GetModule在没有实例的时候自动创建实例var module = moduleContainer.FindModule&lt;MyModule&gt;();</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>UGUI-适配</title>
       <link href="/2023/07/14/Unity/UGUI/UGUI-%E9%80%82%E9%85%8D/"/>
       <url>/2023/07/14/Unity/UGUI/UGUI-%E9%80%82%E9%85%8D/</url>
