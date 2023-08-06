@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>0-Excel2Any-简介 | 灵</title>
-  <meta name="keywords" content=" Excel2Any ">
-  <meta name="description" content="0-Excel2Any-简介 | 灵">
+  <title>WooAsset-关于AssetType | 灵</title>
+  <meta name="keywords" content=" WooAsset ">
+  <meta name="description" content="WooAsset-关于AssetType | 灵">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="sadasda57d8a 哈哈哈 康康康 777 888   999  public class A&amp;#123;     public void DO()&amp;#123;&amp;#125; &amp;#125;     表头 表头    单元格 单元格   单元格 单元格">
 <meta property="og:type" content="website">
@@ -1090,9 +1090,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Doc/Excel2Any/0-Excel2Any-简介" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Doc/WooAsset/10-WooAsset-关于AssetType" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">0-Excel2Any-简介</h1>
+        <h1 class="article-title">WooAsset-关于AssetType</h1>
     
     <div class="article-meta">
         
@@ -1106,7 +1106,7 @@
             
             <a  data-rel="文档">文档</a> > 
             
-            <a  data-rel="文档&lt;---&gt;Excel2Any">Excel2Any</a>
+            <a  data-rel="文档&lt;---&gt;WooAsset">WooAsset</a>
             
         </span>
         
@@ -1114,19 +1114,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">Excel2Any</a>
+            <a class="color4">WooAsset</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-08-06 09:55:31'>2023-07-05 00:54</time>
+            发布时间 : <time class="date" title='最后更新: 2023-08-06 09:55:31'>2023-06-27 15:58</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:288</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1156,7 +1156,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E8%BF%B0AssetType"><span class="toc-text">简述AssetType</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RawObject%E7%9A%84%E7%94%A8%E5%A4%84"><span class="toc-text">RawObject的用处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RawCopyFile%E7%9A%84%E7%94%A8%E5%A4%84"><span class="toc-text">RawCopyFile的用处</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E4%B8%8E%E5%8A%A0%E8%BD%BD"><span class="toc-text">打包与加载</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8C%85"><span class="toc-text">打包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD"><span class="toc-text">加载</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1172,7 +1172,68 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <pre><code class="csharp">public enum AssetType
+&#123;
+    None,
+    Meta,
+    CS,
+    Directory,
+    Texture,
+    Shader,
+    ShaderVariant,
+    VideoClip,
+    AudioClip,
+    Scene,
+    Material,
+    Prefab,
+    Font,
+    Animation,
+    AnimationClip,
+    AnimatorController,
+    SpriteAtlas,
+    ScriptObject,
+    Model,
+    TextAsset,
+    Raw,
+    RawObject,
+    RawCopyFile,
+&#125;
+</code></pre>
+<h1 id="简述AssetType"><a href="#简述AssetType" class="headerlink" title="简述AssetType"></a>简述AssetType</h1><p>AssetType 本质上就是这个资源是什么类型</p>
+<p>其中 不会打入Bundle的有</p>
+<ul>
+<li>Meta</li>
+<li>CS</li>
+<li>Directory</li>
+<li>SpriteAtlas</li>
+<li>RawObject</li>
+<li>RawCopyFile</li>
+</ul>
+<p>众所周知的 Meta&#x2F;CS&#x2F;Directory就不说了</p>
+<p>SpriteAtlas 不打进去的原因是：防止冗余</p>
+<p>RawObject&#x2F;RawCopyFile 本身不会进入Bundle，代替他们进去的是 Raw</p>
+<h2 id="RawObject的用处"><a href="#RawObject的用处" class="headerlink" title="RawObject的用处"></a>RawObject的用处</h2><ul>
+<li>unity无法识别的文件(比如 .lua)</li>
+<li>需要特殊处理的文件（比如 .dll）</li>
+<li>可以直接拿到 RawObject.bytes 属性 进行加载</li>
+</ul>
+<h2 id="RawCopyFile的用处"><a href="#RawCopyFile的用处" class="headerlink" title="RawCopyFile的用处"></a>RawCopyFile的用处</h2><ul>
+<li><p>unity无法识别的文件(比如 .lua)</p>
+</li>
+<li><p>需要特殊处理的文件（比如 .dll）</p>
+</li>
+<li><p>可以直接拿到 RawObject.bytes 属性 进行加载</p>
+</li>
+<li><p>一些插件不支持 直接从 bytes 加载，只能使用路径</p>
+</li>
+</ul>
+<h1 id="打包与加载"><a href="#打包与加载" class="headerlink" title="打包与加载"></a>打包与加载</h1><h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><p>如何 设置 资源的类型？</p>
+<p>重写 IAssetBuild.GetAssetType</p>
+<h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><p>如何确保本地有 只能用路径加载的资源？</p>
+<p>在 Assets.InitAsync() 之后 执行 Assets.UnzipRawFile()即可</p>
+<p>如何知道运行时候 RawCopyFile 实际的文件路径？</p>
+<p>调用 Assets.GetRawFileToDlcPath(string srcPath) 即可获取到目标路径</p>
+
       
        
     </div>
