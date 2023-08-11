@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>1-WooSerialization-案例</title>
+      <link href="/2023/08/11/Doc/WooSerialization/1-WooSerialization-%E6%A1%88%E4%BE%8B/"/>
+      <url>/2023/08/11/Doc/WooSerialization/1-WooSerialization-%E6%A1%88%E4%BE%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h2><ul><li><p>支持struct 、class、array、list、dictionary外加部分集合转换成string</p><pre><code class="csharp">HuMan hu = new HuMan() &#123; age = 6, Name = &quot;abc&quot;, sex = &quot;sex&quot;, heigth = 16, width = 20 &#125;;Dictionary&lt;int, HuMan&gt; hus = new Dictionary&lt;int, HuMan&gt;() &#123;&#123; 1, hu &#125;,&#123; 2, hu &#125; &#125;;//对象转换成字符串var str = StringConvert.ConvertToString(hus); //字符串转换成对象Dictionary&lt;int, HuMan&gt; hus2;bool success=StringConvert.TryConvert(str, out hus2);</code></pre></li></ul><h2 id="数据表格（csv）的读写"><a href="#数据表格（csv）的读写" class="headerlink" title="数据表格（csv）的读写"></a>数据表格（csv）的读写</h2><ul><li>将数据写入csv文件或者从csv文件还原数据</li><li>特点<ul><li>支持表头的重命名、表头忽略、按索引读写等</li><li>支持自定义分离符</li></ul></li></ul><pre><code class="csharp">//结构体定义struct HuMan&#123;    public int age;    [DataColumnName(&quot;The Sex&quot;)]    public string sex;    public string Name;    [DataReadColumnIndex(0)]    public int heigth;    [DataIgnore]    [NonSerialized]    public int width;&#125;string path = &quot;Mans.csv&quot;;//创建一个列表List&lt;HuMan&gt; cs = new List&lt;HuMan&gt;()&#123;    new HuMan()&#123; age=1,sex=&quot;m&quot;,Name=&quot;xm&quot;,heigth=0&#125;,    new HuMan()&#123; age=2,sex=&quot;m1&quot;,Name=&quot;xm1&quot;,heigth=0&#125;,    new HuMan()&#123; age=3,sex=&quot;m2&quot;,Name=&quot;xm2&quot;,heigth=0&#125;,&#125;;//写入CSVvar w = DataTableTool.CreateWriter(new System.IO.StreamWriter(path, false),    new DataRow(),    new DataExplainer()); //在这里可以设置分离符w.Write(cs);w.Dispose();//读取CSVvar r =    DataTableTool.CreateReader(new System.IO.StreamReader(path, System.Text.Encoding.UTF8),    new DataRow(),    new DataExplainer()); //分离符要与写入时一致var cc = r.Get&lt;HuMan&gt;();r.Dispose();</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooSerialization </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooSerialization </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>1-IFramework-Unity-简介</title>
       <link href="/2023/07/24/Doc/IFramework-Unity/1-IFramework-Unity-%E7%AE%80%E4%BB%8B/"/>
       <url>/2023/07/24/Doc/IFramework-Unity/1-IFramework-Unity-%E7%AE%80%E4%BB%8B/</url>
@@ -602,7 +629,7 @@
       <link href="/2023/07/05/Doc/WooSerialization/0-WooSerialization-%E7%AE%80%E4%BB%8B/"/>
       <url>/2023/07/05/Doc/WooSerialization/0-WooSerialization-%E7%AE%80%E4%BB%8B/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h1><ul><li>json 序列化与反序列化 支持多种数据转换</li><li>csv文件读写</li></ul>]]></content>
       
       
       <categories>

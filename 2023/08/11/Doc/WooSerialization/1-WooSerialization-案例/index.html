@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>0-Excel2Any-简介 | 灵</title>
-  <meta name="keywords" content=" Excel2Any ">
-  <meta name="description" content="0-Excel2Any-简介 | 灵">
+  <title>1-WooSerialization-案例 | 灵</title>
+  <meta name="keywords" content=" WooSerialization ">
+  <meta name="description" content="1-WooSerialization-案例 | 灵">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="sadasda57d8a 哈哈哈 康康康 777 888   999  public class A&amp;#123;     public void DO()&amp;#123;&amp;#125; &amp;#125;     表头 表头    单元格 单元格   单元格 单元格">
 <meta property="og:type" content="website">
@@ -1099,14 +1099,14 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Doc/Excel2Any/0-Excel2Any-简介" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Doc/WooSerialization/1-WooSerialization-案例" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">0-Excel2Any-简介</h1>
+        <h1 class="article-title">1-WooSerialization-案例</h1>
     
     <div class="article-meta">
         
         
-        <span class="author"><a>灵</a></span>
+        <span class="author"><a>yy</a></span>
         
         
         <span class="book">
@@ -1115,7 +1115,7 @@
             
             <a  data-rel="文档">文档</a> > 
             
-            <a  data-rel="文档&lt;---&gt;Excel2Any">Excel2Any</a>
+            <a  data-rel="文档&lt;---&gt;WooSerialization">WooSerialization</a>
             
         </span>
         
@@ -1123,19 +1123,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">Excel2Any</a>
+            <a class="color2">WooSerialization</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-08-11 03:46:31'>2023-07-05 00:54</time>
+            发布时间 : <time class="date" title='最后更新: 2023-08-11 03:46:31'>2023-08-11 11:32</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:322</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1165,7 +1165,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Json"><span class="toc-text">Json</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E6%A0%BC%EF%BC%88csv%EF%BC%89%E7%9A%84%E8%AF%BB%E5%86%99"><span class="toc-text">数据表格（csv）的读写</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1181,7 +1181,67 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h2><ul>
+<li><p>支持struct 、class、array、list、dictionary外加部分集合转换成string</p>
+<pre><code class="csharp">HuMan hu = new HuMan() &#123; age = 6, Name = &quot;abc&quot;, sex = &quot;sex&quot;, heigth = 16, width = 20 &#125;;
+Dictionary&lt;int, HuMan&gt; hus = new Dictionary&lt;int, HuMan&gt;() &#123;
+&#123; 1, hu &#125;,
+&#123; 2, hu &#125; &#125;;
+//对象转换成字符串
+var str = StringConvert.ConvertToString(hus); 
+//字符串转换成对象
+Dictionary&lt;int, HuMan&gt; hus2;
+bool success=StringConvert.TryConvert(str, out hus2);
+</code></pre>
+</li>
+</ul>
+<h2 id="数据表格（csv）的读写"><a href="#数据表格（csv）的读写" class="headerlink" title="数据表格（csv）的读写"></a>数据表格（csv）的读写</h2><ul>
+<li>将数据写入csv文件或者从csv文件还原数据</li>
+<li>特点<ul>
+<li>支持表头的重命名、表头忽略、按索引读写等</li>
+<li>支持自定义分离符</li>
+</ul>
+</li>
+</ul>
+<pre><code class="csharp">//结构体定义
+struct HuMan
+&#123;
+    public int age;
+    [DataColumnName(&quot;The Sex&quot;)]
+    public string sex;
+    public string Name;
+    [DataReadColumnIndex(0)]
+    public int heigth;
+    [DataIgnore]
+    [NonSerialized]
+    public int width;
+&#125;
+string path = &quot;Mans.csv&quot;;
+
+//创建一个列表
+List&lt;HuMan&gt; cs = new List&lt;HuMan&gt;()
+&#123;
+    new HuMan()&#123; age=1,sex=&quot;m&quot;,Name=&quot;xm&quot;,heigth=0&#125;,
+    new HuMan()&#123; age=2,sex=&quot;m1&quot;,Name=&quot;xm1&quot;,heigth=0&#125;,
+    new HuMan()&#123; age=3,sex=&quot;m2&quot;,Name=&quot;xm2&quot;,heigth=0&#125;,
+&#125;;
+
+//写入CSV
+var w = DataTableTool.CreateWriter(new System.IO.StreamWriter(path, false),
+    new DataRow(),
+    new DataExplainer()); //在这里可以设置分离符
+w.Write(cs);
+w.Dispose();
+
+//读取CSV
+var r =
+    DataTableTool.CreateReader(new System.IO.StreamReader(path, System.Text.Encoding.UTF8),
+    new DataRow(),
+    new DataExplainer()); //分离符要与写入时一致
+var cc = r.Get&lt;HuMan&gt;();
+r.Dispose();
+</code></pre>
+
       
        
     </div>
