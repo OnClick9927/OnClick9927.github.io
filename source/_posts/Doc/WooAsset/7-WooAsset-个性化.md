@@ -53,6 +53,8 @@ public abstract class AssetsSetting
   public virtual bool GetSaveBundlesWhenPlaying(){}
   /// 自定义的资源生命周期管理，bundle和asset均可以
   public virtual IAssetLife GetAssetLife(){}
+  ///一帧内最多多少毫秒在加载资源
+  public virtual long GetLoadingMaxTimeSlice(){}
 }
 ```
 ## 资源加密
