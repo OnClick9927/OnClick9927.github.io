@@ -15,7 +15,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/Pic/R-C.jpg">
 <meta property="article:published_time" content="2023-05-15T23:57:04.000Z">
-<meta property="article:modified_time" content="2023-08-11T03:46:31.592Z">
+<meta property="article:modified_time" content="2023-08-14T08:02:13.465Z">
 <meta property="article:author" content="灵">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/Pic/R-C.jpg">
@@ -1130,12 +1130,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-08-11 03:46:31'>2023-06-27 15:58</time>
+            发布时间 : <time class="date" title='最后更新: 2023-08-14 08:02:13'>2023-06-27 15:58</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:343</span>
+        <span>字数:363</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1222,6 +1222,8 @@ public abstract class AssetsSetting
   public virtual bool GetSaveBundlesWhenPlaying()&#123;&#125;
   /// 自定义的资源生命周期管理，bundle和asset均可以
   public virtual IAssetLife GetAssetLife()&#123;&#125;
+  ///一帧内最多多少毫秒在加载资源
+  public virtual long GetLoadingMaxTimeSlice()&#123;&#125;
 &#125;
 </code></pre>
 <h2 id="资源加密"><a href="#资源加密" class="headerlink" title="资源加密"></a>资源加密</h2><pre><code class="csharp">//个性化加密
