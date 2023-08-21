@@ -33,6 +33,9 @@ public interface IAssetBuild
 ///写一个 class 继承于 AssetsSetting
 public abstract class AssetsSetting
 {
+  ///是否需要拷贝内置资源
+  public virtual bool NeedCopyStreamBundles() {}
+
   ///自定义Bundle下载器
   public virtual BundleDownloader GetBundleDownloader(string url,string bundleName) {}
   ///下载的路径
@@ -45,6 +48,9 @@ public abstract class AssetsSetting
   public virtual FileCompareType GetFileCheckType() {}
   /// 下载等待
   public virtual int GetWebRequestTimeout() {}
+  ///下载重试次数
+  public virtual int GetWebRequestRetryCount() {  }
+
   ///资源加密方式
   public virtual IAssetStreamEncrypt GetEncrypt() {}
   ///是否自动卸载
