@@ -4,6 +4,85 @@
   
     
     <entry>
+      <title>ui事件（长按等）</title>
+      <link href="/2024/04/16/Unity/UGUI/ui%E4%BA%8B%E4%BB%B6%EF%BC%88%E9%95%BF%E6%8C%89%E7%AD%89%EF%BC%89/"/>
+      <url>/2024/04/16/Unity/UGUI/ui%E4%BA%8B%E4%BB%B6%EF%BC%88%E9%95%BF%E6%8C%89%E7%AD%89%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<pre><code class="csharp">    public class UGUIEventListener : MonoBehaviour,IPointerClickHandler,IPointerDownHandler,IPointerEnterHandler,IPointerExitHandler,IPointerUpHandler,ISelectHandler,IUpdateSelectedHandler,IDeselectHandler,IBeginDragHandler,IDragHandler,IEndDragHandler,IDropHandler,IScrollHandler,IMoveHandler    &#123;        public class UIEvent&lt;T&gt; where T : BaseEventData        &#123;            public UIEvent() &#123; &#125;            public void AddListener(UIEventHandle&lt;T&gt; handle)            &#123;                m_UIEventHandle += handle;            &#125;            public void RemoveListener(UIEventHandle&lt;T&gt; handle)            &#123;                m_UIEventHandle -= handle;            &#125;            public void RemoveAllListeners()            &#123;                m_UIEventHandle -= m_UIEventHandle;                m_UIEventHandle = null;            &#125;            public void Invoke(GameObject go, T eventData)            &#123;                m_UIEventHandle?.Invoke(go, eventData);            &#125;            private event UIEventHandle&lt;T&gt; m_UIEventHandle = null;        &#125;        public delegate void UIEventHandle&lt;T&gt;(GameObject go, T eventData) where T : BaseEventData;        public static UGUIEventListener Get(GameObject go)        &#123;            UGUIEventListener listener = go.GetComponent&lt;UGUIEventListener&gt;();            if (listener == null)            &#123;                listener = go.AddComponent&lt;UGUIEventListener&gt;();            &#125;            return listener;        &#125;        public void RemoveAllListeners()        &#123;            onClick.RemoveAllListeners();            onDoubleClick.RemoveAllListeners();            onPointDown.RemoveAllListeners();            onPointup.RemoveAllListeners();            onEnter.RemoveAllListeners();            onExit.RemoveAllListeners();            onSelect.RemoveAllListeners();            onUpdateSelect.RemoveAllListeners();            onDeselect.RemoveAllListeners();            onDrag.RemoveAllListeners();            onEndDrag.RemoveAllListeners();            onDrop.RemoveAllListeners();            onScroll.RemoveAllListeners();            onMove.RemoveAllListeners();        &#125;        public UIEvent&lt;PointerEventData&gt; onClick = new UIEvent&lt;PointerEventData&gt;();        public UIEvent&lt;PointerEventData&gt; onPointDown = new UIEvent&lt;PointerEventData&gt;();        public UIEvent&lt;PointerEventData&gt; onEnter = new UIEvent&lt;PointerEventData&gt;();        public UIEvent&lt;PointerEventData&gt; onExit = new UIEvent&lt;PointerEventData&gt;();        public UIEvent&lt;BaseEventData&gt; onSelect = new UIEvent&lt;BaseEventData&gt;();        public UIEvent&lt;BaseEventData&gt; onUpdateSelect = new UIEvent&lt;BaseEventData&gt;();        public UIEvent&lt;BaseEventData&gt; onDeselect = new UIEvent&lt;BaseEventData&gt;();        public UIEvent&lt;PointerEventData&gt; onBeginDrag = new UIEvent&lt;PointerEventData&gt;();        public UIEvent&lt;PointerEventData&gt; onDrag = new UIEvent&lt;PointerEventData&gt;();        public UIEvent&lt;PointerEventData&gt; onEndDrag = new UIEvent&lt;PointerEventData&gt;();        public UIEvent&lt;PointerEventData&gt; onDrop = new UIEvent&lt;PointerEventData&gt;();        public UIEvent&lt;PointerEventData&gt; onScroll = new UIEvent&lt;PointerEventData&gt;();        public UIEvent&lt;AxisEventData&gt; onMove = new UIEvent&lt;AxisEventData&gt;();        public UIEvent&lt;PointerEventData&gt; onDoubleClick = new UIEvent&lt;PointerEventData&gt;();        public UIEvent&lt;PointerEventData&gt; onPress = new UIEvent&lt;PointerEventData&gt;();        public UIEvent&lt;PointerEventData&gt; onPointup = new UIEvent&lt;PointerEventData&gt;();        public void OnPointerEnter(PointerEventData eventData) &#123; onEnter.Invoke(gameObject, eventData); &#125;        public void OnPointerExit(PointerEventData eventData) &#123; onExit.Invoke(gameObject, eventData); &#125;        public void OnSelect(BaseEventData eventData) &#123; onSelect.Invoke(gameObject, eventData); &#125;        public void OnUpdateSelected(BaseEventData eventData) &#123; onUpdateSelect.Invoke(gameObject, eventData); &#125;        public void OnDeselect(BaseEventData eventData) &#123; onDeselect.Invoke(gameObject, eventData); &#125;        public void OnBeginDrag(PointerEventData eventData) &#123; onBeginDrag.Invoke(gameObject, eventData); &#125;        public void OnDrag(PointerEventData eventData) &#123; onDrag.Invoke(gameObject, eventData); &#125;        public void OnEndDrag(PointerEventData eventData) &#123; onEndDrag.Invoke(gameObject, eventData); &#125;        public void OnDrop(PointerEventData eventData) &#123; onDrop.Invoke(gameObject, eventData); &#125;        public void OnScroll(PointerEventData eventData) &#123; onScroll.Invoke(gameObject, eventData); &#125;        public void OnMove(AxisEventData eventData) &#123; onMove.Invoke(gameObject, eventData); &#125;        public float doubleClickGap = 0.2f;        public float pressGap = 0.5f;        private float lastPointdownTime = 0f;        private bool isPointDown = false;        public bool isPress &#123; get &#123; return _isPress; &#125; &#125;        private int clickCount = 0;        private PointerEventData m_OnUpEventData = null;        private bool _isPress;        private void Update()        &#123;            if (isPointDown)            &#123;                if (Time.unscaledTime - lastPointdownTime &gt;= pressGap)                &#123;                    _isPress = true;                    lastPointdownTime = Time.unscaledTime;                    onPress.Invoke(gameObject, null);                &#125;            &#125;            if (clickCount &gt; 0)            &#123;                if (Time.unscaledTime - lastPointdownTime &gt;= doubleClickGap)                &#123;                    if (clickCount &lt; 2)                    &#123;                        onClick.Invoke(gameObject, m_OnUpEventData);                        m_OnUpEventData = null;                    &#125;                    clickCount = 0;                &#125;                if (clickCount &gt;= 2)                &#123;                    onDoubleClick.Invoke(gameObject, m_OnUpEventData);                    m_OnUpEventData = null;                    clickCount = 0;                &#125;            &#125;        &#125;        public void OnPointerClick(PointerEventData eventData)        &#123;        &#125;        public void OnPointerDown(PointerEventData eventData)        &#123;            isPointDown = true;            _isPress = false;            lastPointdownTime = Time.unscaledTime;            onPointDown?.Invoke(gameObject, eventData);        &#125;        public void OnPointerUp(PointerEventData eventData)        &#123;            onPointup?.Invoke(gameObject, eventData);            isPointDown = false;            m_OnUpEventData = eventData;            if (!_isPress)            &#123;                clickCount++;            &#125;        &#125;    &#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Unity </category>
+          
+          <category> UGUI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UGUI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>红点</title>
+      <link href="/2024/04/16/Unity/%E7%BA%A2%E7%82%B9/"/>
+      <url>/2024/04/16/Unity/%E7%BA%A2%E7%82%B9/</url>
+      
+        <content type="html"><![CDATA[<pre><code class="csharp"> public class RedActiveDot : RedDot &#123;     private GameObject gameObject;     public RedActiveDot(string path, RedTree tree, GameObject gameObject)     &#123;         this.gameObject = gameObject;         this.SetPath(path, tree);     &#125;     public override void FreshView(int count)     &#123;         this.gameObject.SetActive(count &gt; 0);     &#125; &#125; public abstract class RedDot : IDisposable &#123;     public string path;     private RedTree tree;     public void SetPath(string path, RedTree tree)     &#123;         this.path = path;         this.tree = tree;         tree.AddDot(this);         this.FreshView(this.GetCount());     &#125;     public int GetCount() =&gt; tree.GetCount(this.path);     public abstract void FreshView(int count);     public void Dispose()     &#123;         tree.RemoveDot(this);         FreshView(0);     &#125; &#125; public class RedTree &#123;     class RedPoint     &#123;         public string parent_key;         public string key;         private RedTree tree;         public Dictionary&lt;string, RedPoint&gt; children = new Dictionary&lt;string, RedPoint&gt;();         private int count;         public RedPoint(string key, string parent_key, RedTree tree)         &#123;             this.parent_key = parent_key;             this.key = key;             this.tree = tree;         &#125;         public int GetCount()         &#123;             return count;         &#125;         public void AddChild(RedPoint p)         &#123;             var p_key = p.key;             if (children.ContainsKey(p_key))                 return;             children.Add(p_key, p);         &#125;         public bool SetCount(int count)         &#123;             if (count == this.count) return false;             this.count = count;             this.tree.FreshDot(key, count);             return true;         &#125;     &#125;     private Dictionary&lt;string, List&lt;RedDot&gt;&gt; red_dot_map = new Dictionary&lt;string, List&lt;RedDot&gt;&gt;();     private Dictionary&lt;string, RedPoint&gt; key_map = new Dictionary&lt;string, RedPoint&gt;();     public void AddDot(RedDot dot)     &#123;         var path = dot.path;         if (!red_dot_map.ContainsKey(path))             red_dot_map.Add(path, new List&lt;RedDot&gt;());         red_dot_map[path].Add(dot);     &#125;     public void RemoveDot(RedDot dot)     &#123;         var path = dot.path;         if (!red_dot_map.ContainsKey(path))             return;         if (!red_dot_map[path].Contains(dot)) return;         red_dot_map[path].Remove(dot);     &#125;     private void FreshDot(string path, int count)     &#123;         if (!red_dot_map.ContainsKey(path))             return;         foreach (var item in red_dot_map[path])         &#123;             item.FreshView(count);         &#125;     &#125;     private RedPoint Find(string key)     &#123;         if (key_map.ContainsKey(key))             return key_map[key];         return null;     &#125;     private RedPoint AddPoint(string parentKey, string key)     &#123;         var _new = Find(key);         if (_new == null)         &#123;             _new = new RedPoint(key, parentKey, this);             key_map.Add(key, _new);         &#125;         return _new;     &#125;     private void FreshParent(string key)     &#123;         if (string.IsNullOrEmpty(key)) return;         var point = Find(key);         int sum = 0;         foreach (var item in point.children.Values)         &#123;             sum += item.GetCount();         &#125;         if (point.SetCount(sum))         &#123;             FreshParent(point.parent_key);         &#125;     &#125;     public void SetCount(string key, int count)     &#123;         var point = Find(key);         if (point == null || point.children.Count &gt; 0) return;         if (point.SetCount(count))         &#123;             FreshParent(point.parent_key);         &#125;     &#125;     public int GetCount(string key)     &#123;         var point = Find(key);         return point == null ? 0 : point.GetCount();     &#125;     public void ReadPath(string key, char separator)     &#123;         var columns = key.Split(separator);         RedPoint last = null;         for (int j = 0; j &lt; columns.Length; j++)         &#123;             var _pkey = string.Join(separator.ToString(), columns, 0, j);             var _key = string.Join(separator.ToString(), columns, 0, j + 1);             var point = AddPoint(_pkey, _key);             if (last != null)                 last.AddChild(point);             last = point;         &#125;     &#125;     public void ClearPath(string key)     &#123;         var point = Find(key);         if (point == null) return;         key_map.Remove(key);         foreach (var item in point.children.Keys)         &#123;             ClearPath(item);         &#125;     &#125; &#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Unity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>新手引导遮罩</title>
+      <link href="/2024/04/16/Unity/UGUI/%E6%96%B0%E6%89%8B%E5%BC%95%E5%AF%BC%E9%81%AE%E7%BD%A9/"/>
+      <url>/2024/04/16/Unity/UGUI/%E6%96%B0%E6%89%8B%E5%BC%95%E5%AF%BC%E9%81%AE%E7%BD%A9/</url>
+      
+        <content type="html"><![CDATA[<pre><code class="cg">Shader &quot;Hidden/GuideMask&quot;&#123;    Properties    &#123;        _Rect(&quot;Rect&quot;,vector)=(0,0,0,0)        _BackgroundColor(&quot;_BackgroundColor&quot;,Color)=(0,0,0,0.3)        _FrontColor(&quot;_FrontColor&quot;,Color)=(0,0,0,0.2)        _Radian(&quot;_Radian&quot;,Range(0,1))=0.5    &#125;    SubShader    &#123;        Cull Off ZWrite Off ZTest Always        Pass        &#123;            Tags&#123;&quot;Queue&quot;=&quot;Transparent&quot;&#125;            Blend SrcAlpha OneMinusSrcAlpha            CGPROGRAM            #pragma vertex vert            #pragma fragment frag            #include &quot;UnityCG.cginc&quot;            struct appdata            &#123;                float4 vertex : POSITION;                float2 uv : TEXCOORD0;            &#125;;            struct v2f            &#123;                float2 uv : TEXCOORD0;                float4 vertex : SV_POSITION;            &#125;;            v2f vert (appdata v)            &#123;                v2f o;                o.vertex = UnityObjectToClipPos(v.vertex);                o.uv = v.uv;                return o;            &#125;            float4 _Rect;            fixed4 _BackgroundColor;            fixed4 _FrontColor;            float _Radian;            fixed InCircle(float2 center,float radius,float2 uv)            &#123;                return step(radius,distance(center,uv));            &#125;            float Fit(float2 pos)            &#123;                pos=pos*_ScreenParams.xy;                float2 halfSize= _Rect.zw/2;                float halfWidth=halfSize.x;                float halfHeight=halfSize.y;                float _min= min(halfWidth,halfHeight);                float radius = _min*_Radian;                float2 horizontalsize=halfSize-float2(radius,0);                float2 verticalsize=halfSize-float2(0,radius);                fixed2 h=step(_Rect.xy-horizontalsize,pos)*step(pos,_Rect.xy+horizontalsize);                fixed2 v=step(_Rect.xy-verticalsize,pos)*step(pos,_Rect.xy+verticalsize);                float _r=max(h.x*h.y,v.x*v.y);                float2 center=_Rect.xy;                float witdhBigger=step(halfHeight,halfWidth);                float heightBigger=1-witdhBigger;                float _add=_min*(1-_Radian);                float gap= max(halfWidth,halfHeight)-_min;                float2 lu=center+float2(-gap*witdhBigger,gap*heightBigger)+float2(-_add,_add);                float2 ld=center+float2(-gap*witdhBigger,-gap*heightBigger)+float2(-_add,-_add);                float2 ru=center+float2(gap*witdhBigger,gap*heightBigger)+float2(_add,_add);                float2 rd=center+float2(gap*witdhBigger,-gap*heightBigger)+float2(_add,-_add);                float _c= InCircle(lu,radius,pos)*InCircle(ru,radius,pos)*InCircle(ld,radius,pos)*InCircle(rd,radius,pos);                return max(_r,1-_c);            &#125;            fixed4 frag (v2f i) : SV_Target            &#123;                return lerp(_BackgroundColor,_FrontColor,Fit(i.uv));            &#125;            ENDCG        &#125;    &#125;&#125;</code></pre><pre><code class="csharp">    public class GuideMask : Graphic, ICanvasRaycastFilter    &#123;        [SerializeField] private Vector2 _center;        [SerializeField] private Vector2 _size;        [SerializeField] private Vector2 _margin=Vector2.one*10;        [SerializeField] private float _radian = 0.2f;        [SerializeField] private bool _raycastInRect;        [SerializeField] private bool _raycastPass;        public Vector2 center        &#123;            get &#123; return _center; &#125;        &#125;        public Vector2 size        &#123;            get &#123; return _size; &#125;        &#125;        public Rect rect &#123; get &#123; return new Rect() &#123; size = size, center = center, &#125;; &#125; &#125;        public bool raycastInRect &#123; get &#123; return _raycastInRect; &#125; set &#123; _raycastInRect = value; &#125; &#125;        public bool raycastPass &#123; get &#123; return _raycastPass; &#125; set &#123; _raycastPass = value; &#125; &#125;        public Vector2 margin &#123; get &#123; return _margin; &#125; set &#123; _margin = value; &#125; &#125;        public float radian &#123; get &#123; return _radian; &#125; &#125;        public Color background        &#123;            get            &#123;                if (material == null) return Color.white;                return material.GetColor(&quot;_BackgroundColor&quot;);            &#125;            set            &#123;                if (material == null) return;                material.SetColor(&quot;_BackgroundColor&quot;, value);            &#125;        &#125;        public override Color color        &#123;            get            &#123;                if (material == null) return Color.white;                return material.GetColor(&quot;_FrontColor&quot;);            &#125;            set            &#123;                if (material == null) return;                material.SetColor(&quot;_FrontColor&quot;, value);            &#125;        &#125;        public void SetRect(Rect rect)        &#123;            this._center = rect.center;            this._size = rect.size;            if (material == null) return;            material.SetVector(&quot;_Rect&quot;, new Vector4(center.x, center.y, size.x, size.y));        &#125;        public void SetRadian(float radian)        &#123;            this._radian = radian;            if (material == null) return;            material.SetFloat(&quot;_Radian&quot;, radian);        &#125;        public Rect GetFocusRect(RectTransform trans,Vector2 offset)        &#123;            Bounds bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(trans);            Vector2 size = bounds.extents * 2;            Canvas canvas = trans.GetComponentInParent&lt;Canvas&gt;();            Vector2 center = Vector2.zero;            switch (canvas.renderMode)            &#123;                case RenderMode.ScreenSpaceOverlay:                    center = RectTransformUtility.WorldToScreenPoint(null, trans.position);                    break;                case RenderMode.ScreenSpaceCamera:                case RenderMode.WorldSpace:                    center = RectTransformUtility.WorldToScreenPoint(canvas.worldCamera, trans.position);                    break;                default:                    break;            &#125;            return new Rect(center - (Vector2)bounds.extents + offset - margin/2, size+ margin);        &#125;        public Rect GetFocusRect(Transform trans, Vector2 size, Camera camera)        &#123;            if (camera == null)                camera = Camera.main;            Vector2 center = camera.WorldToScreenPoint(trans.position);            return new Rect() &#123; size = size +margin, center = center - margin / 2, &#125;;        &#125;        public void Focus(RectTransform trans, Vector2 offset)        &#123;            SetRect(GetFocusRect(trans,offset));        &#125;        public void Focus(Transform trans, Vector2 size, Camera camera)        &#123;            SetRect(GetFocusRect(trans, size, camera));        &#125;        private bool Contains(Rect rect, Vector2 point)        &#123;            return rect.Contains(point);        &#125;        protected override void Awake()        &#123;            SetRect(this.rect);            SetRadian(this._radian);        &#125;        public bool IsRaycastLocationValid(Vector2 sp, Camera eventCamera)        &#123;            if (!raycastPass) return true;            if (raycastInRect) return !Contains(rect, sp);            return false;        &#125;    &#125;</code></pre><pre><code class="csharp">    [CustomEditor(typeof(GuideMask))]    class GuideMaskEditor : Editor    &#123;        GuideMask gm &#123; get &#123; return target as GuideMask; &#125; &#125;        public override void OnInspectorGUI()        &#123;            EditorGUI.BeginChangeCheck();            gm.material= EditorGUILayout.ObjectField(&quot;Material&quot;, gm.material, typeof(Material), false) as Material;            gm.color = EditorGUILayout.ColorField(&quot;Color&quot;, gm.color);            gm.background = EditorGUILayout.ColorField(&quot;Background Color&quot;, gm.background);            gm.raycastTarget = EditorGUILayout.Toggle(&quot;Raycast Target&quot;, gm.raycastTarget);            gm.raycastInRect = EditorGUILayout.Toggle(&quot;Raycast In Rect&quot;, gm.raycastInRect);            gm.raycastPass = EditorGUILayout.Toggle(&quot;Raycast Pass&quot;, gm.raycastPass);            var center = EditorGUILayout.Vector2Field(&quot;Center&quot;, gm.center);            var size = EditorGUILayout.Vector2Field(&quot;Size&quot;, gm.size);            gm.margin = EditorGUILayout.Vector2Field(&quot;Margin&quot;, gm.margin);            var radian= EditorGUILayout.Slider(&quot;Radian&quot;, gm.radian, 0, 1);            if (EditorGUI.EndChangeCheck())            &#123;                gm.SetRadian(radian);                gm.SetRect(new Rect() &#123; size = size, center = center, &#125;);                               serializedObject.ApplyModifiedProperties();            &#125;        &#125;    &#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Unity </category>
+          
+          <category> UGUI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UGUI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>1-WooSerialization-案例</title>
       <link href="/2023/08/11/Doc/WooSerialization/1-WooSerialization-%E6%A1%88%E4%BE%8B/"/>
       <url>/2023/08/11/Doc/WooSerialization/1-WooSerialization-%E6%A1%88%E4%BE%8B/</url>
@@ -670,9 +749,9 @@
       
         <tags>
             
-            <tag> UGUI </tag>
-            
             <tag> Unity </tag>
+            
+            <tag> UGUI </tag>
             
         </tags>
       
@@ -699,9 +778,9 @@
       
         <tags>
             
-            <tag> UGUI </tag>
-            
             <tag> Unity </tag>
+            
+            <tag> UGUI </tag>
             
         </tags>
       
@@ -1305,8 +1384,8 @@
     
     <entry>
       <title>通过github 发布package</title>
-      <link href="/2023/06/18/Unity/UPM/UPM/"/>
-      <url>/2023/06/18/Unity/UPM/UPM/</url>
+      <link href="/2023/06/18/Unity/UPM/"/>
+      <url>/2023/06/18/Unity/UPM/</url>
       
         <content type="html"><![CDATA[<h3 id="发布自己的包"><a href="#发布自己的包" class="headerlink" title="发布自己的包"></a>发布自己的包</h3><ul><li>1、创建一个正常的unity项目</li><li>2、在Assets 目录下 创建好内容（必须包含内容如下图）</li><li>3、把做好的内容推送到主分支</li><li>4、<code>git subtree split --prefix=Assets/xxx --branch upm</code></li><li>5、推送 upm 分支到github（<code>git push origin upm:upm</code>）</li><li>6、<code>git tag 1.0.0 upm</code></li><li>7、<code>git push origin upm --tags</code></li></ul><p>后续修改只需要重复执行3-7即可</p><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul><li>打开unity package manager</li><li>点击 add package form git</li><li>填写 <a href="https://github.com/OnClick9927/NodeGraph.git#1.0.1">https://github.com/OnClick9927/NodeGraph.git#1.0.1</a></li></ul><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul><li>删除远程tag git push origin :refs&#x2F;tags&#x2F;标签名  </li><li>删除本地 tag git tag -d 标签名</li></ul><p><img src="/../../../Pic/Unity/UPM/1.png"></p>]]></content>
       
@@ -1314,8 +1393,6 @@
       <categories>
           
           <category> Unity </category>
-          
-          <category> UPM </category>
           
       </categories>
       
