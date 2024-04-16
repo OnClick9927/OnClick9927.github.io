@@ -71,6 +71,8 @@ public static void ReleaseUselessBridges()
     Assets.ReleaseUselessBridges();
 }
 ```
+其他类型的资源/组件，可以 继承 AssetBridge< T > 自行实现即可
+
 ### 更加方便的方式（有风险）
 ``` csharp
 public class LocalSetting : AssetsSetting

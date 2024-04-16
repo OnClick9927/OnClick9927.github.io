@@ -16,18 +16,21 @@ date: 2023-06-27 15:58:38
 ![Alt text](../../../Pic/Doc/WooAsset/configasset.png)
 
 # 配置资源
-![Alt text](../../../Pic/Doc/WooAsset/buildcfgwin.png)
-| 名字                    | 描述                                                             |
-| ----------------------- | ---------------------------------------------------------------- |
-| BuildGroups             | 打包的资源组                                                     |
-| Version                 | 此次打包出去的版本                                               |
-| ignore Type Tree change |                                                                  |
-| Compress                | 资源压缩格式                                                     |
-| Asset Build             | 自定义打包流程（可扩展）                                         |
-| Encrypt                 | 文件加密方式（可扩展）                                           |
-| Output Path             | 输出路径                                                         |
-| Build Target            | 当前打包的平台                                                   |
-| History Path            | 历史文件所在文件夹，第一次打包时候把他删了，后续不要动里面的文件 |
+![Alt text](../../../Pic/Doc/WooAsset/资源配置.png)
+| 名字                    | 描述                                                                         |
+| ----------------------- | ---------------------------------------------------------------------------- |
+| BuildGroups             | 打包的资源组                                                                 |
+| BuildInAssets           | 在把bundle拷贝到stream时候，根据这个配置决定拷贝哪些bundle（不配置拷贝全部） |
+| MaxCacheVersionCount    | 远程版本文件最多包含的版本个数                                               |
+| CleanHistory            | 每次打包结束之后是否清理history文件夹                                        |
+| Version                 | 此次打包出去的版本                                                           |
+| ignore Type Tree change |                                                                              |
+| Compress                | 资源压缩格式                                                                 |
+| Asset Build             | 自定义打包流程（可扩展）                                                     |
+| Encrypt                 | 文件加密方式（可扩展）                                                       |
+| Output Path             | 输出路径                                                                     |
+| Build Target            | 当前打包的平台                                                               |
+| History Path            | 历史文件所在文件夹，第一次打包时候把他删了，后续不要动里面的文件             |
 ## 资源组介绍
 | 名字        | 描述                                   |
 | ----------- | -------------------------------------- |
