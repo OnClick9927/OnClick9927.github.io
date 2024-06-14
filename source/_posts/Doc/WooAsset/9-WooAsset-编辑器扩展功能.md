@@ -8,20 +8,7 @@ category:
   - WooAsset
 date: 2023-06-27 15:58:38
 ---
-## 模拟资源服务器
-![Alt text](../../../Pic/Doc/WooAsset/模拟服务器.png)
-* 使用场景
-* 省的每次都上传到远端
-* 配合资源加载情况窗口一起观察资源加载情况
 
-* 使用方法
-* 设置好 Enable Server ，Server Directory ，Server Port
-* 编辑器进入运行模式会自动开启资源服务器，console窗口有输出
-
-* 注意
-* Server Directory ，Server Port 一般情况默认即可
-* 资源服务器只会在运行状态且NormalMode状态下打开
-* 如果资源服务器的配置不为空，在打包资源的时候会把输出文件拷贝过去
 ## 资源加载情况
 ![Alt text](../../../Pic/Doc/WooAsset/资源加载情况.png)
 * 资源加载实践

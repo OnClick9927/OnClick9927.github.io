@@ -18,12 +18,12 @@ var sp = asset.GetAsset<Sprite>();
 var sceneAsset = await Assets.LoadSceneAssetAsync(path);
 await sceneAsset.LoadSceneAsync(LoadSceneMode.Additive);
 ///加载Unity无法识别的资源
-var asset = await Assets.LoadAssetAsync(path);
-RawObject raw = asset.GetAsset<RawObject>();
+var asset = await Assets.LoadRawAssetAsync(path);
+RawObject raw = asset.GetAsset();
 Debug.Log(raw.bytes.Length);
 
 ///加载子资源
-var mainAsset = await Assets.LoadAssetAsync(path);
+var mainAsset = await Assets.LoadSubAsset(path);
 var sp = mainAsset.GetSubAsset<Sprite>("a_1");
 
 ///卸载资源
