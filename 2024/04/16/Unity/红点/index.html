@@ -15,7 +15,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/Pic/R-C.jpg">
 <meta property="article:published_time" content="2023-05-15T23:57:04.000Z">
-<meta property="article:modified_time" content="2024-04-16T11:21:45.484Z">
+<meta property="article:modified_time" content="2024-06-14T08:57:14.914Z">
 <meta property="article:author" content="灵">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/Pic/R-C.jpg">
@@ -106,7 +106,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(68)</small>
+                <small>(67)</small>
             
         </div>
     </li>
@@ -149,7 +149,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         文档
-                        <small>(50)</small>
+                        <small>(49)</small>
                         
                     </div>
                     
@@ -196,7 +196,7 @@
                                         
                                         WooAsset
                                         
-                                            <small>(11
+                                            <small>(10
                                                 )</small>
                                         
                                     </div>
@@ -373,8 +373,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="68">
-<input type="hidden" id="yelog_site_word_count" value="23.9k">
+<input type="hidden" id="yelog_site_posts_number" value="67">
+<input type="hidden" id="yelog_site_word_count" value="23.7k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -770,10 +770,10 @@
         
         
         <a  class="全部文章 文档 WooAsset "
-           href="/2023/06/27/Doc/WooAsset/4-WooAsset-%E7%9D%80%E8%89%B2%E5%99%A8%E5%8F%98%E4%BD%93%E4%B8%8E%E5%9B%BE%E9%9B%86/"
+           href="/2023/06/27/Doc/WooAsset/4-WooAsset-%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7/"
            data-tag="WooAsset"
            data-author="灵" >
-            <span class="post-title" title="WooAsset-着色器变体与图集">WooAsset-着色器变体与图集</span>
+            <span class="post-title" title="WooAsset-一些工具">WooAsset-一些工具</span>
             <span class="post-date" title="2023-06-27 15:58:38">2023/06/27</span>
         </a>
         
@@ -806,15 +806,6 @@
         
         
         <a  class="全部文章 文档 WooAsset "
-           href="/2023/06/27/Doc/WooAsset/8-WooAsset-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/"
-           data-tag="WooAsset"
-           data-author="灵" >
-            <span class="post-title" title="WooAsset-运行时扩展功能">WooAsset-运行时扩展功能</span>
-            <span class="post-date" title="2023-06-27 15:58:38">2023/06/27</span>
-        </a>
-        
-        
-        <a  class="全部文章 文档 WooAsset "
            href="/2023/06/27/Doc/WooAsset/9-WooAsset-%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/"
            data-tag="WooAsset"
            data-author="灵" >
@@ -824,11 +815,11 @@
         
         
         <a  class="全部文章 文档 WooAsset "
-           href="/2023/06/27/Doc/WooAsset/10-WooAsset-%E5%85%B3%E4%BA%8EAssetType/"
+           href="/2023/06/27/Doc/WooAsset/8-WooAsset-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/"
            data-tag="WooAsset"
            data-author="灵" >
-            <span class="post-title" title="WooAsset-关于AssetType">WooAsset-关于AssetType</span>
-            <span class="post-date" title="2023-06-27 15:59:38">2023/06/27</span>
+            <span class="post-title" title="WooAsset-运行时扩展功能">WooAsset-运行时扩展功能</span>
+            <span class="post-date" title="2023-06-27 15:58:38">2023/06/27</span>
         </a>
         
         
@@ -1139,12 +1130,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-04-16 11:21:45'>2024-04-16 19:04</time>
+            发布时间 : <time class="date" title='最后更新: 2024-06-14 08:57:14'>2024-04-16 19:04</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:535</span>
+        <span>字数:621</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1191,187 +1182,191 @@
     <div class="article-entry" itemprop="articleBody">
       
         <pre><code class="csharp">
- public class RedActiveDot : RedDot
- &#123;
-     private GameObject gameObject;
+class RedPoint
+&#123;
+    public string parent_key;
+    public string key;
+    private RedTree tree;
+    public Dictionary&lt;string, RedPoint&gt; children = new Dictionary&lt;string, RedPoint&gt;();
+    private int count;
+    private bool hasValue = false;
 
-     public RedActiveDot(string path, RedTree tree, GameObject gameObject)
-     &#123;
-         this.gameObject = gameObject;
-         this.SetPath(path, tree);
-     &#125;
+    public RedPoint(string key, string parent_key, RedTree tree)
+    &#123;
+        this.parent_key = parent_key;
+        this.key = key;
+        this.tree = tree;
+    &#125;
 
-     public override void FreshView(int count)
-     &#123;
-         this.gameObject.SetActive(count &gt; 0);
-     &#125;
- &#125;
- public abstract class RedDot : IDisposable
- &#123;
-     public string path;
-     private RedTree tree;
+    public int GetCount()
+    &#123;
+        return hasValue ? count : 0;
+    &#125;
+    public void AddChild(RedPoint p)
+    &#123;
+        var p_key = p.key;
+        if (children.ContainsKey(p_key))
+            return;
+        children.Add(p_key, p);
+    &#125;
 
-     public void SetPath(string path, RedTree tree)
-     &#123;
-         this.path = path;
-         this.tree = tree;
-         tree.AddDot(this);
-         this.FreshView(this.GetCount());
-     &#125;
-     public int GetCount() =&gt; tree.GetCount(this.path);
-     public abstract void FreshView(int count);
-     public void Dispose()
-     &#123;
-         tree.RemoveDot(this);
-         FreshView(0);
-     &#125;
- &#125;
+    public bool SetCount(int count)
+    &#123;
+        if (hasValue &amp;&amp; count == this.count) return false;
+        this.count = count;
+        hasValue = true;
+        this.tree.FreshDot(key, count);
+        return true;
+    &#125;
+&#125;
+public abstract class RedDot : IDisposable
+&#123;
+    public string path;
+    private RedTree tree;
 
+    public void SetPath(string path)
+    &#123;
+        this.SetPath(path, GGame.Instance.modules.redTree);  // 一开始 要new 一个红点树过来
+    &#125;
+    public void SetPath(string path, RedTree tree)
+    &#123;
+        this.path = path;
+        this.tree = tree;
+        tree.AddDot(this);
+        this.FreshView(this.GetCount());
+    &#125;
+    public int GetCount() =&gt; tree.GetCount(this.path);
+    public abstract void FreshView(int count);
+    public void Dispose()
+    &#123;
+        tree.RemoveDot(this);
+        FreshView(0);
+    &#125;
+&#125;
 
+public class RedActiveDot : RedDot
+&#123;
+    private GameObject gameObject;
 
+    public RedActiveDot(string path, GameObject gameObject) //传入一个红点的配置路径 然后把红点对象传进去
+    &#123;
+        this.gameObject = gameObject;   //对象赋值
+        this.SetPath(path);             //把这个路径传入 父类RedDot 的SetPath 函数
+    &#125;
 
- public class RedTree
- &#123;
-     class RedPoint
-     &#123;
-         public string parent_key;
-         public string key;
-         private RedTree tree;
-         public Dictionary&lt;string, RedPoint&gt; children = new Dictionary&lt;string, RedPoint&gt;();
-         private int count;
-
-         public RedPoint(string key, string parent_key, RedTree tree)
-         &#123;
-             this.parent_key = parent_key;
-             this.key = key;
-             this.tree = tree;
-         &#125;
-
-         public int GetCount()
-         &#123;
-             return count;
-         &#125;
-         public void AddChild(RedPoint p)
-         &#123;
-             var p_key = p.key;
-             if (children.ContainsKey(p_key))
-                 return;
-             children.Add(p_key, p);
-         &#125;
-
-         public bool SetCount(int count)
-         &#123;
-             if (count == this.count) return false;
-             this.count = count;
-             this.tree.FreshDot(key, count);
-             return true;
-         &#125;
-     &#125;
-     private Dictionary&lt;string, List&lt;RedDot&gt;&gt; red_dot_map = new Dictionary&lt;string, List&lt;RedDot&gt;&gt;();
-     private Dictionary&lt;string, RedPoint&gt; key_map = new Dictionary&lt;string, RedPoint&gt;();
-     public void AddDot(RedDot dot)
-     &#123;
-         var path = dot.path;
-         if (!red_dot_map.ContainsKey(path))
-             red_dot_map.Add(path, new List&lt;RedDot&gt;());
-         red_dot_map[path].Add(dot);
-     &#125;
-     public void RemoveDot(RedDot dot)
-     &#123;
-         var path = dot.path;
-         if (!red_dot_map.ContainsKey(path))
-             return;
-         if (!red_dot_map[path].Contains(dot)) return;
-         red_dot_map[path].Remove(dot);
-     &#125;
-     private void FreshDot(string path, int count)
-     &#123;
-         if (!red_dot_map.ContainsKey(path))
-             return;
-         foreach (var item in red_dot_map[path])
-         &#123;
-             item.FreshView(count);
-         &#125;
-     &#125;
-
-
-     private RedPoint Find(string key)
-     &#123;
-         if (key_map.ContainsKey(key))
-             return key_map[key];
-         return null;
-     &#125;
-
-     private RedPoint AddPoint(string parentKey, string key)
-     &#123;
-         var _new = Find(key);
-         if (_new == null)
-         &#123;
-             _new = new RedPoint(key, parentKey, this);
-             key_map.Add(key, _new);
-         &#125;
-         return _new;
-     &#125;
-
-     private void FreshParent(string key)
-     &#123;
-         if (string.IsNullOrEmpty(key)) return;
-         var point = Find(key);
-         int sum = 0;
-         foreach (var item in point.children.Values)
-         &#123;
-             sum += item.GetCount();
-         &#125;
-         if (point.SetCount(sum))
-         &#123;
-             FreshParent(point.parent_key);
-         &#125;
-     &#125;
-     public void SetCount(string key, int count)
-     &#123;
-         var point = Find(key);
-         if (point == null || point.children.Count &gt; 0) return;
-         if (point.SetCount(count))
-         &#123;
-             FreshParent(point.parent_key);
-         &#125;
-     &#125;
-     public int GetCount(string key)
-     &#123;
-         var point = Find(key);
-         return point == null ? 0 : point.GetCount();
-     &#125;
+    public override void FreshView(int count)
+    &#123;
+        UnityEngine.Debug.Log($&quot;&#123;this.path&#125;  &#123;count&#125;&quot;);
+        this.gameObject.SetActive(count &gt; 0);
+    &#125;
+&#125;
+public partial class RedTree
+&#123;
+    private Dictionary&lt;string, List&lt;RedDot&gt;&gt; red_dot_map = new Dictionary&lt;string, List&lt;RedDot&gt;&gt;();
+    private Dictionary&lt;string, RedPoint&gt; key_map = new Dictionary&lt;string, RedPoint&gt;();
+    public void AddDot(RedDot dot)
+    &#123;
+        var path = dot.path;
+        if (!red_dot_map.ContainsKey(path))
+            red_dot_map.Add(path, new List&lt;RedDot&gt;());
+        red_dot_map[path].Add(dot);
+    &#125;
+    public void RemoveDot(RedDot dot)
+    &#123;
+        var path = dot.path;
+        if (!red_dot_map.ContainsKey(path))
+            return;
+        if (!red_dot_map[path].Contains(dot)) return;
+        red_dot_map[path].Remove(dot);
+    &#125;
+    private void FreshDot(string path, int count)
+    &#123;
+        if (!red_dot_map.ContainsKey(path))
+            return;
+        foreach (var item in red_dot_map[path])
+        &#123;
+            item.FreshView(count);
+        &#125;
+    &#125;
 
 
+    private RedPoint Find(string key)
+    &#123;
+        if (key_map.ContainsKey(key))
+            return key_map[key];
+        return null;
+    &#125;
+
+    private RedPoint AddPoint(string parentKey, string key)
+    &#123;
+        var _new = Find(key);
+        if (_new == null)
+        &#123;
+            _new = new RedPoint(key, parentKey, this);
+            key_map.Add(key, _new);
+        &#125;
+        return _new;
+    &#125;
+
+    private void FreshParent(string key)
+    &#123;
+        if (string.IsNullOrEmpty(key)) return;
+        var point = Find(key);
+        int sum = 0;
+        foreach (var item in point.children.Values)
+        &#123;
+            sum += item.GetCount();
+        &#125;
+        if (point.SetCount(sum))
+        &#123;
+            FreshParent(point.parent_key);
+        &#125;
+    &#125;
+    public void SetCount(string key, int count)
+    &#123;
+        var point = Find(key);
+        if (point == null || point.children.Count &gt; 0) return;
+        if (point.SetCount(count))
+        &#123;
+            FreshParent(point.parent_key);
+        &#125;
+    &#125;
+    public int GetCount(string key)
+    &#123;
+        var point = Find(key);
+        return point == null ? 0 : point.GetCount();
+    &#125;
 
 
-     public void ReadPath(string key, char separator)
-     &#123;
-         var columns = key.Split(separator);
-         RedPoint last = null;
-         for (int j = 0; j &lt; columns.Length; j++)
-         &#123;
-             var _pkey = string.Join(separator.ToString(), columns, 0, j);
-             var _key = string.Join(separator.ToString(), columns, 0, j + 1);
-             var point = AddPoint(_pkey, _key);
-             if (last != null)
-                 last.AddChild(point);
-             last = point;
-         &#125;
-     &#125;
-     public void ClearPath(string key)
-     &#123;
-         var point = Find(key);
-         if (point == null) return;
-         key_map.Remove(key);
-         foreach (var item in point.children.Keys)
-         &#123;
-             ClearPath(item);
-         &#125;
-     &#125;
 
 
- &#125;
+    public void ReadPath(string key, char separator)
+    &#123;
+        var columns = key.Split(separator);
+        RedPoint last = null;
+        for (int j = 0; j &lt; columns.Length; j++)
+        &#123;
+            var _pkey = string.Join(separator.ToString(), columns, 0, j);
+            var _key = string.Join(separator.ToString(), columns, 0, j + 1);
+            var point = AddPoint(_pkey, _key);
+            if (last != null)
+                last.AddChild(point);
+            last = point;
+        &#125;
+    &#125;
+    public void ClearPath(string key)
+    &#123;
+        var point = Find(key);
+        if (point == null) return;
+        key_map.Remove(key);
+        foreach (var item in point.children.Keys)
+        &#123;
+            ClearPath(item);
+        &#125;
+    &#125;
+
+
+&#125;
 </code></pre>
 
       
