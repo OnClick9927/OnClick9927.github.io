@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>10-WooAsset-例子WebGL</title>
+      <link href="/2024/08/06/Doc/WooAsset/10-WooAsset-%E4%BE%8B%E5%AD%90WebGL/"/>
+      <url>/2024/08/06/Doc/WooAsset/10-WooAsset-%E4%BE%8B%E5%AD%90WebGL/</url>
+      
+        <content type="html"><![CDATA[<p>键盘  ：WASD   上下左右滑动</p><p>    <div style="width:100%; height:350px;border:none;text-align:center">        <iframe allowtransparency="yes" frameborder="0" width="100%" height="100%" src="/Webs/WooAsset_WEBGL/index.html"/>    </div></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooAsset </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooAsset </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ui事件（长按等）</title>
       <link href="/2024/04/16/Unity/UGUI/ui%E4%BA%8B%E4%BB%B6%EF%BC%88%E9%95%BF%E6%8C%89%E7%AD%89%EF%BC%89/"/>
       <url>/2024/04/16/Unity/UGUI/ui%E4%BA%8B%E4%BB%B6%EF%BC%88%E9%95%BF%E6%8C%89%E7%AD%89%EF%BC%89/</url>
@@ -299,11 +326,11 @@
     
     
     <entry>
-      <title>4-IFramework-模块-记录模块</title>
-      <link href="/2023/07/24/Doc/IFramework/4-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%B0%E5%BD%95%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/4-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%B0%E5%BD%95%E6%A8%A1%E5%9D%97/</url>
+      <title>3-IFramework-优先级队列</title>
+      <link href="/2023/07/24/Doc/IFramework/3-IFramework-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/"/>
+      <url>/2023/07/24/Doc/IFramework/3-IFramework-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="记录模块"><a href="#记录模块" class="headerlink" title="记录模块"></a>记录模块</h1><p>拿小本本记下一举一动</p><p>模块特点:</p><ul><li>撤销与反撤销</li><li>支持以Command或Action作为操作</li><li>支持将多个操作合并成一个组调用</li></ul><p>使用示例:</p><pre><code class="csharp">//获取模块IOperationRecorderModule recorderModule=Framework.GetEnv(EnvironmentType.Ev0).modules.Recoder;static int value = 0;//增加数值Commandstruct AddValueCommand : ICommand&#123;    public void Excute()    &#123;        value++;    &#125;&#125;//减少数值Commandstruct SubValueCommand : ICommand&#123;    public void Excute()    &#123;        value--;    &#125;&#125;//注册Action操作和其回退操作var actionState = recorderModule.AllocateAction().SetCommand(() =&gt; &#123; value += 16; &#125;, () =&gt; &#123; value -= 16; &#125;);actionState.SetName(&quot;增加了16&quot;);actionState.Subscribe();//State可以多次调用//但是请【不要】在注册之后修改State，否则会对前面的操作有影响actionState.Subscribe();actionState.Subscribe();//注册Command操作和其回退操作var commandState = recorderModule.AllocateCommand().SetCommand(new AddValueCommand(), new SubValueCommand());commandState.SetName(&quot;增加了1&quot;);commandState.Subscribe();//注册Action一组操作和其回退操作var actionGroupState =     recorderModule.AllocateActionGroup()    .SetGroupCommand(() =&gt; &#123; value += 1; &#125;, () =&gt; &#123; value -= 1; &#125;)    .SetGroupCommand(() =&gt; &#123; value += 2; &#125;, () =&gt; &#123; value -= 2; &#125;)actionGroupState.SetName(&quot;增加了3&quot;);actionGroupState.Subscribe();Log.L(value);//撤销操作 返回值为是否撤销成功bool bo = recorderModule.Undo();Log.L(value);//反撤销操作 返回值为是否反撤销成功bool bo = recorderModule.Redo();Log.L(value);</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h1><blockquote><p>A:请不要插队<br><br>B:我有VIP<br><br>A:前面全是SVIP在等</p></blockquote><p>根据优先级自动排序的队列，消息模块就用到了这个队列来根据紧急程度排序</p><h2 id="1、快速优先级队列"><a href="#1、快速优先级队列" class="headerlink" title="1、快速优先级队列"></a>1、快速优先级队列</h2><p>特点:</p><ul><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>随机的</strong></li></ul><p>使用示例:</p><pre><code class="csharp">//节点public class FastNode : FastPriorityQueueNode&#123;    public int value;&#125;//创建优先级队列FastPriorityQueue&lt;FastNode&gt; nodes = new FastPriorityQueue&lt;FastNode&gt;(10);//节点元素入队for (int i = 10; i &gt; 0; i--)&#123;    nodes.Enqueue(new FastNode() &#123; value = i &#125;, 10 - i);&#125;//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue().value&#125;&quot;);&#125;</code></pre><h2 id="2、泛型优先级队列"><a href="#2、泛型优先级队列" class="headerlink" title="2、泛型优先级队列"></a>2、泛型优先级队列</h2><p>特点:</p><ul><li>优先级值使用可以对比值大小的泛型</li><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>使用示例:</p><pre><code class="csharp">//节点public class GenericNode : GenericPriorityQueueNode&lt;char&gt;&#123;    public int value;&#125;//创建队列，这里以char为例GenericPriorityQueue&lt;GenericNode, char&gt; nodes = new GenericPriorityQueue&lt;GenericNode, char&gt;(10);//节点元素入队for (int i = 10; i &gt; 0; i--)&#123;    nodes.Enqueue(new GenericNode() &#123; value = i &#125;, Convert.ToChar(64 + i));&#125;//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue().value&#125;&quot;);&#125;</code></pre><h2 id="3、稳定优先级队列"><a href="#3、稳定优先级队列" class="headerlink" title="3、稳定优先级队列"></a>3、稳定优先级队列</h2><p>特点:</p><ul><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>和快速优先级队列的区别就只在于出现相同优先级的判断……</p><h2 id="4、简单优先级队列"><a href="#4、简单优先级队列" class="headerlink" title="4、简单优先级队列"></a>4、简单优先级队列</h2><p>特点:</p><ul><li>队列没有大小限制</li><li>支持添加空节点元素和重复的节点元素</li><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>使用示例：</p><pre><code class="csharp">//创建队列SimplePriorityQueue&lt;string&gt; nodes = new SimplePriorityQueue&lt;string&gt;();//节点元素入队for (int i = 1; i &lt;= 10; i++)&#123;    nodes.Enqueue($&quot;&#123;i&#125;&quot;, i);&#125;//空节点元素和重复节点元素入队string item = &quot;重复值&quot;;nodes.Enqueue(null, 1);nodes.Enqueue(null, 3);nodes.Enqueue(item, 4);nodes.Enqueue(item, 5);//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue()&#125;&quot;);&#125;</code></pre>]]></content>
       
       
       <categories>
@@ -326,11 +353,11 @@
     
     
     <entry>
-      <title>3-IFramework-优先级队列</title>
-      <link href="/2023/07/24/Doc/IFramework/3-IFramework-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/"/>
-      <url>/2023/07/24/Doc/IFramework/3-IFramework-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/</url>
+      <title>4-IFramework-模块-记录模块</title>
+      <link href="/2023/07/24/Doc/IFramework/4-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%B0%E5%BD%95%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/4-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%B0%E5%BD%95%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h1><blockquote><p>A:请不要插队<br><br>B:我有VIP<br><br>A:前面全是SVIP在等</p></blockquote><p>根据优先级自动排序的队列，消息模块就用到了这个队列来根据紧急程度排序</p><h2 id="1、快速优先级队列"><a href="#1、快速优先级队列" class="headerlink" title="1、快速优先级队列"></a>1、快速优先级队列</h2><p>特点:</p><ul><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>随机的</strong></li></ul><p>使用示例:</p><pre><code class="csharp">//节点public class FastNode : FastPriorityQueueNode&#123;    public int value;&#125;//创建优先级队列FastPriorityQueue&lt;FastNode&gt; nodes = new FastPriorityQueue&lt;FastNode&gt;(10);//节点元素入队for (int i = 10; i &gt; 0; i--)&#123;    nodes.Enqueue(new FastNode() &#123; value = i &#125;, 10 - i);&#125;//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue().value&#125;&quot;);&#125;</code></pre><h2 id="2、泛型优先级队列"><a href="#2、泛型优先级队列" class="headerlink" title="2、泛型优先级队列"></a>2、泛型优先级队列</h2><p>特点:</p><ul><li>优先级值使用可以对比值大小的泛型</li><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>使用示例:</p><pre><code class="csharp">//节点public class GenericNode : GenericPriorityQueueNode&lt;char&gt;&#123;    public int value;&#125;//创建队列，这里以char为例GenericPriorityQueue&lt;GenericNode, char&gt; nodes = new GenericPriorityQueue&lt;GenericNode, char&gt;(10);//节点元素入队for (int i = 10; i &gt; 0; i--)&#123;    nodes.Enqueue(new GenericNode() &#123; value = i &#125;, Convert.ToChar(64 + i));&#125;//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue().value&#125;&quot;);&#125;</code></pre><h2 id="3、稳定优先级队列"><a href="#3、稳定优先级队列" class="headerlink" title="3、稳定优先级队列"></a>3、稳定优先级队列</h2><p>特点:</p><ul><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>和快速优先级队列的区别就只在于出现相同优先级的判断……</p><h2 id="4、简单优先级队列"><a href="#4、简单优先级队列" class="headerlink" title="4、简单优先级队列"></a>4、简单优先级队列</h2><p>特点:</p><ul><li>队列没有大小限制</li><li>支持添加空节点元素和重复的节点元素</li><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>使用示例：</p><pre><code class="csharp">//创建队列SimplePriorityQueue&lt;string&gt; nodes = new SimplePriorityQueue&lt;string&gt;();//节点元素入队for (int i = 1; i &lt;= 10; i++)&#123;    nodes.Enqueue($&quot;&#123;i&#125;&quot;, i);&#125;//空节点元素和重复节点元素入队string item = &quot;重复值&quot;;nodes.Enqueue(null, 1);nodes.Enqueue(null, 3);nodes.Enqueue(item, 4);nodes.Enqueue(item, 5);//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue()&#125;&quot;);&#125;</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="记录模块"><a href="#记录模块" class="headerlink" title="记录模块"></a>记录模块</h1><p>拿小本本记下一举一动</p><p>模块特点:</p><ul><li>撤销与反撤销</li><li>支持以Command或Action作为操作</li><li>支持将多个操作合并成一个组调用</li></ul><p>使用示例:</p><pre><code class="csharp">//获取模块IOperationRecorderModule recorderModule=Framework.GetEnv(EnvironmentType.Ev0).modules.Recoder;static int value = 0;//增加数值Commandstruct AddValueCommand : ICommand&#123;    public void Excute()    &#123;        value++;    &#125;&#125;//减少数值Commandstruct SubValueCommand : ICommand&#123;    public void Excute()    &#123;        value--;    &#125;&#125;//注册Action操作和其回退操作var actionState = recorderModule.AllocateAction().SetCommand(() =&gt; &#123; value += 16; &#125;, () =&gt; &#123; value -= 16; &#125;);actionState.SetName(&quot;增加了16&quot;);actionState.Subscribe();//State可以多次调用//但是请【不要】在注册之后修改State，否则会对前面的操作有影响actionState.Subscribe();actionState.Subscribe();//注册Command操作和其回退操作var commandState = recorderModule.AllocateCommand().SetCommand(new AddValueCommand(), new SubValueCommand());commandState.SetName(&quot;增加了1&quot;);commandState.Subscribe();//注册Action一组操作和其回退操作var actionGroupState =     recorderModule.AllocateActionGroup()    .SetGroupCommand(() =&gt; &#123; value += 1; &#125;, () =&gt; &#123; value -= 1; &#125;)    .SetGroupCommand(() =&gt; &#123; value += 2; &#125;, () =&gt; &#123; value -= 2; &#125;)actionGroupState.SetName(&quot;增加了3&quot;);actionGroupState.Subscribe();Log.L(value);//撤销操作 返回值为是否撤销成功bool bo = recorderModule.Undo();Log.L(value);//反撤销操作 返回值为是否反撤销成功bool bo = recorderModule.Redo();Log.L(value);</code></pre>]]></content>
       
       
       <categories>
@@ -407,11 +434,11 @@
     
     
     <entry>
-      <title>7-IFramework-模块-依赖注入模块</title>
-      <link href="/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/</url>
+      <title>8-IFramework-模块-计时器模块</title>
+      <link href="/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>放什么拿什么</p><p>特点:</p><ul><li>支持直接注入和反射注入</li><li>支持根据name注入同类型的多个实例</li></ul><p>直接注入使用示例:</p><pre><code class="csharp">public interface ICommonInjectObject&#123;    void ToDo();&#125;public class CommonObject : ICommonInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//获取容器container = Framework.GetEnv(EnvironmentType.Ev0).container;//往容器中注册实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject());//获取实例var _commonObject = container.GetValue&lt;ICommonInjectObject&gt;();//通过name区分来注册多个同类型实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject(), &quot;Instance1&quot;);//根据name获取指定类型的实例_commonObject = container.GetValue&lt;ICommonInjectObject&gt;(&quot;Instance1&quot;);//使用容器的Clear方法清除当前所有注入的实例container.Clear();</code></pre><hr><p><em><strong>反射注入强调性能之处慎用</strong></em></p><p>反射注入使用示例:</p><pre><code class="csharp">public interface IReflectInjectObject&#123;    void ToDo();&#125;public class ReflectObject : IReflectInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//使用Inject这个Attribute标记需要反射注入的变量[Inject]public IReflectInjectObject _reflectObject;//Attribute增加name属性[Inject(&quot;Instance1&quot;)]public IReflectInjectObject _reflectMultiObject1; //以IReflectInjectObject的名义注入ReflectObject类型container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;();container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;(&quot;Instance1&quot;);//为当前类的含有[Inject]这个Attribute的对应类型的变量注入数据container.Inject(this);</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="计时器模块"><a href="#计时器模块" class="headerlink" title="计时器模块"></a>计时器模块</h1>]]></content>
       
       
       <categories>
@@ -434,11 +461,11 @@
     
     
     <entry>
-      <title>8-IFramework-模块-计时器模块</title>
-      <link href="/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/</url>
+      <title>7-IFramework-模块-依赖注入模块</title>
+      <link href="/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="计时器模块"><a href="#计时器模块" class="headerlink" title="计时器模块"></a>计时器模块</h1>]]></content>
+        <content type="html"><![CDATA[<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>放什么拿什么</p><p>特点:</p><ul><li>支持直接注入和反射注入</li><li>支持根据name注入同类型的多个实例</li></ul><p>直接注入使用示例:</p><pre><code class="csharp">public interface ICommonInjectObject&#123;    void ToDo();&#125;public class CommonObject : ICommonInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//获取容器container = Framework.GetEnv(EnvironmentType.Ev0).container;//往容器中注册实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject());//获取实例var _commonObject = container.GetValue&lt;ICommonInjectObject&gt;();//通过name区分来注册多个同类型实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject(), &quot;Instance1&quot;);//根据name获取指定类型的实例_commonObject = container.GetValue&lt;ICommonInjectObject&gt;(&quot;Instance1&quot;);//使用容器的Clear方法清除当前所有注入的实例container.Clear();</code></pre><hr><p><em><strong>反射注入强调性能之处慎用</strong></em></p><p>反射注入使用示例:</p><pre><code class="csharp">public interface IReflectInjectObject&#123;    void ToDo();&#125;public class ReflectObject : IReflectInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//使用Inject这个Attribute标记需要反射注入的变量[Inject]public IReflectInjectObject _reflectObject;//Attribute增加name属性[Inject(&quot;Instance1&quot;)]public IReflectInjectObject _reflectMultiObject1; //以IReflectInjectObject的名义注入ReflectObject类型container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;();container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;(&quot;Instance1&quot;);//为当前类的含有[Inject]这个Attribute的对应类型的变量注入数据container.Inject(this);</code></pre>]]></content>
       
       
       <categories>
@@ -897,33 +924,6 @@
     
     
     <entry>
-      <title>WooAsset-更新与初始化</title>
-      <link href="/2023/06/27/Doc/WooAsset/5-WooAsset-%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
-      <url>/2023/06/27/Doc/WooAsset/5-WooAsset-%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
-      
-        <content type="html"><![CDATA[<h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><pre><code class="csharp">Assets.SetAssetsSetting(new LocalSetting());//拉取远端版本信息var op = await Assets.LoadRemoteVersions();//网络错误/AssetDatabaseMode/RudeMode 会=nullif (op.Versions != null)&#123;  //选择版本    var version = op.Versions.NewestVersion();  //下载远端版本文件    var down = await Assets.DownloadVersionData(version);    //得到版本数据    var versionData = down.GetVersion();    //本地和远端比较，第二个参数表示，比较哪些 pkg    var compare = await Assets.CompareVersion(versionData, versionData.GetAllPkgs());//下载所有需要更新的资源    for (int i = 0; i &lt; compare.add.Count; i++)        await Assets.DownLoadBundle(versionData.version, compare.add[i].bundleName);    for (int i = 0; i &lt; compare.change.Count; i++)        await Assets.DownLoadBundle(versionData.version, compare.change[i].bundleName);&#125;</code></pre><h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><pre><code class="csharp">Assets.SetAssetsSetting(new LocalSetting());//初始化//可选参数 version 初始化哪一个版本，不传就是本地版本，本地没有就是远端最新版本//可选参数 again 再一次初始化（使用场景，热更新界面也热更）//可选参数 getPkgs 始化包选择await Assets.InitAsync();</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> WooAsset </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> WooAsset </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>WooAsset-加载与卸载</title>
       <link href="/2023/06/27/Doc/WooAsset/6-WooAsset-%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%8D%B8%E8%BD%BD/"/>
       <url>/2023/06/27/Doc/WooAsset/6-WooAsset-%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%8D%B8%E8%BD%BD/</url>
@@ -956,6 +956,33 @@
       <url>/2023/06/27/Doc/WooAsset/7-WooAsset-%E4%B8%AA%E6%80%A7%E5%8C%96/</url>
       
         <content type="html"><![CDATA[<h2 id="打包个性化"><a href="#打包个性化" class="headerlink" title="打包个性化"></a>打包个性化</h2><pre><code class="csharp"> //个性化打包流程public abstract class IAssetBuild&#123;//自定义版本规则string GetVersion(string settingVersion, AssetTaskContext context);//自定义 资源 Tag （可以按照tag加载一组资源）List&lt;string&gt; GetAssetTags(string path) ;// 自定义资源分组void Create(List&lt;EditorAssetData&gt; assets, List&lt;EditorBundleData&gt; result, EditorPackageData pkg);//自定义打包结束之后需要执行的任务//比如输出一些Log、上传文件到服务器等List&lt;AssetTask&gt; GetPipelineFinishTasks(AssetTaskContext context);//更具一个路径返回资源类型（覆盖）AssetType CoverAssetType(string path, AssetType type) ;//是否记录这个路径bool GetIsRecord(string path) ;//自定义加密IAssetStreamEncrypt GetBundleEncrypt(EditorPackageData pkg, EditorBundleData data, IAssetStreamEncrypt en) ;int GetEncryptCode(IAssetStreamEncrypt en);IAssetStreamEncrypt GetEncryptByCode(int code)&#125;</code></pre><h2 id="加载个性化"><a href="#加载个性化" class="headerlink" title="加载个性化"></a>加载个性化</h2><pre><code class="csharp">///写一个 class 继承于 AssetsSettingpublic abstract class AssetsSetting&#123;  //永远从远端下载   public virtual bool GetBundleAlwaysFromWebRequest() &#123; return true; &#125;//重写本地路径   public virtual string OverwriteBundlePath(string bundlePath) &#123; return bundlePath; &#125;  ///是否需要拷贝内置资源  public virtual bool NeedCopyStreamBundles() &#123;&#125;  ///下载的路径  //举例 ：https://xxx.xxx.xx  // Application.StreamingPath   //http://127.0.0.1:8080  protected virtual string GetBaseUrl() &#123;&#125;  ///自定义 bundle 去哪里下载public virtual string GetUrlByBundleName(string buildTarget, string bundleName) =&gt; $&quot;&#123;GetBaseUrl()&#125;/&#123;buildTarget&#125;/&#123;bundleName&#125;&quot;; public virtual string GetUrlByBundleName(string buildTarget, string version, string bundleName) =&gt; $&quot;&#123;GetBaseUrl()&#125;/&#123;buildTarget&#125;/&#123;version&#125;/&#123;bundleName&#125;&quot;;  ///自定义 版本文件 去哪里下载  public virtual string GetVersionUrl(string buildTarget)&#123;&#125;  /// 文件比对方式  public virtual FileCompareType GetFileCheckType() &#123;&#125;  /// 下载等待  public virtual int GetWebRequestTimeout() &#123;&#125;  ///下载重试次数  public virtual int GetWebRequestRetryCount() &#123;  &#125;  ///资源加密方式  public virtual IAssetStreamEncrypt GetEncrypt(int code) &#123;&#125;  ///是否自动卸载  public virtual bool GetAutoUnloadBundle() &#123;&#125;  /// 如果本地没有是否需要保存文件  public virtual bool GetSaveBundlesWhenPlaying()&#123;&#125;  /// 自定义的资源生命周期管理，bundle和asset均可以  public virtual IAssetLife GetAssetLife()&#123;&#125;  ///一帧内最多多少毫秒在加载资源  public virtual long GetLoadingMaxTimeSlice()&#123;&#125;&#125;</code></pre><h2 id="资源加密"><a href="#资源加密" class="headerlink" title="资源加密"></a>资源加密</h2><pre><code class="csharp">//个性化加密public interface IAssetStreamEncrypt&#123;    byte[] Encode(string bundleName, byte[] buffer);    byte[] Decode(string bundleName, byte[] buffer);&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooAsset </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooAsset </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WooAsset-更新与初始化</title>
+      <link href="/2023/06/27/Doc/WooAsset/5-WooAsset-%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+      <url>/2023/06/27/Doc/WooAsset/5-WooAsset-%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><pre><code class="csharp">Assets.SetAssetsSetting(new LocalSetting());//拉取远端版本信息var op = await Assets.LoadRemoteVersions();//网络错误/AssetDatabaseMode/RudeMode 会=nullif (op.Versions != null)&#123;  //选择版本    var version = op.Versions.NewestVersion();  //下载远端版本文件    var down = await Assets.DownloadVersionData(version);    //得到版本数据    var versionData = down.GetVersion();    //本地和远端比较，第二个参数表示，比较哪些 pkg    var compare = await Assets.CompareVersion(versionData, versionData.GetAllPkgs());//下载所有需要更新的资源    for (int i = 0; i &lt; compare.add.Count; i++)        await Assets.DownLoadBundle(versionData.version, compare.add[i].bundleName);    for (int i = 0; i &lt; compare.change.Count; i++)        await Assets.DownLoadBundle(versionData.version, compare.change[i].bundleName);&#125;</code></pre><h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><pre><code class="csharp">Assets.SetAssetsSetting(new LocalSetting());//初始化//可选参数 version 初始化哪一个版本，不传就是本地版本，本地没有就是远端最新版本//可选参数 again 再一次初始化（使用场景，热更新界面也热更）//可选参数 getPkgs 始化包选择await Assets.InitAsync();</code></pre>]]></content>
       
       
       <categories>
