@@ -1,5 +1,5 @@
 ---
-title: 10-WooAsset-例子WebGL
+title: WooAsset-例子WebGL
 author: 灵
 comment: 'on'
 
