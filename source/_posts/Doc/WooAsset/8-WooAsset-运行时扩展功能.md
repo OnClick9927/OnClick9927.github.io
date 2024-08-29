@@ -8,6 +8,19 @@ category:
   - WooAsset
 date: 2023-06-27 15:58:38
 ---
+## 实例化 物体
+``` csharp
+// 创建
+  var oppp = await Assets.InstantiateAsync(path, parent);
+
+// 干点啥
+
+  //销毁
+  //销毁时候会自动改变引用计数，不需要手动Assets.Release
+  oppp.Destroy();
+```
+
+
 ## 资源模糊搜索
 ``` csharp
 public class AssetsSearch
@@ -34,18 +47,30 @@ public class AssetsSearch
     }
 ```
 ## 资源组加载
+### 何时使用：某些地方必须需要同步加载资源（先准备一下）/ 一次型加载配置表，读取到内存之后，卸载
+
 ``` csharp
 //准备一组资源
 string[] groups ;
 var assets= await Assets.PrepareAssets(groups)
+//或者按照 tag 准备一组资源
+var assets=Assets.PrepareAssetsByTag(tag)
+
+
+
 ///加载对应的资源方法一
 string path;
 var asset = assets.FindAsset(path)
 ///加载对应的资源方法二
 var asset = Assets.LoadAssetAsync(path)
+///注意：方式二会增加引用计数，需要在合适的地方 Assets.Release(asset)
+///方式一不会增加引用计数
+
+
 
 ///把整组资源全都卸载了
 assets.Release();
+
 
 ///配合资源模糊搜索一起使用
 //使用场景，进入战斗场景之前把战斗需要的资源全加载

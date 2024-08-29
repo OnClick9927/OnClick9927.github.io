@@ -1,5 +1,5 @@
 ---
-title: WooAsset-更新与初始化
+title: WooAsset-更新_初始化 _加载_卸载
 author: 灵
 tags:
   - WooAsset
@@ -9,6 +9,11 @@ category:
 date: 2023-06-27 15:58:38
 ---
 # 更新
+
+## 注意该例子演示的没有服务器的情况下，所以需要自己请求资源版本
+## 如果有服务器 可以跳过请求请求远端版本信息，直接从 Assets.DownloadVersionData(version) 开始
+## 如果是 WebGL 或者 不希望本地有缓存，直接从初始化开始
+
 ``` csharp
 Assets.SetAssetsSetting(new LocalSetting());
 //拉取远端版本信息
@@ -40,4 +45,29 @@ Assets.SetAssetsSetting(new LocalSetting());
 //可选参数 getPkgs 始化包选择
 await Assets.InitAsync();
 
+```
+# 加载与卸载
+``` csharp
+///正常加载
+var asset = await Assets.LoadAssetAsync(path);
+///获取要加载的资源
+var sp = asset.GetAsset<Sprite>();
+///加载Unity无法识别的资源
+var asset = await Assets.LoadRawAssetAsync(path);
+RawObject raw = asset.GetAsset();
+Debug.Log(raw.bytes.Length);
+
+///加载子资源
+var mainAsset = await Assets.LoadSubAsset(path);
+var sp = mainAsset.GetSubAsset<Sprite>("a_1");
+///上面几个的卸载资源
+Assets.Release(asset)
+
+
+
+
+///加载卸载场景
+var sceneAsset = await Assets.LoadSceneAssetAsync(path);
+await sceneAsset.LoadSceneAsync(LoadSceneMode.Additive);
+await Assets.UnloadSceneAsync(path, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
 ```

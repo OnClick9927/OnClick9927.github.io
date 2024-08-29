@@ -24,7 +24,7 @@ date: 2023-06-27 15:58:38
 | Version                 | 此次打包出去的版本                                                                 |
 | MaxCacheVersionCount    | 远程版本文件最多包含的版本个数                                                     |
 | CleanHistory            | 每次打包结束之后是否清理history文件夹                                              |
-| Copytostream            | 拷贝资源到stream，如果  BuildInAssets未配置会拷贝所有，否则会更具BuildInAssets沙宣 |
+| Copytostream            | 拷贝资源到stream，如果  BuildInAssets未配置会拷贝所有，否则会更具BuildInAssets筛选 |
 | build mode              | 打包模式（是否增量式）                                                             |
 | bundle name type        | 输出资源名称风格（名/名_Hash/Hash）                                                |
 | type tree option        | 资源类型信息                                                                       |
@@ -42,7 +42,7 @@ date: 2023-06-27 15:58:38
 | ----------- | --------------------------------------------------------------- |
 | Build       | 该组是否需要打包 （给分布式打包使用）                           |
 | Name        | 包的名字（不可重复，不为空）                                    |
-| Paths       | 对应的项目路径  （不可重复，不为空）                          |
+| Paths       | 对应的项目路径  （不可重复，不为空）                            |
 | Description | 对包加点描述                                                    |
 | Tags        | 对包加一些标记                                                  |
 | builds      | 分包规则       （也可以纯粹代码分包，但是此项目不可以存在配置） |
