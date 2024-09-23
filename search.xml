@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Git</title>
+      <link href="/2024/09/23/Tools/Git/"/>
+      <url>/2024/09/23/Tools/Git/</url>
+      
+        <content type="html"><![CDATA[<h2 id="删除本地远程TAG"><a href="#删除本地远程TAG" class="headerlink" title="删除本地远程TAG"></a>删除本地远程TAG</h2><pre><code class="shell">1、git tag -d $(git tag -l)      //删除本地tag2、git fetch                 //拉取远程tag3、git push origin --delete $(git tag -l)        //删除远程tag4、git tag -d $(git tag -l)      //删除本地tag</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+          <category> GIT </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DB </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>WooAsset-例子WebGL</title>
       <link href="/2024/08/06/Doc/WooAsset/10-WooAsset-%E4%BE%8B%E5%AD%90WebGL/"/>
       <url>/2024/08/06/Doc/WooAsset/10-WooAsset-%E4%BE%8B%E5%AD%90WebGL/</url>
@@ -380,11 +407,11 @@
     
     
     <entry>
-      <title>5-IFramework-模块-消息模块</title>
-      <link href="/2023/07/24/Doc/IFramework/5-IFramework-%E6%A8%A1%E5%9D%97-%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/5-IFramework-%E6%A8%A1%E5%9D%97-%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9D%97/</url>
+      <title>6-IFramework-模块-协程模块</title>
+      <link href="/2023/07/24/Doc/IFramework/6-IFramework-%E6%A8%A1%E5%9D%97-%E5%8D%8F%E7%A8%8B%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/6-IFramework-%E6%A8%A1%E5%9D%97-%E5%8D%8F%E7%A8%8B%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h1><blockquote><p>A:回复T即可退订<br><br>B:T<br><br>A:回复T即可退订<br><br>B:T即可<br><br>A:退订成功</p></blockquote><p>消息是软件开发中减少模块耦合的有效方式</p><p>模块特点:</p><ul><li>支持流量控制</li><li>支持子类型匹配(根据子类型监听父类型)</li><li>支持异步等待</li><li>支持消息优先级</li></ul><p>使用示例:</p><pre><code class="csharp">//需要监听的类public interface IPub &#123; &#125;public class Pub : IPub &#123; &#125;//自定义监听器类 public class Listener : IMessageListener&#123;    public Listener()    &#123;        //构造函数，在这里可以直接写对某个类型的监听    &#125;    //实现接口里的消息回调方法    public void Listen(IMessage message)    &#123;        Log.L($&quot;收到类型为&#123;message.subject&#125;的消息，消息值为&#123;message.code&#125;&quot;);    &#125;&#125;//获取消息模块messageModule = Framework.GetEnv(EnvironmentType.Ev0).modules.Message;//匹配子类型开关messageModule.fitSubType = true;//每帧处理的消息量messageModule.processesPerFrame = 1;//实例化一个消息监听器Listener listenner = new Listener(); //根据IPub监听messageModule.Subscribe&lt;IPub&gt;(listenner);//发送一条重要程度为Important的消息，消息值为100messageModule.Publish&lt;Pub&gt;(null,MessageUrgencyType.Important).SetCode(100);</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>更好地利用线程资源</p><p>模块特点:</p><ul><li>支持多种等待时间延迟执行</li><li>支持多种等待判断</li><li>支持快速结束某个协程</li><li>支持异步等待</li></ul><p>使用示例:</p><pre><code class="csharp">//tip:环境的Update需要定时执行//获取协程模块coroutineModule = Framework.GetEnv(EnvironmentType.Ev0).modules.Coroutine;//开启协程WaitExamplecoroutineModule.StartCoroutine(WaitExample());IEnumerator WaitExample()&#123;    Log.L(&quot;协程WaitExample开始&quot;);    yield return new WaitForFrame();    Log.L(&quot;一帧过去了&quot;);    yield return new WaitForFrames(20);    Log.L(&quot;20帧过去了&quot;);    yield return new WaitForHours(0.0004);    Log.L(&quot;0.0004小时过去了&quot;);&#125;</code></pre>]]></content>
       
       
       <categories>
@@ -407,11 +434,11 @@
     
     
     <entry>
-      <title>6-IFramework-模块-协程模块</title>
-      <link href="/2023/07/24/Doc/IFramework/6-IFramework-%E6%A8%A1%E5%9D%97-%E5%8D%8F%E7%A8%8B%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/6-IFramework-%E6%A8%A1%E5%9D%97-%E5%8D%8F%E7%A8%8B%E6%A8%A1%E5%9D%97/</url>
+      <title>5-IFramework-模块-消息模块</title>
+      <link href="/2023/07/24/Doc/IFramework/5-IFramework-%E6%A8%A1%E5%9D%97-%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/5-IFramework-%E6%A8%A1%E5%9D%97-%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>更好地利用线程资源</p><p>模块特点:</p><ul><li>支持多种等待时间延迟执行</li><li>支持多种等待判断</li><li>支持快速结束某个协程</li><li>支持异步等待</li></ul><p>使用示例:</p><pre><code class="csharp">//tip:环境的Update需要定时执行//获取协程模块coroutineModule = Framework.GetEnv(EnvironmentType.Ev0).modules.Coroutine;//开启协程WaitExamplecoroutineModule.StartCoroutine(WaitExample());IEnumerator WaitExample()&#123;    Log.L(&quot;协程WaitExample开始&quot;);    yield return new WaitForFrame();    Log.L(&quot;一帧过去了&quot;);    yield return new WaitForFrames(20);    Log.L(&quot;20帧过去了&quot;);    yield return new WaitForHours(0.0004);    Log.L(&quot;0.0004小时过去了&quot;);&#125;</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h1><blockquote><p>A:回复T即可退订<br><br>B:T<br><br>A:回复T即可退订<br><br>B:T即可<br><br>A:退订成功</p></blockquote><p>消息是软件开发中减少模块耦合的有效方式</p><p>模块特点:</p><ul><li>支持流量控制</li><li>支持子类型匹配(根据子类型监听父类型)</li><li>支持异步等待</li><li>支持消息优先级</li></ul><p>使用示例:</p><pre><code class="csharp">//需要监听的类public interface IPub &#123; &#125;public class Pub : IPub &#123; &#125;//自定义监听器类 public class Listener : IMessageListener&#123;    public Listener()    &#123;        //构造函数，在这里可以直接写对某个类型的监听    &#125;    //实现接口里的消息回调方法    public void Listen(IMessage message)    &#123;        Log.L($&quot;收到类型为&#123;message.subject&#125;的消息，消息值为&#123;message.code&#125;&quot;);    &#125;&#125;//获取消息模块messageModule = Framework.GetEnv(EnvironmentType.Ev0).modules.Message;//匹配子类型开关messageModule.fitSubType = true;//每帧处理的消息量messageModule.processesPerFrame = 1;//实例化一个消息监听器Listener listenner = new Listener(); //根据IPub监听messageModule.Subscribe&lt;IPub&gt;(listenner);//发送一条重要程度为Important的消息，消息值为100messageModule.Publish&lt;Pub&gt;(null,MessageUrgencyType.Important).SetCode(100);</code></pre>]]></content>
       
       
       <categories>
@@ -1490,8 +1517,8 @@
     
     <entry>
       <title>Navicat 安装教程</title>
-      <link href="/2023/05/23/DB/Navicat/"/>
-      <url>/2023/05/23/DB/Navicat/</url>
+      <link href="/2023/05/23/Tools/Navicat/"/>
+      <url>/2023/05/23/Tools/Navicat/</url>
       
         <content type="html"><![CDATA[<h2 id="Navicat-安装教程-下载"><a href="#Navicat-安装教程-下载" class="headerlink" title="Navicat 安装教程 下载"></a>Navicat 安装教程 <a href="/Files/DB/Navicat16-jihuo.zip">下载</a></h2><p>1、正常安装（装完不要打开）<br>2、断网<br>3、右键NavicatCracker.exe以管理员身份运行。<br>4、选择刚刚的安装目录，点击Patch<br>5、点击是<br>6、打开注册软件.点击Generate生成注册码.再点击copy.<br>7、打开Navicat16,点击注册<br>8、粘贴刚刚生成的注册码,点击激活.<br>9、点击手动激活<br>10、复制下图中生成的请求码<br>11、将 Navicat 给的请求码复制到注册机 Request Code 中<br>12、点击 Generate Activation Code进行激活.复制激活码.<br>13、然后粘贴激活码.点击激活即可.</p>]]></content>
       
