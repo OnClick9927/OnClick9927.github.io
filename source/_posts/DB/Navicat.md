@@ -9,7 +9,7 @@ category:
   - DB
 date: 2023-05-23 15:53:29
 ---
-## Navicat 安装教程 [下载](https://wwqq.lanzouf.com/iszHt0x1hikf)
+## Navicat 安装教程 [下载](/Files/DB/Navicat16-jihuo.zip)
 
 1、正常安装（装完不要打开）
 2、断网
