@@ -3,7 +3,7 @@ title: Git
 author: 灵
 comment: 'on'
 tags:
-  - DB
+  - GIT
 category:
   - 工具
   - GIT
