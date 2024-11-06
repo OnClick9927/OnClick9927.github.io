@@ -1,5 +1,5 @@
 ---
-title: WooLocalization-简介
+title: 1-WooLocalization-简介
 author: yy
 comment: 'on'
 tags:
@@ -9,12 +9,18 @@ category:
   - WooLocalization
 date: 2024-10-26 20:59:43
 ---
-## WooLocalization介绍
-* 可以帮助开发者在Unity项目中实现多语言支持,使游戏能够适应不同地区和语言的用户需求。
+
+# [地址](https://github.com/OnClick9927/WooLocalization.git)
+# upm 添加地址
+https://github.com/OnClick9927/WooLocalization.git#upm
+
+
+# WooLocalization介绍
+可以帮助开发者在Unity项目中实现多语言支持,使游戏能够适应不同地区和语言的用户需求。
 
 
 
-### 功能
+# 功能
 * 支持 文本/图片/特效/预制体/继承自UnityEngine.Object 本地化
 * 提供本地化组件（支持挖孔的文本，支持多种属性变化）
 * 支持一键翻译
@@ -25,9 +31,3 @@ date: 2024-10-26 20:59:43
 * 支持编辑器下预览语言切换
 
 
-### 特点
-* 快速操作
-* 简单易学
-* 无脑使用
-* 支持很容够多
-* 《雅》

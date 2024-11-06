@@ -1,5 +1,5 @@
 ---
-title: WooLocalization-Localization Data文件使用
+title: 2-WooLocalization-Localization Data文件使用
 author: yy
 comment: 'on'
 tags:
@@ -9,14 +9,14 @@ category:
   - WooLocalization
 date: 2024-10-26 20:59:43
 ---
-## WooLocalization-Localization Data 是什么
-* 存储多语言数据的地方
+# WooLocalization-Localization Data 是什么
+存储多语言数据的地方
 
 
-## 创建方法
-* 右键Project窗口 - Creat - Localization Data
+# 创建方法
+右键Project窗口 - Creat - Localization Data
 
-## 界面功能介绍
+# 界面功能介绍
 * Clear Data
   * 一键清除所有数据
 * Read From Asset
@@ -31,4 +31,4 @@ date: 2024-10-26 20:59:43
   * 每种语言对应Key的内容
 
 
-![Alt text](../../../Pic/Doc/WooLocalization/LocalizationData文件.png)
+![](../../../Pic/Doc/WooLocalization/LocalizationData文件.png)
