@@ -24,11 +24,11 @@ date: 2024-10-26 20:59:43
 * Read From CSV / Write to CSV 
   * 从本地路径中读写CSV文件
 * LanType 
-  * 语言类型（中文简体、英文、日文、韩文）
+  * 定义语言类型
 * Key
-  * 语言的标记
+  * 语言类型的key
 * VAL 
-  * 每种语言对应Key的内容
+  * 语言对应的值
 
 
 ![](../../../Pic/Doc/WooLocalization/LocalizationData文件.png)

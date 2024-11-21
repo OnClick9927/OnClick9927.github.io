@@ -95,5 +95,5 @@ namespace WooLocalization
 
 
 ``` csharp
-text.text=LocalizationData.GetLocalization("zh-Hans","Key")
-```
+text.text=Localization.GetLocalization("LanType","Key")
+``` 
