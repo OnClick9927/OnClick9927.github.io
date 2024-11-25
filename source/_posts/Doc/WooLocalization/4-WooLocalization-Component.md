@@ -60,7 +60,7 @@ date: 2024-10-26 20:59:43
 ``` csharp
 public  LocalizationAssets_String asset;
 
-Debug.Log(asset.GetLocalization("zh-Hans","A"));
+Debug.Log(asset.GetObject("key"));
 ```
 * 其他两个组件同理 
 
@@ -95,5 +95,6 @@ namespace WooLocalization
 
 
 ``` csharp
-text.text=Localization.GetLocalization("LanType","Key")
+//调用静态类获取信息
+text.text=Localization.GetLocalization("Key")
 ``` 
