@@ -65,9 +65,10 @@ Debug.Log(asset.GetObject("key"));
 * 其他两个组件同理 
 
 # 如何扩展需要的组件
-以Texture类型为例，要实现两个脚本 一个是editor脚本一个是texture类型脚本
 
 ``` csharp
+//第一种集合 以Texture类型为例，要实现两个脚本 一个是editor脚本一个是texture类型脚本
+
 using UnityEditor;
 using UnityEngine;
 
@@ -76,7 +77,6 @@ namespace WooLocalization
         [CustomEditor(typeof(LocalizationAssets_Texture))]
         class LocalizationAssets_TextureEditor: LocalizationAssetsEditor<LocalizationAssets_Texture, Texture>
         {
-                
         }
 }
 
@@ -85,10 +85,34 @@ namespace WooLocalization
         [UnityEngine.DisallowMultipleComponent]
         public class LocalizationAssets_Texture: LocalizationAssets<Texture>
         {
-                
         }
 }
 ```
+![](../../../Pic/Doc/WooLocalization/Texture组件.png)
+
+``` csharp
+//第二种属性 以Material类型为例，要实现两个脚本 一个是editor脚本一个是Material类型脚本
+
+using System.Collections.Generic;
+using UnityEngine;
+using WooLocalization;
+
+[UnityEditor.CustomEditor(typeof(Test))]
+public class TestEditor : WooLocalization.LocalizationBehaviorEditor<Test>
+{
+}
+
+public class Test : WooLocalization.LocalizationBehavior
+{
+    protected override List<ILocalizationActor> GetActors()
+    {
+            return new List<ILocalizationActor>() {_material };
+    }
+
+    public ObjectActor<Material> _material = new ObjectActor<Material>(true);
+}
+```
+![](../../../Pic/Doc/WooLocalization/Mat属性.png)
 
 
 # 如何不使用组件也能使用本地化功能
