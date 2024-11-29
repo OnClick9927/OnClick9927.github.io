@@ -33,7 +33,6 @@ date: 2024-09-06 20:51:18
                 {
                     var hash = _main.GetAssetBundleHash(bundle).ToString();
                     name2Hash[bundle] = hash;
-                    //hash2Name[hash] = bundle;
                 }
                 return true;
             }
@@ -112,6 +111,40 @@ date: 2024-09-06 20:51:18
                 opt |= BuildAssetBundleOptions.AppendHashToAssetBundleName;
 
             return opt;
+        }
+
+        public uint GetBundleCrc(string directory, string bundleName, BundleNameType nameType)
+        {
+            switch (nameType)
+            {
+                case BundleNameType.Name:
+                    return _main.GetAssetBundleCrc(bundleName);
+                case BundleNameType.NameWithHash:
+                case BundleNameType.Hash:
+                    {
+                        bundleName = bundleName.Split("_")[0];
+                        return _main.GetAssetBundleCrc(bundleName);
+                    }
+                default:
+                    return 0;
+            }
+        }
+
+        public string GetBundleHash(string directory, string bundleName, BundleNameType nameType)
+        {
+            switch (nameType)
+            {
+                case BundleNameType.Name:
+                    return _main.GetAssetBundleHash(bundleName).ToString();
+                case BundleNameType.NameWithHash:
+                case BundleNameType.Hash:
+                    {
+                        bundleName = bundleName.Split("_")[0];
+                        return _main.GetAssetBundleHash(bundleName).ToString();
+                    }
+                default:
+                    return string.Empty;
+            }
         }
     }
 
