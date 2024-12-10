@@ -32,21 +32,75 @@ int GetEncryptCode(IAssetStreamEncrypt en);
 IAssetStreamEncrypt GetEncryptByCode(int code)
 
 }
-
-
-
-
-
 ```
+### 打包管线 内建（自带）/SBP（后续文章有）
+
+``` csharp
+    public interface IBuildPipeLine
+    {
+        bool BuildAssetBundles(string outputPath, AssetBundleBuild[] builds, BuildAssetBundleOptions assetBundleOptions, BuildTarget targetPlatform);
+        List<string> GetAllAssetBundles(BundleNameType nameType);
+        List<string> GetAllDependencies(string assetBundleName, BundleNameType nameType);
+        uint GetBundleCrc(string directory, string bundleName, BundleNameType nameType);
+        string GetBundleHash(string directory, string bundleName, BundleNameType nameType);
+        BuildAssetBundleOptions GetBundleOption(AssetTaskParams param, out string err);
+    }
+```
+### 资源分包优化
+``` csharp
+    public interface IBundleOptimizer
+    {
+        List<EditorBundleData> Optimize(List<EditorBundleData> builds, EditorPackageData buildPkg, IAssetsBuild build);
+    }
+```
+### 内建资源选择
+``` csharp
+    public interface IBuildInBundleSelector
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="files">打包出的所有文件</param>
+        /// <param name="buildInAssets">编辑器配置</param>
+        /// <param name="buildInConfig">必须拷贝的文件</param>
+        /// <param name="manifest">打包出来的配置文件（Merged）</param>
+        /// <param name="exports">打包报告（Merged）</param>
+        /// <returns></returns>
+        string[] Select(string[] files, List<string> buildInAssets, List<string> buildInConfig, ManifestData manifest, List<PackageExportData> exports);
+    }
+```
+### 低代码打包，配合资源组分包 使用，用于选出需要的资源
+``` csharp
+    public interface IAssetSelector
+    {
+        List<EditorAssetData> Select(List<EditorAssetData> assets, AssetSelectorParam param);
+    }
+```
+
+
 ## 加载个性化
 ``` csharp
+
 ///写一个 class 继承于 AssetsSetting
 public abstract class AssetsSetting
 {
-  ///是否需要拷贝内置资源
+  //是否要检查总版本文件
+  //比如 服务器给出版本 0.0.1，是否去版本记录里面查有没有这个版本
+  public virtual bool CheckVersionByVersionCollection() => false;
+  //拷贝stream 路径重写
+  public virtual string GetStreamingFileUrl(string url){}
+  //是否从缓存加载ab
+  public virtual bool GetCachesDownloadedBundles() => false;
+  //按照名字搜索时候，名字是否有后缀，可以近似实现 Resources.Load
+  public virtual FileNameSearchType GetFileNameSearchType(){}
+  
+  //是否需要拷贝stream到沙盒
   public virtual bool NeedCopyStreamBundles() {}
   ///一帧内最多多少毫秒在加载资源
   public virtual long GetLoadingMaxTimeSlice(){}
+    /// 如果本地没有是否需要保存文件
+  // GetBundleAlwaysFromWebRequest 返回 true 该选项不起效
+  public virtual bool GetSaveBytesWhenPlaying() => true;
 
   ///下载的路径
   //举例 ：https://xxx.xxx.xx
@@ -57,9 +111,7 @@ public abstract class AssetsSetting
 public virtual string GetUrlByBundleName(string buildTarget, string bundleName) => $"{GetBaseUrl()}/{buildTarget}/{bundleName}";
  public virtual string GetUrlByBundleName(string buildTarget, string version, string bundleName) => $"{GetBaseUrl()}/{buildTarget}/{version}/{bundleName}";
 
-  /// 如果本地没有是否需要保存文件
-  // GetBundleAlwaysFromWebRequest 返回 true 该选项不起效
-  public virtual bool GetSaveBundlesWhenPlaying(){}
+
   //永远从远端下载
    public virtual bool GetBundleAlwaysFromWebRequest() {}
 

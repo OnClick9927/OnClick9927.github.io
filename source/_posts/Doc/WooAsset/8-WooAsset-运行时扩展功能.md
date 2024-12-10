@@ -19,32 +19,42 @@ date: 2023-06-27 15:58:38
   //销毁时候会自动改变引用计数，不需要手动Assets.Release
   oppp.Destroy();
 ```
+## AssetReference && 使用例子
+``` csharp
+  [System.Serializable]
+  public class AssetReference<T> : AssetReference where T : UnityEngine.Object
+  {
+      public override Type type => typeof(T);
+  }
+```
 
-
+``` csharp
+    public class AssetExample : UnityEngine.MonoBehaviour
+    {
+        public Image image;
+        public AssetReference<UnityEngine.Sprite> assetReference;
+    }
+```
 ## 资源模糊搜索
 ``` csharp
-public class AssetsSearch
-    {
 
-///以下是交集
-        public static IReadOnlyList<string> IntersectNameAndTag(string assetName, params string[] tags);
-        public static IReadOnlyList<string> IntersectTag(params string[] tags);
+//获得所有资源路径
+ public static IReadOnlyList<string> GetAllAssetPaths() ;
+ //获得一个tag 的所有路径
+ public static IReadOnlyList<string> GetTagAssetPaths(string tag) ;
+ //获得所有资源路径
+ public static IReadOnlyList<string> GetAllTags();
 
-        public static IReadOnlyList<string> IntersectTypeAndNameAndTag(AssetType type, string assetName, params string[] tags);
-        public static IReadOnlyList<string> IntersectTypeAndTag(AssetType type, params string[] tags);
-
-///以下是并集
-
-        public static IReadOnlyList<string> Union(params string[] nameOrTags);
-        public static IReadOnlyList<string> UnionTag(params string[] tags);
-        public static IReadOnlyList<string> UnionName(params string[] names);
-        public static IReadOnlyList<string> UnionNameAndTag(string assetName, params string[] tags);
-        public static IReadOnlyList<string> UnionTypeAndNameAndTag(AssetType type, string assetName, params string[] tags);
-        public static IReadOnlyList<string> UnionTypeAndTag(AssetType type, params string[] tags);
-
-        public static IReadOnlyList<string> AssetPathByType(AssetType type);
-
-    }
+ //更具tag 获得唯一 资源
+ public static string GetUniqueAssetPathByTag(string tag);
+ //获得所有满足条件的资源
+ public static IReadOnlyList<string> GetAssetPath(Func<AssetData, bool> fit);
+ //获得唯一满足条件的资源
+ public static string GetUniqueAssetPath(Func<AssetData, bool> fit);
+ //通过名字找到名字一致的资源
+ public static IReadOnlyList<string> GetAssetsByAssetName(string name) ;
+//得到对应路径数据
+ public static AssetData GetAssetData(string assetPath);
 ```
 ## 资源组加载
 ### 何时使用：某些地方必须需要同步加载资源（先准备一下）/ 一次型加载配置表，读取到内存之后，卸载
