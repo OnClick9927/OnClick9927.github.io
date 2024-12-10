@@ -58,6 +58,33 @@
     
     
     <entry>
+      <title>3-WooLocalization-Localization Window</title>
+      <link href="/2024/10/26/Doc/WooLocalization/3-WooLocalization-Localization%20Window/"/>
+      <url>/2024/10/26/Doc/WooLocalization/3-WooLocalization-Localization%20Window/</url>
+      
+        <content type="html"><![CDATA[<h1 id="WooLocalization-Localization-Window"><a href="#WooLocalization-Localization-Window" class="headerlink" title="WooLocalization-Localization Window"></a>WooLocalization-Localization Window</h1><p>Localization的功能界面 </p><h1 id="内容介绍"><a href="#内容介绍" class="headerlink" title="内容介绍"></a>内容介绍</h1><ul><li>1.正则表达式相关内容</li><li>2.有道翻译-文本翻译 点击跳转有道界面注册登录 并申请应用获取id sercet 输入Appid 和AppSecret </li><li>3.设置Localization Data文件  设置语言映射 </li><li>4.添加TMP扩展脚本</li></ul><p><img src="/../../../Pic/Doc/WooLocalization/LocalizationWindow.png"></p><h1 id="使用有道翻译"><a href="#使用有道翻译" class="headerlink" title="使用有道翻译"></a>使用有道翻译</h1><ul><li>点击Register跳转注册 点击Code&amp;Language跳转Api接入界面 </li><li>填入Appid和AppSecret</li><li>选择Data文件右键 点击Translate 中指定语言全部翻译</li></ul><p><img src="/../../../Pic/Doc/WooLocalization/%E6%9C%89%E9%81%93Api%E6%8E%A5%E5%85%A5.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooLocalization </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooLocalization </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>4-WooLocalization-Component</title>
       <link href="/2024/10/26/Doc/WooLocalization/4-WooLocalization-Component/"/>
       <url>/2024/10/26/Doc/WooLocalization/4-WooLocalization-Component/</url>
@@ -90,33 +117,6 @@
       <url>/2024/10/26/Doc/WooLocalization/5-WooLocalization-%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
       
         <content type="html"><![CDATA[<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><ul><li>本地化初始化时必须加的几句代码 否则会报错</li></ul><pre><code class="csharp">//脚本需要先继承ILocalizationPrefRecorder接口//然后实现这两个方法public LocalizationPref Read()&#123;  return null;&#125;public void Write(LocalizationPref pref)&#123;&#125;//此代码写在初始化方法里//是为了平台适配Localization.SetRecorder(this);//是为了有起手语言Localization.SetDefaultLocalizationType(type);//是为了有数据Localization.SetContext(data);</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> WooLocalization </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> WooLocalization </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>3-WooLocalization-Localization Window</title>
-      <link href="/2024/10/26/Doc/WooLocalization/3-WooLocalization-Localization%20Window/"/>
-      <url>/2024/10/26/Doc/WooLocalization/3-WooLocalization-Localization%20Window/</url>
-      
-        <content type="html"><![CDATA[<h1 id="WooLocalization-Localization-Window"><a href="#WooLocalization-Localization-Window" class="headerlink" title="WooLocalization-Localization Window"></a>WooLocalization-Localization Window</h1><p>Localization的功能界面 </p><h1 id="内容介绍"><a href="#内容介绍" class="headerlink" title="内容介绍"></a>内容介绍</h1><ul><li>1.正则表达式相关内容</li><li>2.有道翻译-文本翻译 点击跳转有道界面注册登录 并申请应用获取id sercet 输入Appid 和AppSecret </li><li>3.设置Localization Data文件  设置语言映射 </li><li>4.添加TMP扩展脚本</li></ul><p><img src="/../../../Pic/Doc/WooLocalization/LocalizationWindow.png"></p><h1 id="使用有道翻译"><a href="#使用有道翻译" class="headerlink" title="使用有道翻译"></a>使用有道翻译</h1><ul><li>点击Register跳转注册 点击Code&amp;Language跳转Api接入界面 </li><li>填入Appid和AppSecret</li><li>选择Data文件右键 点击Translate 中指定语言全部翻译</li></ul><p><img src="/../../../Pic/Doc/WooLocalization/%E6%9C%89%E9%81%93Api%E6%8E%A5%E5%85%A5.png"></p>]]></content>
       
       
       <categories>
@@ -648,11 +648,11 @@
     
     
     <entry>
-      <title>7-IFramework-模块-依赖注入模块</title>
-      <link href="/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/</url>
+      <title>6-IFramework-模块-协程模块</title>
+      <link href="/2023/07/24/Doc/IFramework/6-IFramework-%E6%A8%A1%E5%9D%97-%E5%8D%8F%E7%A8%8B%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/6-IFramework-%E6%A8%A1%E5%9D%97-%E5%8D%8F%E7%A8%8B%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>放什么拿什么</p><p>特点:</p><ul><li>支持直接注入和反射注入</li><li>支持根据name注入同类型的多个实例</li></ul><p>直接注入使用示例:</p><pre><code class="csharp">public interface ICommonInjectObject&#123;    void ToDo();&#125;public class CommonObject : ICommonInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//获取容器container = Framework.GetEnv(EnvironmentType.Ev0).container;//往容器中注册实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject());//获取实例var _commonObject = container.GetValue&lt;ICommonInjectObject&gt;();//通过name区分来注册多个同类型实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject(), &quot;Instance1&quot;);//根据name获取指定类型的实例_commonObject = container.GetValue&lt;ICommonInjectObject&gt;(&quot;Instance1&quot;);//使用容器的Clear方法清除当前所有注入的实例container.Clear();</code></pre><hr><p><em><strong>反射注入强调性能之处慎用</strong></em></p><p>反射注入使用示例:</p><pre><code class="csharp">public interface IReflectInjectObject&#123;    void ToDo();&#125;public class ReflectObject : IReflectInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//使用Inject这个Attribute标记需要反射注入的变量[Inject]public IReflectInjectObject _reflectObject;//Attribute增加name属性[Inject(&quot;Instance1&quot;)]public IReflectInjectObject _reflectMultiObject1; //以IReflectInjectObject的名义注入ReflectObject类型container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;();container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;(&quot;Instance1&quot;);//为当前类的含有[Inject]这个Attribute的对应类型的变量注入数据container.Inject(this);</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>更好地利用线程资源</p><p>模块特点:</p><ul><li>支持多种等待时间延迟执行</li><li>支持多种等待判断</li><li>支持快速结束某个协程</li><li>支持异步等待</li></ul><p>使用示例:</p><pre><code class="csharp">//tip:环境的Update需要定时执行//获取协程模块coroutineModule = Framework.GetEnv(EnvironmentType.Ev0).modules.Coroutine;//开启协程WaitExamplecoroutineModule.StartCoroutine(WaitExample());IEnumerator WaitExample()&#123;    Log.L(&quot;协程WaitExample开始&quot;);    yield return new WaitForFrame();    Log.L(&quot;一帧过去了&quot;);    yield return new WaitForFrames(20);    Log.L(&quot;20帧过去了&quot;);    yield return new WaitForHours(0.0004);    Log.L(&quot;0.0004小时过去了&quot;);&#125;</code></pre>]]></content>
       
       
       <categories>
@@ -675,11 +675,11 @@
     
     
     <entry>
-      <title>6-IFramework-模块-协程模块</title>
-      <link href="/2023/07/24/Doc/IFramework/6-IFramework-%E6%A8%A1%E5%9D%97-%E5%8D%8F%E7%A8%8B%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/6-IFramework-%E6%A8%A1%E5%9D%97-%E5%8D%8F%E7%A8%8B%E6%A8%A1%E5%9D%97/</url>
+      <title>7-IFramework-模块-依赖注入模块</title>
+      <link href="/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>更好地利用线程资源</p><p>模块特点:</p><ul><li>支持多种等待时间延迟执行</li><li>支持多种等待判断</li><li>支持快速结束某个协程</li><li>支持异步等待</li></ul><p>使用示例:</p><pre><code class="csharp">//tip:环境的Update需要定时执行//获取协程模块coroutineModule = Framework.GetEnv(EnvironmentType.Ev0).modules.Coroutine;//开启协程WaitExamplecoroutineModule.StartCoroutine(WaitExample());IEnumerator WaitExample()&#123;    Log.L(&quot;协程WaitExample开始&quot;);    yield return new WaitForFrame();    Log.L(&quot;一帧过去了&quot;);    yield return new WaitForFrames(20);    Log.L(&quot;20帧过去了&quot;);    yield return new WaitForHours(0.0004);    Log.L(&quot;0.0004小时过去了&quot;);&#125;</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>放什么拿什么</p><p>特点:</p><ul><li>支持直接注入和反射注入</li><li>支持根据name注入同类型的多个实例</li></ul><p>直接注入使用示例:</p><pre><code class="csharp">public interface ICommonInjectObject&#123;    void ToDo();&#125;public class CommonObject : ICommonInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//获取容器container = Framework.GetEnv(EnvironmentType.Ev0).container;//往容器中注册实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject());//获取实例var _commonObject = container.GetValue&lt;ICommonInjectObject&gt;();//通过name区分来注册多个同类型实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject(), &quot;Instance1&quot;);//根据name获取指定类型的实例_commonObject = container.GetValue&lt;ICommonInjectObject&gt;(&quot;Instance1&quot;);//使用容器的Clear方法清除当前所有注入的实例container.Clear();</code></pre><hr><p><em><strong>反射注入强调性能之处慎用</strong></em></p><p>反射注入使用示例:</p><pre><code class="csharp">public interface IReflectInjectObject&#123;    void ToDo();&#125;public class ReflectObject : IReflectInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//使用Inject这个Attribute标记需要反射注入的变量[Inject]public IReflectInjectObject _reflectObject;//Attribute增加name属性[Inject(&quot;Instance1&quot;)]public IReflectInjectObject _reflectMultiObject1; //以IReflectInjectObject的名义注入ReflectObject类型container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;();container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;(&quot;Instance1&quot;);//为当前类的含有[Inject]这个Attribute的对应类型的变量注入数据container.Inject(this);</code></pre>]]></content>
       
       
       <categories>
@@ -1034,7 +1034,7 @@
       <link href="/2023/06/27/Doc/WooAsset/2-WooAsset-%E9%85%8D%E7%BD%AE/"/>
       <url>/2023/06/27/Doc/WooAsset/2-WooAsset-%E9%85%8D%E7%BD%AE/</url>
       
-        <content type="html"><![CDATA[<h1 id="第一次使用"><a href="#第一次使用" class="headerlink" title="第一次使用"></a>第一次使用</h1><ul><li>打开编辑器窗口，操作如下图</li><li>如果报错，关闭窗口再打开一次即可</li><li>如果成功了，会在Assets&#x2F;Editor目录下看到两个配置文件<br><img src="/../../../Pic/Doc/WooAsset/firstopen.png" alt="Alt text"><br><img src="/../../../Pic/Doc/WooAsset/configasset.png" alt="Alt text"></li></ul><h1 id="配置资源"><a href="#配置资源" class="headerlink" title="配置资源"></a>配置资源</h1><p><img src="/../../../Pic/Doc/WooAsset/option_build.png" alt="Alt text"></p><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>Pkgs</td><td>打包的资源包</td></tr><tr><td>BuildInAssets</td><td>在把bundle拷贝到stream时候，根据这个配置决定拷贝哪些bundle（不配置拷贝全部）</td></tr><tr><td>Version</td><td>此次打包出去的版本</td></tr><tr><td>MaxCacheVersionCount</td><td>远程版本文件最多包含的版本个数</td></tr><tr><td>CleanHistory</td><td>每次打包结束之后是否清理history文件夹</td></tr><tr><td>Copytostream</td><td>拷贝资源到stream，如果  BuildInAssets未配置会拷贝所有，否则会更具BuildInAssets筛选</td></tr><tr><td>build mode</td><td>打包模式（是否增量式）</td></tr><tr><td>bundle name type</td><td>输出资源名称风格（名&#x2F;名_Hash&#x2F;Hash）</td></tr><tr><td>type tree option</td><td>资源类型信息</td></tr><tr><td>Compress</td><td>资源压缩格式</td></tr><tr><td>Asset Build</td><td>自定义打包流程（可扩展）</td></tr><tr><td>Encrypt</td><td>文件加密方式（可扩展）</td></tr><tr><td>Build Target</td><td>当前打包的平台</td></tr><tr><td>Editor Simulator Path</td><td>编辑器模拟路径</td></tr><tr><td>Output Path</td><td>输出路径</td></tr><tr><td>History Path</td><td>历史文件所在文件夹，第一次打包时候把他删了，后续不要动里面的文件</td></tr><tr><td>stream bundle directory</td><td>stream保存资源的文件夹</td></tr></tbody></table><h2 id="资源组介绍"><a href="#资源组介绍" class="headerlink" title="资源组介绍"></a>资源组介绍</h2><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>Build</td><td>该组是否需要打包 （给分布式打包使用）</td></tr><tr><td>Name</td><td>包的名字（不可重复，不为空）</td></tr><tr><td>Paths</td><td>对应的项目路径  （不可重复，不为空）</td></tr><tr><td>Description</td><td>对包加点描述</td></tr><tr><td>Tags</td><td>对包加一些标记</td></tr><tr><td>builds</td><td>分包规则       （也可以纯粹代码分包，但是此项目不可以存在配置）</td></tr></tbody></table><ul><li>每个资源组均可以分开打包，更新，加载</li><li>保持好良好的资源组结构，方式生成过多冗余</li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="第一次使用"><a href="#第一次使用" class="headerlink" title="第一次使用"></a>第一次使用</h1><ul><li>打开编辑器窗口，操作如下图</li><li>如果报错，关闭窗口再打开一次即可</li><li>如果成功了，会在Assets&#x2F;Editor目录下看到两个配置文件<br><img src="/../../../Pic/Doc/WooAsset/firstopen.png" alt="Alt text"><br><img src="/../../../Pic/Doc/WooAsset/configasset_1.png.png" alt="Alt text"></li></ul><h1 id="配置资源"><a href="#配置资源" class="headerlink" title="配置资源"></a>配置资源</h1><p><img src="/../../../Pic/Doc/WooAsset/option_build.png" alt="Alt text"></p><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>Pkgs</td><td>打包的资源包</td></tr><tr><td>BuildInAssets</td><td>在把bundle拷贝到stream时候，根据这个配置决定拷贝哪些bundle（不配置拷贝全部）</td></tr><tr><td>Version</td><td>此次打包出去的版本</td></tr><tr><td>MaxCacheVersionCount</td><td>远程版本文件最多包含的版本个数</td></tr><tr><td>CleanHistory</td><td>每次打包结束之后是否清理history文件夹</td></tr><tr><td>Copytostream</td><td>拷贝资源到stream，</td></tr><tr><td>Build-In Bundle Selector</td><td>内建资源选择器</td></tr><tr><td>Build Pipeline</td><td>管线 内置 &#x2F;SBP</td></tr><tr><td>build mode</td><td>打包模式（是否增量式）</td></tr><tr><td>bundle name type</td><td>输出资源名称风格（名&#x2F;名_Hash&#x2F;Hash）</td></tr><tr><td>type tree option</td><td>资源类型信息</td></tr><tr><td>Compress</td><td>资源压缩格式</td></tr><tr><td>Asset Build</td><td>自定义打包流程（可扩展）</td></tr><tr><td>Encrypt</td><td>文件加密方式（可扩展）</td></tr><tr><td>Bundle Result Optimizer</td><td>对构建结果优化   (合理化分包，处理循环依赖、冗余，颗粒度…..)</td></tr><tr><td>Optimization Count</td><td>优化迭代次数</td></tr><tr><td>Build Target</td><td>当前打包的平台</td></tr><tr><td>Editor Simulator Path</td><td>编辑器模拟路径</td></tr><tr><td>Output Path</td><td>输出路径</td></tr><tr><td>History Path</td><td>历史文件所在文件夹，第一次打包时候把他删了，后续不要动里面的文件</td></tr><tr><td>stream bundle directory</td><td>stream保存资源的文件夹</td></tr></tbody></table><h2 id="资源组介绍"><a href="#资源组介绍" class="headerlink" title="资源组介绍"></a>资源组介绍</h2><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>Build</td><td>该组是否需要打包 （给分布式打包使用）</td></tr><tr><td>Name</td><td>包的名字（不可重复，不为空）</td></tr><tr><td>Paths</td><td>对应的项目路径  （不可重复，不为空）</td></tr><tr><td>Description</td><td>对包加点描述</td></tr><tr><td>Tags</td><td>对包加一些标记</td></tr><tr><td>builds</td><td>分包规则       （也可以纯粹代码分包，但是此项目不可以存在配置）</td></tr></tbody></table><ul><li>每个资源组均可以分开打包，更新，加载</li><li>保持好良好的资源组结构，方式生成过多冗余</li></ul>]]></content>
       
       
       <categories>
@@ -1084,33 +1084,6 @@
     
     
     <entry>
-      <title>WooAsset-一些工具</title>
-      <link href="/2023/06/27/Doc/WooAsset/4-WooAsset-%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7/"/>
-      <url>/2023/06/27/Doc/WooAsset/4-WooAsset-%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7/</url>
-      
-        <content type="html"><![CDATA[<p><img src="/../../../Pic/Doc/WooAsset/option_tool.png" alt="Alt text"></p><h1 id="AssetMOde"><a href="#AssetMOde" class="headerlink" title="AssetMOde"></a>AssetMOde</h1><ul><li>Normal  正式的模式</li><li>Rude    粗鲁的，纯粹的编辑器加载，不需要任何配置</li><li>AssetDatabase  与 Normal 差不多，但是 不需要打包，是编辑器模拟</li></ul><h1 id="AssetServer"><a href="#AssetServer" class="headerlink" title="AssetServer"></a>AssetServer</h1><ul><li>配合 normal（AssetMOde）使用，快速检查网络加载等问题</li><li>资源都在 Server 目录下，每次打包都会 把输出的bundle 拷贝到 Server 目录</li></ul><h1 id="Shader-Variant-防止-着色器丢失-点击Tools-x2F-WooAsset-x2F-Help-x2F-ShaderVariant"><a href="#Shader-Variant-防止-着色器丢失-点击Tools-x2F-WooAsset-x2F-Help-x2F-ShaderVariant" class="headerlink" title="Shader Variant 防止 着色器丢失 点击Tools&#x2F;WooAsset&#x2F;Help&#x2F;ShaderVariant"></a>Shader Variant 防止 着色器丢失 点击Tools&#x2F;WooAsset&#x2F;Help&#x2F;ShaderVariant</h1><h1 id="Sprite-Atlas-打图集-点击Tools-x2F-WooAsset-x2F-Help-x2F-SpriteAtlas"><a href="#Sprite-Atlas-打图集-点击Tools-x2F-WooAsset-x2F-Help-x2F-SpriteAtlas" class="headerlink" title="Sprite Atlas  打图集 点击Tools&#x2F;WooAsset&#x2F;Help&#x2F;SpriteAtlas"></a>Sprite Atlas  打图集 点击Tools&#x2F;WooAsset&#x2F;Help&#x2F;SpriteAtlas</h1><ul><li>设置好图集相关设置</li></ul><h1 id="Asset-Tags"><a href="#Asset-Tags" class="headerlink" title="Asset Tags"></a>Asset Tags</h1><ul><li>给相应的资源加标记的记录</li><li>具体操作（在Assets页签，选中资源-》右键）</li><li>需要先在窗口  AssetTags 中 预设tag</li></ul><h1 id="Record-Ignore"><a href="#Record-Ignore" class="headerlink" title="Record Ignore"></a>Record Ignore</h1><ul><li>规定一些资源不记录到资源清单内</li><li>属于优化选项</li><li>具体操作（在Assets页签，选中资源-》右键）</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> WooAsset </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> WooAsset </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>WooAsset-更新_初始化 _加载_卸载</title>
       <link href="/2023/06/27/Doc/WooAsset/5-WooAsset-%E6%9B%B4%E6%96%B0_%E5%88%9D%E5%A7%8B%E5%8C%96%20_%E5%8A%A0%E8%BD%BD_%E5%8D%B8%E8%BD%BD/"/>
       <url>/2023/06/27/Doc/WooAsset/5-WooAsset-%E6%9B%B4%E6%96%B0_%E5%88%9D%E5%A7%8B%E5%8C%96%20_%E5%8A%A0%E8%BD%BD_%E5%8D%B8%E8%BD%BD/</url>
@@ -1138,11 +1111,38 @@
     
     
     <entry>
+      <title>WooAsset-一些工具</title>
+      <link href="/2023/06/27/Doc/WooAsset/4-WooAsset-%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7/"/>
+      <url>/2023/06/27/Doc/WooAsset/4-WooAsset-%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/../../../Pic/Doc/WooAsset/option_tool.png" alt="Alt text"></p><h1 id="AssetMOde"><a href="#AssetMOde" class="headerlink" title="AssetMOde"></a>AssetMOde</h1><ul><li>Normal  正式的模式</li><li>Rude    粗鲁的，纯粹的编辑器加载，不需要任何配置</li><li>AssetDatabase  与 Normal 差不多，但是 不需要打包，是编辑器模拟</li></ul><h1 id="AssetServer"><a href="#AssetServer" class="headerlink" title="AssetServer"></a>AssetServer</h1><ul><li>配合 normal（AssetMOde）使用，快速检查网络加载等问题</li><li>资源都在 Server 目录下，每次打包都会 把输出的bundle 拷贝到 Server 目录</li></ul><h1 id="Shader-Variant-防止-着色器丢失-点击Tools-x2F-WooAsset-x2F-Help-x2F-ShaderVariant"><a href="#Shader-Variant-防止-着色器丢失-点击Tools-x2F-WooAsset-x2F-Help-x2F-ShaderVariant" class="headerlink" title="Shader Variant 防止 着色器丢失 点击Tools&#x2F;WooAsset&#x2F;Help&#x2F;ShaderVariant"></a>Shader Variant 防止 着色器丢失 点击Tools&#x2F;WooAsset&#x2F;Help&#x2F;ShaderVariant</h1><h1 id="Sprite-Atlas-打图集-点击Tools-x2F-WooAsset-x2F-Help-x2F-SpriteAtlas"><a href="#Sprite-Atlas-打图集-点击Tools-x2F-WooAsset-x2F-Help-x2F-SpriteAtlas" class="headerlink" title="Sprite Atlas  打图集 点击Tools&#x2F;WooAsset&#x2F;Help&#x2F;SpriteAtlas"></a>Sprite Atlas  打图集 点击Tools&#x2F;WooAsset&#x2F;Help&#x2F;SpriteAtlas</h1><ul><li>设置好图集相关设置</li></ul><h1 id="Asset-Tags"><a href="#Asset-Tags" class="headerlink" title="Asset Tags"></a>Asset Tags</h1><ul><li>给相应的资源加标记的记录</li><li>具体操作（在Assets页签，选中资源-》右键）</li><li>需要先在窗口  AssetTags 中 预设tag</li></ul><h1 id="Record-Ignore"><a href="#Record-Ignore" class="headerlink" title="Record Ignore"></a>Record Ignore</h1><ul><li>规定一些资源不记录到资源清单内</li><li>属于优化选项</li><li>具体操作（在Assets页签，选中资源-》右键）</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooAsset </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooAsset </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>WooAsset-个性化</title>
       <link href="/2023/06/27/Doc/WooAsset/7-WooAsset-%E4%B8%AA%E6%80%A7%E5%8C%96/"/>
       <url>/2023/06/27/Doc/WooAsset/7-WooAsset-%E4%B8%AA%E6%80%A7%E5%8C%96/</url>
       
-        <content type="html"><![CDATA[<h2 id="打包个性化"><a href="#打包个性化" class="headerlink" title="打包个性化"></a>打包个性化</h2><pre><code class="csharp"> //个性化打包流程public abstract class IAssetBuild&#123;//是否记录这个路径bool GetIsRecord(string path) ;//自定义 资源 Tag （可以按照tag加载一组资源）List&lt;string&gt; GetAssetTags(string path) ;//自定义版本规则string GetVersion(string settingVersion, AssetTaskContext context);//更具一个路径返回资源类型（覆盖）AssetType CoverAssetType(string path, AssetType type) ;// 自定义资源分组void Create(List&lt;EditorAssetData&gt; assets, List&lt;EditorBundleData&gt; result, EditorPackageData pkg);//自定义加密IAssetStreamEncrypt GetBundleEncrypt(EditorPackageData pkg, EditorBundleData data, IAssetStreamEncrypt en) ;int GetEncryptCode(IAssetStreamEncrypt en);IAssetStreamEncrypt GetEncryptByCode(int code)&#125;</code></pre><h2 id="加载个性化"><a href="#加载个性化" class="headerlink" title="加载个性化"></a>加载个性化</h2><pre><code class="csharp">///写一个 class 继承于 AssetsSettingpublic abstract class AssetsSetting&#123;  ///是否需要拷贝内置资源  public virtual bool NeedCopyStreamBundles() &#123;&#125;  ///一帧内最多多少毫秒在加载资源  public virtual long GetLoadingMaxTimeSlice()&#123;&#125;  ///下载的路径  //举例 ：https://xxx.xxx.xx  //http://127.0.0.1:8080  // Application.StreamingPath   protected virtual string GetBaseUrl() &#123;&#125;  ///自定义 bundle 去哪里下载public virtual string GetUrlByBundleName(string buildTarget, string bundleName) =&gt; $&quot;&#123;GetBaseUrl()&#125;/&#123;buildTarget&#125;/&#123;bundleName&#125;&quot;; public virtual string GetUrlByBundleName(string buildTarget, string version, string bundleName) =&gt; $&quot;&#123;GetBaseUrl()&#125;/&#123;buildTarget&#125;/&#123;version&#125;/&#123;bundleName&#125;&quot;;  /// 如果本地没有是否需要保存文件  // GetBundleAlwaysFromWebRequest 返回 true 该选项不起效  public virtual bool GetSaveBundlesWhenPlaying()&#123;&#125;  //永远从远端下载   public virtual bool GetBundleAlwaysFromWebRequest() &#123;&#125;  /// 下载超时  public virtual int GetWebRequestTimeout() &#123;&#125;  ///下载重试次数  public virtual int GetWebRequestRetryCount() &#123;  &#125;//是否开启模糊加载//Assets.loadAsset(&quot;Assets/a.png&quot;)//开启后 Assets.loadAsset(&quot;Assets/a&quot;)//注意 开启之后，同一个文件夹下不可以出现同名文件   public virtual string GetFuzzySearch()&#123;&#125;  ///是否自动卸载 AB  //如果未开启，需要在合适的时机手动调用   Assets.UnloadBundles  public virtual bool GetAutoUnloadBundle() &#123;&#125;  ///资源加密方式  public virtual IAssetStreamEncrypt GetEncrypt(int code) &#123;&#125;  /// 自定义的资源生命周期管理，bundle和asset均可以  public virtual IAssetLife GetAssetLife()&#123;&#125;&#125;</code></pre><h2 id="资源加密"><a href="#资源加密" class="headerlink" title="资源加密"></a>资源加密</h2><pre><code class="csharp">//个性化加密    public interface IAssetEncrypt    &#123;        byte[] Encode(string bundleName, byte[] buffer);        byte[] Decode(string bundleName, byte[] buffer);        byte[] Decode(string bundleName, byte[] buffer, int offset, int length);    &#125;</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="打包个性化"><a href="#打包个性化" class="headerlink" title="打包个性化"></a>打包个性化</h2><pre><code class="csharp"> //个性化打包流程public abstract class IAssetBuild&#123;//是否记录这个路径bool GetIsRecord(string path) ;//自定义 资源 Tag （可以按照tag加载一组资源）List&lt;string&gt; GetAssetTags(string path) ;//自定义版本规则string GetVersion(string settingVersion, AssetTaskContext context);//更具一个路径返回资源类型（覆盖）AssetType CoverAssetType(string path, AssetType type) ;// 自定义资源分组void Create(List&lt;EditorAssetData&gt; assets, List&lt;EditorBundleData&gt; result, EditorPackageData pkg);//自定义加密IAssetStreamEncrypt GetBundleEncrypt(EditorPackageData pkg, EditorBundleData data, IAssetStreamEncrypt en) ;int GetEncryptCode(IAssetStreamEncrypt en);IAssetStreamEncrypt GetEncryptByCode(int code)&#125;</code></pre><h3 id="打包管线-内建（自带）-x2F-SBP（后续文章有）"><a href="#打包管线-内建（自带）-x2F-SBP（后续文章有）" class="headerlink" title="打包管线 内建（自带）&#x2F;SBP（后续文章有）"></a>打包管线 内建（自带）&#x2F;SBP（后续文章有）</h3><pre><code class="csharp">    public interface IBuildPipeLine    &#123;        bool BuildAssetBundles(string outputPath, AssetBundleBuild[] builds, BuildAssetBundleOptions assetBundleOptions, BuildTarget targetPlatform);        List&lt;string&gt; GetAllAssetBundles(BundleNameType nameType);        List&lt;string&gt; GetAllDependencies(string assetBundleName, BundleNameType nameType);        uint GetBundleCrc(string directory, string bundleName, BundleNameType nameType);        string GetBundleHash(string directory, string bundleName, BundleNameType nameType);        BuildAssetBundleOptions GetBundleOption(AssetTaskParams param, out string err);    &#125;</code></pre><h3 id="资源分包优化"><a href="#资源分包优化" class="headerlink" title="资源分包优化"></a>资源分包优化</h3><pre><code class="csharp">    public interface IBundleOptimizer    &#123;        List&lt;EditorBundleData&gt; Optimize(List&lt;EditorBundleData&gt; builds, EditorPackageData buildPkg, IAssetsBuild build);    &#125;</code></pre><h3 id="内建资源选择"><a href="#内建资源选择" class="headerlink" title="内建资源选择"></a>内建资源选择</h3><pre><code class="csharp">    public interface IBuildInBundleSelector    &#123;        /// &lt;summary&gt;        ///         /// &lt;/summary&gt;        /// &lt;param name=&quot;files&quot;&gt;打包出的所有文件&lt;/param&gt;        /// &lt;param name=&quot;buildInAssets&quot;&gt;编辑器配置&lt;/param&gt;        /// &lt;param name=&quot;buildInConfig&quot;&gt;必须拷贝的文件&lt;/param&gt;        /// &lt;param name=&quot;manifest&quot;&gt;打包出来的配置文件（Merged）&lt;/param&gt;        /// &lt;param name=&quot;exports&quot;&gt;打包报告（Merged）&lt;/param&gt;        /// &lt;returns&gt;&lt;/returns&gt;        string[] Select(string[] files, List&lt;string&gt; buildInAssets, List&lt;string&gt; buildInConfig, ManifestData manifest, List&lt;PackageExportData&gt; exports);    &#125;</code></pre><h3 id="低代码打包，配合资源组分包-使用，用于选出需要的资源"><a href="#低代码打包，配合资源组分包-使用，用于选出需要的资源" class="headerlink" title="低代码打包，配合资源组分包 使用，用于选出需要的资源"></a>低代码打包，配合资源组分包 使用，用于选出需要的资源</h3><pre><code class="csharp">    public interface IAssetSelector    &#123;        List&lt;EditorAssetData&gt; Select(List&lt;EditorAssetData&gt; assets, AssetSelectorParam param);    &#125;</code></pre><h2 id="加载个性化"><a href="#加载个性化" class="headerlink" title="加载个性化"></a>加载个性化</h2><pre><code class="csharp">///写一个 class 继承于 AssetsSettingpublic abstract class AssetsSetting&#123;  //是否要检查总版本文件  //比如 服务器给出版本 0.0.1，是否去版本记录里面查有没有这个版本  public virtual bool CheckVersionByVersionCollection() =&gt; false;  //拷贝stream 路径重写  public virtual string GetStreamingFileUrl(string url)&#123;&#125;  //是否从缓存加载ab  public virtual bool GetCachesDownloadedBundles() =&gt; false;  //按照名字搜索时候，名字是否有后缀，可以近似实现 Resources.Load  public virtual FileNameSearchType GetFileNameSearchType()&#123;&#125;    //是否需要拷贝stream到沙盒  public virtual bool NeedCopyStreamBundles() &#123;&#125;  ///一帧内最多多少毫秒在加载资源  public virtual long GetLoadingMaxTimeSlice()&#123;&#125;    /// 如果本地没有是否需要保存文件  // GetBundleAlwaysFromWebRequest 返回 true 该选项不起效  public virtual bool GetSaveBytesWhenPlaying() =&gt; true;  ///下载的路径  //举例 ：https://xxx.xxx.xx  //http://127.0.0.1:8080  // Application.StreamingPath   protected virtual string GetBaseUrl() &#123;&#125;  ///自定义 bundle 去哪里下载public virtual string GetUrlByBundleName(string buildTarget, string bundleName) =&gt; $&quot;&#123;GetBaseUrl()&#125;/&#123;buildTarget&#125;/&#123;bundleName&#125;&quot;; public virtual string GetUrlByBundleName(string buildTarget, string version, string bundleName) =&gt; $&quot;&#123;GetBaseUrl()&#125;/&#123;buildTarget&#125;/&#123;version&#125;/&#123;bundleName&#125;&quot;;  //永远从远端下载   public virtual bool GetBundleAlwaysFromWebRequest() &#123;&#125;  /// 下载超时  public virtual int GetWebRequestTimeout() &#123;&#125;  ///下载重试次数  public virtual int GetWebRequestRetryCount() &#123;  &#125;//是否开启模糊加载//Assets.loadAsset(&quot;Assets/a.png&quot;)//开启后 Assets.loadAsset(&quot;Assets/a&quot;)//注意 开启之后，同一个文件夹下不可以出现同名文件   public virtual string GetFuzzySearch()&#123;&#125;  ///是否自动卸载 AB  //如果未开启，需要在合适的时机手动调用   Assets.UnloadBundles  public virtual bool GetAutoUnloadBundle() &#123;&#125;  ///资源加密方式  public virtual IAssetStreamEncrypt GetEncrypt(int code) &#123;&#125;  /// 自定义的资源生命周期管理，bundle和asset均可以  public virtual IAssetLife GetAssetLife()&#123;&#125;&#125;</code></pre><h2 id="资源加密"><a href="#资源加密" class="headerlink" title="资源加密"></a>资源加密</h2><pre><code class="csharp">//个性化加密    public interface IAssetEncrypt    &#123;        byte[] Encode(string bundleName, byte[] buffer);        byte[] Decode(string bundleName, byte[] buffer);        byte[] Decode(string bundleName, byte[] buffer, int offset, int length);    &#125;</code></pre>]]></content>
       
       
       <categories>
@@ -1169,7 +1169,7 @@
       <link href="/2023/06/27/Doc/WooAsset/8-WooAsset-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/"/>
       <url>/2023/06/27/Doc/WooAsset/8-WooAsset-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/</url>
       
-        <content type="html"><![CDATA[<h2 id="实例化-物体"><a href="#实例化-物体" class="headerlink" title="实例化 物体"></a>实例化 物体</h2><pre><code class="csharp">// 创建  var oppp = await Assets.InstantiateAsync(path, parent);// 干点啥  //销毁  //销毁时候会自动改变引用计数，不需要手动Assets.Release  oppp.Destroy();</code></pre><h2 id="资源模糊搜索"><a href="#资源模糊搜索" class="headerlink" title="资源模糊搜索"></a>资源模糊搜索</h2><pre><code class="csharp">public class AssetsSearch    &#123;///以下是交集        public static IReadOnlyList&lt;string&gt; IntersectNameAndTag(string assetName, params string[] tags);        public static IReadOnlyList&lt;string&gt; IntersectTag(params string[] tags);        public static IReadOnlyList&lt;string&gt; IntersectTypeAndNameAndTag(AssetType type, string assetName, params string[] tags);        public static IReadOnlyList&lt;string&gt; IntersectTypeAndTag(AssetType type, params string[] tags);///以下是并集        public static IReadOnlyList&lt;string&gt; Union(params string[] nameOrTags);        public static IReadOnlyList&lt;string&gt; UnionTag(params string[] tags);        public static IReadOnlyList&lt;string&gt; UnionName(params string[] names);        public static IReadOnlyList&lt;string&gt; UnionNameAndTag(string assetName, params string[] tags);        public static IReadOnlyList&lt;string&gt; UnionTypeAndNameAndTag(AssetType type, string assetName, params string[] tags);        public static IReadOnlyList&lt;string&gt; UnionTypeAndTag(AssetType type, params string[] tags);        public static IReadOnlyList&lt;string&gt; AssetPathByType(AssetType type);    &#125;</code></pre><h2 id="资源组加载"><a href="#资源组加载" class="headerlink" title="资源组加载"></a>资源组加载</h2><h3 id="何时使用：某些地方必须需要同步加载资源（先准备一下）-x2F-一次型加载配置表，读取到内存之后，卸载"><a href="#何时使用：某些地方必须需要同步加载资源（先准备一下）-x2F-一次型加载配置表，读取到内存之后，卸载" class="headerlink" title="何时使用：某些地方必须需要同步加载资源（先准备一下）&#x2F; 一次型加载配置表，读取到内存之后，卸载"></a>何时使用：某些地方必须需要同步加载资源（先准备一下）&#x2F; 一次型加载配置表，读取到内存之后，卸载</h3><pre><code class="csharp">//准备一组资源string[] groups ;var assets= await Assets.PrepareAssets(groups)//或者按照 tag 准备一组资源var assets=Assets.PrepareAssetsByTag(tag)///加载对应的资源方法一string path;var asset = assets.FindAsset(path)///加载对应的资源方法二var asset = Assets.LoadAssetAsync(path)///注意：方式二会增加引用计数，需要在合适的地方 Assets.Release(asset)///方式一不会增加引用计数///把整组资源全都卸载了assets.Release();///配合资源模糊搜索一起使用//使用场景，进入战斗场景之前把战斗需要的资源全加载</code></pre><h2 id="方便的资源卸载"><a href="#方便的资源卸载" class="headerlink" title="方便的资源卸载"></a>方便的资源卸载</h2><h3 id="基础方式"><a href="#基础方式" class="headerlink" title="基础方式"></a>基础方式</h3><ul><li>场景</li><li>一个ui界面上面有一个image</li><li>运行时候需要不停的替换image的sprite</li><li>界面关闭的时候需要把image的sprite卸载</li></ul><pre><code class="csharp">///所有的设置图片都走这个方法public static async void SetSprite(Image image, string path)&#123;    var asset = await Assets.LoadAssetAsync(path);    if (asset.isErr) return;    image.sprite = asset.GetAsset&lt;Sprite&gt;();    Assets.AddBridge(new GameObjectBridge(image.gameObject,asset));&#125;///在合适的时候调用一次即可（比如：切换场景时候）public static void ReleaseUselessBridges()&#123;    Assets.ReleaseUselessBridges();&#125;</code></pre><p>其他类型的资源&#x2F;组件，可以 继承 AssetBridge&lt; T &gt; 自行实现即可</p><h3 id="更加方便的方式（有风险）"><a href="#更加方便的方式（有风险）" class="headerlink" title="更加方便的方式（有风险）"></a>更加方便的方式（有风险）</h3><pre><code class="csharp">public class LocalSetting : AssetsSetting&#123;    public override IAssetLife GetAssetLife()    &#123;      /// 参数是缓存的内存大小，超过这个数字会自动卸载最早的资源        return new LRULife(1024 * 50);    &#125;&#125;Assets.SetAssetsSetting(new LocalSetting());</code></pre><ul><li>可以实现 bundle 不自动卸载，到达一定大小在开始卸载</li><li>如果内存不足时候，最早被使用的资源会被优先卸载</li><li>内存设置的别太小，容易出现资源丢失</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="实例化-物体"><a href="#实例化-物体" class="headerlink" title="实例化 物体"></a>实例化 物体</h2><pre><code class="csharp">// 创建  var oppp = await Assets.InstantiateAsync(path, parent);// 干点啥  //销毁  //销毁时候会自动改变引用计数，不需要手动Assets.Release  oppp.Destroy();</code></pre><h2 id="AssetReference-amp-amp-使用例子"><a href="#AssetReference-amp-amp-使用例子" class="headerlink" title="AssetReference &amp;&amp; 使用例子"></a>AssetReference &amp;&amp; 使用例子</h2><pre><code class="csharp">  [System.Serializable]  public class AssetReference&lt;T&gt; : AssetReference where T : UnityEngine.Object  &#123;      public override Type type =&gt; typeof(T);  &#125;</code></pre><pre><code class="csharp">    public class AssetExample : UnityEngine.MonoBehaviour    &#123;        public Image image;        public AssetReference&lt;UnityEngine.Sprite&gt; assetReference;    &#125;</code></pre><h2 id="资源模糊搜索"><a href="#资源模糊搜索" class="headerlink" title="资源模糊搜索"></a>资源模糊搜索</h2><pre><code class="csharp">//获得所有资源路径 public static IReadOnlyList&lt;string&gt; GetAllAssetPaths() ; //获得一个tag 的所有路径 public static IReadOnlyList&lt;string&gt; GetTagAssetPaths(string tag) ; //获得所有资源路径 public static IReadOnlyList&lt;string&gt; GetAllTags(); //更具tag 获得唯一 资源 public static string GetUniqueAssetPathByTag(string tag); //获得所有满足条件的资源 public static IReadOnlyList&lt;string&gt; GetAssetPath(Func&lt;AssetData, bool&gt; fit); //获得唯一满足条件的资源 public static string GetUniqueAssetPath(Func&lt;AssetData, bool&gt; fit); //通过名字找到名字一致的资源 public static IReadOnlyList&lt;string&gt; GetAssetsByAssetName(string name) ;//得到对应路径数据 public static AssetData GetAssetData(string assetPath);</code></pre><h2 id="资源组加载"><a href="#资源组加载" class="headerlink" title="资源组加载"></a>资源组加载</h2><h3 id="何时使用：某些地方必须需要同步加载资源（先准备一下）-x2F-一次型加载配置表，读取到内存之后，卸载"><a href="#何时使用：某些地方必须需要同步加载资源（先准备一下）-x2F-一次型加载配置表，读取到内存之后，卸载" class="headerlink" title="何时使用：某些地方必须需要同步加载资源（先准备一下）&#x2F; 一次型加载配置表，读取到内存之后，卸载"></a>何时使用：某些地方必须需要同步加载资源（先准备一下）&#x2F; 一次型加载配置表，读取到内存之后，卸载</h3><pre><code class="csharp">//准备一组资源string[] groups ;var assets= await Assets.PrepareAssets(groups)//或者按照 tag 准备一组资源var assets=Assets.PrepareAssetsByTag(tag)///加载对应的资源方法一string path;var asset = assets.FindAsset(path)///加载对应的资源方法二var asset = Assets.LoadAssetAsync(path)///注意：方式二会增加引用计数，需要在合适的地方 Assets.Release(asset)///方式一不会增加引用计数///把整组资源全都卸载了assets.Release();///配合资源模糊搜索一起使用//使用场景，进入战斗场景之前把战斗需要的资源全加载</code></pre><h2 id="方便的资源卸载"><a href="#方便的资源卸载" class="headerlink" title="方便的资源卸载"></a>方便的资源卸载</h2><h3 id="基础方式"><a href="#基础方式" class="headerlink" title="基础方式"></a>基础方式</h3><ul><li>场景</li><li>一个ui界面上面有一个image</li><li>运行时候需要不停的替换image的sprite</li><li>界面关闭的时候需要把image的sprite卸载</li></ul><pre><code class="csharp">///所有的设置图片都走这个方法public static async void SetSprite(Image image, string path)&#123;    var asset = await Assets.LoadAssetAsync(path);    if (asset.isErr) return;    image.sprite = asset.GetAsset&lt;Sprite&gt;();    Assets.AddBridge(new GameObjectBridge(image.gameObject,asset));&#125;///在合适的时候调用一次即可（比如：切换场景时候）public static void ReleaseUselessBridges()&#123;    Assets.ReleaseUselessBridges();&#125;</code></pre><p>其他类型的资源&#x2F;组件，可以 继承 AssetBridge&lt; T &gt; 自行实现即可</p><h3 id="更加方便的方式（有风险）"><a href="#更加方便的方式（有风险）" class="headerlink" title="更加方便的方式（有风险）"></a>更加方便的方式（有风险）</h3><pre><code class="csharp">public class LocalSetting : AssetsSetting&#123;    public override IAssetLife GetAssetLife()    &#123;      /// 参数是缓存的内存大小，超过这个数字会自动卸载最早的资源        return new LRULife(1024 * 50);    &#125;&#125;Assets.SetAssetsSetting(new LocalSetting());</code></pre><ul><li>可以实现 bundle 不自动卸载，到达一定大小在开始卸载</li><li>如果内存不足时候，最早被使用的资源会被优先卸载</li><li>内存设置的别太小，容易出现资源丢失</li></ul>]]></content>
       
       
       <categories>
@@ -1815,7 +1815,7 @@
       <link href="/2023/05/19/Doc/WooAsset/0-WooAsset-%E7%AE%80%E4%BB%8B/"/>
       <url>/2023/05/19/Doc/WooAsset/0-WooAsset-%E7%AE%80%E4%BB%8B/</url>
       
-        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/WooAsset">地址</a></h1><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>WooAsset可以满足以下任何需求：</p><ul><li>我想发布一个不包含任何游戏资源的安装包，然后玩家边玩边下载。</li><li>我想发布一个可以保证前期体验的安装包，然后玩家自己选择下载关卡内容。</li><li>我想发布一个保证300MB以下内容的安装包，然后进入游戏之前把剩余内容下载完毕。</li><li>我想发布一个偏单机的游戏安装包，在网络畅通的时候，支持正常更新。在没有网络的时候，支持游玩老版本。</li><li>我想发布一个MOD游戏安装包，玩家可以把自己制作的MOD内容上传到服务器，其它玩家可以下载游玩。</li><li>我们在制作一个超大体量的项目，有上百GB的资源内容，每次构建都花费大量时间，是否可以分工程构建？</li></ul><h2 id="系统特点"><a href="#系统特点" class="headerlink" title="系统特点"></a>系统特点</h2><ul><li>Editor、Runtime均支持同步、异步、委托、携程</li><li>支持各个模式切换（无需修改代码）</li><li>支持自定义资源加密</li><li>支持分布式构建(支持mod)</li><li>支持 shader 变体收集</li><li>支持 构建 spriteatlas</li><li>支持打包&#x2F;加载Unity无法识别的文件</li><li>支持打包流程自定义（自定义分包、版本规划、结束流程、自定义标签）</li><li>包含本地资源服务器</li><li>支持快速版本切换，回退</li><li>支持资源模糊搜索</li><li>支持子资源加载</li><li>支持资源懒卸载&#x2F;内存大小控制</li><li>支持webgl</li><li>支持资源分析</li><li>支持下载重试</li><li>支持只可以路径加载的插件&#x2F;代码</li><li>支持加载 非打包文件</li><li>支持分帧加载</li></ul><h2 id="支持的模式"><a href="#支持的模式" class="headerlink" title="支持的模式"></a>支持的模式</h2><p>各个模式切换无需修改代码</p><ul><li>0 编辑器模拟加载         (纯粹编辑器模拟)</li><li>1 纯粹的C#空包，   （注意：本地不会有任何ab）</li><li>2 发布 正常流程包       （比模式1 多一个版本检查）</li><li>3 发布 游戏前期的体验包  (把资源拷贝到stream)</li><li>4 边玩边下载</li><li>5 先准备一部分，后续靠下载</li></ul><h3 id="模式区别"><a href="#模式区别" class="headerlink" title="模式区别"></a>模式区别</h3><table><tr><th></th><th>模式/流程</th><th>编辑器模拟</th><th>纯C#空包</th><th>正常流程</th><th>前期的体验</th><th>边玩边下载</th><th>先准备一部分</th></tr><tr ><td rowspan="5">打包</td></tr><tr><th>选择FastMode        </th><th>✔</th><th> </th><th> </th><th> </th><th> </th><th> </th></tr><tr><th>打包资源            </th><th>  </th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th></tr><tr><th>拷贝资源到stream     </th><th>  </th><th> </th><th> </th><th>✔</th><th> </th><th>按tag拷贝</th></tr><tr><th>上传资源到服务器     </th><th>  </th><th>✔</th><th>✔</th><th> </th><th>✔</th><th>✔</th></tr><tr ><td rowspan="7">加载</td></tr><tr><th>设置AssetsSetting   </th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th></tr><tr><th>拷贝资源到沙盒路径   </th><th> </th><th> </th><th> </th><th>✔</th><th> </th><th>✔</th></tr><tr><th>版本检查            </th><th> </th><th> </th><th>✔</th><th> </th><th>可选</th><th>可选</th></tr><tr><th>下载变化资源        </th><th> </th><th> </th><th>✔</th><th> </th><th> </th><th>可选</th></tr><tr><th>初始化              </th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th></tr><tr><th>正常加载            </th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th><th>✔</th></tr></table>]]></content>
+        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/WooAsset">地址</a></h1><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>WooAsset可以满足以下任何需求：</p><ul><li>我想发布一个不包含任何游戏资源的安装包，然后玩家边玩边下载。</li><li>我想发布一个可以保证前期体验的安装包，然后玩家自己选择下载关卡内容。</li><li>我想发布一个保证300MB以下内容的安装包，然后进入游戏之前把剩余内容下载完毕。</li><li>我想发布一个偏单机的游戏安装包，在网络畅通的时候，支持正常更新。在没有网络的时候，支持游玩老版本。</li><li>我想发布一个MOD游戏安装包，玩家可以把自己制作的MOD内容上传到服务器，其它玩家可以下载游玩。</li><li>我们在制作一个超大体量的项目，有上百GB的资源内容，每次构建都花费大量时间，是否可以分工程构建？</li></ul>]]></content>
       
       
       <categories>
