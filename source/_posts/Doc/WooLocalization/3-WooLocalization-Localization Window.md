@@ -28,4 +28,4 @@ Localization的功能界面
 * 选择Data文件右键 点击Translate 中指定语言全部翻译
 
 
-![](../../../Pic/Doc/WooLocalization/有道Api接入.png)
+![](../../../Pic/Doc/WooLocalization/有道api接入.png)
