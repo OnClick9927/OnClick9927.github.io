@@ -378,11 +378,38 @@
     
     
     <entry>
+      <title>10-IFramework-Unity-模块</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/10-IFramework-Unity-%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/10-IFramework-Unity-%E6%A8%A1%E5%9D%97/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework-Unity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework-Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>1-IFramework-Unity-简介</title>
       <link href="/2023/07/24/Doc/IFramework-Unity/1-IFramework-Unity-%E7%AE%80%E4%BB%8B/"/>
       <url>/2023/07/24/Doc/IFramework-Unity/1-IFramework-Unity-%E7%AE%80%E4%BB%8B/</url>
       
-        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/IFramework-Unity">地址</a></h1><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul><li>简单好用的unity框架</li><li>依赖 IFramework</li><li>支持内容<ul><li>项目统一设置</li><li>可扩展高效UI</li><li>lua框架</li></ul></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/IFramework-Unity">地址</a></h1><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="https://starchart.cc/OnClick9927/IFramework-Unity"><img src="https://starchart.cc/OnClick9927/IFramework-Unity.svg?variant=adaptive" alt="Stargazers over time"></a></p><pre><code class="csharp">while(true)    Console.Write(&quot;Thanks For EveryOne Who Used It Once !&quot;)</code></pre><p>QQ Group ：782290296 </p><h3 id="主体"><a href="#主体" class="headerlink" title="主体"></a>主体</h3><p>支持</p><ul><li><p>Core</p><ul><li>通用单例</li><li>优先级队列</li><li>标准化模块</li><li>主线程等待</li><li>通用消息系统</li><li>C# Async 扩展</li><li>可序列化字典</li><li>通用本地数据缓存 </li><li>Log</li><li>编辑器工具  序列化&#x2F;拖拽&#x2F;窗口&#x2F;模板代码&#x2F;项目设置&#x2F;GUI</li></ul></li><li><p>UI</p><ul><li>自定义加载 同步&#x2F;异步，可等待</li><li>内部处理 ui 多次点击的问题</li><li>提供全局遮罩</li><li>提供 Item 池</li><li>自定义层级</li><li>配套代码生成</li><li>支持多样化扩展（预定义了 MVC模式）</li><li>极简生命周期（OnLoad、OnShow、OnHide、OnClose）</li><li>UI整体变化接口（用于顶部资源栏、全屏UI、触发各种事件等）</li></ul></li><li><p>RedPoint</p><ul><li>支持窗口查看每个节点的数量与绑定情况</li><li>支持自定义绑定</li></ul></li><li><p>Record</p><ul><li>支持自定义命令</li><li>支持命令克隆</li><li>支持命令组</li></ul></li><li><p>Audio（简易音效系统）</p><ul><li>支持无限多通道</li><li>支持循环&#x2F;差异化音量&#x2F;通道内覆盖</li></ul></li><li><p>HotFix (基于XLUA、不想更新了😀)</p><ul><li>模板代码</li><li>lua 工具（ class、async、try、handler、using、EventSystem、ObservableObject、_G锁）</li><li>UI模块的 Lua扩展 （MVC）</li><li>热重载</li></ul></li></ul>]]></content>
       
       
       <categories>
@@ -409,7 +436,7 @@
       <link href="/2023/07/24/Doc/IFramework-Unity/2-IFramework-Unity-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE/"/>
       <url>/2023/07/24/Doc/IFramework-Unity/2-IFramework-Unity-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE/</url>
       
-        <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul><li>创建unity项目</li><li>打开 Assets 目录</li><li><code>git clone -b src https://github.com/OnClick9927/IFramework-Unity</code></li></ul><h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><ul><li>打开面板 ctrl+shift+i</li><li>参数</li></ul><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>UserName</td><td>用户名字（unity账户名字）</td></tr><tr><td>Version</td><td>工程的版本</td></tr><tr><td>NameSpace</td><td>工程命名空间</td></tr><tr><td>Project Path</td><td>项目内容所在文件夹</td></tr><tr><td></td><td></td></tr><tr><td>Dock EditorWindow</td><td>打开的窗口是否依附</td></tr><tr><td></td><td></td></tr><tr><td>Enable</td><td>log 总开关</td></tr><tr><td>Log Enable</td><td>开启log</td></tr><tr><td>Warning Enable</td><td>开启Warning</td></tr><tr><td>Error Enable</td><td>开启Error</td></tr></tbody></table><p><img src="/../../../Pic/Doc/IFramework-Unity/%E8%AE%BE%E7%BD%AE.png" alt="Alt text"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul><li>upm 添加包地址 <a href="https://gitee.com/OnClick9927/IFramework-Unity.git#src">https://gitee.com/OnClick9927/IFramework-Unity.git#src</a></li><li>upm 添加包地址 <a href="https://github.com/OnClick9927/IFramework-Unity.git#src">https://github.com/OnClick9927/IFramework-Unity.git#src</a></li></ul><h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><ul><li>打开面板 ctrl+shift+i</li><li>参数</li></ul><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>UserName</td><td>用户名字（unity账户名字）</td></tr><tr><td>Version</td><td>工程的版本</td></tr><tr><td>NameSpace</td><td>工程命名空间</td></tr><tr><td>Project Path</td><td>项目内容所在文件夹</td></tr><tr><td>Build</td><td>构建工程目录</td></tr><tr><td>Dock EditorWindow</td><td>打开的窗口是否依附</td></tr><tr><td>Enable</td><td>log 总开关</td></tr><tr><td>Log Enable</td><td>开启log</td></tr><tr><td>Warning Enable</td><td>开启Warning</td></tr><tr><td>Error Enable</td><td>开启Error</td></tr></tbody></table><p><img src="/../../../Pic/Doc/IFramework-Unity/set.png" alt="Alt text"></p>]]></content>
       
       
       <categories>
@@ -464,6 +491,141 @@
       <url>/2023/07/24/Doc/IFramework-Unity/4-IFramework-Unity-Lua%E6%A8%A1%E5%9D%97/</url>
       
         <content type="html"><![CDATA[<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><pre><code class="csharp">public class AssetsLoader : IXLuaLoader&#123;    public static string projectScriptsPath    &#123;        get &#123; return Application.dataPath.CombinePath(&quot;Project/Lua&quot;); &#125;    &#125;    public byte[] load(ref string path)    &#123;        if (path.EndsWith(&quot;.lua&quot;))            path = path.Replace(&quot;.lua&quot;, &quot;&quot;);        path = path.Replace(&quot;.&quot;, &quot;/&quot;);        string filepath = $&quot;&#123;path&#125;.lua&quot;;        var textAsset = Resources.Load&lt;TextAsset&gt;(filepath);        if (textAsset != null)            return textAsset.bytes;        filepath = projectScriptsPath.CombinePath(filepath + &quot;.txt&quot;).ToAssetsPath();#if UNITY_EDITOR        var handle = UnityEditor.AssetDatabase.LoadAssetAtPath&lt;TextAsset&gt;(filepath);        return handle.bytes;#endif        return null;    &#125;&#125;public class LuaGame : Game&#123;    public class UnityModules    &#123;        public XLuaModule Lua &#123; get &#123; return Launcher.modules.GetModule&lt;XLuaModule&gt;(); &#125; &#125;    &#125;    public UnityModules unityModules = new UnityModules();    public override void Init()    &#123;    &#125;    public override void Startup()    &#123;           /// 创建模块，设置lua 文件加载器        unityModules.Lua.AddLoader(new AssetsLoader());        ///开始Lua 模块        new XluaMain(unityModules.Lua);    &#125;&#125;</code></pre><h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><ul><li>XluaMain 会依次调用<ul><li>FixCsharp.lua</li><li>GlobalDefine.lua</li><li>GameLogic.lua</li></ul></li><li>其他：请参阅Xlua<br><img src="/../../../Pic/Doc/IFramework-Unity/Lua.png" alt="Alt text"></li></ul><h2 id="其他部分"><a href="#其他部分" class="headerlink" title="其他部分"></a>其他部分</h2><h3 id="Lua-提供的方法"><a href="#Lua-提供的方法" class="headerlink" title="Lua 提供的方法"></a>Lua 提供的方法</h3><ul><li>class  （lua class）</li><li>handler （方法句柄）</li><li>try （仿造C# 的try）</li><li>async&#x2F; await&#x2F;luaTask （lua 内的多线程实现）</li><li>StaticUsing  （类似 C# 的static using ，参照 UI生成的代码）</li><li>EventSystem （消息事件）</li><li>Json （纯lua 的jason 序列化）</li><li>Log  (框架输出)</li></ul><h3 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h3><ul><li>UI 与 C# 部分保持高度雷同， 不同点在于<ul><li>lua 生成出来的 组件会统一放在 Controls 内</li><li>设置代码的组需要是lua内的 LuaGroups_MVC ui.SetGroups(mvc);</li></ul></li></ul><pre><code class="lua">-- 设置代码组local UI = Game.modules.UpdateUIlocal map =&#123;    &#123; Name = PanelNames.UpdatePanel, ViewType = require(&quot;Update.UpdatePanelView&quot;) &#125;,&#125;local groups = LuaGroups_MVC()UI:SetGroups(groups:SetMap(map))</code></pre><pre><code class="lua">--*********************************************************************************--Author:         Wulala--Version:        1.0--UnityVersion:   2020.3.3f1c1--Date:           2023-07-24--*********************************************************************************---ViewUseFlaglocal Button = StaticUsing(&quot;UnityEngine.UI.Button&quot;)---ViewUseFlag---@class MyPanelView : UIView_MVClocal MyPanelView = class(&quot;MyPanelView&quot;,UIView_MVC)function MyPanelView:OnLoad()    self.Controls = &#123;        ---@type UnityEngine.UI.Button        Mybtn = self:GetComponent(&quot;Mybtn&quot;, typeof(Button)),    &#125;endfunction MyPanelView:OnShow()endfunction MyPanelView:OnHide()endfunction MyPanelView:OnClose()    self.Controls = nilendreturn MyPanelView</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework-Unity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework-Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>5-IFramework-Unity-红点</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/5-IFramework-Unity-%E7%BA%A2%E7%82%B9/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/5-IFramework-Unity-%E7%BA%A2%E7%82%B9/</url>
+      
+        <content type="html"><![CDATA[<pre><code class="csharp">    //自定义绑定，显示节点对应的数字  private class Dot : RedDot    &#123;        public Text text;        public Dot(string path, Text text)        &#123;            this.text = text;            SetPath(path);        &#125;        public override void FreshView(int count)        &#123;            text.text = count.ToString();        &#125;    &#125;  public class redPointGame : Game&#123;    public Toggle add;    public List&lt;Button&gt; btns = new List&lt;Button&gt;();    public List&lt;string&gt; keys = new List&lt;string&gt;() &#123;    &quot;11&quot;,    &quot;11/22&quot;,    &quot;11/33&quot;,    &#125;;    public override void Init()    &#123;      //读入红点路径        for (int i = 0; i &lt; keys.Count; i++)               RedTree.ReadPath(keys[i]);  //对按钮挨个绑定        for (int i = 0; i &lt; btns.Count; i++)        &#123;            var index = i;            var btnsNode = btns[i];            var key = keys[index];            var text = btnsNode.GetComponentInChildren&lt;Text&gt;();            new Dot(key, text);//自定义显示数字的绑定            //控制显示隐藏的绑定            //当数字小于0会隐藏            new RedActiveDot(key, text.gameObject);                      btnsNode.onClick.AddListener(() =&gt;            &#123;                //按钮点击对红点数据修改            //注意只有叶子节点修改会起效                RedTree.SetCount(key, RedTree.GetCount(key) + (add.isOn ? 1 : -1));            &#125;);        &#125;    &#125;    public override void Startup()    &#123;    &#125;    private void OnGUI()    &#123;      //红点编辑器窗口        if (GUILayout.Button(&quot;open WIndow&quot;, new GUIStyle(&quot;button&quot;) &#123; fontSize = 40 &#125;, GUILayout.Height(300), GUILayout.Width(300)))        &#123;            IFramework.EditorTools.EditorWindowTool.Create(&quot;RedPoint&quot;);        &#125;    &#125;&#125;</code></pre><p><img src="/../../../Pic/Doc/IFramework-Unity/Red/win.png" alt="Alt text"></p><ul><li>path 红点路径</li><li>count 当前数量</li><li>dot  有几个绑定</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework-Unity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework-Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>6-IFramework-Unity-单例</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/6-IFramework-Unity-%E5%8D%95%E4%BE%8B/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/6-IFramework-Unity-%E5%8D%95%E4%BE%8B/</url>
+      
+        <content type="html"><![CDATA[<pre><code class="csharp">public class Test : IFramework.Singleton.Singleton&lt;Test&gt;&#123;    internal void Dosth()    &#123;           &#125;&#125;//场景内单例物体路径[IFramework.Singleton.MonoSingletonPath(&quot;xx/xx&quot;)]public class TestMono : IFramework.Singleton.MonoSingleton&lt;TestMono&gt;&#123;    void Use()    &#123;        Test.instance.Dosth();        TestMono.instance.Dosth();    &#125;    private void Dosth()    &#123;            &#125;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework-Unity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework-Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>7-IFramework-Unity-事件</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/7-IFramework-Unity-%E4%BA%8B%E4%BB%B6/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/7-IFramework-Unity-%E4%BA%8B%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework-Unity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework-Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>8-IFramework-Unity-Prefs</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/8-IFramework-Unity-Prefs/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/8-IFramework-Unity-Prefs/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework-Unity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework-Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>9-IFramework-Unity-优先级队列</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/9-IFramework-Unity-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/9-IFramework-Unity-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/</url>
+      
+        <content type="html"><![CDATA[]]></content>
       
       
       <categories>
@@ -675,11 +837,11 @@
     
     
     <entry>
-      <title>8-IFramework-模块-计时器模块</title>
-      <link href="/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/</url>
+      <title>7-IFramework-模块-依赖注入模块</title>
+      <link href="/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="计时器模块"><a href="#计时器模块" class="headerlink" title="计时器模块"></a>计时器模块</h1>]]></content>
+        <content type="html"><![CDATA[<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>放什么拿什么</p><p>特点:</p><ul><li>支持直接注入和反射注入</li><li>支持根据name注入同类型的多个实例</li></ul><p>直接注入使用示例:</p><pre><code class="csharp">public interface ICommonInjectObject&#123;    void ToDo();&#125;public class CommonObject : ICommonInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//获取容器container = Framework.GetEnv(EnvironmentType.Ev0).container;//往容器中注册实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject());//获取实例var _commonObject = container.GetValue&lt;ICommonInjectObject&gt;();//通过name区分来注册多个同类型实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject(), &quot;Instance1&quot;);//根据name获取指定类型的实例_commonObject = container.GetValue&lt;ICommonInjectObject&gt;(&quot;Instance1&quot;);//使用容器的Clear方法清除当前所有注入的实例container.Clear();</code></pre><hr><p><em><strong>反射注入强调性能之处慎用</strong></em></p><p>反射注入使用示例:</p><pre><code class="csharp">public interface IReflectInjectObject&#123;    void ToDo();&#125;public class ReflectObject : IReflectInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//使用Inject这个Attribute标记需要反射注入的变量[Inject]public IReflectInjectObject _reflectObject;//Attribute增加name属性[Inject(&quot;Instance1&quot;)]public IReflectInjectObject _reflectMultiObject1; //以IReflectInjectObject的名义注入ReflectObject类型container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;();container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;(&quot;Instance1&quot;);//为当前类的含有[Inject]这个Attribute的对应类型的变量注入数据container.Inject(this);</code></pre>]]></content>
       
       
       <categories>
@@ -702,11 +864,11 @@
     
     
     <entry>
-      <title>7-IFramework-模块-依赖注入模块</title>
-      <link href="/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/</url>
+      <title>8-IFramework-模块-计时器模块</title>
+      <link href="/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>放什么拿什么</p><p>特点:</p><ul><li>支持直接注入和反射注入</li><li>支持根据name注入同类型的多个实例</li></ul><p>直接注入使用示例:</p><pre><code class="csharp">public interface ICommonInjectObject&#123;    void ToDo();&#125;public class CommonObject : ICommonInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//获取容器container = Framework.GetEnv(EnvironmentType.Ev0).container;//往容器中注册实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject());//获取实例var _commonObject = container.GetValue&lt;ICommonInjectObject&gt;();//通过name区分来注册多个同类型实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject(), &quot;Instance1&quot;);//根据name获取指定类型的实例_commonObject = container.GetValue&lt;ICommonInjectObject&gt;(&quot;Instance1&quot;);//使用容器的Clear方法清除当前所有注入的实例container.Clear();</code></pre><hr><p><em><strong>反射注入强调性能之处慎用</strong></em></p><p>反射注入使用示例:</p><pre><code class="csharp">public interface IReflectInjectObject&#123;    void ToDo();&#125;public class ReflectObject : IReflectInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//使用Inject这个Attribute标记需要反射注入的变量[Inject]public IReflectInjectObject _reflectObject;//Attribute增加name属性[Inject(&quot;Instance1&quot;)]public IReflectInjectObject _reflectMultiObject1; //以IReflectInjectObject的名义注入ReflectObject类型container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;();container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;(&quot;Instance1&quot;);//为当前类的含有[Inject]这个Attribute的对应类型的变量注入数据container.Inject(this);</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="计时器模块"><a href="#计时器模块" class="headerlink" title="计时器模块"></a>计时器模块</h1>]]></content>
       
       
       <categories>
@@ -837,11 +999,11 @@
     
     
     <entry>
-      <title>1-WooBind-例子</title>
-      <link href="/2023/07/05/Doc/WooBind/1-WooBind-%E6%A1%88%E4%BE%8B/"/>
-      <url>/2023/07/05/Doc/WooBind/1-WooBind-%E6%A1%88%E4%BE%8B/</url>
+      <title>1-WooBind-案例</title>
+      <link href="/2023/07/05/Doc/WooBind/2-WooBind-%E6%96%87%E6%A1%A3/"/>
+      <url>/2023/07/05/Doc/WooBind/2-WooBind-%E6%96%87%E6%A1%A3/</url>
       
-        <content type="html"><![CDATA[<h2 id="单向绑定（数据监听）"><a href="#单向绑定（数据监听）" class="headerlink" title="单向绑定（数据监听）"></a>单向绑定（数据监听）</h2><ul><li>特点：<ul><li>监听单个值的变化</li></ul></li><li>单向绑定使用示例:</li></ul><pre><code class="csharp">//监听的类需要继承ObservableObjectclass Observable_A : ObservableObject&#123;    private int _value;    public int value    &#123;        get        &#123;            return GetProperty(ref _value);        &#125;        set        &#123;            SetProperty(ref _value, value);        &#125;    &#125;&#125;//创建一个监听器ObservableObjectHandler binder = new ObservableObjectHandler();//创建监听的实例Observable_A observedA = new Observable_A();//监听valuebinder.BindProperty(    (value) =&gt;    &#123;        observedA.value = value;        Log.L($&quot;值被改变，新值为&#123;value&#125;&quot;);    &#125;,    () =&gt;    &#123;        return observedA.value;    &#125;);observedA.value = 1;observedA.value = 2;//观察控制台的输出</code></pre><h2 id="多向绑定（数据同步变化）"><a href="#多向绑定（数据同步变化）" class="headerlink" title="多向绑定（数据同步变化）"></a>多向绑定（数据同步变化）</h2><ul><li>特点：<ul><li>多个绑定，值同步变化</li></ul></li><li>多向绑定使用示例:</li></ul><pre><code class="csharp">  //监听的类需要继承BindableObjectclass Binder_A : BindableObject&#123;    private int _value;    public int value &#123; get &#123; return GetProperty(ref _value); &#125; set &#123; SetProperty(ref _value, value); &#125; &#125;&#125;class Binder_B : BindableObject&#123;    private int _value;    public int value &#123; get &#123; return GetProperty(ref _value); &#125; set &#123; SetProperty(ref _value, value); &#125; &#125;&#125;class Binder_C : BindableObject&#123;    private int _value;    public int value &#123; get &#123; return GetProperty(ref _value); &#125; set &#123; SetProperty(ref _value, value); &#125; &#125;&#125;//创建监听器BindableObjectHandler binder = new BindableObjectHandler();//创建实例Binder_A a = new Binder_A();Binder_B b = new Binder_B();Binder_C c = new Binder_C();//绑定binder.BindProperty((value) =&gt; &#123; a.value = value; &#125;, () =&gt; &#123; return a.value; &#125;);binder.BindProperty((value) =&gt; &#123; b.value = value; &#125;, () =&gt; &#123; return b.value; &#125;);binder.BindProperty((value) =&gt; &#123; c.value = value; &#125;, () =&gt; &#123; return c.value; &#125;);Log.L($&quot;a的value值为&#123;a.value&#125;\tb的value值为&#123;b.value&#125;\tc的value值为&#123;c.value&#125;\n&quot;);a.value = 1;Log.L($&quot;a的value值为&#123;a.value&#125;\tb的value值为&#123;b.value&#125;\tc的value值为&#123;c.value&#125;\n&quot;);c.value = 2;Log.L($&quot;a的value值为&#123;a.value&#125;\tb的value值为&#123;b.value&#125;\tc的value值为&#123;c.value&#125;\n&quot;);  </code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="ObservableObject"><a href="#ObservableObject" class="headerlink" title="ObservableObject"></a>ObservableObject</h1><h2 id="Subscribe"><a href="#Subscribe" class="headerlink" title="Subscribe"></a>Subscribe</h2><ul><li>Subscribe函数用于注册数值变化的监听函数。当属性发生变化时，会触发已注册的监听函数。具体使用方式如下：</li></ul><pre><code class="csharp">public void Subscribe(string propertyName, Action listener)</code></pre><ul><li>propertyName：要监听的属性名称。</li><li>listener：监听函数，当属性变化时被调用。</li></ul><pre><code class="csharp">Subscribe(&quot;Name&quot;, () =&gt;&#123;    Console.WriteLine(&quot;属性Name发生了变化！&quot;);&#125;);</code></pre><h2 id="UnSubscribe"><a href="#UnSubscribe" class="headerlink" title="UnSubscribe"></a>UnSubscribe</h2><ul><li>UnSubscribe函数用于取消注册数值变化的监听函数。如果之前通过Subscribe函数注册了一个或多个监听函数，但后来不再需要监听，则可以通过UnSubscribe函数进行取消注册。具体使用方式如下：</li></ul><pre><code class="csharp">public void UnSubscribe(string propertyName, Action listener)</code></pre><ul><li>propertyName：要取消监听的属性名称。</li><li>listener：要取消的监听函数。</li></ul><pre><code class="csharp">UnSubscribe(&quot;Name&quot;, () =&gt;&#123;    Console.WriteLine(&quot;属性Name发生了变化！&quot;);&#125;);</code></pre><h2 id="GetProperty"><a href="#GetProperty" class="headerlink" title="GetProperty"></a>GetProperty</h2><pre><code class="csharp">protected T GetProperty&lt;T&gt;(ref T property, [CallerMemberName]string propertyName = &quot;&quot;)</code></pre><ul><li><p>T：属性值的类型。</p></li><li><p>property：表示要获取的属性的变量的引用。</p></li><li><p>propertyName：表示属性的名称，默认值为调用该方法的成员的名称（通过[CallerMemberName]属性实现）。</p></li><li><p>GetProperty函数用于获取属性的值。它接收一个属性变量的引用以及可选的属性名称。如果使用可选的属性名称参数，则可以在调用时指定属性的名称，例如GetProperty(ref myVariable, “MyProperty”)；如果不提供属性名称参数，则默认使用调用该方法的成员的名称作为属性的名称。该函数会返回属性的当前值。</p></li></ul><h2 id="SetProperty"><a href="#SetProperty" class="headerlink" title="SetProperty"></a>SetProperty</h2><h2 id="GetProperty-1"><a href="#GetProperty-1" class="headerlink" title="GetProperty"></a>GetProperty</h2><pre><code class="csharp">protected void SetProperty&lt;T&gt;(ref T property, T value, [CallerMemberName]string propertyName = &quot;&quot;)</code></pre><ul><li>T：属性值的类型。</li><li>property：表示要设置的属性的变量的引用。</li><li>value：表示要设置的属性的新值。</li><li>propertyName：表示属性的名称，默认值为调用该方法的成员的名称（通过[CallerMemberName]属性实现）。</li><li>SetProperty函数用于设置属性的值。它接收一个属性变量的引用、新的属性值以及可选的属性名称。如果使用可选的属性名称参数，则可以在调用时指定属性的名称，例如SetProperty(ref myVariable, newValue, “MyProperty”)；如果不提供属性名称参数，则默认使用调用该方法的成员的名称作为属性的名称。该函数会更新属性的值，并在值发生变化时发布属性更改通知。</li></ul><h1 id="ObservableObjectHandler"><a href="#ObservableObjectHandler" class="headerlink" title="ObservableObjectHandler"></a>ObservableObjectHandler</h1><h2 id="Subscribe-1"><a href="#Subscribe-1" class="headerlink" title="Subscribe"></a>Subscribe</h2><pre><code class="csharp">internal ObservableObjectHandler Subscribe(ObservableObject _object, string propertyName)</code></pre><ul><li><p>ObservableObjectHandler：方法的返回类型为 ObservableObjectHandler，表示该方法将返回一个可观察对象处理器的实例。这个处理器可以用来管理和控制属性变化的监听。</p></li><li><p>_object：ObservableObject 类型的参数 _object 是要订阅的可观察对象实例。你可以将你感兴趣的可观察对象传递给该参数。</p></li><li><p>propertyName：string 类型的参数 propertyName 是要订阅的属性名称。你可以指定你希望监听的特定属性的名称。</p></li></ul><pre><code class="csharp">  public ObservableObjectHandler Subscribe(ObservableObject _object, string propertyName, Action listener)</code></pre><ul><li>listener：Action 类型的参数 listener 是一个回调函数，表示在属性变化时要执行的操作。你可以将你希望在属性变化时执行的逻辑封装在这个回调函数中，例如更新 UI、执行其他方法等。</li></ul><h2 id="UnSubscribe-1"><a href="#UnSubscribe-1" class="headerlink" title="UnSubscribe()"></a>UnSubscribe()</h2><pre><code class="csharp"> public void UnSubscribe()</code></pre><ul><li>取消所有监听</li></ul><pre><code class="csharp">public void UnSubscribe(ObservableObject _object, string propertyName)</code></pre><ul><li>取消符合条件的监听</li></ul><h1 id="BindableObject"><a href="#BindableObject" class="headerlink" title="BindableObject"></a>BindableObject</h1><h2 id="Subscribe-2"><a href="#Subscribe-2" class="headerlink" title="Subscribe"></a>Subscribe</h2><pre><code class="csharp">public void Subscribe(string propertyName, Action&lt;string, object&gt; listener)</code></pre><ul><li><p>注册监听器，订阅属性变化事件。</p></li><li><p>propertyName：要监听的属性名称。</p></li><li><p>listener：当属性变化时要执行的回调方法。</p></li></ul><h2 id="UnSubscribe-2"><a href="#UnSubscribe-2" class="headerlink" title="UnSubscribe"></a>UnSubscribe</h2><pre><code class="csharp">public void UnSubscribe(string propertyName, Action&lt;string, object&gt; listener)</code></pre><ul><li><p>移除监听器，取消订阅属性变化事件。</p></li><li><p>propertyName：要取消监听的属性名称。</p></li><li><p>listener：要移除的监听器回调方法。</p></li></ul><h1 id="Subscribe-3"><a href="#Subscribe-3" class="headerlink" title="Subscribe"></a>Subscribe</h1><pre><code class="csharp">internal BindableObjectHandler Subscribe(BindableObject _object, Type propertyType, string propertyName)</code></pre><ul><li>用于订阅对象的属性变化。</li><li>_object：需要订阅属性变化的对象。</li><li>propertyType：属性的数据类型，用于指定要订阅的属性的类型。</li><li>propertyName：要订阅的属性名称。</li></ul><h1 id="GetValue"><a href="#GetValue" class="headerlink" title="GetValue"></a>GetValue</h1><pre><code class="csharp">public T GetValue&lt;T&gt;(string name)public object GetValue(Type type,string name)</code></pre><ul><li>用于获取指定名称的属性值</li></ul><h1 id="PublishProperty"><a href="#PublishProperty" class="headerlink" title="PublishProperty"></a>PublishProperty</h1><pre><code class="csharp">   public BindableObjectHandler PublishProperty(Type type,object value, string propertyName)   public BindableObjectHandler PublishProperty&lt;T&gt;(T value, string propertyName)</code></pre><ul><li>用于发布属性的变化，通知所有订阅了该属性的监听者。</li></ul><h1 id="UnBind"><a href="#UnBind" class="headerlink" title="UnBind"></a>UnBind</h1><pre><code class="csharp">public void UnBind()public void UnBind(BindableObject _object)public void UnBind(string propertyName)public void UnBind(BindableObject _object, string propertyName)public void UnBind(BindableObject _object, Type type, string propertyName)</code></pre><ul><li>解绑全部绑定的属性。</li><li>按照对象解绑属性。</li><li>按照属性名称解绑属性。</li><li>按照对象和属性名称解绑属性。</li><li>按照对象、属性类型和属性名称解绑属性。</li></ul>]]></content>
       
       
       <categories>
@@ -864,11 +1026,11 @@
     
     
     <entry>
-      <title>1-WooBind-案例</title>
-      <link href="/2023/07/05/Doc/WooBind/2-WooBind-%E6%96%87%E6%A1%A3/"/>
-      <url>/2023/07/05/Doc/WooBind/2-WooBind-%E6%96%87%E6%A1%A3/</url>
+      <title>1-WooBind-例子</title>
+      <link href="/2023/07/05/Doc/WooBind/1-WooBind-%E6%A1%88%E4%BE%8B/"/>
+      <url>/2023/07/05/Doc/WooBind/1-WooBind-%E6%A1%88%E4%BE%8B/</url>
       
-        <content type="html"><![CDATA[<h1 id="ObservableObject"><a href="#ObservableObject" class="headerlink" title="ObservableObject"></a>ObservableObject</h1><h2 id="Subscribe"><a href="#Subscribe" class="headerlink" title="Subscribe"></a>Subscribe</h2><ul><li>Subscribe函数用于注册数值变化的监听函数。当属性发生变化时，会触发已注册的监听函数。具体使用方式如下：</li></ul><pre><code class="csharp">public void Subscribe(string propertyName, Action listener)</code></pre><ul><li>propertyName：要监听的属性名称。</li><li>listener：监听函数，当属性变化时被调用。</li></ul><pre><code class="csharp">Subscribe(&quot;Name&quot;, () =&gt;&#123;    Console.WriteLine(&quot;属性Name发生了变化！&quot;);&#125;);</code></pre><h2 id="UnSubscribe"><a href="#UnSubscribe" class="headerlink" title="UnSubscribe"></a>UnSubscribe</h2><ul><li>UnSubscribe函数用于取消注册数值变化的监听函数。如果之前通过Subscribe函数注册了一个或多个监听函数，但后来不再需要监听，则可以通过UnSubscribe函数进行取消注册。具体使用方式如下：</li></ul><pre><code class="csharp">public void UnSubscribe(string propertyName, Action listener)</code></pre><ul><li>propertyName：要取消监听的属性名称。</li><li>listener：要取消的监听函数。</li></ul><pre><code class="csharp">UnSubscribe(&quot;Name&quot;, () =&gt;&#123;    Console.WriteLine(&quot;属性Name发生了变化！&quot;);&#125;);</code></pre><h2 id="GetProperty"><a href="#GetProperty" class="headerlink" title="GetProperty"></a>GetProperty</h2><pre><code class="csharp">protected T GetProperty&lt;T&gt;(ref T property, [CallerMemberName]string propertyName = &quot;&quot;)</code></pre><ul><li><p>T：属性值的类型。</p></li><li><p>property：表示要获取的属性的变量的引用。</p></li><li><p>propertyName：表示属性的名称，默认值为调用该方法的成员的名称（通过[CallerMemberName]属性实现）。</p></li><li><p>GetProperty函数用于获取属性的值。它接收一个属性变量的引用以及可选的属性名称。如果使用可选的属性名称参数，则可以在调用时指定属性的名称，例如GetProperty(ref myVariable, “MyProperty”)；如果不提供属性名称参数，则默认使用调用该方法的成员的名称作为属性的名称。该函数会返回属性的当前值。</p></li></ul><h2 id="SetProperty"><a href="#SetProperty" class="headerlink" title="SetProperty"></a>SetProperty</h2><h2 id="GetProperty-1"><a href="#GetProperty-1" class="headerlink" title="GetProperty"></a>GetProperty</h2><pre><code class="csharp">protected void SetProperty&lt;T&gt;(ref T property, T value, [CallerMemberName]string propertyName = &quot;&quot;)</code></pre><ul><li>T：属性值的类型。</li><li>property：表示要设置的属性的变量的引用。</li><li>value：表示要设置的属性的新值。</li><li>propertyName：表示属性的名称，默认值为调用该方法的成员的名称（通过[CallerMemberName]属性实现）。</li><li>SetProperty函数用于设置属性的值。它接收一个属性变量的引用、新的属性值以及可选的属性名称。如果使用可选的属性名称参数，则可以在调用时指定属性的名称，例如SetProperty(ref myVariable, newValue, “MyProperty”)；如果不提供属性名称参数，则默认使用调用该方法的成员的名称作为属性的名称。该函数会更新属性的值，并在值发生变化时发布属性更改通知。</li></ul><h1 id="ObservableObjectHandler"><a href="#ObservableObjectHandler" class="headerlink" title="ObservableObjectHandler"></a>ObservableObjectHandler</h1><h2 id="Subscribe-1"><a href="#Subscribe-1" class="headerlink" title="Subscribe"></a>Subscribe</h2><pre><code class="csharp">internal ObservableObjectHandler Subscribe(ObservableObject _object, string propertyName)</code></pre><ul><li><p>ObservableObjectHandler：方法的返回类型为 ObservableObjectHandler，表示该方法将返回一个可观察对象处理器的实例。这个处理器可以用来管理和控制属性变化的监听。</p></li><li><p>_object：ObservableObject 类型的参数 _object 是要订阅的可观察对象实例。你可以将你感兴趣的可观察对象传递给该参数。</p></li><li><p>propertyName：string 类型的参数 propertyName 是要订阅的属性名称。你可以指定你希望监听的特定属性的名称。</p></li></ul><pre><code class="csharp">  public ObservableObjectHandler Subscribe(ObservableObject _object, string propertyName, Action listener)</code></pre><ul><li>listener：Action 类型的参数 listener 是一个回调函数，表示在属性变化时要执行的操作。你可以将你希望在属性变化时执行的逻辑封装在这个回调函数中，例如更新 UI、执行其他方法等。</li></ul><h2 id="UnSubscribe-1"><a href="#UnSubscribe-1" class="headerlink" title="UnSubscribe()"></a>UnSubscribe()</h2><pre><code class="csharp"> public void UnSubscribe()</code></pre><ul><li>取消所有监听</li></ul><pre><code class="csharp">public void UnSubscribe(ObservableObject _object, string propertyName)</code></pre><ul><li>取消符合条件的监听</li></ul><h1 id="BindableObject"><a href="#BindableObject" class="headerlink" title="BindableObject"></a>BindableObject</h1><h2 id="Subscribe-2"><a href="#Subscribe-2" class="headerlink" title="Subscribe"></a>Subscribe</h2><pre><code class="csharp">public void Subscribe(string propertyName, Action&lt;string, object&gt; listener)</code></pre><ul><li><p>注册监听器，订阅属性变化事件。</p></li><li><p>propertyName：要监听的属性名称。</p></li><li><p>listener：当属性变化时要执行的回调方法。</p></li></ul><h2 id="UnSubscribe-2"><a href="#UnSubscribe-2" class="headerlink" title="UnSubscribe"></a>UnSubscribe</h2><pre><code class="csharp">public void UnSubscribe(string propertyName, Action&lt;string, object&gt; listener)</code></pre><ul><li><p>移除监听器，取消订阅属性变化事件。</p></li><li><p>propertyName：要取消监听的属性名称。</p></li><li><p>listener：要移除的监听器回调方法。</p></li></ul><h1 id="Subscribe-3"><a href="#Subscribe-3" class="headerlink" title="Subscribe"></a>Subscribe</h1><pre><code class="csharp">internal BindableObjectHandler Subscribe(BindableObject _object, Type propertyType, string propertyName)</code></pre><ul><li>用于订阅对象的属性变化。</li><li>_object：需要订阅属性变化的对象。</li><li>propertyType：属性的数据类型，用于指定要订阅的属性的类型。</li><li>propertyName：要订阅的属性名称。</li></ul><h1 id="GetValue"><a href="#GetValue" class="headerlink" title="GetValue"></a>GetValue</h1><pre><code class="csharp">public T GetValue&lt;T&gt;(string name)public object GetValue(Type type,string name)</code></pre><ul><li>用于获取指定名称的属性值</li></ul><h1 id="PublishProperty"><a href="#PublishProperty" class="headerlink" title="PublishProperty"></a>PublishProperty</h1><pre><code class="csharp">   public BindableObjectHandler PublishProperty(Type type,object value, string propertyName)   public BindableObjectHandler PublishProperty&lt;T&gt;(T value, string propertyName)</code></pre><ul><li>用于发布属性的变化，通知所有订阅了该属性的监听者。</li></ul><h1 id="UnBind"><a href="#UnBind" class="headerlink" title="UnBind"></a>UnBind</h1><pre><code class="csharp">public void UnBind()public void UnBind(BindableObject _object)public void UnBind(string propertyName)public void UnBind(BindableObject _object, string propertyName)public void UnBind(BindableObject _object, Type type, string propertyName)</code></pre><ul><li>解绑全部绑定的属性。</li><li>按照对象解绑属性。</li><li>按照属性名称解绑属性。</li><li>按照对象和属性名称解绑属性。</li><li>按照对象、属性类型和属性名称解绑属性。</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="单向绑定（数据监听）"><a href="#单向绑定（数据监听）" class="headerlink" title="单向绑定（数据监听）"></a>单向绑定（数据监听）</h2><ul><li>特点：<ul><li>监听单个值的变化</li></ul></li><li>单向绑定使用示例:</li></ul><pre><code class="csharp">//监听的类需要继承ObservableObjectclass Observable_A : ObservableObject&#123;    private int _value;    public int value    &#123;        get        &#123;            return GetProperty(ref _value);        &#125;        set        &#123;            SetProperty(ref _value, value);        &#125;    &#125;&#125;//创建一个监听器ObservableObjectHandler binder = new ObservableObjectHandler();//创建监听的实例Observable_A observedA = new Observable_A();//监听valuebinder.BindProperty(    (value) =&gt;    &#123;        observedA.value = value;        Log.L($&quot;值被改变，新值为&#123;value&#125;&quot;);    &#125;,    () =&gt;    &#123;        return observedA.value;    &#125;);observedA.value = 1;observedA.value = 2;//观察控制台的输出</code></pre><h2 id="多向绑定（数据同步变化）"><a href="#多向绑定（数据同步变化）" class="headerlink" title="多向绑定（数据同步变化）"></a>多向绑定（数据同步变化）</h2><ul><li>特点：<ul><li>多个绑定，值同步变化</li></ul></li><li>多向绑定使用示例:</li></ul><pre><code class="csharp">  //监听的类需要继承BindableObjectclass Binder_A : BindableObject&#123;    private int _value;    public int value &#123; get &#123; return GetProperty(ref _value); &#125; set &#123; SetProperty(ref _value, value); &#125; &#125;&#125;class Binder_B : BindableObject&#123;    private int _value;    public int value &#123; get &#123; return GetProperty(ref _value); &#125; set &#123; SetProperty(ref _value, value); &#125; &#125;&#125;class Binder_C : BindableObject&#123;    private int _value;    public int value &#123; get &#123; return GetProperty(ref _value); &#125; set &#123; SetProperty(ref _value, value); &#125; &#125;&#125;//创建监听器BindableObjectHandler binder = new BindableObjectHandler();//创建实例Binder_A a = new Binder_A();Binder_B b = new Binder_B();Binder_C c = new Binder_C();//绑定binder.BindProperty((value) =&gt; &#123; a.value = value; &#125;, () =&gt; &#123; return a.value; &#125;);binder.BindProperty((value) =&gt; &#123; b.value = value; &#125;, () =&gt; &#123; return b.value; &#125;);binder.BindProperty((value) =&gt; &#123; c.value = value; &#125;, () =&gt; &#123; return c.value; &#125;);Log.L($&quot;a的value值为&#123;a.value&#125;\tb的value值为&#123;b.value&#125;\tc的value值为&#123;c.value&#125;\n&quot;);a.value = 1;Log.L($&quot;a的value值为&#123;a.value&#125;\tb的value值为&#123;b.value&#125;\tc的value值为&#123;c.value&#125;\n&quot;);c.value = 2;Log.L($&quot;a的value值为&#123;a.value&#125;\tb的value值为&#123;b.value&#125;\tc的value值为&#123;c.value&#125;\n&quot;);  </code></pre>]]></content>
       
       
       <categories>
