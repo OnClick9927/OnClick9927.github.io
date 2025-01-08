@@ -19,7 +19,8 @@ bool GetIsRecord(string path) ;
 List<string> GetAssetTags(string path) ;
 //自定义版本规则
 string GetVersion(string settingVersion, AssetTaskContext context);
-
+//一个资源是不是可以忽略
+ protected virtual bool IsIgnorePath(string path);
 //更具一个路径返回资源类型（覆盖）
 AssetType CoverAssetType(string path, AssetType type) ;
 
@@ -116,9 +117,11 @@ public virtual string GetUrlByBundleName(string buildTarget, string bundleName) 
    public virtual bool GetBundleAlwaysFromWebRequest() {}
 
   /// 下载超时
-  public virtual int GetWebRequestTimeout() {}
+  public virtual int GetWebRequestTimeout() ;
   ///下载重试次数
-  public virtual int GetWebRequestRetryCount() {  }
+  public virtual int GetWebRequestRetryCount() ;
+  ///同时存在下载器最大个数
+  public virtual int GetWebRequestCountAtSameTime() ;
 
 
 
