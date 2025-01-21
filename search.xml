@@ -31,11 +31,11 @@
     
     
     <entry>
-      <title>3-WooLocalization-Localization Window</title>
-      <link href="/2024/10/26/Doc/WooLocalization/3-WooLocalization-Localization%20Window/"/>
-      <url>/2024/10/26/Doc/WooLocalization/3-WooLocalization-Localization%20Window/</url>
+      <title>2-WooLocalization-Localization Data文件使用</title>
+      <link href="/2024/10/26/Doc/WooLocalization/2-WooLocalization-Localization%20Data%E6%96%87%E4%BB%B6%E4%BD%BF%E7%94%A8/"/>
+      <url>/2024/10/26/Doc/WooLocalization/2-WooLocalization-Localization%20Data%E6%96%87%E4%BB%B6%E4%BD%BF%E7%94%A8/</url>
       
-        <content type="html"><![CDATA[<h1 id="WooLocalization-Localization-Window"><a href="#WooLocalization-Localization-Window" class="headerlink" title="WooLocalization-Localization Window"></a>WooLocalization-Localization Window</h1><p>Localization的功能界面 </p><h1 id="内容介绍"><a href="#内容介绍" class="headerlink" title="内容介绍"></a>内容介绍</h1><ul><li>1.正则表达式相关内容</li><li>2.有道翻译-文本翻译 点击跳转有道界面注册登录 并申请应用获取id sercet 输入Appid 和AppSecret </li><li>3.设置Localization Data文件  设置语言映射 </li><li>4.添加TMP扩展脚本</li></ul><p><img src="/../../../Pic/Doc/WooLocalization/LocalizationWindow.png"></p><h1 id="使用有道翻译"><a href="#使用有道翻译" class="headerlink" title="使用有道翻译"></a>使用有道翻译</h1><ul><li>点击Register跳转注册 点击Code&amp;Language跳转Api接入界面 </li><li>填入Appid和AppSecret</li><li>选择Data文件右键 点击Translate 中指定语言全部翻译</li></ul><p><img src="/../../../Pic/Doc/WooLocalization/%E6%9C%89%E9%81%93api%E6%8E%A5%E5%85%A5.png"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="WooLocalization-Localization-Data-是什么"><a href="#WooLocalization-Localization-Data-是什么" class="headerlink" title="WooLocalization-Localization Data 是什么"></a>WooLocalization-Localization Data 是什么</h1><p>在Unity中存储多语言数据，通常涉及到创建和管理多语言映射表，这些表用于建立不同资源之间的对应关系，确保一个key对应多个语言的资源。<br>以下是对这一过程的详细描述</p><h1 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h1><p>右键Project窗口 - Creat - Localization Data</p><h1 id="界面功能介绍"><a href="#界面功能介绍" class="headerlink" title="界面功能介绍"></a>界面功能介绍</h1><ul><li><p>Clear Data</p><ul><li>一键清除所有数据</li></ul></li><li><p>Read From Asset</p><ul><li>从Assets文件夹中读取数据</li></ul></li><li><p>Read From CSV &#x2F; Write to CSV </p><ul><li>从本地路径中读写CSV文件</li></ul></li><li><p>LanType </p><ul><li>添加所需要的语言</li></ul></li><li><p>Key</p><ul><li>用于在代码中引用对应文本的标识符</li></ul></li><li><p>VAL </p><ul><li>用于在所需语言中显示的实际文本</li></ul></li><li><p>右键data文件 可以删除所选 删除语言类型 一键翻译（下一篇会详细讲解）</p></li></ul><p><img src="/../../../Pic/Doc/WooLocalization/LocalizationData%E6%96%87%E4%BB%B6.png"></p>]]></content>
       
       
       <categories>
@@ -58,11 +58,11 @@
     
     
     <entry>
-      <title>2-WooLocalization-Localization Data文件使用</title>
-      <link href="/2024/10/26/Doc/WooLocalization/2-WooLocalization-Localization%20Data%E6%96%87%E4%BB%B6%E4%BD%BF%E7%94%A8/"/>
-      <url>/2024/10/26/Doc/WooLocalization/2-WooLocalization-Localization%20Data%E6%96%87%E4%BB%B6%E4%BD%BF%E7%94%A8/</url>
+      <title>3-WooLocalization-Localization Window</title>
+      <link href="/2024/10/26/Doc/WooLocalization/3-WooLocalization-Localization%20Window/"/>
+      <url>/2024/10/26/Doc/WooLocalization/3-WooLocalization-Localization%20Window/</url>
       
-        <content type="html"><![CDATA[<h1 id="WooLocalization-Localization-Data-是什么"><a href="#WooLocalization-Localization-Data-是什么" class="headerlink" title="WooLocalization-Localization Data 是什么"></a>WooLocalization-Localization Data 是什么</h1><p>在Unity中存储多语言数据，通常涉及到创建和管理多语言映射表，这些表用于建立不同资源之间的对应关系，确保一个key对应多个语言的资源。<br>以下是对这一过程的详细描述</p><h1 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h1><p>右键Project窗口 - Creat - Localization Data</p><h1 id="界面功能介绍"><a href="#界面功能介绍" class="headerlink" title="界面功能介绍"></a>界面功能介绍</h1><ul><li><p>Clear Data</p><ul><li>一键清除所有数据</li></ul></li><li><p>Read From Asset</p><ul><li>从Assets文件夹中读取数据</li></ul></li><li><p>Read From CSV &#x2F; Write to CSV </p><ul><li>从本地路径中读写CSV文件</li></ul></li><li><p>LanType </p><ul><li>添加所需要的语言</li></ul></li><li><p>Key</p><ul><li>用于在代码中引用对应文本的标识符</li></ul></li><li><p>VAL </p><ul><li>用于在所需语言中显示的实际文本</li></ul></li><li><p>右键data文件 可以删除所选 删除语言类型 一键翻译（下一篇会详细讲解）</p></li></ul><p><img src="/../../../Pic/Doc/WooLocalization/LocalizationData%E6%96%87%E4%BB%B6.png"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="WooLocalization-Localization-Window"><a href="#WooLocalization-Localization-Window" class="headerlink" title="WooLocalization-Localization Window"></a>WooLocalization-Localization Window</h1><p>Localization的功能界面 </p><h1 id="内容介绍"><a href="#内容介绍" class="headerlink" title="内容介绍"></a>内容介绍</h1><ul><li>1.正则表达式相关内容</li><li>2.有道翻译-文本翻译 点击跳转有道界面注册登录 并申请应用获取id sercet 输入Appid 和AppSecret </li><li>3.设置Localization Data文件  设置语言映射 </li><li>4.添加TMP扩展脚本</li></ul><p><img src="/../../../Pic/Doc/WooLocalization/LocalizationWindow.png"></p><h1 id="使用有道翻译"><a href="#使用有道翻译" class="headerlink" title="使用有道翻译"></a>使用有道翻译</h1><ul><li>点击Register跳转注册 点击Code&amp;Language跳转Api接入界面 </li><li>填入Appid和AppSecret</li><li>选择Data文件右键 点击Translate 中指定语言全部翻译</li></ul><p><img src="/../../../Pic/Doc/WooLocalization/%E6%9C%89%E9%81%93api%E6%8E%A5%E5%85%A5.png"></p>]]></content>
       
       
       <categories>
@@ -193,6 +193,33 @@
     
     
     <entry>
+      <title>WooAsset-SBP</title>
+      <link href="/2024/09/06/Doc/WooAsset/11-WooAsset-SBP/"/>
+      <url>/2024/09/06/Doc/WooAsset/11-WooAsset-SBP/</url>
+      
+        <content type="html"><![CDATA[<h1 id="如果要使用-Scriptable-Build-Pipeline"><a href="#如果要使用-Scriptable-Build-Pipeline" class="headerlink" title="如果要使用  Scriptable Build Pipeline"></a>如果要使用  Scriptable Build Pipeline</h1><ul><li><a href="https://docs.unity3d.com/Packages/com.unity.scriptablebuildpipeline@1.20/manual/GettingStarted.html">官方的文档</a></li><li>使用unity package manager 安装  Scriptable Build Pipeline包</li><li>把下面的代码贴到项目内的某个Editor文件夹下</li><li>把Option页签 build 下的 build pipeline 选择为 SBPPipeline</li></ul><pre><code class="csharp">    public class SBPPipeline : IBuildPipeLine    &#123;        UnityEngine.Build.Pipeline.CompatibilityAssetBundleManifest _main;        public bool BuildAssetBundles(string outputPath, AssetBundleBuild[] builds, BuildAssetBundleOptions assetBundleOptions, BuildTarget targetPlatform)        &#123;            try            &#123;                _main = CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, assetBundleOptions, targetPlatform);                var bundles = _main.GetAllAssetBundles();                foreach (var bundle in bundles)                &#123;                    var hash = _main.GetAssetBundleHash(bundle).ToString();                    name2Hash[bundle] = hash;                &#125;                return true;            &#125;            catch (System.Exception)            &#123;                return false;                throw;            &#125;        &#125;        Dictionary&lt;string, string&gt; name2Hash = new Dictionary&lt;string, string&gt;();        public List&lt;string&gt; GetAllAssetBundles(BundleNameType nameType)        &#123;            var bundles = _main.GetAllAssetBundles();            switch (nameType)            &#123;                case BundleNameType.Name: return bundles.ToList();                case BundleNameType.NameWithHash:                case BundleNameType.Hash:                    return bundles.Select(name =&gt; $&quot;&#123;name&#125;_&#123;name2Hash[name]&#125;&quot;).ToList();                default:                    return null;            &#125;        &#125;        public List&lt;string&gt; GetAllDependencies(string assetBundleName, BundleNameType nameType)        &#123;            switch (nameType)            &#123;                case BundleNameType.Name:                    return _main.GetAllDependencies(assetBundleName).ToList();                case BundleNameType.NameWithHash:                case BundleNameType.Hash:                    &#123;                        assetBundleName = assetBundleName.Split(&quot;_&quot;)[0];                        return _main.GetAllDependencies(assetBundleName).Select(name =&gt; $&quot;&#123;name&#125;_&#123;name2Hash[name]&#125;&quot;).ToList();                    &#125;                default:                    return null;            &#125;        &#125;        public BuildAssetBundleOptions GetBundleOption(AssetTaskParams param, out string err)        &#123;            err = string.Empty;            BuildAssetBundleOptions opt = BuildAssetBundleOptions.None;            //opt |= BuildAssetBundleOptions.StrictMode;            opt |= BuildAssetBundleOptions.DisableLoadAssetByFileName;            opt |= BuildAssetBundleOptions.DisableLoadAssetByFileNameWithExtension;            if (param.typeTreeOption == TypeTreeOption.DisableWriteTypeTree)                opt |= BuildAssetBundleOptions.DisableWriteTypeTree;            if (param.typeTreeOption == TypeTreeOption.IgnoreTypeTreeChanges)            &#123;                //opt |= BuildAssetBundleOptions.IgnoreTypeTreeChanges;                err = &quot;SBP Not Support IgnoreTypeTreeChanges&quot;;            &#125;            if (param.buildMode == BuildMode.ForceRebuild)                opt |= BuildAssetBundleOptions.ForceRebuildAssetBundle;            opt |= BuildAssetBundleOptions.DisableLoadAssetByFileName;            opt |= BuildAssetBundleOptions.DisableLoadAssetByFileNameWithExtension;            if (param.compress == CompressType.LZ4)                opt |= BuildAssetBundleOptions.ChunkBasedCompression;            if (param.compress == CompressType.Uncompressed)                opt |= BuildAssetBundleOptions.UncompressedAssetBundle;            if (param.Pipeline == TaskPipelineType.DryBuild)            &#123;                //opt = BuildAssetBundleOptions.DryRunBuild;                err = &quot;SBP Not Support DryBuild&quot;;            &#125;            if (param.bundleNameType == BundleNameType.NameWithHash || param.bundleNameType == BundleNameType.Hash)                opt |= BuildAssetBundleOptions.AppendHashToAssetBundleName;            return opt;        &#125;        public uint GetBundleCrc(string directory, string bundleName, BundleNameType nameType)        &#123;            switch (nameType)            &#123;                case BundleNameType.Name:                    return _main.GetAssetBundleCrc(bundleName);                case BundleNameType.NameWithHash:                case BundleNameType.Hash:                    &#123;                        bundleName = bundleName.Split(&quot;_&quot;)[0];                        return _main.GetAssetBundleCrc(bundleName);                    &#125;                default:                    return 0;            &#125;        &#125;        public string GetBundleHash(string directory, string bundleName, BundleNameType nameType)        &#123;            switch (nameType)            &#123;                case BundleNameType.Name:                    return _main.GetAssetBundleHash(bundleName).ToString();                case BundleNameType.NameWithHash:                case BundleNameType.Hash:                    &#123;                        bundleName = bundleName.Split(&quot;_&quot;)[0];                        return _main.GetAssetBundleHash(bundleName).ToString();                    &#125;                default:                    return string.Empty;            &#125;        &#125;    &#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooAsset </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooAsset </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>WooAsset-例子2  WebGL</title>
       <link href="/2024/09/06/Doc/WooAsset/12-WooAsset-%E4%BE%8B%E5%AD%90WebGL%202/"/>
       <url>/2024/09/06/Doc/WooAsset/12-WooAsset-%E4%BE%8B%E5%AD%90WebGL%202/</url>
@@ -220,11 +247,11 @@
     
     
     <entry>
-      <title>WooAsset-SBP</title>
-      <link href="/2024/09/06/Doc/WooAsset/11-WooAsset-SBP/"/>
-      <url>/2024/09/06/Doc/WooAsset/11-WooAsset-SBP/</url>
+      <title>WooAsset-例子3  WebGL</title>
+      <link href="/2024/09/06/Doc/WooAsset/13-WooAsset-%E4%BE%8B%E5%AD%90WebGL%203/"/>
+      <url>/2024/09/06/Doc/WooAsset/13-WooAsset-%E4%BE%8B%E5%AD%90WebGL%203/</url>
       
-        <content type="html"><![CDATA[<h1 id="如果要使用-Scriptable-Build-Pipeline"><a href="#如果要使用-Scriptable-Build-Pipeline" class="headerlink" title="如果要使用  Scriptable Build Pipeline"></a>如果要使用  Scriptable Build Pipeline</h1><ul><li><a href="https://docs.unity3d.com/Packages/com.unity.scriptablebuildpipeline@1.20/manual/GettingStarted.html">官方的文档</a></li><li>使用unity package manager 安装  Scriptable Build Pipeline包</li><li>把下面的代码贴到项目内的某个Editor文件夹下</li><li>把Option页签 build 下的 build pipeline 选择为 SBPPipeline</li></ul><pre><code class="csharp">    public class SBPPipeline : IBuildPipeLine    &#123;        UnityEngine.Build.Pipeline.CompatibilityAssetBundleManifest _main;        public bool BuildAssetBundles(string outputPath, AssetBundleBuild[] builds, BuildAssetBundleOptions assetBundleOptions, BuildTarget targetPlatform)        &#123;            try            &#123;                _main = CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, assetBundleOptions, targetPlatform);                var bundles = _main.GetAllAssetBundles();                foreach (var bundle in bundles)                &#123;                    var hash = _main.GetAssetBundleHash(bundle).ToString();                    name2Hash[bundle] = hash;                &#125;                return true;            &#125;            catch (System.Exception)            &#123;                return false;                throw;            &#125;        &#125;        Dictionary&lt;string, string&gt; name2Hash = new Dictionary&lt;string, string&gt;();        public List&lt;string&gt; GetAllAssetBundles(BundleNameType nameType)        &#123;            var bundles = _main.GetAllAssetBundles();            switch (nameType)            &#123;                case BundleNameType.Name: return bundles.ToList();                case BundleNameType.NameWithHash:                case BundleNameType.Hash:                    return bundles.Select(name =&gt; $&quot;&#123;name&#125;_&#123;name2Hash[name]&#125;&quot;).ToList();                default:                    return null;            &#125;        &#125;        public List&lt;string&gt; GetAllDependencies(string assetBundleName, BundleNameType nameType)        &#123;            switch (nameType)            &#123;                case BundleNameType.Name:                    return _main.GetAllDependencies(assetBundleName).ToList();                case BundleNameType.NameWithHash:                case BundleNameType.Hash:                    &#123;                        assetBundleName = assetBundleName.Split(&quot;_&quot;)[0];                        return _main.GetAllDependencies(assetBundleName).Select(name =&gt; $&quot;&#123;name&#125;_&#123;name2Hash[name]&#125;&quot;).ToList();                    &#125;                default:                    return null;            &#125;        &#125;        public BuildAssetBundleOptions GetBundleOption(AssetTaskParams param, out string err)        &#123;            err = string.Empty;            BuildAssetBundleOptions opt = BuildAssetBundleOptions.None;            //opt |= BuildAssetBundleOptions.StrictMode;            opt |= BuildAssetBundleOptions.DisableLoadAssetByFileName;            opt |= BuildAssetBundleOptions.DisableLoadAssetByFileNameWithExtension;            if (param.typeTreeOption == TypeTreeOption.DisableWriteTypeTree)                opt |= BuildAssetBundleOptions.DisableWriteTypeTree;            if (param.typeTreeOption == TypeTreeOption.IgnoreTypeTreeChanges)            &#123;                //opt |= BuildAssetBundleOptions.IgnoreTypeTreeChanges;                err = &quot;SBP Not Support IgnoreTypeTreeChanges&quot;;            &#125;            if (param.buildMode == BuildMode.ForceRebuild)                opt |= BuildAssetBundleOptions.ForceRebuildAssetBundle;            opt |= BuildAssetBundleOptions.DisableLoadAssetByFileName;            opt |= BuildAssetBundleOptions.DisableLoadAssetByFileNameWithExtension;            if (param.compress == CompressType.LZ4)                opt |= BuildAssetBundleOptions.ChunkBasedCompression;            if (param.compress == CompressType.Uncompressed)                opt |= BuildAssetBundleOptions.UncompressedAssetBundle;            if (param.Pipeline == TaskPipelineType.DryBuild)            &#123;                //opt = BuildAssetBundleOptions.DryRunBuild;                err = &quot;SBP Not Support DryBuild&quot;;            &#125;            if (param.bundleNameType == BundleNameType.NameWithHash || param.bundleNameType == BundleNameType.Hash)                opt |= BuildAssetBundleOptions.AppendHashToAssetBundleName;            return opt;        &#125;        public uint GetBundleCrc(string directory, string bundleName, BundleNameType nameType)        &#123;            switch (nameType)            &#123;                case BundleNameType.Name:                    return _main.GetAssetBundleCrc(bundleName);                case BundleNameType.NameWithHash:                case BundleNameType.Hash:                    &#123;                        bundleName = bundleName.Split(&quot;_&quot;)[0];                        return _main.GetAssetBundleCrc(bundleName);                    &#125;                default:                    return 0;            &#125;        &#125;        public string GetBundleHash(string directory, string bundleName, BundleNameType nameType)        &#123;            switch (nameType)            &#123;                case BundleNameType.Name:                    return _main.GetAssetBundleHash(bundleName).ToString();                case BundleNameType.NameWithHash:                case BundleNameType.Hash:                    &#123;                        bundleName = bundleName.Split(&quot;_&quot;)[0];                        return _main.GetAssetBundleHash(bundleName).ToString();                    &#125;                default:                    return string.Empty;            &#125;        &#125;    &#125;</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><a href="/Webs/ShaderGame/index.html">原链接</a></p><p>    <div style="width:405px; height:720px;border:none;text-align:center">        <iframe allowtransparency="yes" frameborder="0" width="100%" height="100%" src="/Webs/ShaderGame/index.html"/>    </div></p>]]></content>
       
       
       <categories>
@@ -459,6 +486,33 @@
     
     
     <entry>
+      <title>2-IFramework-Unity-安装与设置</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/2-IFramework-Unity-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/2-IFramework-Unity-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul><li>upm 添加包地址 <a href="https://gitee.com/OnClick9927/IFramework-Unity.git#src">https://gitee.com/OnClick9927/IFramework-Unity.git#src</a></li><li>upm 添加包地址 <a href="https://github.com/OnClick9927/IFramework-Unity.git#src">https://github.com/OnClick9927/IFramework-Unity.git#src</a></li></ul><h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><ul><li>打开面板 ctrl+shift+i</li><li>参数</li></ul><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>UserName</td><td>用户名字（unity账户名字）</td></tr><tr><td>Version</td><td>工程的版本</td></tr><tr><td>NameSpace</td><td>工程命名空间</td></tr><tr><td>Project Path</td><td>项目内容所在文件夹</td></tr><tr><td>Build</td><td>构建工程目录</td></tr><tr><td>Dock EditorWindow</td><td>打开的窗口是否依附</td></tr><tr><td>Enable</td><td>log 总开关</td></tr><tr><td>Log Enable</td><td>开启log</td></tr><tr><td>Warning Enable</td><td>开启Warning</td></tr><tr><td>Error Enable</td><td>开启Error</td></tr></tbody></table><p><img src="/../../../Pic/Doc/IFramework-Unity/set.png" alt="Alt text"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework-Unity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework-Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>3-IFramework-Unity-UI模块</title>
       <link href="/2023/07/24/Doc/IFramework-Unity/3-IFramework-Unity-UI%E6%A8%A1%E5%9D%97/"/>
       <url>/2023/07/24/Doc/IFramework-Unity/3-IFramework-Unity-UI%E6%A8%A1%E5%9D%97/</url>
@@ -491,33 +545,6 @@
       <url>/2023/07/24/Doc/IFramework-Unity/4-IFramework-Unity-Lua%E6%A8%A1%E5%9D%97/</url>
       
         <content type="html"><![CDATA[<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><pre><code class="csharp">public class AssetsLoader : IXLuaLoader&#123;    public static string projectScriptsPath    &#123;        get &#123; return Application.dataPath.CombinePath(&quot;Project/Lua&quot;); &#125;    &#125;    public byte[] load(ref string path)    &#123;        if (path.EndsWith(&quot;.lua&quot;))            path = path.Replace(&quot;.lua&quot;, &quot;&quot;);        path = path.Replace(&quot;.&quot;, &quot;/&quot;);        string filepath = $&quot;&#123;path&#125;.lua&quot;;        var textAsset = Resources.Load&lt;TextAsset&gt;(filepath);        if (textAsset != null)            return textAsset.bytes;        filepath = projectScriptsPath.CombinePath(filepath + &quot;.txt&quot;).ToAssetsPath();#if UNITY_EDITOR        var handle = UnityEditor.AssetDatabase.LoadAssetAtPath&lt;TextAsset&gt;(filepath);        return handle.bytes;#endif        return null;    &#125;&#125;public class LuaGame : Game&#123;    public class UnityModules    &#123;        public XLuaModule Lua &#123; get &#123; return Launcher.modules.GetModule&lt;XLuaModule&gt;(); &#125; &#125;    &#125;    public UnityModules unityModules = new UnityModules();    public override void Init()    &#123;    &#125;    public override void Startup()    &#123;           /// 创建模块，设置lua 文件加载器        unityModules.Lua.AddLoader(new AssetsLoader());        ///开始Lua 模块        new XluaMain(unityModules.Lua);    &#125;&#125;</code></pre><h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><ul><li>XluaMain 会依次调用<ul><li>FixCsharp.lua</li><li>GlobalDefine.lua</li><li>GameLogic.lua</li></ul></li><li>其他：请参阅Xlua<br><img src="/../../../Pic/Doc/IFramework-Unity/Lua.png" alt="Alt text"></li></ul><h2 id="其他部分"><a href="#其他部分" class="headerlink" title="其他部分"></a>其他部分</h2><h3 id="Lua-提供的方法"><a href="#Lua-提供的方法" class="headerlink" title="Lua 提供的方法"></a>Lua 提供的方法</h3><ul><li>class  （lua class）</li><li>handler （方法句柄）</li><li>try （仿造C# 的try）</li><li>async&#x2F; await&#x2F;luaTask （lua 内的多线程实现）</li><li>StaticUsing  （类似 C# 的static using ，参照 UI生成的代码）</li><li>EventSystem （消息事件）</li><li>Json （纯lua 的jason 序列化）</li><li>Log  (框架输出)</li></ul><h3 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h3><ul><li>UI 与 C# 部分保持高度雷同， 不同点在于<ul><li>lua 生成出来的 组件会统一放在 Controls 内</li><li>设置代码的组需要是lua内的 LuaGroups_MVC ui.SetGroups(mvc);</li></ul></li></ul><pre><code class="lua">-- 设置代码组local UI = Game.modules.UpdateUIlocal map =&#123;    &#123; Name = PanelNames.UpdatePanel, ViewType = require(&quot;Update.UpdatePanelView&quot;) &#125;,&#125;local groups = LuaGroups_MVC()UI:SetGroups(groups:SetMap(map))</code></pre><pre><code class="lua">--*********************************************************************************--Author:         Wulala--Version:        1.0--UnityVersion:   2020.3.3f1c1--Date:           2023-07-24--*********************************************************************************---ViewUseFlaglocal Button = StaticUsing(&quot;UnityEngine.UI.Button&quot;)---ViewUseFlag---@class MyPanelView : UIView_MVClocal MyPanelView = class(&quot;MyPanelView&quot;,UIView_MVC)function MyPanelView:OnLoad()    self.Controls = &#123;        ---@type UnityEngine.UI.Button        Mybtn = self:GetComponent(&quot;Mybtn&quot;, typeof(Button)),    &#125;endfunction MyPanelView:OnShow()endfunction MyPanelView:OnHide()endfunction MyPanelView:OnClose()    self.Controls = nilendreturn MyPanelView</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> IFramework-Unity </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> IFramework-Unity </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>2-IFramework-Unity-安装与设置</title>
-      <link href="/2023/07/24/Doc/IFramework-Unity/2-IFramework-Unity-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE/"/>
-      <url>/2023/07/24/Doc/IFramework-Unity/2-IFramework-Unity-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE/</url>
-      
-        <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul><li>upm 添加包地址 <a href="https://gitee.com/OnClick9927/IFramework-Unity.git#src">https://gitee.com/OnClick9927/IFramework-Unity.git#src</a></li><li>upm 添加包地址 <a href="https://github.com/OnClick9927/IFramework-Unity.git#src">https://github.com/OnClick9927/IFramework-Unity.git#src</a></li></ul><h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><ul><li>打开面板 ctrl+shift+i</li><li>参数</li></ul><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>UserName</td><td>用户名字（unity账户名字）</td></tr><tr><td>Version</td><td>工程的版本</td></tr><tr><td>NameSpace</td><td>工程命名空间</td></tr><tr><td>Project Path</td><td>项目内容所在文件夹</td></tr><tr><td>Build</td><td>构建工程目录</td></tr><tr><td>Dock EditorWindow</td><td>打开的窗口是否依附</td></tr><tr><td>Enable</td><td>log 总开关</td></tr><tr><td>Log Enable</td><td>开启log</td></tr><tr><td>Warning Enable</td><td>开启Warning</td></tr><tr><td>Error Enable</td><td>开启Error</td></tr></tbody></table><p><img src="/../../../Pic/Doc/IFramework-Unity/set.png" alt="Alt text"></p>]]></content>
       
       
       <categories>
@@ -756,11 +783,11 @@
     
     
     <entry>
-      <title>5-IFramework-模块-消息模块</title>
-      <link href="/2023/07/24/Doc/IFramework/5-IFramework-%E6%A8%A1%E5%9D%97-%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/5-IFramework-%E6%A8%A1%E5%9D%97-%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9D%97/</url>
+      <title>3-IFramework-优先级队列</title>
+      <link href="/2023/07/24/Doc/IFramework/3-IFramework-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/"/>
+      <url>/2023/07/24/Doc/IFramework/3-IFramework-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h1><blockquote><p>A:回复T即可退订<br><br>B:T<br><br>A:回复T即可退订<br><br>B:T即可<br><br>A:退订成功</p></blockquote><p>消息是软件开发中减少模块耦合的有效方式</p><p>模块特点:</p><ul><li>支持流量控制</li><li>支持子类型匹配(根据子类型监听父类型)</li><li>支持异步等待</li><li>支持消息优先级</li></ul><p>使用示例:</p><pre><code class="csharp">//需要监听的类public interface IPub &#123; &#125;public class Pub : IPub &#123; &#125;//自定义监听器类 public class Listener : IMessageListener&#123;    public Listener()    &#123;        //构造函数，在这里可以直接写对某个类型的监听    &#125;    //实现接口里的消息回调方法    public void Listen(IMessage message)    &#123;        Log.L($&quot;收到类型为&#123;message.subject&#125;的消息，消息值为&#123;message.code&#125;&quot;);    &#125;&#125;//获取消息模块messageModule = Framework.GetEnv(EnvironmentType.Ev0).modules.Message;//匹配子类型开关messageModule.fitSubType = true;//每帧处理的消息量messageModule.processesPerFrame = 1;//实例化一个消息监听器Listener listenner = new Listener(); //根据IPub监听messageModule.Subscribe&lt;IPub&gt;(listenner);//发送一条重要程度为Important的消息，消息值为100messageModule.Publish&lt;Pub&gt;(null,MessageUrgencyType.Important).SetCode(100);</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h1><blockquote><p>A:请不要插队<br><br>B:我有VIP<br><br>A:前面全是SVIP在等</p></blockquote><p>根据优先级自动排序的队列，消息模块就用到了这个队列来根据紧急程度排序</p><h2 id="1、快速优先级队列"><a href="#1、快速优先级队列" class="headerlink" title="1、快速优先级队列"></a>1、快速优先级队列</h2><p>特点:</p><ul><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>随机的</strong></li></ul><p>使用示例:</p><pre><code class="csharp">//节点public class FastNode : FastPriorityQueueNode&#123;    public int value;&#125;//创建优先级队列FastPriorityQueue&lt;FastNode&gt; nodes = new FastPriorityQueue&lt;FastNode&gt;(10);//节点元素入队for (int i = 10; i &gt; 0; i--)&#123;    nodes.Enqueue(new FastNode() &#123; value = i &#125;, 10 - i);&#125;//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue().value&#125;&quot;);&#125;</code></pre><h2 id="2、泛型优先级队列"><a href="#2、泛型优先级队列" class="headerlink" title="2、泛型优先级队列"></a>2、泛型优先级队列</h2><p>特点:</p><ul><li>优先级值使用可以对比值大小的泛型</li><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>使用示例:</p><pre><code class="csharp">//节点public class GenericNode : GenericPriorityQueueNode&lt;char&gt;&#123;    public int value;&#125;//创建队列，这里以char为例GenericPriorityQueue&lt;GenericNode, char&gt; nodes = new GenericPriorityQueue&lt;GenericNode, char&gt;(10);//节点元素入队for (int i = 10; i &gt; 0; i--)&#123;    nodes.Enqueue(new GenericNode() &#123; value = i &#125;, Convert.ToChar(64 + i));&#125;//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue().value&#125;&quot;);&#125;</code></pre><h2 id="3、稳定优先级队列"><a href="#3、稳定优先级队列" class="headerlink" title="3、稳定优先级队列"></a>3、稳定优先级队列</h2><p>特点:</p><ul><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>和快速优先级队列的区别就只在于出现相同优先级的判断……</p><h2 id="4、简单优先级队列"><a href="#4、简单优先级队列" class="headerlink" title="4、简单优先级队列"></a>4、简单优先级队列</h2><p>特点:</p><ul><li>队列没有大小限制</li><li>支持添加空节点元素和重复的节点元素</li><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>使用示例：</p><pre><code class="csharp">//创建队列SimplePriorityQueue&lt;string&gt; nodes = new SimplePriorityQueue&lt;string&gt;();//节点元素入队for (int i = 1; i &lt;= 10; i++)&#123;    nodes.Enqueue($&quot;&#123;i&#125;&quot;, i);&#125;//空节点元素和重复节点元素入队string item = &quot;重复值&quot;;nodes.Enqueue(null, 1);nodes.Enqueue(null, 3);nodes.Enqueue(item, 4);nodes.Enqueue(item, 5);//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue()&#125;&quot;);&#125;</code></pre>]]></content>
       
       
       <categories>
@@ -810,11 +837,11 @@
     
     
     <entry>
-      <title>3-IFramework-优先级队列</title>
-      <link href="/2023/07/24/Doc/IFramework/3-IFramework-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/"/>
-      <url>/2023/07/24/Doc/IFramework/3-IFramework-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/</url>
+      <title>5-IFramework-模块-消息模块</title>
+      <link href="/2023/07/24/Doc/IFramework/5-IFramework-%E6%A8%A1%E5%9D%97-%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/5-IFramework-%E6%A8%A1%E5%9D%97-%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h1><blockquote><p>A:请不要插队<br><br>B:我有VIP<br><br>A:前面全是SVIP在等</p></blockquote><p>根据优先级自动排序的队列，消息模块就用到了这个队列来根据紧急程度排序</p><h2 id="1、快速优先级队列"><a href="#1、快速优先级队列" class="headerlink" title="1、快速优先级队列"></a>1、快速优先级队列</h2><p>特点:</p><ul><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>随机的</strong></li></ul><p>使用示例:</p><pre><code class="csharp">//节点public class FastNode : FastPriorityQueueNode&#123;    public int value;&#125;//创建优先级队列FastPriorityQueue&lt;FastNode&gt; nodes = new FastPriorityQueue&lt;FastNode&gt;(10);//节点元素入队for (int i = 10; i &gt; 0; i--)&#123;    nodes.Enqueue(new FastNode() &#123; value = i &#125;, 10 - i);&#125;//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue().value&#125;&quot;);&#125;</code></pre><h2 id="2、泛型优先级队列"><a href="#2、泛型优先级队列" class="headerlink" title="2、泛型优先级队列"></a>2、泛型优先级队列</h2><p>特点:</p><ul><li>优先级值使用可以对比值大小的泛型</li><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>使用示例:</p><pre><code class="csharp">//节点public class GenericNode : GenericPriorityQueueNode&lt;char&gt;&#123;    public int value;&#125;//创建队列，这里以char为例GenericPriorityQueue&lt;GenericNode, char&gt; nodes = new GenericPriorityQueue&lt;GenericNode, char&gt;(10);//节点元素入队for (int i = 10; i &gt; 0; i--)&#123;    nodes.Enqueue(new GenericNode() &#123; value = i &#125;, Convert.ToChar(64 + i));&#125;//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue().value&#125;&quot;);&#125;</code></pre><h2 id="3、稳定优先级队列"><a href="#3、稳定优先级队列" class="headerlink" title="3、稳定优先级队列"></a>3、稳定优先级队列</h2><p>特点:</p><ul><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>和快速优先级队列的区别就只在于出现相同优先级的判断……</p><h2 id="4、简单优先级队列"><a href="#4、简单优先级队列" class="headerlink" title="4、简单优先级队列"></a>4、简单优先级队列</h2><p>特点:</p><ul><li>队列没有大小限制</li><li>支持添加空节点元素和重复的节点元素</li><li>优先级值低的排在队列前面</li><li>相同优先级的节点元素的排序是<strong>先进先出的</strong></li></ul><p>使用示例：</p><pre><code class="csharp">//创建队列SimplePriorityQueue&lt;string&gt; nodes = new SimplePriorityQueue&lt;string&gt;();//节点元素入队for (int i = 1; i &lt;= 10; i++)&#123;    nodes.Enqueue($&quot;&#123;i&#125;&quot;, i);&#125;//空节点元素和重复节点元素入队string item = &quot;重复值&quot;;nodes.Enqueue(null, 1);nodes.Enqueue(null, 3);nodes.Enqueue(item, 4);nodes.Enqueue(item, 5);//节点元素出队while (nodes.count != 0)&#123;    Log.L($&quot;出队元素的值为：&#123;nodes.Dequeue()&#125;&quot;);&#125;</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h1><blockquote><p>A:回复T即可退订<br><br>B:T<br><br>A:回复T即可退订<br><br>B:T即可<br><br>A:退订成功</p></blockquote><p>消息是软件开发中减少模块耦合的有效方式</p><p>模块特点:</p><ul><li>支持流量控制</li><li>支持子类型匹配(根据子类型监听父类型)</li><li>支持异步等待</li><li>支持消息优先级</li></ul><p>使用示例:</p><pre><code class="csharp">//需要监听的类public interface IPub &#123; &#125;public class Pub : IPub &#123; &#125;//自定义监听器类 public class Listener : IMessageListener&#123;    public Listener()    &#123;        //构造函数，在这里可以直接写对某个类型的监听    &#125;    //实现接口里的消息回调方法    public void Listen(IMessage message)    &#123;        Log.L($&quot;收到类型为&#123;message.subject&#125;的消息，消息值为&#123;message.code&#125;&quot;);    &#125;&#125;//获取消息模块messageModule = Framework.GetEnv(EnvironmentType.Ev0).modules.Message;//匹配子类型开关messageModule.fitSubType = true;//每帧处理的消息量messageModule.processesPerFrame = 1;//实例化一个消息监听器Listener listenner = new Listener(); //根据IPub监听messageModule.Subscribe&lt;IPub&gt;(listenner);//发送一条重要程度为Important的消息，消息值为100messageModule.Publish&lt;Pub&gt;(null,MessageUrgencyType.Important).SetCode(100);</code></pre>]]></content>
       
       
       <categories>
@@ -1219,11 +1246,11 @@
     
     
     <entry>
-      <title>WooAsset-构建与部署</title>
-      <link href="/2023/06/27/Doc/WooAsset/3-WooAsset-%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/"/>
-      <url>/2023/06/27/Doc/WooAsset/3-WooAsset-%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</url>
+      <title>WooAsset-配置</title>
+      <link href="/2023/06/27/Doc/WooAsset/2-WooAsset-%E9%85%8D%E7%BD%AE/"/>
+      <url>/2023/06/27/Doc/WooAsset/2-WooAsset-%E9%85%8D%E7%BD%AE/</url>
       
-        <content type="html"><![CDATA[<h1 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h1><ul><li>设置好需要打包的组</li><li>点击Tools&#x2F;WooAsset&#x2F;Build</li><li>稍等片刻即可完成打包，内容全都在Sever目录下</li><li>按照Server 文件夹 拷贝到CDN即可</li></ul><h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><pre><code>CDN└─android    ├─v1.0（APP版本）    ├─v1.1（APP版本）    └─v2.0（APP版本）    └─版本列表└─iphone    ├─v1.0（APP版本）    ├─v1.1（APP版本）    └─v2.0（APP版本）    └─版本列表</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="第一次使用"><a href="#第一次使用" class="headerlink" title="第一次使用"></a>第一次使用</h1><ul><li>打开编辑器窗口，操作如下图</li><li>如果报错，关闭窗口再打开一次即可</li><li>如果成功了，会在Assets&#x2F;Editor目录下看到两个配置文件<br><img src="/../../../Pic/Doc/WooAsset/firstopen.png" alt="Alt text"><br><img src="/../../../Pic/Doc/WooAsset/configasset_1.png.png" alt="Alt text"></li></ul><h1 id="配置资源"><a href="#配置资源" class="headerlink" title="配置资源"></a>配置资源</h1><p><img src="/../../../Pic/Doc/WooAsset/option_build.png" alt="Alt text"></p><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>Pkgs</td><td>打包的资源包</td></tr><tr><td>BuildInAssets</td><td>在把bundle拷贝到stream时候，根据这个配置决定拷贝哪些bundle（不配置拷贝全部）</td></tr><tr><td>Version</td><td>此次打包出去的版本</td></tr><tr><td>MaxCacheVersionCount</td><td>远程版本文件最多包含的版本个数</td></tr><tr><td>CleanHistory</td><td>每次打包结束之后是否清理history文件夹</td></tr><tr><td>Copytostream</td><td>拷贝资源到stream，</td></tr><tr><td>Build-In Bundle Selector</td><td>内建资源选择器</td></tr><tr><td>Build Pipeline</td><td>管线 内置 &#x2F;SBP</td></tr><tr><td>build mode</td><td>打包模式（是否增量式）</td></tr><tr><td>bundle name type</td><td>输出资源名称风格（名&#x2F;名_Hash&#x2F;Hash）</td></tr><tr><td>type tree option</td><td>资源类型信息</td></tr><tr><td>Compress</td><td>资源压缩格式</td></tr><tr><td>Asset Build</td><td>自定义打包流程（可扩展）</td></tr><tr><td>Encrypt</td><td>文件加密方式（可扩展）</td></tr><tr><td>Bundle Result Optimizer</td><td>对构建结果优化   (合理化分包，处理循环依赖、冗余，颗粒度…..)</td></tr><tr><td>Optimization Count</td><td>优化迭代次数</td></tr><tr><td>Build Target</td><td>当前打包的平台</td></tr><tr><td>Editor Simulator Path</td><td>编辑器模拟路径</td></tr><tr><td>Output Path</td><td>输出路径</td></tr><tr><td>History Path</td><td>历史文件所在文件夹，第一次打包时候把他删了，后续不要动里面的文件</td></tr><tr><td>stream bundle directory</td><td>stream保存资源的文件夹</td></tr></tbody></table><h2 id="资源组介绍"><a href="#资源组介绍" class="headerlink" title="资源组介绍"></a>资源组介绍</h2><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>Build</td><td>该组是否需要打包 （给分布式打包使用）</td></tr><tr><td>Name</td><td>包的名字（不可重复，不为空）</td></tr><tr><td>Paths</td><td>对应的项目路径  （不可重复，不为空）</td></tr><tr><td>Description</td><td>对包加点描述</td></tr><tr><td>Tags</td><td>对包加一些标记</td></tr><tr><td>builds</td><td>分包规则       （也可以纯粹代码分包，但是此项目不可以存在配置）</td></tr></tbody></table><ul><li>每个资源组均可以分开打包，更新，加载</li><li>保持好良好的资源组结构，方式生成过多冗余</li></ul>]]></content>
       
       
       <categories>
@@ -1246,11 +1273,11 @@
     
     
     <entry>
-      <title>WooAsset-配置</title>
-      <link href="/2023/06/27/Doc/WooAsset/2-WooAsset-%E9%85%8D%E7%BD%AE/"/>
-      <url>/2023/06/27/Doc/WooAsset/2-WooAsset-%E9%85%8D%E7%BD%AE/</url>
+      <title>WooAsset-构建与部署</title>
+      <link href="/2023/06/27/Doc/WooAsset/3-WooAsset-%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/"/>
+      <url>/2023/06/27/Doc/WooAsset/3-WooAsset-%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</url>
       
-        <content type="html"><![CDATA[<h1 id="第一次使用"><a href="#第一次使用" class="headerlink" title="第一次使用"></a>第一次使用</h1><ul><li>打开编辑器窗口，操作如下图</li><li>如果报错，关闭窗口再打开一次即可</li><li>如果成功了，会在Assets&#x2F;Editor目录下看到两个配置文件<br><img src="/../../../Pic/Doc/WooAsset/firstopen.png" alt="Alt text"><br><img src="/../../../Pic/Doc/WooAsset/configasset_1.png.png" alt="Alt text"></li></ul><h1 id="配置资源"><a href="#配置资源" class="headerlink" title="配置资源"></a>配置资源</h1><p><img src="/../../../Pic/Doc/WooAsset/option_build.png" alt="Alt text"></p><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>Pkgs</td><td>打包的资源包</td></tr><tr><td>BuildInAssets</td><td>在把bundle拷贝到stream时候，根据这个配置决定拷贝哪些bundle（不配置拷贝全部）</td></tr><tr><td>Version</td><td>此次打包出去的版本</td></tr><tr><td>MaxCacheVersionCount</td><td>远程版本文件最多包含的版本个数</td></tr><tr><td>CleanHistory</td><td>每次打包结束之后是否清理history文件夹</td></tr><tr><td>Copytostream</td><td>拷贝资源到stream，</td></tr><tr><td>Build-In Bundle Selector</td><td>内建资源选择器</td></tr><tr><td>Build Pipeline</td><td>管线 内置 &#x2F;SBP</td></tr><tr><td>build mode</td><td>打包模式（是否增量式）</td></tr><tr><td>bundle name type</td><td>输出资源名称风格（名&#x2F;名_Hash&#x2F;Hash）</td></tr><tr><td>type tree option</td><td>资源类型信息</td></tr><tr><td>Compress</td><td>资源压缩格式</td></tr><tr><td>Asset Build</td><td>自定义打包流程（可扩展）</td></tr><tr><td>Encrypt</td><td>文件加密方式（可扩展）</td></tr><tr><td>Bundle Result Optimizer</td><td>对构建结果优化   (合理化分包，处理循环依赖、冗余，颗粒度…..)</td></tr><tr><td>Optimization Count</td><td>优化迭代次数</td></tr><tr><td>Build Target</td><td>当前打包的平台</td></tr><tr><td>Editor Simulator Path</td><td>编辑器模拟路径</td></tr><tr><td>Output Path</td><td>输出路径</td></tr><tr><td>History Path</td><td>历史文件所在文件夹，第一次打包时候把他删了，后续不要动里面的文件</td></tr><tr><td>stream bundle directory</td><td>stream保存资源的文件夹</td></tr></tbody></table><h2 id="资源组介绍"><a href="#资源组介绍" class="headerlink" title="资源组介绍"></a>资源组介绍</h2><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>Build</td><td>该组是否需要打包 （给分布式打包使用）</td></tr><tr><td>Name</td><td>包的名字（不可重复，不为空）</td></tr><tr><td>Paths</td><td>对应的项目路径  （不可重复，不为空）</td></tr><tr><td>Description</td><td>对包加点描述</td></tr><tr><td>Tags</td><td>对包加一些标记</td></tr><tr><td>builds</td><td>分包规则       （也可以纯粹代码分包，但是此项目不可以存在配置）</td></tr></tbody></table><ul><li>每个资源组均可以分开打包，更新，加载</li><li>保持好良好的资源组结构，方式生成过多冗余</li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h1><ul><li>设置好需要打包的组</li><li>点击Tools&#x2F;WooAsset&#x2F;Build</li><li>稍等片刻即可完成打包，内容全都在Sever目录下</li><li>按照Server 文件夹 拷贝到CDN即可</li></ul><h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><pre><code>CDN└─android    ├─v1.0（APP版本）    ├─v1.1（APP版本）    └─v2.0（APP版本）    └─版本列表└─iphone    ├─v1.0（APP版本）    ├─v1.1（APP版本）    └─v2.0（APP版本）    └─版本列表</code></pre>]]></content>
       
       
       <categories>
