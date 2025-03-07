@@ -8,6 +8,7 @@ category:
   - WooAsset
 date: 2023-06-27 15:58:38
 ---
+
 ## 实例化 物体
 ``` csharp
 // 创建
@@ -33,11 +34,19 @@ date: 2023-06-27 15:58:38
     {
         public Image image;
         public AssetReference<UnityEngine.Sprite> assetReference;
-    }
-```
-## 资源模糊搜索
-``` csharp
 
+       async void Test(){
+          var asset = await assetReference.LoadAssetAsync();
+          await asset;
+          image.sprite = asset.GetAsset<UnityEngine.Sprite>();
+        }
+    }
+
+```
+## 一些扩展方法
+``` csharp
+//使用时机-》avpro这种只能用路径的插件
+public static string GetRawAssetUrlOrPath(assetpath)
 //获得所有资源路径
  public static IReadOnlyList<string> GetAllAssetPaths() ;
  //获得一个tag 的所有路径

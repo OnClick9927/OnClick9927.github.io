@@ -41,6 +41,7 @@ if (op.Versions != null)
 Assets.SetAssetsSetting(new LocalSetting());
 //初始化
 //可选参数 version 初始化哪一个版本，不传就是本地版本，本地没有就是远端最新版本
+//可选参数 ignoreLocalVersion 如果本地有版本文件是否忽略，直接去拿目标版本
 //可选参数 again 再一次初始化（使用场景，热更新界面也热更）
 //可选参数 getPkgs 始化包选择
 await Assets.InitAsync();
