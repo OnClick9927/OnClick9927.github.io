@@ -13,7 +13,7 @@ date: 2023-06-27 15:58:38
 * 成功后，会在Assets/Editor目录下看到两个配置文件
 * 其中 AssetsEditorCache 可以删除（团队协作时候，不需要同步）
 ![Alt text](../../../Pic/Doc/WooAsset/firstopen.png)
-![Alt text](../../../Pic/Doc/WooAsset/configasset_1.png)
+![Alt text](../../../Pic/Doc/WooAsset/configasset.png)
 
 # 配置资源
 ![Alt text](../../../Pic/Doc/WooAsset/option_build1.png)
@@ -21,15 +21,16 @@ date: 2023-06-27 15:58:38
 | ------------------------ | ---------------------------------------------------------------------------- |
 | Pkgs                     | 资源包配置组                                                                 |
 | Version                  | 此次打包出去的版本                                                           |
-| MaxCacheVersionCount     | 远程版本文件最多包含的版本个数                                               |
-| CleanHistory             | 每次打包结束之后是否清理history文件夹                                        |
+| MaxCacheVersionCount     | 远程版本记录文件最大版本个数                                                 |
+| CleanHistory             | 打包结束后是否删除和本次打包无关的历史文件夹                                 |
 | Build Pipeline           | 管线 内置 /SBP                                                               |
 | build mode               | 打包模式（是否增量式）                                                       |
 | bundle name type         | 输出Bundle名称风格（名/名_Hash/Hash）                                        |
 | type tree option         | Bundle类型信息                                                               |
-| Compress                 | Bundle压缩格式                                                               |
+| Compress                 | Bundle压缩格式 （LZ4/LZMA/不压缩）                                           |
 | Asset Build              | 自定义打包流程（可扩展）                                                     |
 | Encrypt                  | 文件加密方式(可扩展)                                                         |
+| 打包结果二次构建         |
 | Bundle Result Optimizer  | 对构建结果优化 (可扩展)(合理化分包，处理循环依赖、冗余，颗粒度.....)         |
 | Optimization Count       | 优化迭代次数                                                                 |
 | 下面是内建资源选择       |
