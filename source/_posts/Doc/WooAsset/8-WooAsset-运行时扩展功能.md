@@ -115,7 +115,37 @@ public static void ReleaseUselessBridges()
     Assets.ReleaseUselessBridges();
 }
 ```
+
 其他类型的资源/组件，可以 继承 AssetBridge< T > 自行实现即可
+### 按照功能分组的释放的方式
+* 场景
+* 一个ui界面上面有一个image
+* 运行时候需要不停的替换image的sprite
+* 界面关闭的时候需要把image的sprite卸载
+* 与上一种方式对比，gc会少一些
+``` csharp
+    public static async void SetSprite(string key, UnityEngine.UI.Image image, string path, Action callback = null)
+    {
+        if (string.IsNullOrEmpty(path))
+            image.sprite = null;
+        else
+        {
+            var collection = Assets.GetAssetCollection(key);
+            var asset = collection.Get(path, () => Assets.LoadAssetAsync<Sprite>(path));
+            await asset;
+            Sprite sp = (asset as WooAsset.Asset).GetAsset<Sprite>();
+            image.sprite = sp;
+        }
+        callback?.Invoke();
+    }
+
+    //释放
+    public static void ClearAssetCollection(string key)
+    {
+        Assets.ClearAssetCollection(key);
+    }
+
+```
 
 ### 更加方便的方式（有风险）
 ``` csharp
