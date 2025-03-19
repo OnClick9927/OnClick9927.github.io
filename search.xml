@@ -4,6 +4,141 @@
   
     
     <entry>
+      <title>1-WooAudio-初始化</title>
+      <link href="/2025/03/19/Doc/WooAudio/3-WooAudio-%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+      <url>/2025/03/19/Doc/WooAudio/3-WooAudio-%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><ul><li>WooAudio使用前需要先进行的必要操作</li></ul><pre><code class="csharp">//脚本需要先继承 IAudioPrefRecorder、IAudioAsset 接口void Start()&#123;    //初始化 并设置通道音量 设置AudioConfig文件     Audio.Init(this, this);    Audio.SetDefaultVolume(0, 0.7f);    Audio.SetDefaultVolume(1, 0.1f);    Audio.SetConfig(AudioConfig);    AudioConfig.GenMap();&#125;//实现这三个方法public AudioPref Read()&#123;   return JsonUtility.FromJson&lt;AudioPref&gt;(PlayerPrefs.GetString(nameof(AudioPref)));&#125;public void Write(AudioPref pref)&#123;    PlayerPrefs.SetString(nameof(AudioPref), JsonUtility.ToJson(pref));&#125;public IAudioAssetContext CreateContext(string path)&#123;    return new AudioAssetContext();&#125;//在内部实现类 private class AudioAssetContext : IAudioAssetContext&#123;    public bool isDone =&gt; clip != null;    public AudioClip GetClip()    &#123;        return clip;    &#125;    private AudioClip clip;    public void Load(string path)    &#123;        clip = AssetDatabase.LoadAssetAtPath&lt;AudioClip&gt;(path);    &#125;    public void Release(string path)    &#123;    &#125;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooAudio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooAudio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>1-WooAudio-扩展</title>
+      <link href="/2025/03/19/Doc/WooAudio/5-WooAudio-%E6%89%A9%E5%B1%95/"/>
+      <url>/2025/03/19/Doc/WooAudio/5-WooAudio-%E6%89%A9%E5%B1%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="需求扩展"><a href="#需求扩展" class="headerlink" title="需求扩展"></a>需求扩展</h1><p>如果想对 WooAudio 插件进行功能扩展，只需实现一个或多个接口，在现有的代码中添加修改即可<br>例如你有其他需要配置的内容，实现接口后在AudioConfig文件中修改。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooAudio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooAudio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>1-WooAudio-Audio</title>
+      <link href="/2025/03/19/Doc/WooAudio/4-WooAudio-Audio/"/>
+      <url>/2025/03/19/Doc/WooAudio/4-WooAudio-Audio/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Audio"><a href="#Audio" class="headerlink" title="Audio"></a>Audio</h1><p>Audio 组件是 WooAudio 插件的核心管理类，负责集中管理和操作音频功能，以下是其功能描述：</p><h1 id="初始化与配置"><a href="#初始化与配置" class="headerlink" title="初始化与配置"></a>初始化与配置</h1><p>Init(IAudioPrefRecorder recorder, IAudioAsset asset)</p><ul><li>功能：初始化音频系统，设置音频偏好记录器和音频资源管理器。</li><li>参数：<ul><li>recorder：音频偏好记录器，用于读取和写入音频偏好设置。</li><li>asset：音频资源管理器，用于加载和管理音频资源。</li></ul></li></ul><p>SetConfig(IAudioConfig config)</p><ul><li>功能：设置音频配置。</li><li>参数：<ul><li>config：音频配置接口，提供音频的相关设置。</li></ul></li></ul><h1 id="音频播放控制"><a href="#音频播放控制" class="headerlink" title="音频播放控制"></a>音频播放控制</h1><p>Play(int sound_id)</p><ul><li>功能：播放指定音频。</li><li>参数：<ul><li>sound_id：音频的唯一标识符。</li></ul></li></ul><p>Stop(int sound_id, bool all &#x3D; false)</p><ul><li>功能：停止播放指定音频。</li><li>参数：<ul><li>sound_id：音频的唯一标识符。</li><li>all：是否停止所有实例，默认为 false。</li></ul></li></ul><p>StopChannel(int channel)</p><ul><li>功能：停止指定通道的所有音频播放。</li><li>参数：<ul><li>channel：音频通道。</li></ul></li></ul><p>StopAllChannel()</p><ul><li>功能：停止所有通道的音频播放。</li></ul><h1 id="音量管理"><a href="#音量管理" class="headerlink" title="音量管理"></a>音量管理</h1><p>SetVolume(int channel, float volume)</p><ul><li>功能：设置指定通道的音量。</li><li>参数：<ul><li>channel：音频通道。</li><li>volume：音量值，范围为 0 到 1。</li></ul></li></ul><p>GetVolume(int channel)</p><ul><li>功能：获取指定通道的当前音量。</li><li>参数：<ul><li>channel：音频通道。</li></ul></li><li>返回值：当前音量值Float。</li></ul><h1 id="音频偏好保存"><a href="#音频偏好保存" class="headerlink" title="音频偏好保存"></a>音频偏好保存</h1><p>SetDefaultVolume(int channel, float vol)</p><ul><li>功能：设置指定通道的默认音量。</li><li>参数：<ul><li>channel：音频通道。</li><li>vol：默认音量值。</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooAudio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooAudio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>1-WooAudio-文件配置</title>
+      <link href="/2025/03/19/Doc/WooAudio/2-WooAudio-AudioCofig%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE/"/>
+      <url>/2025/03/19/Doc/WooAudio/2-WooAudio-AudioCofig%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="WooAudio-AudioConfig"><a href="#WooAudio-AudioConfig" class="headerlink" title="WooAudio-AudioConfig"></a>WooAudio-AudioConfig</h1><p>AudioConfig文件是WooAudio 插件中的一个核心，用于存储和管理音频资源的配置信息。通过AudioConfig，开发者可以集中定义和调整音频的播放参数，如音量、播放通道、循环设置等，而无需在代码中硬编码这些参数。这使得音频管理更加灵活和高效，特别是在需要频繁调整音频设置的项目中。</p><h1 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h1><p>右键Project窗口 - Creat - AudioConfig</p><h1 id="界面功能介绍"><a href="#界面功能介绍" class="headerlink" title="界面功能介绍"></a>界面功能介绍</h1><ul><li>channels<ul><li>在Channels部分，添加音频通道。每个通道可以用于不同类型的声音，例如背景音乐、音效等。点击 + 按钮添加通道，并为每个通道命名（例如 BackgroundMusic, SoundEffects）。</li></ul></li><li>搜索框<ul><li>可以通过音频id来搜索对应的配置信息。</li></ul></li><li>添加音频数据<ul><li>在 Sounds 部分，添加音频数据条目。</li><li>每个条目包括以下字段：<ul><li>ID：音频的唯一标识符（整数）。</li><li>Channel：音频播放的通道（从已定义的通道中选择）。</li><li>Clip：音频文件路径（拖拽音频文件到此字段）。</li><li>Loop：是否循环播放（勾选此选项）。</li><li>Cover：是否允许覆盖（即是否允许同时播放多个实例）。</li><li>ExistTime：音频资源的存活时间（秒），-1 表示永久存在。</li><li>Volume：音量（范围：-1 到 1）。</li></ul></li></ul></li></ul><p><img src="/../../../Pic/Doc/WooAudio/WooAudio%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooAudio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooAudio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>1-WooAudio-简介</title>
+      <link href="/2025/03/19/Doc/WooAudio/1-WooAudio-%E7%AE%80%E4%BB%8B/"/>
+      <url>/2025/03/19/Doc/WooAudio/1-WooAudio-%E7%AE%80%E4%BB%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/WooAudio">地址</a></h1><h1 id="upm-添加地址"><a href="#upm-添加地址" class="headerlink" title="upm 添加地址"></a>upm 添加地址</h1><p><a href="https://github.com/OnClick9927/WooAudio.git#upm">https://github.com/OnClick9927/WooAudio.git#upm</a></p><h1 id="WooLocalization介绍"><a href="#WooLocalization介绍" class="headerlink" title="WooLocalization介绍"></a>WooLocalization介绍</h1><p>WooAudio是一款为Unity引擎设计的音频管理系统，旨在简化音频播放、配置和偏好设置的管理。它帮助开发者高效管理多个音频通道，支持音频资源的动态加载和释放，同时提供用户音量等偏好的存储功能。</p><h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><ul><li>多通道音频管理</li><li>音频配置管理</li><li>音频设置偏好存储</li><li>灵活的音频资源处理</li></ul><h1 id="为什么选择我们："><a href="#为什么选择我们：" class="headerlink" title="为什么选择我们："></a>为什么选择我们：</h1><ul><li>通过 WooAudio，开发者可以轻松地播放音效、管理配置、存储用户偏好，并且根据需要扩展功能。其简单易用的 API 使得音频管理变得更加高效和便捷。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> WooAudio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WooAudio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>1-WooLocalization-简介</title>
       <link href="/2024/10/26/Doc/WooLocalization/1-WooLocalization-%E7%AE%80%E4%BB%8B/"/>
       <url>/2024/10/26/Doc/WooLocalization/1-WooLocalization-%E7%AE%80%E4%BB%8B/</url>
@@ -112,11 +247,11 @@
     
     
     <entry>
-      <title>6-WooLocalization-Demo</title>
-      <link href="/2024/10/26/Doc/WooLocalization/6-WooLocalization-Demo/"/>
-      <url>/2024/10/26/Doc/WooLocalization/6-WooLocalization-Demo/</url>
+      <title>5-WooLocalization-初始化</title>
+      <link href="/2024/10/26/Doc/WooLocalization/5-WooLocalization-%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+      <url>/2024/10/26/Doc/WooLocalization/5-WooLocalization-%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
       
-        <content type="html"><![CDATA[<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><ul><li>右上角点击切换中英文查看效果<p>  <div style="width:720px; height:512px;border:none;text-align:center">      <iframe allowtransparency="yes" frameborder="0" width="110%" height="110%" src="/Webs/WooLocalization_Webgl/index.html"/>  </div></p></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><ul><li>本地化初始化时必须加的几句代码 否则会报错</li></ul><pre><code class="csharp">//脚本需要先继承ILocalizationPrefRecorder接口//然后实现这两个方法public LocalizationPref Read()&#123;  return null;&#125;public void Write(LocalizationPref pref)&#123;&#125;//此代码写在初始化方法里//是为了平台适配Localization.SetRecorder(this);//是为了有起手语言Localization.SetDefaultLocalizationType(type);//是为了有数据Localization.SetContext(data);</code></pre>]]></content>
       
       
       <categories>
@@ -139,11 +274,11 @@
     
     
     <entry>
-      <title>5-WooLocalization-初始化</title>
-      <link href="/2024/10/26/Doc/WooLocalization/5-WooLocalization-%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
-      <url>/2024/10/26/Doc/WooLocalization/5-WooLocalization-%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
+      <title>6-WooLocalization-Demo</title>
+      <link href="/2024/10/26/Doc/WooLocalization/6-WooLocalization-Demo/"/>
+      <url>/2024/10/26/Doc/WooLocalization/6-WooLocalization-Demo/</url>
       
-        <content type="html"><![CDATA[<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><ul><li>本地化初始化时必须加的几句代码 否则会报错</li></ul><pre><code class="csharp">//脚本需要先继承ILocalizationPrefRecorder接口//然后实现这两个方法public LocalizationPref Read()&#123;  return null;&#125;public void Write(LocalizationPref pref)&#123;&#125;//此代码写在初始化方法里//是为了平台适配Localization.SetRecorder(this);//是为了有起手语言Localization.SetDefaultLocalizationType(type);//是为了有数据Localization.SetContext(data);</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><ul><li>右上角点击切换中英文查看效果<p>  <div style="width:720px; height:512px;border:none;text-align:center">      <iframe allowtransparency="yes" frameborder="0" width="110%" height="110%" src="/Webs/WooLocalization_Webgl/index.html"/>  </div></p></li></ul>]]></content>
       
       
       <categories>
@@ -193,11 +328,11 @@
     
     
     <entry>
-      <title>WooAsset-例子2  WebGL</title>
-      <link href="/2024/09/06/Doc/WooAsset/12-WooAsset-%E4%BE%8B%E5%AD%90WebGL%202/"/>
-      <url>/2024/09/06/Doc/WooAsset/12-WooAsset-%E4%BE%8B%E5%AD%90WebGL%202/</url>
+      <title>WooAsset-例子3  WebGL</title>
+      <link href="/2024/09/06/Doc/WooAsset/13-WooAsset-%E4%BE%8B%E5%AD%90WebGL%203/"/>
+      <url>/2024/09/06/Doc/WooAsset/13-WooAsset-%E4%BE%8B%E5%AD%90WebGL%203/</url>
       
-        <content type="html"><![CDATA[<p><a href="/Webs/Bubble1Up/index.html">原链接</a></p><p>    <div style="width:405px; height:720px;border:none;text-align:center">        <iframe allowtransparency="yes" frameborder="0" width="100%" height="100%" src="/Webs/Bubble1Up/index.html"/>    </div></p>]]></content>
+        <content type="html"><![CDATA[<p><a href="/Webs/ShaderGame/index.html">原链接</a></p><p>    <div style="width:500px; height:900px;border:none;text-align:center">        <iframe allowtransparency="yes" frameborder="0" width="100%" height="100%" src="/Webs/ShaderGame/index.html"/>    </div></p>]]></content>
       
       
       <categories>
@@ -220,11 +355,11 @@
     
     
     <entry>
-      <title>WooAsset-例子3  WebGL</title>
-      <link href="/2024/09/06/Doc/WooAsset/13-WooAsset-%E4%BE%8B%E5%AD%90WebGL%203/"/>
-      <url>/2024/09/06/Doc/WooAsset/13-WooAsset-%E4%BE%8B%E5%AD%90WebGL%203/</url>
+      <title>WooAsset-例子2  WebGL</title>
+      <link href="/2024/09/06/Doc/WooAsset/12-WooAsset-%E4%BE%8B%E5%AD%90WebGL%202/"/>
+      <url>/2024/09/06/Doc/WooAsset/12-WooAsset-%E4%BE%8B%E5%AD%90WebGL%202/</url>
       
-        <content type="html"><![CDATA[<p><a href="/Webs/ShaderGame/index.html">原链接</a></p><p>    <div style="width:500px; height:900px;border:none;text-align:center">        <iframe allowtransparency="yes" frameborder="0" width="100%" height="100%" src="/Webs/ShaderGame/index.html"/>    </div></p>]]></content>
+        <content type="html"><![CDATA[<p><a href="/Webs/Bubble1Up/index.html">原链接</a></p><p>    <div style="width:405px; height:720px;border:none;text-align:center">        <iframe allowtransparency="yes" frameborder="0" width="100%" height="100%" src="/Webs/Bubble1Up/index.html"/>    </div></p>]]></content>
       
       
       <categories>
@@ -567,6 +702,33 @@
     
     
     <entry>
+      <title>5-IFramework-Unity-红点</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/5-IFramework-Unity-%E7%BA%A2%E7%82%B9/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/5-IFramework-Unity-%E7%BA%A2%E7%82%B9/</url>
+      
+        <content type="html"><![CDATA[<pre><code class="csharp">    //自定义绑定，显示节点对应的数字  private class Dot : RedDot    &#123;        public Text text;        public Dot(string path, Text text)        &#123;            this.text = text;            SetPath(path);        &#125;        public override void FreshView(int count)        &#123;            text.text = count.ToString();        &#125;    &#125;  public class redPointGame : Game&#123;    public Toggle add;    public List&lt;Button&gt; btns = new List&lt;Button&gt;();    public List&lt;string&gt; keys = new List&lt;string&gt;() &#123;    &quot;11&quot;,    &quot;11/22&quot;,    &quot;11/33&quot;,    &#125;;    public override void Init()    &#123;      //读入红点路径        for (int i = 0; i &lt; keys.Count; i++)               RedTree.ReadPath(keys[i]);  //对按钮挨个绑定        for (int i = 0; i &lt; btns.Count; i++)        &#123;            var index = i;            var btnsNode = btns[i];            var key = keys[index];            var text = btnsNode.GetComponentInChildren&lt;Text&gt;();            new Dot(key, text);//自定义显示数字的绑定            //控制显示隐藏的绑定            //当数字小于0会隐藏            new RedActiveDot(key, text.gameObject);                      btnsNode.onClick.AddListener(() =&gt;            &#123;                //按钮点击对红点数据修改            //注意只有叶子节点修改会起效                RedTree.SetCount(key, RedTree.GetCount(key) + (add.isOn ? 1 : -1));            &#125;);        &#125;    &#125;    public override void Startup()    &#123;    &#125;    private void OnGUI()    &#123;      //红点编辑器窗口        if (GUILayout.Button(&quot;open WIndow&quot;, new GUIStyle(&quot;button&quot;) &#123; fontSize = 40 &#125;, GUILayout.Height(300), GUILayout.Width(300)))        &#123;            IFramework.EditorTools.EditorWindowTool.Create(&quot;RedPoint&quot;);        &#125;    &#125;&#125;</code></pre><p><img src="/../../../Pic/Doc/IFramework-Unity/Red/win.png" alt="Alt text"></p><ul><li>path 红点路径</li><li>count 当前数量</li><li>dot  有几个绑定</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework-Unity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework-Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>6-IFramework-Unity-单例</title>
       <link href="/2023/07/24/Doc/IFramework-Unity/6-IFramework-Unity-%E5%8D%95%E4%BE%8B/"/>
       <url>/2023/07/24/Doc/IFramework-Unity/6-IFramework-Unity-%E5%8D%95%E4%BE%8B/</url>
@@ -599,33 +761,6 @@
       <url>/2023/07/24/Doc/IFramework-Unity/7-IFramework-Unity-%E4%BA%8B%E4%BB%B6/</url>
       
         <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> IFramework-Unity </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> IFramework-Unity </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>5-IFramework-Unity-红点</title>
-      <link href="/2023/07/24/Doc/IFramework-Unity/5-IFramework-Unity-%E7%BA%A2%E7%82%B9/"/>
-      <url>/2023/07/24/Doc/IFramework-Unity/5-IFramework-Unity-%E7%BA%A2%E7%82%B9/</url>
-      
-        <content type="html"><![CDATA[<pre><code class="csharp">    //自定义绑定，显示节点对应的数字  private class Dot : RedDot    &#123;        public Text text;        public Dot(string path, Text text)        &#123;            this.text = text;            SetPath(path);        &#125;        public override void FreshView(int count)        &#123;            text.text = count.ToString();        &#125;    &#125;  public class redPointGame : Game&#123;    public Toggle add;    public List&lt;Button&gt; btns = new List&lt;Button&gt;();    public List&lt;string&gt; keys = new List&lt;string&gt;() &#123;    &quot;11&quot;,    &quot;11/22&quot;,    &quot;11/33&quot;,    &#125;;    public override void Init()    &#123;      //读入红点路径        for (int i = 0; i &lt; keys.Count; i++)               RedTree.ReadPath(keys[i]);  //对按钮挨个绑定        for (int i = 0; i &lt; btns.Count; i++)        &#123;            var index = i;            var btnsNode = btns[i];            var key = keys[index];            var text = btnsNode.GetComponentInChildren&lt;Text&gt;();            new Dot(key, text);//自定义显示数字的绑定            //控制显示隐藏的绑定            //当数字小于0会隐藏            new RedActiveDot(key, text.gameObject);                      btnsNode.onClick.AddListener(() =&gt;            &#123;                //按钮点击对红点数据修改            //注意只有叶子节点修改会起效                RedTree.SetCount(key, RedTree.GetCount(key) + (add.isOn ? 1 : -1));            &#125;);        &#125;    &#125;    public override void Startup()    &#123;    &#125;    private void OnGUI()    &#123;      //红点编辑器窗口        if (GUILayout.Button(&quot;open WIndow&quot;, new GUIStyle(&quot;button&quot;) &#123; fontSize = 40 &#125;, GUILayout.Height(300), GUILayout.Width(300)))        &#123;            IFramework.EditorTools.EditorWindowTool.Create(&quot;RedPoint&quot;);        &#125;    &#125;&#125;</code></pre><p><img src="/../../../Pic/Doc/IFramework-Unity/Red/win.png" alt="Alt text"></p><ul><li>path 红点路径</li><li>count 当前数量</li><li>dot  有几个绑定</li></ul>]]></content>
       
       
       <categories>
@@ -729,6 +864,33 @@
     
     
     <entry>
+      <title>1-IFramework-简介</title>
+      <link href="/2023/07/24/Doc/IFramework/1-IFramework-%E7%AE%80%E4%BB%8B/"/>
+      <url>/2023/07/24/Doc/IFramework/1-IFramework-%E7%AE%80%E4%BB%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/IFramework">地址</a></h1><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>IFramework（任何C#环境均可）包含以下内容：</p><ul><li>Log （框架的log）</li><li>Singleton （通用C#单例）</li><li>PriorityQueue （优先级队列）</li><li>Modules （模块合集）</li><li>Environment （环境，包含模块合集与计时）</li></ul><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul><li><code>git clone -b src https://github.com/OnClick9927/IFramework</code></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2-IFramework-单例</title>
       <link href="/2023/07/24/Doc/IFramework/2-IFramework-%E5%8D%95%E4%BE%8B/"/>
       <url>/2023/07/24/Doc/IFramework/2-IFramework-%E5%8D%95%E4%BE%8B/</url>
@@ -783,11 +945,11 @@
     
     
     <entry>
-      <title>1-IFramework-简介</title>
-      <link href="/2023/07/24/Doc/IFramework/1-IFramework-%E7%AE%80%E4%BB%8B/"/>
-      <url>/2023/07/24/Doc/IFramework/1-IFramework-%E7%AE%80%E4%BB%8B/</url>
+      <title>4-IFramework-模块-记录模块</title>
+      <link href="/2023/07/24/Doc/IFramework/4-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%B0%E5%BD%95%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/4-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%B0%E5%BD%95%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/IFramework">地址</a></h1><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>IFramework（任何C#环境均可）包含以下内容：</p><ul><li>Log （框架的log）</li><li>Singleton （通用C#单例）</li><li>PriorityQueue （优先级队列）</li><li>Modules （模块合集）</li><li>Environment （环境，包含模块合集与计时）</li></ul><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul><li><code>git clone -b src https://github.com/OnClick9927/IFramework</code></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="记录模块"><a href="#记录模块" class="headerlink" title="记录模块"></a>记录模块</h1><p>拿小本本记下一举一动</p><p>模块特点:</p><ul><li>撤销与反撤销</li><li>支持以Command或Action作为操作</li><li>支持将多个操作合并成一个组调用</li></ul><p>使用示例:</p><pre><code class="csharp">//获取模块IOperationRecorderModule recorderModule=Framework.GetEnv(EnvironmentType.Ev0).modules.Recoder;static int value = 0;//增加数值Commandstruct AddValueCommand : ICommand&#123;    public void Excute()    &#123;        value++;    &#125;&#125;//减少数值Commandstruct SubValueCommand : ICommand&#123;    public void Excute()    &#123;        value--;    &#125;&#125;//注册Action操作和其回退操作var actionState = recorderModule.AllocateAction().SetCommand(() =&gt; &#123; value += 16; &#125;, () =&gt; &#123; value -= 16; &#125;);actionState.SetName(&quot;增加了16&quot;);actionState.Subscribe();//State可以多次调用//但是请【不要】在注册之后修改State，否则会对前面的操作有影响actionState.Subscribe();actionState.Subscribe();//注册Command操作和其回退操作var commandState = recorderModule.AllocateCommand().SetCommand(new AddValueCommand(), new SubValueCommand());commandState.SetName(&quot;增加了1&quot;);commandState.Subscribe();//注册Action一组操作和其回退操作var actionGroupState =     recorderModule.AllocateActionGroup()    .SetGroupCommand(() =&gt; &#123; value += 1; &#125;, () =&gt; &#123; value -= 1; &#125;)    .SetGroupCommand(() =&gt; &#123; value += 2; &#125;, () =&gt; &#123; value -= 2; &#125;)actionGroupState.SetName(&quot;增加了3&quot;);actionGroupState.Subscribe();Log.L(value);//撤销操作 返回值为是否撤销成功bool bo = recorderModule.Undo();Log.L(value);//反撤销操作 返回值为是否反撤销成功bool bo = recorderModule.Redo();Log.L(value);</code></pre>]]></content>
       
       
       <categories>
@@ -815,33 +977,6 @@
       <url>/2023/07/24/Doc/IFramework/5-IFramework-%E6%A8%A1%E5%9D%97-%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9D%97/</url>
       
         <content type="html"><![CDATA[<h1 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h1><blockquote><p>A:回复T即可退订<br><br>B:T<br><br>A:回复T即可退订<br><br>B:T即可<br><br>A:退订成功</p></blockquote><p>消息是软件开发中减少模块耦合的有效方式</p><p>模块特点:</p><ul><li>支持流量控制</li><li>支持子类型匹配(根据子类型监听父类型)</li><li>支持异步等待</li><li>支持消息优先级</li></ul><p>使用示例:</p><pre><code class="csharp">//需要监听的类public interface IPub &#123; &#125;public class Pub : IPub &#123; &#125;//自定义监听器类 public class Listener : IMessageListener&#123;    public Listener()    &#123;        //构造函数，在这里可以直接写对某个类型的监听    &#125;    //实现接口里的消息回调方法    public void Listen(IMessage message)    &#123;        Log.L($&quot;收到类型为&#123;message.subject&#125;的消息，消息值为&#123;message.code&#125;&quot;);    &#125;&#125;//获取消息模块messageModule = Framework.GetEnv(EnvironmentType.Ev0).modules.Message;//匹配子类型开关messageModule.fitSubType = true;//每帧处理的消息量messageModule.processesPerFrame = 1;//实例化一个消息监听器Listener listenner = new Listener(); //根据IPub监听messageModule.Subscribe&lt;IPub&gt;(listenner);//发送一条重要程度为Important的消息，消息值为100messageModule.Publish&lt;Pub&gt;(null,MessageUrgencyType.Important).SetCode(100);</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> IFramework </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> IFramework </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>4-IFramework-模块-记录模块</title>
-      <link href="/2023/07/24/Doc/IFramework/4-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%B0%E5%BD%95%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/4-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%B0%E5%BD%95%E6%A8%A1%E5%9D%97/</url>
-      
-        <content type="html"><![CDATA[<h1 id="记录模块"><a href="#记录模块" class="headerlink" title="记录模块"></a>记录模块</h1><p>拿小本本记下一举一动</p><p>模块特点:</p><ul><li>撤销与反撤销</li><li>支持以Command或Action作为操作</li><li>支持将多个操作合并成一个组调用</li></ul><p>使用示例:</p><pre><code class="csharp">//获取模块IOperationRecorderModule recorderModule=Framework.GetEnv(EnvironmentType.Ev0).modules.Recoder;static int value = 0;//增加数值Commandstruct AddValueCommand : ICommand&#123;    public void Excute()    &#123;        value++;    &#125;&#125;//减少数值Commandstruct SubValueCommand : ICommand&#123;    public void Excute()    &#123;        value--;    &#125;&#125;//注册Action操作和其回退操作var actionState = recorderModule.AllocateAction().SetCommand(() =&gt; &#123; value += 16; &#125;, () =&gt; &#123; value -= 16; &#125;);actionState.SetName(&quot;增加了16&quot;);actionState.Subscribe();//State可以多次调用//但是请【不要】在注册之后修改State，否则会对前面的操作有影响actionState.Subscribe();actionState.Subscribe();//注册Command操作和其回退操作var commandState = recorderModule.AllocateCommand().SetCommand(new AddValueCommand(), new SubValueCommand());commandState.SetName(&quot;增加了1&quot;);commandState.Subscribe();//注册Action一组操作和其回退操作var actionGroupState =     recorderModule.AllocateActionGroup()    .SetGroupCommand(() =&gt; &#123; value += 1; &#125;, () =&gt; &#123; value -= 1; &#125;)    .SetGroupCommand(() =&gt; &#123; value += 2; &#125;, () =&gt; &#123; value -= 2; &#125;)actionGroupState.SetName(&quot;增加了3&quot;);actionGroupState.Subscribe();Log.L(value);//撤销操作 返回值为是否撤销成功bool bo = recorderModule.Undo();Log.L(value);//反撤销操作 返回值为是否反撤销成功bool bo = recorderModule.Redo();Log.L(value);</code></pre>]]></content>
       
       
       <categories>
@@ -1354,11 +1489,11 @@
     
     
     <entry>
-      <title>WooAsset-运行时扩展功能</title>
-      <link href="/2023/06/27/Doc/WooAsset/8-WooAsset-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/"/>
-      <url>/2023/06/27/Doc/WooAsset/8-WooAsset-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/</url>
+      <title>WooAsset-个性化</title>
+      <link href="/2023/06/27/Doc/WooAsset/7-WooAsset-%E4%B8%AA%E6%80%A7%E5%8C%96/"/>
+      <url>/2023/06/27/Doc/WooAsset/7-WooAsset-%E4%B8%AA%E6%80%A7%E5%8C%96/</url>
       
-        <content type="html"><![CDATA[<h2 id="实例化-物体"><a href="#实例化-物体" class="headerlink" title="实例化 物体"></a>实例化 物体</h2><pre><code class="csharp">// 创建  var oppp = await Assets.InstantiateAsync(path, parent);// 干点啥  //销毁  //销毁时候会自动改变引用计数，不需要手动Assets.Release  oppp.Destroy();</code></pre><h2 id="AssetReference-amp-amp-使用例子"><a href="#AssetReference-amp-amp-使用例子" class="headerlink" title="AssetReference &amp;&amp; 使用例子"></a>AssetReference &amp;&amp; 使用例子</h2><pre><code class="csharp">  [System.Serializable]  public class AssetReference&lt;T&gt; : AssetReference where T : UnityEngine.Object  &#123;      public override Type type =&gt; typeof(T);  &#125;</code></pre><pre><code class="csharp">    public class AssetExample : UnityEngine.MonoBehaviour    &#123;        public Image image;        public AssetReference&lt;UnityEngine.Sprite&gt; assetReference;       async void Test()&#123;          var asset = await assetReference.LoadAssetAsync();          await asset;          image.sprite = asset.GetAsset&lt;UnityEngine.Sprite&gt;();        &#125;    &#125;</code></pre><h2 id="一些扩展方法"><a href="#一些扩展方法" class="headerlink" title="一些扩展方法"></a>一些扩展方法</h2><pre><code class="csharp">//使用时机-》avpro这种只能用路径的插件public static string GetRawAssetUrlOrPath(assetpath)//获得所有资源路径 public static IReadOnlyList&lt;string&gt; GetAllAssetPaths() ; //获得一个tag 的所有路径 public static IReadOnlyList&lt;string&gt; GetTagAssetPaths(string tag) ; //获得所有资源路径 public static IReadOnlyList&lt;string&gt; GetAllTags(); //更具tag 获得唯一 资源 public static string GetUniqueAssetPathByTag(string tag); //获得所有满足条件的资源 public static IReadOnlyList&lt;string&gt; GetAssetPath(Func&lt;AssetData, bool&gt; fit); //获得唯一满足条件的资源 public static string GetUniqueAssetPath(Func&lt;AssetData, bool&gt; fit); //通过名字找到名字一致的资源 public static IReadOnlyList&lt;string&gt; GetAssetsByAssetName(string name) ;//得到对应路径数据 public static AssetData GetAssetData(string assetPath);</code></pre><h2 id="资源组加载"><a href="#资源组加载" class="headerlink" title="资源组加载"></a>资源组加载</h2><h3 id="何时使用：某些地方必须需要同步加载资源（先准备一下）-x2F-一次型加载配置表，读取到内存之后，卸载"><a href="#何时使用：某些地方必须需要同步加载资源（先准备一下）-x2F-一次型加载配置表，读取到内存之后，卸载" class="headerlink" title="何时使用：某些地方必须需要同步加载资源（先准备一下）&#x2F; 一次型加载配置表，读取到内存之后，卸载"></a>何时使用：某些地方必须需要同步加载资源（先准备一下）&#x2F; 一次型加载配置表，读取到内存之后，卸载</h3><pre><code class="csharp">//准备一组资源string[] groups ;var assets= await Assets.PrepareAssets(groups)//或者按照 tag 准备一组资源var assets=Assets.PrepareAssetsByTag(tag)///加载对应的资源方法一string path;var asset = assets.FindAsset(path)///加载对应的资源方法二var asset = Assets.LoadAssetAsync(path)///注意：方式二会增加引用计数，需要在合适的地方 Assets.Release(asset)///方式一不会增加引用计数///把整组资源全都卸载了assets.Release();///配合资源模糊搜索一起使用//使用场景，进入战斗场景之前把战斗需要的资源全加载</code></pre><h2 id="方便的资源卸载"><a href="#方便的资源卸载" class="headerlink" title="方便的资源卸载"></a>方便的资源卸载</h2><h3 id="基础方式"><a href="#基础方式" class="headerlink" title="基础方式"></a>基础方式</h3><ul><li>场景</li><li>一个ui界面上面有一个image</li><li>运行时候需要不停的替换image的sprite</li><li>界面关闭的时候需要把image的sprite卸载</li></ul><pre><code class="csharp">///所有的设置图片都走这个方法public static async void SetSprite(Image image, string path)&#123;    var asset = await Assets.LoadAssetAsync(path);    if (asset.isErr) return;    image.sprite = asset.GetAsset&lt;Sprite&gt;();    Assets.AddBridge(new GameObjectBridge(image.gameObject,asset));&#125;///在合适的时候调用一次即可（比如：切换场景时候）public static void ReleaseUselessBridges()&#123;    Assets.ReleaseUselessBridges();&#125;</code></pre><p>其他类型的资源&#x2F;组件，可以 继承 AssetBridge&lt; T &gt; 自行实现即可</p><h3 id="按照功能分组的释放的方式"><a href="#按照功能分组的释放的方式" class="headerlink" title="按照功能分组的释放的方式"></a>按照功能分组的释放的方式</h3><ul><li>场景</li><li>一个ui界面上面有一个image</li><li>运行时候需要不停的替换image的sprite</li><li>界面关闭的时候需要把image的sprite卸载</li><li>与上一种方式对比，gc会少一些</li></ul><pre><code class="csharp">    public static async void SetSprite(string key, UnityEngine.UI.Image image, string path, Action callback = null)    &#123;        if (string.IsNullOrEmpty(path))            image.sprite = null;        else        &#123;            var collection = Assets.GetAssetCollection(key);            var asset = collection.Get(path, () =&gt; Assets.LoadAssetAsync&lt;Sprite&gt;(path));            await asset;            Sprite sp = (asset as WooAsset.Asset).GetAsset&lt;Sprite&gt;();            image.sprite = sp;        &#125;        callback?.Invoke();    &#125;    //释放    public static void ClearAssetCollection(string key)    &#123;        Assets.ClearAssetCollection(key);    &#125;</code></pre><h3 id="更加方便的方式（有风险）"><a href="#更加方便的方式（有风险）" class="headerlink" title="更加方便的方式（有风险）"></a>更加方便的方式（有风险）</h3><pre><code class="csharp">public class LocalSetting : AssetsSetting&#123;    public override IAssetLife GetAssetLife()    &#123;      /// 参数是缓存的内存大小，超过这个数字会自动卸载最早的资源        return new LRULife(1024 * 50);    &#125;&#125;Assets.SetAssetsSetting(new LocalSetting());</code></pre><ul><li>可以实现 bundle 不自动卸载，到达一定大小在开始卸载</li><li>如果内存不足时候，最早被使用的资源会被优先卸载</li><li>内存设置的别太小，容易出现资源丢失</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="打包个性化"><a href="#打包个性化" class="headerlink" title="打包个性化"></a>打包个性化</h2><pre><code class="csharp"> //个性化打包流程public abstract class IAssetBuild&#123;//是否记录这个路径bool GetIsRecord(string path) ;//自定义 资源 Tag （可以按照tag加载一组资源）List&lt;string&gt; GetAssetTags(string path) ;//自定义版本规则string GetVersion(string settingVersion, AssetTaskContext context);//一个资源是不是可以忽略 protected virtual bool IsIgnorePath(string path);//更具一个路径返回资源类型（覆盖）AssetType CoverAssetType(string path, AssetType type) ;// 自定义资源分组void Create(List&lt;EditorAssetData&gt; assets, List&lt;EditorBundleData&gt; result, EditorPackageData pkg);//自定义加密IAssetStreamEncrypt GetBundleEncrypt(EditorPackageData pkg, EditorBundleData data, IAssetStreamEncrypt en) ;int GetEncryptCode(IAssetStreamEncrypt en);IAssetStreamEncrypt GetEncryptByCode(int code)&#125;</code></pre><h3 id="打包管线-内建（自带）-x2F-SBP（后续文章有）"><a href="#打包管线-内建（自带）-x2F-SBP（后续文章有）" class="headerlink" title="打包管线 内建（自带）&#x2F;SBP（后续文章有）"></a>打包管线 内建（自带）&#x2F;SBP（后续文章有）</h3><pre><code class="csharp">    public interface IBuildPipeLine    &#123;        bool BuildAssetBundles(string outputPath, AssetBundleBuild[] builds, BuildAssetBundleOptions assetBundleOptions, BuildTarget targetPlatform);        List&lt;string&gt; GetAllAssetBundles(BundleNameType nameType);        List&lt;string&gt; GetAllDependencies(string assetBundleName, BundleNameType nameType);        uint GetBundleCrc(string directory, string bundleName, BundleNameType nameType);        string GetBundleHash(string directory, string bundleName, BundleNameType nameType);        BuildAssetBundleOptions GetBundleOption(AssetTaskParams param, out string err);    &#125;</code></pre><h3 id="资源分包优化"><a href="#资源分包优化" class="headerlink" title="资源分包优化"></a>资源分包优化</h3><pre><code class="csharp">    public interface IBundleOptimizer    &#123;        List&lt;EditorBundleData&gt; Optimize(List&lt;EditorBundleData&gt; builds, EditorPackageData buildPkg, IAssetsBuild build);    &#125;</code></pre><h3 id="内建资源选择"><a href="#内建资源选择" class="headerlink" title="内建资源选择"></a>内建资源选择</h3><pre><code class="csharp">    public interface IBuildInBundleSelector    &#123;        /// &lt;summary&gt;        ///         /// &lt;/summary&gt;        /// &lt;param name=&quot;files&quot;&gt;打包出的所有文件&lt;/param&gt;        /// &lt;param name=&quot;buildInAssets&quot;&gt;编辑器配置&lt;/param&gt;        /// &lt;param name=&quot;buildInConfig&quot;&gt;必须拷贝的文件&lt;/param&gt;        /// &lt;param name=&quot;manifest&quot;&gt;打包出来的配置文件（Merged）&lt;/param&gt;        /// &lt;param name=&quot;exports&quot;&gt;打包报告（Merged）&lt;/param&gt;        /// &lt;returns&gt;&lt;/returns&gt;        string[] Select(string[] files, List&lt;string&gt; buildInAssets, List&lt;string&gt; buildInConfig, ManifestData manifest, List&lt;PackageExportData&gt; exports);    &#125;</code></pre><h3 id="低代码打包，配合资源组分包-使用，用于选出需要的资源"><a href="#低代码打包，配合资源组分包-使用，用于选出需要的资源" class="headerlink" title="低代码打包，配合资源组分包 使用，用于选出需要的资源"></a>低代码打包，配合资源组分包 使用，用于选出需要的资源</h3><pre><code class="csharp">    public interface IAssetSelector    &#123;        List&lt;EditorAssetData&gt; Select(List&lt;EditorAssetData&gt; assets, AssetSelectorParam param);    &#125;</code></pre><h2 id="加载个性化"><a href="#加载个性化" class="headerlink" title="加载个性化"></a>加载个性化</h2><pre><code class="csharp">///写一个 class 继承于 AssetsSettingpublic abstract class AssetsSetting&#123;  //是否要检查总版本文件  //比如 服务器给出版本 0.0.1，是否去版本记录里面查有没有这个版本  public virtual bool CheckVersionByVersionCollection() =&gt; false;  //拷贝stream 路径重写  public virtual string GetStreamingFileUrl(string url)&#123;&#125;  //是否从缓存加载ab  public virtual bool GetCachesDownloadedBundles() =&gt; false;  //按照名字搜索时候，名字是否有后缀，可以近似实现 Resources.Load  public virtual FileNameSearchType GetFileNameSearchType()&#123;&#125;    //是否需要拷贝stream到沙盒  public virtual bool NeedCopyStreamBundles() &#123;&#125;  ///一帧内最多多少毫秒在加载资源  public virtual long GetLoadingMaxTimeSlice()&#123;&#125;    /// 如果本地没有是否需要保存文件  // GetBundleAlwaysFromWebRequest 返回 true 该选项不起效  public virtual bool GetSaveBytesWhenPlaying() =&gt; true;  ///下载的路径  //举例 ：https://xxx.xxx.xx  //http://127.0.0.1:8080  // Application.StreamingPath   protected virtual string GetBaseUrl() &#123;&#125;  ///自定义 bundle 去哪里下载public virtual string GetUrlByBundleName(string buildTarget, string bundleName) =&gt; $&quot;&#123;GetBaseUrl()&#125;/&#123;buildTarget&#125;/&#123;bundleName&#125;&quot;; public virtual string GetUrlByBundleName(string buildTarget, string version, string bundleName) =&gt; $&quot;&#123;GetBaseUrl()&#125;/&#123;buildTarget&#125;/&#123;version&#125;/&#123;bundleName&#125;&quot;;  //永远从远端下载   public virtual bool GetBundleAlwaysFromWebRequest() &#123;&#125;  /// 下载超时  public virtual int GetWebRequestTimeout() ;  ///下载重试次数  public virtual int GetWebRequestRetryCount() ;  ///同时存在下载器最大个数  public virtual int GetWebRequestCountAtSameTime() ;//是否开启模糊加载//Assets.loadAsset(&quot;Assets/a.png&quot;)//开启后 Assets.loadAsset(&quot;Assets/a&quot;)//注意 开启之后，同一个文件夹下不可以出现同名文件   public virtual string GetFuzzySearch()&#123;&#125;  ///是否自动卸载 AB  //如果未开启，需要在合适的时机手动调用   Assets.UnloadBundles  public virtual bool GetAutoUnloadBundle() &#123;&#125;  ///资源加密方式  public virtual IAssetStreamEncrypt GetEncrypt(int code) &#123;&#125;  /// 自定义的资源生命周期管理，bundle和asset均可以  public virtual IAssetLife GetAssetLife()&#123;&#125;&#125;</code></pre><h2 id="资源加密"><a href="#资源加密" class="headerlink" title="资源加密"></a>资源加密</h2><pre><code class="csharp">//个性化加密    public interface IAssetEncrypt    &#123;        byte[] Encode(string bundleName, byte[] buffer);        byte[] Decode(string bundleName, byte[] buffer);        byte[] Decode(string bundleName, byte[] buffer, int offset, int length);    &#125;</code></pre>]]></content>
       
       
       <categories>
@@ -1381,11 +1516,11 @@
     
     
     <entry>
-      <title>WooAsset-个性化</title>
-      <link href="/2023/06/27/Doc/WooAsset/7-WooAsset-%E4%B8%AA%E6%80%A7%E5%8C%96/"/>
-      <url>/2023/06/27/Doc/WooAsset/7-WooAsset-%E4%B8%AA%E6%80%A7%E5%8C%96/</url>
+      <title>WooAsset-运行时扩展功能</title>
+      <link href="/2023/06/27/Doc/WooAsset/8-WooAsset-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/"/>
+      <url>/2023/06/27/Doc/WooAsset/8-WooAsset-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/</url>
       
-        <content type="html"><![CDATA[<h2 id="打包个性化"><a href="#打包个性化" class="headerlink" title="打包个性化"></a>打包个性化</h2><pre><code class="csharp"> //个性化打包流程public abstract class IAssetBuild&#123;//是否记录这个路径bool GetIsRecord(string path) ;//自定义 资源 Tag （可以按照tag加载一组资源）List&lt;string&gt; GetAssetTags(string path) ;//自定义版本规则string GetVersion(string settingVersion, AssetTaskContext context);//一个资源是不是可以忽略 protected virtual bool IsIgnorePath(string path);//更具一个路径返回资源类型（覆盖）AssetType CoverAssetType(string path, AssetType type) ;// 自定义资源分组void Create(List&lt;EditorAssetData&gt; assets, List&lt;EditorBundleData&gt; result, EditorPackageData pkg);//自定义加密IAssetStreamEncrypt GetBundleEncrypt(EditorPackageData pkg, EditorBundleData data, IAssetStreamEncrypt en) ;int GetEncryptCode(IAssetStreamEncrypt en);IAssetStreamEncrypt GetEncryptByCode(int code)&#125;</code></pre><h3 id="打包管线-内建（自带）-x2F-SBP（后续文章有）"><a href="#打包管线-内建（自带）-x2F-SBP（后续文章有）" class="headerlink" title="打包管线 内建（自带）&#x2F;SBP（后续文章有）"></a>打包管线 内建（自带）&#x2F;SBP（后续文章有）</h3><pre><code class="csharp">    public interface IBuildPipeLine    &#123;        bool BuildAssetBundles(string outputPath, AssetBundleBuild[] builds, BuildAssetBundleOptions assetBundleOptions, BuildTarget targetPlatform);        List&lt;string&gt; GetAllAssetBundles(BundleNameType nameType);        List&lt;string&gt; GetAllDependencies(string assetBundleName, BundleNameType nameType);        uint GetBundleCrc(string directory, string bundleName, BundleNameType nameType);        string GetBundleHash(string directory, string bundleName, BundleNameType nameType);        BuildAssetBundleOptions GetBundleOption(AssetTaskParams param, out string err);    &#125;</code></pre><h3 id="资源分包优化"><a href="#资源分包优化" class="headerlink" title="资源分包优化"></a>资源分包优化</h3><pre><code class="csharp">    public interface IBundleOptimizer    &#123;        List&lt;EditorBundleData&gt; Optimize(List&lt;EditorBundleData&gt; builds, EditorPackageData buildPkg, IAssetsBuild build);    &#125;</code></pre><h3 id="内建资源选择"><a href="#内建资源选择" class="headerlink" title="内建资源选择"></a>内建资源选择</h3><pre><code class="csharp">    public interface IBuildInBundleSelector    &#123;        /// &lt;summary&gt;        ///         /// &lt;/summary&gt;        /// &lt;param name=&quot;files&quot;&gt;打包出的所有文件&lt;/param&gt;        /// &lt;param name=&quot;buildInAssets&quot;&gt;编辑器配置&lt;/param&gt;        /// &lt;param name=&quot;buildInConfig&quot;&gt;必须拷贝的文件&lt;/param&gt;        /// &lt;param name=&quot;manifest&quot;&gt;打包出来的配置文件（Merged）&lt;/param&gt;        /// &lt;param name=&quot;exports&quot;&gt;打包报告（Merged）&lt;/param&gt;        /// &lt;returns&gt;&lt;/returns&gt;        string[] Select(string[] files, List&lt;string&gt; buildInAssets, List&lt;string&gt; buildInConfig, ManifestData manifest, List&lt;PackageExportData&gt; exports);    &#125;</code></pre><h3 id="低代码打包，配合资源组分包-使用，用于选出需要的资源"><a href="#低代码打包，配合资源组分包-使用，用于选出需要的资源" class="headerlink" title="低代码打包，配合资源组分包 使用，用于选出需要的资源"></a>低代码打包，配合资源组分包 使用，用于选出需要的资源</h3><pre><code class="csharp">    public interface IAssetSelector    &#123;        List&lt;EditorAssetData&gt; Select(List&lt;EditorAssetData&gt; assets, AssetSelectorParam param);    &#125;</code></pre><h2 id="加载个性化"><a href="#加载个性化" class="headerlink" title="加载个性化"></a>加载个性化</h2><pre><code class="csharp">///写一个 class 继承于 AssetsSettingpublic abstract class AssetsSetting&#123;  //是否要检查总版本文件  //比如 服务器给出版本 0.0.1，是否去版本记录里面查有没有这个版本  public virtual bool CheckVersionByVersionCollection() =&gt; false;  //拷贝stream 路径重写  public virtual string GetStreamingFileUrl(string url)&#123;&#125;  //是否从缓存加载ab  public virtual bool GetCachesDownloadedBundles() =&gt; false;  //按照名字搜索时候，名字是否有后缀，可以近似实现 Resources.Load  public virtual FileNameSearchType GetFileNameSearchType()&#123;&#125;    //是否需要拷贝stream到沙盒  public virtual bool NeedCopyStreamBundles() &#123;&#125;  ///一帧内最多多少毫秒在加载资源  public virtual long GetLoadingMaxTimeSlice()&#123;&#125;    /// 如果本地没有是否需要保存文件  // GetBundleAlwaysFromWebRequest 返回 true 该选项不起效  public virtual bool GetSaveBytesWhenPlaying() =&gt; true;  ///下载的路径  //举例 ：https://xxx.xxx.xx  //http://127.0.0.1:8080  // Application.StreamingPath   protected virtual string GetBaseUrl() &#123;&#125;  ///自定义 bundle 去哪里下载public virtual string GetUrlByBundleName(string buildTarget, string bundleName) =&gt; $&quot;&#123;GetBaseUrl()&#125;/&#123;buildTarget&#125;/&#123;bundleName&#125;&quot;; public virtual string GetUrlByBundleName(string buildTarget, string version, string bundleName) =&gt; $&quot;&#123;GetBaseUrl()&#125;/&#123;buildTarget&#125;/&#123;version&#125;/&#123;bundleName&#125;&quot;;  //永远从远端下载   public virtual bool GetBundleAlwaysFromWebRequest() &#123;&#125;  /// 下载超时  public virtual int GetWebRequestTimeout() ;  ///下载重试次数  public virtual int GetWebRequestRetryCount() ;  ///同时存在下载器最大个数  public virtual int GetWebRequestCountAtSameTime() ;//是否开启模糊加载//Assets.loadAsset(&quot;Assets/a.png&quot;)//开启后 Assets.loadAsset(&quot;Assets/a&quot;)//注意 开启之后，同一个文件夹下不可以出现同名文件   public virtual string GetFuzzySearch()&#123;&#125;  ///是否自动卸载 AB  //如果未开启，需要在合适的时机手动调用   Assets.UnloadBundles  public virtual bool GetAutoUnloadBundle() &#123;&#125;  ///资源加密方式  public virtual IAssetStreamEncrypt GetEncrypt(int code) &#123;&#125;  /// 自定义的资源生命周期管理，bundle和asset均可以  public virtual IAssetLife GetAssetLife()&#123;&#125;&#125;</code></pre><h2 id="资源加密"><a href="#资源加密" class="headerlink" title="资源加密"></a>资源加密</h2><pre><code class="csharp">//个性化加密    public interface IAssetEncrypt    &#123;        byte[] Encode(string bundleName, byte[] buffer);        byte[] Decode(string bundleName, byte[] buffer);        byte[] Decode(string bundleName, byte[] buffer, int offset, int length);    &#125;</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="实例化-物体"><a href="#实例化-物体" class="headerlink" title="实例化 物体"></a>实例化 物体</h2><pre><code class="csharp">// 创建  var oppp = await Assets.InstantiateAsync(path, parent);// 干点啥  //销毁  //销毁时候会自动改变引用计数，不需要手动Assets.Release  oppp.Destroy();</code></pre><h2 id="AssetReference-amp-amp-使用例子"><a href="#AssetReference-amp-amp-使用例子" class="headerlink" title="AssetReference &amp;&amp; 使用例子"></a>AssetReference &amp;&amp; 使用例子</h2><pre><code class="csharp">  [System.Serializable]  public class AssetReference&lt;T&gt; : AssetReference where T : UnityEngine.Object  &#123;      public override Type type =&gt; typeof(T);  &#125;</code></pre><pre><code class="csharp">    public class AssetExample : UnityEngine.MonoBehaviour    &#123;        public Image image;        public AssetReference&lt;UnityEngine.Sprite&gt; assetReference;       async void Test()&#123;          var asset = await assetReference.LoadAssetAsync();          await asset;          image.sprite = asset.GetAsset&lt;UnityEngine.Sprite&gt;();        &#125;    &#125;</code></pre><h2 id="一些扩展方法"><a href="#一些扩展方法" class="headerlink" title="一些扩展方法"></a>一些扩展方法</h2><pre><code class="csharp">//使用时机-》avpro这种只能用路径的插件public static string GetRawAssetUrlOrPath(assetpath)//获得所有资源路径 public static IReadOnlyList&lt;string&gt; GetAllAssetPaths() ; //获得一个tag 的所有路径 public static IReadOnlyList&lt;string&gt; GetTagAssetPaths(string tag) ; //获得所有资源路径 public static IReadOnlyList&lt;string&gt; GetAllTags(); //更具tag 获得唯一 资源 public static string GetUniqueAssetPathByTag(string tag); //获得所有满足条件的资源 public static IReadOnlyList&lt;string&gt; GetAssetPath(Func&lt;AssetData, bool&gt; fit); //获得唯一满足条件的资源 public static string GetUniqueAssetPath(Func&lt;AssetData, bool&gt; fit); //通过名字找到名字一致的资源 public static IReadOnlyList&lt;string&gt; GetAssetsByAssetName(string name) ;//得到对应路径数据 public static AssetData GetAssetData(string assetPath);</code></pre><h2 id="资源组加载"><a href="#资源组加载" class="headerlink" title="资源组加载"></a>资源组加载</h2><h3 id="何时使用：某些地方必须需要同步加载资源（先准备一下）-x2F-一次型加载配置表，读取到内存之后，卸载"><a href="#何时使用：某些地方必须需要同步加载资源（先准备一下）-x2F-一次型加载配置表，读取到内存之后，卸载" class="headerlink" title="何时使用：某些地方必须需要同步加载资源（先准备一下）&#x2F; 一次型加载配置表，读取到内存之后，卸载"></a>何时使用：某些地方必须需要同步加载资源（先准备一下）&#x2F; 一次型加载配置表，读取到内存之后，卸载</h3><pre><code class="csharp">//准备一组资源string[] groups ;var assets= await Assets.PrepareAssets(groups)//或者按照 tag 准备一组资源var assets=Assets.PrepareAssetsByTag(tag)///加载对应的资源方法一string path;var asset = assets.FindAsset(path)///加载对应的资源方法二var asset = Assets.LoadAssetAsync(path)///注意：方式二会增加引用计数，需要在合适的地方 Assets.Release(asset)///方式一不会增加引用计数///把整组资源全都卸载了assets.Release();///配合资源模糊搜索一起使用//使用场景，进入战斗场景之前把战斗需要的资源全加载</code></pre><h2 id="方便的资源卸载"><a href="#方便的资源卸载" class="headerlink" title="方便的资源卸载"></a>方便的资源卸载</h2><h3 id="基础方式"><a href="#基础方式" class="headerlink" title="基础方式"></a>基础方式</h3><ul><li>场景</li><li>一个ui界面上面有一个image</li><li>运行时候需要不停的替换image的sprite</li><li>界面关闭的时候需要把image的sprite卸载</li></ul><pre><code class="csharp">///所有的设置图片都走这个方法public static async void SetSprite(Image image, string path)&#123;    var asset = await Assets.LoadAssetAsync(path);    if (asset.isErr) return;    image.sprite = asset.GetAsset&lt;Sprite&gt;();    Assets.AddBridge(new GameObjectBridge(image.gameObject,asset));&#125;///在合适的时候调用一次即可（比如：切换场景时候）public static void ReleaseUselessBridges()&#123;    Assets.ReleaseUselessBridges();&#125;</code></pre><p>其他类型的资源&#x2F;组件，可以 继承 AssetBridge&lt; T &gt; 自行实现即可</p><h3 id="按照功能分组的释放的方式"><a href="#按照功能分组的释放的方式" class="headerlink" title="按照功能分组的释放的方式"></a>按照功能分组的释放的方式</h3><ul><li>场景</li><li>一个ui界面上面有一个image</li><li>运行时候需要不停的替换image的sprite</li><li>界面关闭的时候需要把image的sprite卸载</li><li>与上一种方式对比，gc会少一些</li></ul><pre><code class="csharp">    public static async void SetSprite(string key, UnityEngine.UI.Image image, string path, Action callback = null)    &#123;        if (string.IsNullOrEmpty(path))            image.sprite = null;        else        &#123;            var collection = Assets.GetAssetCollection(key);            var asset = collection.Get(path, () =&gt; Assets.LoadAssetAsync&lt;Sprite&gt;(path));            await asset;            Sprite sp = (asset as WooAsset.Asset).GetAsset&lt;Sprite&gt;();            image.sprite = sp;        &#125;        callback?.Invoke();    &#125;    //释放    public static void ClearAssetCollection(string key)    &#123;        Assets.ClearAssetCollection(key);    &#125;</code></pre><h3 id="更加方便的方式（有风险）"><a href="#更加方便的方式（有风险）" class="headerlink" title="更加方便的方式（有风险）"></a>更加方便的方式（有风险）</h3><pre><code class="csharp">public class LocalSetting : AssetsSetting&#123;    public override IAssetLife GetAssetLife()    &#123;      /// 参数是缓存的内存大小，超过这个数字会自动卸载最早的资源        return new LRULife(1024 * 50);    &#125;&#125;Assets.SetAssetsSetting(new LocalSetting());</code></pre><ul><li>可以实现 bundle 不自动卸载，到达一定大小在开始卸载</li><li>如果内存不足时候，最早被使用的资源会被优先卸载</li><li>内存设置的别太小，容易出现资源丢失</li></ul>]]></content>
       
       
       <categories>
