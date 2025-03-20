@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>1-WooAudio-初始化</title>
+      <title>3-WooAudio-初始化</title>
       <link href="/2025/03/19/Doc/WooAudio/3-WooAudio-%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
       <url>/2025/03/19/Doc/WooAudio/3-WooAudio-%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
       
-        <content type="html"><![CDATA[<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><ul><li>WooAudio使用前需要先进行的必要操作</li></ul><pre><code class="csharp">//脚本需要先继承 IAudioPrefRecorder、IAudioAsset 接口void Start()&#123;    //初始化 并设置通道音量 设置AudioConfig文件     Audio.Init(this, this);    Audio.SetDefaultVolume(0, 0.7f);    Audio.SetDefaultVolume(1, 0.1f);    Audio.SetConfig(AudioConfig);    AudioConfig.GenMap();&#125;//实现这三个方法public AudioPref Read()&#123;   return JsonUtility.FromJson&lt;AudioPref&gt;(PlayerPrefs.GetString(nameof(AudioPref)));&#125;public void Write(AudioPref pref)&#123;    PlayerPrefs.SetString(nameof(AudioPref), JsonUtility.ToJson(pref));&#125;public IAudioAssetContext CreateContext(string path)&#123;    return new AudioAssetContext();&#125;//在内部实现类 private class AudioAssetContext : IAudioAssetContext&#123;    public bool isDone =&gt; clip != null;    public AudioClip GetClip()    &#123;        return clip;    &#125;    private AudioClip clip;    public void Load(string path)    &#123;        clip = AssetDatabase.LoadAssetAtPath&lt;AudioClip&gt;(path);    &#125;    public void Release(string path)    &#123;    &#125;&#125;</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><ul><li>WooAudio使用前需要先进行的必要操作</li></ul><pre><code class="csharp">//脚本需要先继承 IAudioPrefRecorder、IAudioAsset 接口void Start()&#123;    // 初始化音频系统，传入当前实例作为 IAudioPrefRecorder 和 IAudioAsset 实现    Audio.Init(this, this);    //设置通道默认音量    Audio.SetDefaultVolume(0, 0.7f);    Audio.SetDefaultVolume(1, 0.1f);    //设置AudioConfig文件    Audio.SetConfig(AudioConfig);    //生成音频配置的映射表，方便通过音频 ID 快速获取配置信息    AudioConfig.GenMap();&#125;//方法 Read 实现 IAudioPrefRecorder 接口，从 PlayerPrefs 中读取音频偏好设置public AudioPref Read()&#123;   //使用 JsonUtility 从 PlayerPrefs 中读取音频偏好设置的 JSON 字符串并反序列化为 AudioPref 对象   return JsonUtility.FromJson&lt;AudioPref&gt;(PlayerPrefs.GetString(nameof(AudioPref)));&#125;//方法 Write 实现 IAudioPrefRecorder 接口，将音频偏好设置写入 PlayerPrefspublic void Write(AudioPref pref)&#123;    // 使用 JsonUtility 将 AudioPref 对象序列化为 JSON 字符串，并保存到 PlayerPrefs 中    PlayerPrefs.SetString(nameof(AudioPref), JsonUtility.ToJson(pref));&#125;//方法 CreateContext 实现 IAudioAsset 接口，创建并返回一个 AudioAssetContext 实例public IAudioAssetContext CreateContext(string path)&#123;    return new AudioAssetContext();&#125;//定义一个内部类 AudioAssetContext，用于实现 IAudioAssetContext 接口，管理音频资源的加载和释放private class AudioAssetContext : IAudioAssetContext&#123;    // 属性 isDone 表示音频资源是否加载完成，通过检查 clip 是否为空来判断    public bool isDone =&gt; clip != null;    // 方法 GetClip 返回加载的音频剪辑    public AudioClip GetClip()    &#123;        return clip;    &#125;    // 私有变量 clip 用于存储加载的音频剪辑    private AudioClip clip;    // 方法 Load 用于加载指定路径的音频资源    public void Load(string path)    &#123;        clip = AssetDatabase.LoadAssetAtPath&lt;AudioClip&gt;(path);    &#125;    // 方法 Release 用于释放音频资源（可添加资源卸载逻辑）    public void Release(string path)    &#123;    &#125;&#125;// Update 方法每帧被调用一次，用于处理用户输入和播放音频void Update()&#123;    // 如果按下 A 键，播放音频 ID 为 0 的音频    if (Input.GetKeyDown(KeyCode.A))    &#123;        Audio.Play(0);    &#125;    // 如果按下 D 键，播放音频 ID 为 1 的音频    if (Input.GetKeyDown(KeyCode.D))    &#123;        Audio.Play(1);    &#125;    &#125;</code></pre>]]></content>
       
       
       <categories>
@@ -31,38 +31,11 @@
     
     
     <entry>
-      <title>1-WooAudio-扩展</title>
-      <link href="/2025/03/19/Doc/WooAudio/5-WooAudio-%E6%89%A9%E5%B1%95/"/>
-      <url>/2025/03/19/Doc/WooAudio/5-WooAudio-%E6%89%A9%E5%B1%95/</url>
-      
-        <content type="html"><![CDATA[<h1 id="需求扩展"><a href="#需求扩展" class="headerlink" title="需求扩展"></a>需求扩展</h1><p>如果想对 WooAudio 插件进行功能扩展，只需实现一个或多个接口，在现有的代码中添加修改即可<br>例如你有其他需要配置的内容，实现接口后在AudioConfig文件中修改。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> WooAudio </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> WooAudio </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>1-WooAudio-Audio</title>
+      <title>4-WooAudio-Audio</title>
       <link href="/2025/03/19/Doc/WooAudio/4-WooAudio-Audio/"/>
       <url>/2025/03/19/Doc/WooAudio/4-WooAudio-Audio/</url>
       
-        <content type="html"><![CDATA[<h1 id="Audio"><a href="#Audio" class="headerlink" title="Audio"></a>Audio</h1><p>Audio 组件是 WooAudio 插件的核心管理类，负责集中管理和操作音频功能，以下是其功能描述：</p><h1 id="初始化与配置"><a href="#初始化与配置" class="headerlink" title="初始化与配置"></a>初始化与配置</h1><p>Init(IAudioPrefRecorder recorder, IAudioAsset asset)</p><ul><li>功能：初始化音频系统，设置音频偏好记录器和音频资源管理器。</li><li>参数：<ul><li>recorder：音频偏好记录器，用于读取和写入音频偏好设置。</li><li>asset：音频资源管理器，用于加载和管理音频资源。</li></ul></li></ul><p>SetConfig(IAudioConfig config)</p><ul><li>功能：设置音频配置。</li><li>参数：<ul><li>config：音频配置接口，提供音频的相关设置。</li></ul></li></ul><h1 id="音频播放控制"><a href="#音频播放控制" class="headerlink" title="音频播放控制"></a>音频播放控制</h1><p>Play(int sound_id)</p><ul><li>功能：播放指定音频。</li><li>参数：<ul><li>sound_id：音频的唯一标识符。</li></ul></li></ul><p>Stop(int sound_id, bool all &#x3D; false)</p><ul><li>功能：停止播放指定音频。</li><li>参数：<ul><li>sound_id：音频的唯一标识符。</li><li>all：是否停止所有实例，默认为 false。</li></ul></li></ul><p>StopChannel(int channel)</p><ul><li>功能：停止指定通道的所有音频播放。</li><li>参数：<ul><li>channel：音频通道。</li></ul></li></ul><p>StopAllChannel()</p><ul><li>功能：停止所有通道的音频播放。</li></ul><h1 id="音量管理"><a href="#音量管理" class="headerlink" title="音量管理"></a>音量管理</h1><p>SetVolume(int channel, float volume)</p><ul><li>功能：设置指定通道的音量。</li><li>参数：<ul><li>channel：音频通道。</li><li>volume：音量值，范围为 0 到 1。</li></ul></li></ul><p>GetVolume(int channel)</p><ul><li>功能：获取指定通道的当前音量。</li><li>参数：<ul><li>channel：音频通道。</li></ul></li><li>返回值：当前音量值Float。</li></ul><h1 id="音频偏好保存"><a href="#音频偏好保存" class="headerlink" title="音频偏好保存"></a>音频偏好保存</h1><p>SetDefaultVolume(int channel, float vol)</p><ul><li>功能：设置指定通道的默认音量。</li><li>参数：<ul><li>channel：音频通道。</li><li>vol：默认音量值。</li></ul></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="Audio"><a href="#Audio" class="headerlink" title="Audio"></a>Audio</h1><p>Audio 组件是 WooAudio 插件的核心管理类，负责集中管理和操作音频功能，以下是其功能描述：</p><h1 id="初始化与配置"><a href="#初始化与配置" class="headerlink" title="初始化与配置"></a>初始化与配置</h1><p>Init(IAudioPrefRecorder recorder, IAudioAsset asset)</p><ul><li>功能：初始化音频系统，设置音频偏好记录器和音频资源管理器。</li><li>参数：<ul><li>recorder：音频偏好记录器，用于读取和写入音频偏好设置。</li><li>asset：音频资源管理器，用于加载和管理音频资源。</li></ul></li></ul><p>SetConfig(IAudioConfig config)</p><ul><li>功能：设置音频配置。</li><li>参数：<ul><li>config：音频配置接口，提供音频的相关设置。</li></ul></li></ul><h1 id="音频播放控制"><a href="#音频播放控制" class="headerlink" title="音频播放控制"></a>音频播放控制</h1><p>Play(int sound_id)</p><ul><li>功能：播放指定音频。</li><li>参数：<ul><li>sound_id：音频的唯一标识符。</li></ul></li></ul><p>Stop(int sound_id, bool all &#x3D; false)</p><ul><li>功能：停止播放指定音频。</li><li>参数：<ul><li>sound_id：音频的唯一标识符。</li><li>all：是否停止所有实例，默认为 false。</li></ul></li></ul><p>StopChannel(int channel)</p><ul><li>功能：停止指定通道的所有音频播放。</li><li>参数：<ul><li>channel：音频通道。</li></ul></li></ul><p>StopAllChannel()</p><ul><li>功能：停止所有通道的音频播放。</li></ul><h1 id="音量管理"><a href="#音量管理" class="headerlink" title="音量管理"></a>音量管理</h1><p>SetVolume(int channel, float volume)</p><ul><li>功能：设置指定通道的音量。</li><li>参数：<ul><li>channel：音频通道。</li><li>volume：音量值，范围为 0 到 1。</li></ul></li></ul><p>GetVolume(int channel)</p><ul><li>功能：获取指定通道的当前音量。</li><li>参数：<ul><li>channel：音频通道。</li></ul></li><li>返回值：当前音量值Float。</li></ul><p>SetDefaultVolume(int channel, float vol)</p><ul><li>功能：设置指定通道的默认音量。</li><li>参数：<ul><li>channel：音频通道。</li><li>vol：默认音量值。</li></ul></li></ul>]]></content>
       
       
       <categories>
@@ -85,11 +58,11 @@
     
     
     <entry>
-      <title>1-WooAudio-文件配置</title>
+      <title>2-WooAudio-文件配置</title>
       <link href="/2025/03/19/Doc/WooAudio/2-WooAudio-AudioCofig%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE/"/>
       <url>/2025/03/19/Doc/WooAudio/2-WooAudio-AudioCofig%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE/</url>
       
-        <content type="html"><![CDATA[<h1 id="WooAudio-AudioConfig"><a href="#WooAudio-AudioConfig" class="headerlink" title="WooAudio-AudioConfig"></a>WooAudio-AudioConfig</h1><p>AudioConfig文件是WooAudio 插件中的一个核心，用于存储和管理音频资源的配置信息。通过AudioConfig，开发者可以集中定义和调整音频的播放参数，如音量、播放通道、循环设置等，而无需在代码中硬编码这些参数。这使得音频管理更加灵活和高效，特别是在需要频繁调整音频设置的项目中。</p><h1 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h1><p>右键Project窗口 - Creat - AudioConfig</p><h1 id="界面功能介绍"><a href="#界面功能介绍" class="headerlink" title="界面功能介绍"></a>界面功能介绍</h1><ul><li>channels<ul><li>在Channels部分，添加音频通道。每个通道可以用于不同类型的声音，例如背景音乐、音效等。点击 + 按钮添加通道，并为每个通道命名（例如 BackgroundMusic, SoundEffects）。</li></ul></li><li>搜索框<ul><li>可以通过音频id来搜索对应的配置信息。</li></ul></li><li>添加音频数据<ul><li>在 Sounds 部分，添加音频数据条目。</li><li>每个条目包括以下字段：<ul><li>ID：音频的唯一标识符（整数）。</li><li>Channel：音频播放的通道（从已定义的通道中选择）。</li><li>Clip：音频文件路径（拖拽音频文件到此字段）。</li><li>Loop：是否循环播放（勾选此选项）。</li><li>Cover：是否允许覆盖（即是否允许同时播放多个实例）。</li><li>ExistTime：音频资源的存活时间（秒），-1 表示永久存在。</li><li>Volume：音量（范围：-1 到 1）。</li></ul></li></ul></li></ul><p><img src="/../../../Pic/Doc/WooAudio/WooAudio%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="WooAudio-AudioConfig"><a href="#WooAudio-AudioConfig" class="headerlink" title="WooAudio-AudioConfig"></a>WooAudio-AudioConfig</h1><p>AudioConfig文件是WooAudio 插件中的一个核心，用于存储和管理音频资源的配置信息。通过AudioConfig，开发者可以集中定义和调整音频的播放参数，如音量、播放通道、循环设置等，而无需在代码中硬编码这些参数。这使得音频管理更加灵活和高效，特别是在需要频繁调整音频设置的项目中。</p><h1 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h1><p>右键Project窗口 - Creat - AudioConfig</p><h1 id="界面功能介绍"><a href="#界面功能介绍" class="headerlink" title="界面功能介绍"></a>界面功能介绍</h1><ul><li>channels<ul><li>在Channels部分，添加音频通道。每个通道可以用于不同类型的声音，例如背景音乐、音效等。点击 + 按钮添加通道，并为每个通道命名（例如 BackgroundMusic, SoundEffects）。</li></ul></li><li>搜索框<ul><li>可以通过音频id来搜索对应的配置信息。</li></ul></li><li>添加音频数据<ul><li>在 Sounds 部分，添加音频数据条目。</li><li>每个条目包括以下字段：<ul><li>ID：音频的唯一标识符（整数）。</li><li>Channel：音频播放的通道（从已定义的通道中选择）。</li><li>Clip：音频文件路径（拖拽音频文件到此字段）。</li><li>Loop：是否循环播放（勾选此选项）。</li><li>Cover：是否允许覆盖，同一个通道的是否覆盖（比如这个通道正在播放某个声音，还没播放完，又要在播放一个，是停下上一个，还是一起播放音效一般不需要覆盖，BGM一般要）。</li><li>ExistTime：音频资源的存活时间（秒），-1 表示永久存在（是为了配合资源回收的，比如这个音频播放完了，过多久卸载这个资源）。</li><li>Volume：音量范围：-1 到 1。每个通道都有各自的音量，有时候需要播放的音量并不希望和这个通道一样，需要做一些偏移。计算公式：目标音量&#x3D;（1+Volume）*通道音量）。</li></ul></li></ul></li></ul><p>也可以自行扩展接口实现自定义配置</p><p><img src="/../../../Pic/Doc/WooAudio/WooAudio%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png"></p>]]></content>
       
       
       <categories>
@@ -116,7 +89,7 @@
       <link href="/2025/03/19/Doc/WooAudio/1-WooAudio-%E7%AE%80%E4%BB%8B/"/>
       <url>/2025/03/19/Doc/WooAudio/1-WooAudio-%E7%AE%80%E4%BB%8B/</url>
       
-        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/WooAudio">地址</a></h1><h1 id="upm-添加地址"><a href="#upm-添加地址" class="headerlink" title="upm 添加地址"></a>upm 添加地址</h1><p><a href="https://github.com/OnClick9927/WooAudio.git#upm">https://github.com/OnClick9927/WooAudio.git#upm</a></p><h1 id="WooLocalization介绍"><a href="#WooLocalization介绍" class="headerlink" title="WooLocalization介绍"></a>WooLocalization介绍</h1><p>WooAudio是一款为Unity引擎设计的音频管理系统，旨在简化音频播放、配置和偏好设置的管理。它帮助开发者高效管理多个音频通道，支持音频资源的动态加载和释放，同时提供用户音量等偏好的存储功能。</p><h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><ul><li>多通道音频管理</li><li>音频配置管理</li><li>音频设置偏好存储</li><li>灵活的音频资源处理</li></ul><h1 id="为什么选择我们："><a href="#为什么选择我们：" class="headerlink" title="为什么选择我们："></a>为什么选择我们：</h1><ul><li>通过 WooAudio，开发者可以轻松地播放音效、管理配置、存储用户偏好，并且根据需要扩展功能。其简单易用的 API 使得音频管理变得更加高效和便捷。</li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/WooAudio">地址</a></h1><h1 id="upm-添加地址"><a href="#upm-添加地址" class="headerlink" title="upm 添加地址"></a>upm 添加地址</h1><p><a href="https://github.com/OnClick9927/WooAudio.git#upm">https://github.com/OnClick9927/WooAudio.git#upm</a></p><h1 id="WooAudio介绍"><a href="#WooAudio介绍" class="headerlink" title="WooAudio介绍"></a>WooAudio介绍</h1><p>WooAudio是一款为Unity引擎设计的音频管理系统，旨在简化音频方面的开发流程，增加开发效率，完全免费。</p><h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><ul><li>多通道音频管理</li><li>音频配置管理</li><li>音频设置偏好存储</li><li>灵活的音频资源处理</li><li>支持扩展</li></ul><h1 id="为什么选择我们："><a href="#为什么选择我们：" class="headerlink" title="为什么选择我们："></a>为什么选择我们：</h1><ul><li>通过 WooAudio，开发者可以方便使用，快速开发，完全免费。</li></ul>]]></content>
       
       
       <categories>
@@ -328,11 +301,11 @@
     
     
     <entry>
-      <title>WooAsset-例子3  WebGL</title>
-      <link href="/2024/09/06/Doc/WooAsset/13-WooAsset-%E4%BE%8B%E5%AD%90WebGL%203/"/>
-      <url>/2024/09/06/Doc/WooAsset/13-WooAsset-%E4%BE%8B%E5%AD%90WebGL%203/</url>
+      <title>WooAsset-例子2  WebGL</title>
+      <link href="/2024/09/06/Doc/WooAsset/12-WooAsset-%E4%BE%8B%E5%AD%90WebGL%202/"/>
+      <url>/2024/09/06/Doc/WooAsset/12-WooAsset-%E4%BE%8B%E5%AD%90WebGL%202/</url>
       
-        <content type="html"><![CDATA[<p><a href="/Webs/ShaderGame/index.html">原链接</a></p><p>    <div style="width:500px; height:900px;border:none;text-align:center">        <iframe allowtransparency="yes" frameborder="0" width="100%" height="100%" src="/Webs/ShaderGame/index.html"/>    </div></p>]]></content>
+        <content type="html"><![CDATA[<p><a href="/Webs/Bubble1Up/index.html">原链接</a></p><p>    <div style="width:405px; height:720px;border:none;text-align:center">        <iframe allowtransparency="yes" frameborder="0" width="100%" height="100%" src="/Webs/Bubble1Up/index.html"/>    </div></p>]]></content>
       
       
       <categories>
@@ -355,11 +328,11 @@
     
     
     <entry>
-      <title>WooAsset-例子2  WebGL</title>
-      <link href="/2024/09/06/Doc/WooAsset/12-WooAsset-%E4%BE%8B%E5%AD%90WebGL%202/"/>
-      <url>/2024/09/06/Doc/WooAsset/12-WooAsset-%E4%BE%8B%E5%AD%90WebGL%202/</url>
+      <title>WooAsset-例子3  WebGL</title>
+      <link href="/2024/09/06/Doc/WooAsset/13-WooAsset-%E4%BE%8B%E5%AD%90WebGL%203/"/>
+      <url>/2024/09/06/Doc/WooAsset/13-WooAsset-%E4%BE%8B%E5%AD%90WebGL%203/</url>
       
-        <content type="html"><![CDATA[<p><a href="/Webs/Bubble1Up/index.html">原链接</a></p><p>    <div style="width:405px; height:720px;border:none;text-align:center">        <iframe allowtransparency="yes" frameborder="0" width="100%" height="100%" src="/Webs/Bubble1Up/index.html"/>    </div></p>]]></content>
+        <content type="html"><![CDATA[<p><a href="/Webs/ShaderGame/index.html">原链接</a></p><p>    <div style="width:500px; height:900px;border:none;text-align:center">        <iframe allowtransparency="yes" frameborder="0" width="100%" height="100%" src="/Webs/ShaderGame/index.html"/>    </div></p>]]></content>
       
       
       <categories>
@@ -1026,11 +999,11 @@
     
     
     <entry>
-      <title>7-IFramework-模块-依赖注入模块</title>
-      <link href="/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/</url>
+      <title>8-IFramework-模块-计时器模块</title>
+      <link href="/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>放什么拿什么</p><p>特点:</p><ul><li>支持直接注入和反射注入</li><li>支持根据name注入同类型的多个实例</li></ul><p>直接注入使用示例:</p><pre><code class="csharp">public interface ICommonInjectObject&#123;    void ToDo();&#125;public class CommonObject : ICommonInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//获取容器container = Framework.GetEnv(EnvironmentType.Ev0).container;//往容器中注册实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject());//获取实例var _commonObject = container.GetValue&lt;ICommonInjectObject&gt;();//通过name区分来注册多个同类型实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject(), &quot;Instance1&quot;);//根据name获取指定类型的实例_commonObject = container.GetValue&lt;ICommonInjectObject&gt;(&quot;Instance1&quot;);//使用容器的Clear方法清除当前所有注入的实例container.Clear();</code></pre><hr><p><em><strong>反射注入强调性能之处慎用</strong></em></p><p>反射注入使用示例:</p><pre><code class="csharp">public interface IReflectInjectObject&#123;    void ToDo();&#125;public class ReflectObject : IReflectInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//使用Inject这个Attribute标记需要反射注入的变量[Inject]public IReflectInjectObject _reflectObject;//Attribute增加name属性[Inject(&quot;Instance1&quot;)]public IReflectInjectObject _reflectMultiObject1; //以IReflectInjectObject的名义注入ReflectObject类型container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;();container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;(&quot;Instance1&quot;);//为当前类的含有[Inject]这个Attribute的对应类型的变量注入数据container.Inject(this);</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="计时器模块"><a href="#计时器模块" class="headerlink" title="计时器模块"></a>计时器模块</h1>]]></content>
       
       
       <categories>
@@ -1053,11 +1026,11 @@
     
     
     <entry>
-      <title>8-IFramework-模块-计时器模块</title>
-      <link href="/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/"/>
-      <url>/2023/07/24/Doc/IFramework/8-IFramework-%E6%A8%A1%E5%9D%97-%E8%AE%A1%E6%97%B6%E5%99%A8%E6%A8%A1%E5%9D%97/</url>
+      <title>7-IFramework-模块-依赖注入模块</title>
+      <link href="/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/"/>
+      <url>/2023/07/24/Doc/IFramework/7-IFramework-%E6%A8%A1%E5%9D%97-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97/</url>
       
-        <content type="html"><![CDATA[<h1 id="计时器模块"><a href="#计时器模块" class="headerlink" title="计时器模块"></a>计时器模块</h1>]]></content>
+        <content type="html"><![CDATA[<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>放什么拿什么</p><p>特点:</p><ul><li>支持直接注入和反射注入</li><li>支持根据name注入同类型的多个实例</li></ul><p>直接注入使用示例:</p><pre><code class="csharp">public interface ICommonInjectObject&#123;    void ToDo();&#125;public class CommonObject : ICommonInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//获取容器container = Framework.GetEnv(EnvironmentType.Ev0).container;//往容器中注册实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject());//获取实例var _commonObject = container.GetValue&lt;ICommonInjectObject&gt;();//通过name区分来注册多个同类型实例container.SubscribeInstance&lt;ICommonInjectObject&gt;(new CommonObject(), &quot;Instance1&quot;);//根据name获取指定类型的实例_commonObject = container.GetValue&lt;ICommonInjectObject&gt;(&quot;Instance1&quot;);//使用容器的Clear方法清除当前所有注入的实例container.Clear();</code></pre><hr><p><em><strong>反射注入强调性能之处慎用</strong></em></p><p>反射注入使用示例:</p><pre><code class="csharp">public interface IReflectInjectObject&#123;    void ToDo();&#125;public class ReflectObject : IReflectInjectObject&#123;    public void ToDo()    &#123;        //Do sth    &#125;&#125;//使用Inject这个Attribute标记需要反射注入的变量[Inject]public IReflectInjectObject _reflectObject;//Attribute增加name属性[Inject(&quot;Instance1&quot;)]public IReflectInjectObject _reflectMultiObject1; //以IReflectInjectObject的名义注入ReflectObject类型container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;();container.Subscribe&lt;IReflectInjectObject, ReflectObject&gt;(&quot;Instance1&quot;);//为当前类的含有[Inject]这个Attribute的对应类型的变量注入数据container.Inject(this);</code></pre>]]></content>
       
       
       <categories>
@@ -1381,11 +1354,11 @@
     
     
     <entry>
-      <title>WooAsset-配置</title>
-      <link href="/2023/06/27/Doc/WooAsset/2-WooAsset-%E9%85%8D%E7%BD%AE/"/>
-      <url>/2023/06/27/Doc/WooAsset/2-WooAsset-%E9%85%8D%E7%BD%AE/</url>
+      <title>WooAsset-构建与部署</title>
+      <link href="/2023/06/27/Doc/WooAsset/3-WooAsset-%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/"/>
+      <url>/2023/06/27/Doc/WooAsset/3-WooAsset-%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</url>
       
-        <content type="html"><![CDATA[<h1 id="第一次使用"><a href="#第一次使用" class="headerlink" title="第一次使用"></a>第一次使用</h1><ul><li>打开编辑器窗口，操作如下图</li><li>成功后，会在Assets&#x2F;Editor目录下看到两个配置文件</li><li>其中 AssetsEditorCache 可以删除（团队协作时候，不需要同步）<br><img src="/../../../Pic/Doc/WooAsset/firstopen.png" alt="Alt text"><br><img src="/../../../Pic/Doc/WooAsset/configasset.png" alt="Alt text"></li></ul><h1 id="配置资源"><a href="#配置资源" class="headerlink" title="配置资源"></a>配置资源</h1><p><img src="/../../../Pic/Doc/WooAsset/option_build1.png" alt="Alt text"></p><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>Pkgs</td><td>资源包配置组</td></tr><tr><td>Version</td><td>此次打包出去的版本</td></tr><tr><td>MaxCacheVersionCount</td><td>远程版本记录文件最大版本个数</td></tr><tr><td>CleanHistory</td><td>打包结束后是否删除和本次打包无关的历史文件夹</td></tr><tr><td>Build Pipeline</td><td>管线 内置 &#x2F;SBP</td></tr><tr><td>build mode</td><td>打包模式（是否增量式）</td></tr><tr><td>bundle name type</td><td>输出Bundle名称风格（名&#x2F;名_Hash&#x2F;Hash）</td></tr><tr><td>type tree option</td><td>Bundle类型信息</td></tr><tr><td>Compress</td><td>Bundle压缩格式 （LZ4&#x2F;LZMA&#x2F;不压缩）</td></tr><tr><td>Asset Build</td><td>自定义打包流程（可扩展）</td></tr><tr><td>Encrypt</td><td>文件加密方式(可扩展)</td></tr><tr><td>打包结果二次构建</td><td></td></tr><tr><td>Bundle Result Optimizer</td><td>对构建结果优化 (可扩展)(合理化分包，处理循环依赖、冗余，颗粒度…..)</td></tr><tr><td>Optimization Count</td><td>优化迭代次数</td></tr><tr><td>下面是内建资源选择</td><td></td></tr><tr><td>Copytostream</td><td>拷贝资源到stream，</td></tr><tr><td>BuildInAssets</td><td>在把bundle拷贝到stream时候，根据这个配置决定拷贝哪些bundle（不配置拷贝全部）</td></tr><tr><td>Build-In Bundle Selector</td><td>内建资源选择器  （可扩展）</td></tr><tr><td>下面都是默认值</td><td></td></tr><tr><td>Build Target</td><td>当前打包的平台</td></tr><tr><td>BuildTargetName</td><td>目标平台名字</td></tr><tr><td>stream bundle directory</td><td>stream保存资源的文件夹</td></tr><tr><td>Output Path</td><td>输出路径</td></tr><tr><td>History Path</td><td>历史文件所在文件夹，第一次打包时候把他删了，后续不要动里面的文件</td></tr></tbody></table><h2 id="资源组介绍"><a href="#资源组介绍" class="headerlink" title="资源组介绍"></a>资源组介绍</h2><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>Build</td><td>该组是否需要打包 （给分布式打包使用）</td></tr><tr><td>Name</td><td>包的名字（不可重复，不为空）</td></tr><tr><td>Description</td><td>对包加点描述</td></tr><tr><td>Paths</td><td>对应的项目路径  （不可重复，不为空）</td></tr><tr><td>Tags</td><td>对包加一些标记</td></tr><tr><td>builds</td><td>分包规则       （也可以纯粹代码分包，但是此项目不可以存在配置）</td></tr></tbody></table><ul><li>每个资源组均可以分开打包，更新，加载</li><li>保持好良好的资源组结构，方式生成过多冗余</li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h1><ul><li>设置好需要打包的组</li><li>点击Tools&#x2F;WooAsset&#x2F;Build</li><li>稍等片刻即可完成打包，内容全都在Sever目录下</li><li>按照Server 文件夹 拷贝到CDN即可</li></ul><h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><pre><code>CDN└─android    ├─v1.0（APP版本）    ├─v1.1（APP版本）    └─v2.0（APP版本）    └─版本列表└─iphone    ├─v1.0（APP版本）    ├─v1.1（APP版本）    └─v2.0（APP版本）    └─版本列表</code></pre><p>如果版本有服务器、版本可以是服务器告知的，所以 各个平台的 版本列表可以不上传</p><pre><code>CDN└─android    ├─v1.0（APP版本）    ├─v1.1（APP版本）    └─v2.0（APP版本）└─iphone    ├─v1.0（APP版本）    ├─v1.1（APP版本）    └─v2.0（APP版本）</code></pre>]]></content>
       
       
       <categories>
@@ -1408,11 +1381,11 @@
     
     
     <entry>
-      <title>WooAsset-构建与部署</title>
-      <link href="/2023/06/27/Doc/WooAsset/3-WooAsset-%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/"/>
-      <url>/2023/06/27/Doc/WooAsset/3-WooAsset-%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</url>
+      <title>WooAsset-配置</title>
+      <link href="/2023/06/27/Doc/WooAsset/2-WooAsset-%E9%85%8D%E7%BD%AE/"/>
+      <url>/2023/06/27/Doc/WooAsset/2-WooAsset-%E9%85%8D%E7%BD%AE/</url>
       
-        <content type="html"><![CDATA[<h1 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h1><ul><li>设置好需要打包的组</li><li>点击Tools&#x2F;WooAsset&#x2F;Build</li><li>稍等片刻即可完成打包，内容全都在Sever目录下</li><li>按照Server 文件夹 拷贝到CDN即可</li></ul><h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><pre><code>CDN└─android    ├─v1.0（APP版本）    ├─v1.1（APP版本）    └─v2.0（APP版本）    └─版本列表└─iphone    ├─v1.0（APP版本）    ├─v1.1（APP版本）    └─v2.0（APP版本）    └─版本列表</code></pre><p>如果版本有服务器、版本可以是服务器告知的，所以 各个平台的 版本列表可以不上传</p><pre><code>CDN└─android    ├─v1.0（APP版本）    ├─v1.1（APP版本）    └─v2.0（APP版本）└─iphone    ├─v1.0（APP版本）    ├─v1.1（APP版本）    └─v2.0（APP版本）</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="第一次使用"><a href="#第一次使用" class="headerlink" title="第一次使用"></a>第一次使用</h1><ul><li>打开编辑器窗口，操作如下图</li><li>成功后，会在Assets&#x2F;Editor目录下看到两个配置文件</li><li>其中 AssetsEditorCache 可以删除（团队协作时候，不需要同步）<br><img src="/../../../Pic/Doc/WooAsset/firstopen.png" alt="Alt text"><br><img src="/../../../Pic/Doc/WooAsset/configasset.png" alt="Alt text"></li></ul><h1 id="配置资源"><a href="#配置资源" class="headerlink" title="配置资源"></a>配置资源</h1><p><img src="/../../../Pic/Doc/WooAsset/option_build1.png" alt="Alt text"></p><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>Pkgs</td><td>资源包配置组</td></tr><tr><td>Version</td><td>此次打包出去的版本</td></tr><tr><td>MaxCacheVersionCount</td><td>远程版本记录文件最大版本个数</td></tr><tr><td>CleanHistory</td><td>打包结束后是否删除和本次打包无关的历史文件夹</td></tr><tr><td>Build Pipeline</td><td>管线 内置 &#x2F;SBP</td></tr><tr><td>build mode</td><td>打包模式（是否增量式）</td></tr><tr><td>bundle name type</td><td>输出Bundle名称风格（名&#x2F;名_Hash&#x2F;Hash）</td></tr><tr><td>type tree option</td><td>Bundle类型信息</td></tr><tr><td>Compress</td><td>Bundle压缩格式 （LZ4&#x2F;LZMA&#x2F;不压缩）</td></tr><tr><td>Asset Build</td><td>自定义打包流程（可扩展）</td></tr><tr><td>Encrypt</td><td>文件加密方式(可扩展)</td></tr><tr><td>打包结果二次构建</td><td></td></tr><tr><td>Bundle Result Optimizer</td><td>对构建结果优化 (可扩展)(合理化分包，处理循环依赖、冗余，颗粒度…..)</td></tr><tr><td>Optimization Count</td><td>优化迭代次数</td></tr><tr><td>下面是内建资源选择</td><td></td></tr><tr><td>Copytostream</td><td>拷贝资源到stream，</td></tr><tr><td>BuildInAssets</td><td>在把bundle拷贝到stream时候，根据这个配置决定拷贝哪些bundle（不配置拷贝全部）</td></tr><tr><td>Build-In Bundle Selector</td><td>内建资源选择器  （可扩展）</td></tr><tr><td>下面都是默认值</td><td></td></tr><tr><td>Build Target</td><td>当前打包的平台</td></tr><tr><td>BuildTargetName</td><td>目标平台名字</td></tr><tr><td>stream bundle directory</td><td>stream保存资源的文件夹</td></tr><tr><td>Output Path</td><td>输出路径</td></tr><tr><td>History Path</td><td>历史文件所在文件夹，第一次打包时候把他删了，后续不要动里面的文件</td></tr></tbody></table><h2 id="资源组介绍"><a href="#资源组介绍" class="headerlink" title="资源组介绍"></a>资源组介绍</h2><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>Build</td><td>该组是否需要打包 （给分布式打包使用）</td></tr><tr><td>Name</td><td>包的名字（不可重复，不为空）</td></tr><tr><td>Description</td><td>对包加点描述</td></tr><tr><td>Paths</td><td>对应的项目路径  （不可重复，不为空）</td></tr><tr><td>Tags</td><td>对包加一些标记</td></tr><tr><td>builds</td><td>分包规则       （也可以纯粹代码分包，但是此项目不可以存在配置）</td></tr></tbody></table><ul><li>每个资源组均可以分开打包，更新，加载</li><li>保持好良好的资源组结构，方式生成过多冗余</li></ul>]]></content>
       
       
       <categories>
