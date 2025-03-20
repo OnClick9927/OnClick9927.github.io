@@ -1,5 +1,5 @@
 ---
-title: 1-WooAudio-Audio
+title: 4-WooAudio-Audio
 author: yy
 comment: 'on'
 tags:
@@ -60,7 +60,6 @@ GetVolume(int channel)
     * channel：音频通道。
 * 返回值：当前音量值Float。
 
-# 音频偏好保存
 SetDefaultVolume(int channel, float vol)
 * 功能：设置指定通道的默认音量。
 * 参数：
