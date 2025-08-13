@@ -4,114 +4,6 @@
   
     
     <entry>
-      <title>3-WooAudio-初始化</title>
-      <link href="/2025/03/19/Doc/WooAudio/3-WooAudio-%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
-      <url>/2025/03/19/Doc/WooAudio/3-WooAudio-%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
-      
-        <content type="html"><![CDATA[<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><ul><li>WooAudio使用前需要先进行的必要操作</li></ul><pre><code class="csharp">//脚本需要先继承 IAudioPrefRecorder、IAudioAsset 接口void Start()&#123;    // 初始化音频系统，传入当前实例作为 IAudioPrefRecorder 和 IAudioAsset 实现    Audio.Init(this, this);    //设置通道默认音量    Audio.SetDefaultVolume(0, 0.7f);    Audio.SetDefaultVolume(1, 0.1f);    //设置AudioConfig文件    Audio.SetConfig(AudioConfig);    //生成音频配置的映射表，方便通过音频 ID 快速获取配置信息    AudioConfig.GenMap();&#125;//方法 Read 实现 IAudioPrefRecorder 接口，从 PlayerPrefs 中读取音频偏好设置public AudioPref Read()&#123;   //使用 JsonUtility 从 PlayerPrefs 中读取音频偏好设置的 JSON 字符串并反序列化为 AudioPref 对象   return JsonUtility.FromJson&lt;AudioPref&gt;(PlayerPrefs.GetString(nameof(AudioPref)));&#125;//方法 Write 实现 IAudioPrefRecorder 接口，将音频偏好设置写入 PlayerPrefspublic void Write(AudioPref pref)&#123;    // 使用 JsonUtility 将 AudioPref 对象序列化为 JSON 字符串，并保存到 PlayerPrefs 中    PlayerPrefs.SetString(nameof(AudioPref), JsonUtility.ToJson(pref));&#125;//方法 CreateContext 实现 IAudioAsset 接口，创建并返回一个 AudioAssetContext 实例public IAudioAssetContext CreateContext(string path)&#123;    return new AudioAssetContext();&#125;//定义一个内部类 AudioAssetContext，用于实现 IAudioAssetContext 接口，管理音频资源的加载和释放private class AudioAssetContext : IAudioAssetContext&#123;    // 属性 isDone 表示音频资源是否加载完成，通过检查 clip 是否为空来判断    public bool isDone =&gt; clip != null;    // 方法 GetClip 返回加载的音频剪辑    public AudioClip GetClip()    &#123;        return clip;    &#125;    // 私有变量 clip 用于存储加载的音频剪辑    private AudioClip clip;    // 方法 Load 用于加载指定路径的音频资源    public void Load(string path)    &#123;        clip = AssetDatabase.LoadAssetAtPath&lt;AudioClip&gt;(path);    &#125;    // 方法 Release 用于释放音频资源（可添加资源卸载逻辑）    public void Release(string path)    &#123;    &#125;&#125;// Update 方法每帧被调用一次，用于处理用户输入和播放音频void Update()&#123;    // 如果按下 A 键，播放音频 ID 为 0 的音频    if (Input.GetKeyDown(KeyCode.A))    &#123;        Audio.Play(0);    &#125;    // 如果按下 D 键，播放音频 ID 为 1 的音频    if (Input.GetKeyDown(KeyCode.D))    &#123;        Audio.Play(1);    &#125;    &#125;</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> WooAudio </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> WooAudio </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>4-WooAudio-Audio</title>
-      <link href="/2025/03/19/Doc/WooAudio/4-WooAudio-Audio/"/>
-      <url>/2025/03/19/Doc/WooAudio/4-WooAudio-Audio/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Audio"><a href="#Audio" class="headerlink" title="Audio"></a>Audio</h1><p>Audio 组件是 WooAudio 插件的核心管理类，负责集中管理和操作音频功能，以下是其功能描述：</p><h1 id="初始化与配置"><a href="#初始化与配置" class="headerlink" title="初始化与配置"></a>初始化与配置</h1><p>Init(IAudioPrefRecorder recorder, IAudioAsset asset)</p><ul><li>功能：初始化音频系统，设置音频偏好记录器和音频资源管理器。</li><li>参数：<ul><li>recorder：音频偏好记录器，用于读取和写入音频偏好设置。</li><li>asset：音频资源管理器，用于加载和管理音频资源。</li></ul></li></ul><p>SetConfig(IAudioConfig config)</p><ul><li>功能：设置音频配置。</li><li>参数：<ul><li>config：音频配置接口，提供音频的相关设置。</li></ul></li></ul><h1 id="音频播放控制"><a href="#音频播放控制" class="headerlink" title="音频播放控制"></a>音频播放控制</h1><p>Play(int sound_id)</p><ul><li>功能：播放指定音频。</li><li>参数：<ul><li>sound_id：音频的唯一标识符。</li></ul></li></ul><p>Stop(int sound_id, bool all &#x3D; false)</p><ul><li>功能：停止播放指定音频。</li><li>参数：<ul><li>sound_id：音频的唯一标识符。</li><li>all：是否停止所有实例，默认为 false。</li></ul></li></ul><p>StopChannel(int channel)</p><ul><li>功能：停止指定通道的所有音频播放。</li><li>参数：<ul><li>channel：音频通道。</li></ul></li></ul><p>StopAllChannel()</p><ul><li>功能：停止所有通道的音频播放。</li></ul><h1 id="音量管理"><a href="#音量管理" class="headerlink" title="音量管理"></a>音量管理</h1><p>SetVolume(int channel, float volume)</p><ul><li>功能：设置指定通道的音量。</li><li>参数：<ul><li>channel：音频通道。</li><li>volume：音量值，范围为 0 到 1。</li></ul></li></ul><p>GetVolume(int channel)</p><ul><li>功能：获取指定通道的当前音量。</li><li>参数：<ul><li>channel：音频通道。</li></ul></li><li>返回值：当前音量值Float。</li></ul><p>SetDefaultVolume(int channel, float vol)</p><ul><li>功能：设置指定通道的默认音量。</li><li>参数：<ul><li>channel：音频通道。</li><li>vol：默认音量值。</li></ul></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> WooAudio </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> WooAudio </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>2-WooAudio-文件配置</title>
-      <link href="/2025/03/19/Doc/WooAudio/2-WooAudio-AudioCofig%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE/"/>
-      <url>/2025/03/19/Doc/WooAudio/2-WooAudio-AudioCofig%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE/</url>
-      
-        <content type="html"><![CDATA[<h1 id="WooAudio-AudioConfig"><a href="#WooAudio-AudioConfig" class="headerlink" title="WooAudio-AudioConfig"></a>WooAudio-AudioConfig</h1><p>AudioConfig文件是WooAudio 插件中的一个核心，用于存储和管理音频资源的配置信息。通过AudioConfig，开发者可以集中定义和调整音频的播放参数，如音量、播放通道、循环设置等，而无需在代码中硬编码这些参数。这使得音频管理更加灵活和高效，特别是在需要频繁调整音频设置的项目中。</p><h1 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h1><p>右键Project窗口 - Creat - AudioConfig</p><h1 id="界面功能介绍"><a href="#界面功能介绍" class="headerlink" title="界面功能介绍"></a>界面功能介绍</h1><ul><li>channels<ul><li>在Channels部分，添加音频通道。每个通道可以用于不同类型的声音，例如背景音乐、音效等。点击 + 按钮添加通道，并为每个通道命名（例如 BackgroundMusic, SoundEffects）。</li></ul></li><li>搜索框<ul><li>可以通过音频id来搜索对应的配置信息。</li></ul></li><li>添加音频数据<ul><li>在 Sounds 部分，添加音频数据条目。</li><li>每个条目包括以下字段：<ul><li>ID：音频的唯一标识符（整数）。</li><li>Channel：音频播放的通道（从已定义的通道中选择）。</li><li>Clip：音频文件路径（拖拽音频文件到此字段）。</li><li>Loop：是否循环播放（勾选此选项）。</li><li>Cover：是否允许覆盖，同一个通道的是否覆盖（比如这个通道正在播放某个声音，还没播放完，又要在播放一个，是停下上一个，还是一起播放音效一般不需要覆盖，BGM一般要）。</li><li>ExistTime：音频资源的存活时间（秒），-1 表示永久存在（是为了配合资源回收的，比如这个音频播放完了，过多久卸载这个资源）。</li><li>Volume：音量范围：-1 到 1。每个通道都有各自的音量，有时候需要播放的音量并不希望和这个通道一样，需要做一些偏移。计算公式：目标音量&#x3D;（1+Volume）*通道音量）。</li></ul></li></ul></li></ul><p>也可以自行扩展接口实现自定义配置</p><p><img src="/../../../Pic/Doc/WooAudio/WooAudio%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> WooAudio </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> WooAudio </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>1-WooAudio-简介</title>
-      <link href="/2025/03/19/Doc/WooAudio/1-WooAudio-%E7%AE%80%E4%BB%8B/"/>
-      <url>/2025/03/19/Doc/WooAudio/1-WooAudio-%E7%AE%80%E4%BB%8B/</url>
-      
-        <content type="html"><![CDATA[<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a><a href="https://github.com/OnClick9927/WooAudio">地址</a></h1><h1 id="upm-添加地址"><a href="#upm-添加地址" class="headerlink" title="upm 添加地址"></a>upm 添加地址</h1><p><a href="https://github.com/OnClick9927/WooAudio.git#upm">https://github.com/OnClick9927/WooAudio.git#upm</a></p><h1 id="WooAudio介绍"><a href="#WooAudio介绍" class="headerlink" title="WooAudio介绍"></a>WooAudio介绍</h1><p>WooAudio是一款为Unity引擎设计的音频管理系统，旨在简化音频方面的开发流程，增加开发效率，完全免费。</p><h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><ul><li>多通道音频管理</li><li>音频配置管理</li><li>音频设置偏好存储</li><li>灵活的音频资源处理</li><li>支持扩展</li></ul><h1 id="为什么选择我们："><a href="#为什么选择我们：" class="headerlink" title="为什么选择我们："></a>为什么选择我们：</h1><ul><li>通过 WooAudio，开发者可以方便使用，快速开发，完全免费。</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> WooAudio </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> WooAudio </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>1-WooLocalization-简介</title>
       <link href="/2024/10/26/Doc/WooLocalization/1-WooLocalization-%E7%AE%80%E4%BB%8B/"/>
       <url>/2024/10/26/Doc/WooLocalization/1-WooLocalization-%E7%AE%80%E4%BB%8B/</url>
@@ -459,33 +351,6 @@
     
     
     <entry>
-      <title>2-IFramework-Unity-安装与设置</title>
-      <link href="/2023/07/24/Doc/IFramework-Unity/2-IFramework-Unity-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE/"/>
-      <url>/2023/07/24/Doc/IFramework-Unity/2-IFramework-Unity-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE/</url>
-      
-        <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul><li>upm 添加包地址 <a href="https://gitee.com/OnClick9927/IFramework-Unity.git#src">https://gitee.com/OnClick9927/IFramework-Unity.git#src</a></li><li>upm 添加包地址 <a href="https://github.com/OnClick9927/IFramework-Unity.git#src">https://github.com/OnClick9927/IFramework-Unity.git#src</a></li></ul><h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><ul><li>打开面板 ctrl+shift+i</li><li>参数</li></ul><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>UserName</td><td>用户名字（unity账户名字）</td></tr><tr><td>Version</td><td>工程的版本</td></tr><tr><td>NameSpace</td><td>工程命名空间</td></tr><tr><td>Project Path</td><td>项目内容所在文件夹</td></tr><tr><td>Build</td><td>构建工程目录</td></tr><tr><td>Dock EditorWindow</td><td>打开的窗口是否依附</td></tr><tr><td>Enable</td><td>log 总开关</td></tr><tr><td>Log Enable</td><td>开启log</td></tr><tr><td>Warning Enable</td><td>开启Warning</td></tr><tr><td>Error Enable</td><td>开启Error</td></tr></tbody></table><p><img src="/../../../Pic/Doc/IFramework-Unity/set.png" alt="Alt text"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 文档 </category>
-          
-          <category> IFramework-Unity </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> IFramework-Unity </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>10-IFramework-Unity-模块</title>
       <link href="/2023/07/24/Doc/IFramework-Unity/10-IFramework-Unity-%E6%A8%A1%E5%9D%97/"/>
       <url>/2023/07/24/Doc/IFramework-Unity/10-IFramework-Unity-%E6%A8%A1%E5%9D%97/</url>
@@ -518,6 +383,33 @@
       <url>/2023/07/24/Doc/IFramework-Unity/3-IFramework-Unity-UI%E6%A8%A1%E5%9D%97/</url>
       
         <content type="html"><![CDATA[<h1 id="预制体制作代码生成"><a href="#预制体制作代码生成" class="headerlink" title="预制体制作代码生成"></a>预制体制作代码生成</h1><ul><li>打开面板 ctrl+shift+i</li><li>做好预制体，挂上脚本UIPanel，拽到resources目录</li><li>拽如脚本生成路径</li><li>选择好刚刚的预制体，放到GameObject</li><li>标记好需要生成的组件</li><li>点击 Gen</li><li>生成代码 如 ui-5</li><li>设置好ui层级 并点击save to file</li><li>点击生成 UI 名字 如 ui-7<br><img src="/../../../Pic/Doc/IFramework-Unity/UI/UI-.png" alt="ui-1"><br><img src="/../../../Pic/Doc/IFramework-Unity/UI/UI-2.png" alt="ui-2"><br><img src="/../../../Pic/Doc/IFramework-Unity/UI/UI-3.png" alt="ui-3"><br><img src="/../../../Pic/Doc/IFramework-Unity/UI/UI-4.png" alt="ui-4"><br><img src="/../../../Pic/Doc/IFramework-Unity/UI/UI-5.png" alt="ui-5"><br><img src="/../../../Pic/Doc/IFramework-Unity/UI/UI-6.png" alt="ui-6"><br><img src="/../../../Pic/Doc/IFramework-Unity/UI/UI-7.png" alt="ui-7"></li></ul><h1 id="运行时代码"><a href="#运行时代码" class="headerlink" title="运行时代码"></a>运行时代码</h1><h2 id="加载出来界面"><a href="#加载出来界面" class="headerlink" title="加载出来界面"></a>加载出来界面</h2><pre><code class="csharp">public class MyUIAsset : UIAsset&#123;    PanelPathCollect collect;    public MyUIAsset(PanelPathCollect collect)    &#123;        this.collect = collect;    &#125;    ///界面层级获取    public override UILayer GetPanelLayer(string path)    &#123;        return collect.datas.Find(x =&gt; x.path == path).layer;    &#125;    public override int GetPanelLayerOrder(string path)    &#123;        return collect.datas.Find(x =&gt; x.path == path).order;    &#125;        //如何加载出来界面    public override UIPanel LoadPanel(string name)    &#123;        return Resources.Load&lt;UIPanel&gt;(name);    &#125;///下面是异步    public override bool LoadItemAsync(string path, LoadItemAsyncOperation op)    &#123;        return false;    &#125;    public override bool LoadPanelAsync(string name, LoadPanelAsyncOperation op)    &#123;        return false;    &#125;&#125;///加载代码public TextAsset text;///创建模块UIModule ui = Launcher.modules.GetModule&lt;UIModule&gt;();///设置UI资源ui.SetAsset(new MyUIAsset(JsonUtility.FromJson&lt;PanelPathCollect&gt;(text.text)));///设置UI书写模式MvcGroups mvc = new MvcGroups(new Dictionary&lt;string, Type&gt;()&#123;    &#123; PanelNames.MyPanel, typeof(MyPanelView) &#125;,&#125;);ui.SetGroups(mvc);///创建画布ui.CreateCanvas();///打开界面ui.Show(PanelNames.MyPanel);</code></pre><h2 id="界面方法书写"><a href="#界面方法书写" class="headerlink" title="界面方法书写"></a>界面方法书写</h2><pre><code class="csharp">public partial class MyPanelView&#123;  ///界面加载出来绑定按钮  protected override void OnLoad()  &#123;    this.BindButton(this.Mybtn, () =&gt;    &#123;      UnityEngine.Debug.Log(&quot;Click&quot;);    &#125;);  &#125;  protected override void OnShow()  &#123;  &#125;  protected override void OnHide()  &#123;  &#125;  protected override void OnClose()  &#123;  &#125;&#125;</code></pre><h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p><img src="/../../../Pic/Doc/IFramework-Unity/UI/UI-8.png" alt="ui-8"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文档 </category>
+          
+          <category> IFramework-Unity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IFramework-Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2-IFramework-Unity-安装与设置</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/2-IFramework-Unity-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/2-IFramework-Unity-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul><li>upm 添加包地址 <a href="https://gitee.com/OnClick9927/IFramework-Unity.git#src">https://gitee.com/OnClick9927/IFramework-Unity.git#src</a></li><li>upm 添加包地址 <a href="https://github.com/OnClick9927/IFramework-Unity.git#src">https://github.com/OnClick9927/IFramework-Unity.git#src</a></li></ul><h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><ul><li>打开面板 ctrl+shift+i</li><li>参数</li></ul><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>UserName</td><td>用户名字（unity账户名字）</td></tr><tr><td>Version</td><td>工程的版本</td></tr><tr><td>NameSpace</td><td>工程命名空间</td></tr><tr><td>Project Path</td><td>项目内容所在文件夹</td></tr><tr><td>Build</td><td>构建工程目录</td></tr><tr><td>Dock EditorWindow</td><td>打开的窗口是否依附</td></tr><tr><td>Enable</td><td>log 总开关</td></tr><tr><td>Log Enable</td><td>开启log</td></tr><tr><td>Warning Enable</td><td>开启Warning</td></tr><tr><td>Error Enable</td><td>开启Error</td></tr></tbody></table><p><img src="/../../../Pic/Doc/IFramework-Unity/set.png" alt="Alt text"></p>]]></content>
       
       
       <categories>
@@ -594,11 +486,11 @@
     
     
     <entry>
-      <title>6-IFramework-Unity-单例</title>
-      <link href="/2023/07/24/Doc/IFramework-Unity/6-IFramework-Unity-%E5%8D%95%E4%BE%8B/"/>
-      <url>/2023/07/24/Doc/IFramework-Unity/6-IFramework-Unity-%E5%8D%95%E4%BE%8B/</url>
+      <title>7-IFramework-Unity-事件</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/7-IFramework-Unity-%E4%BA%8B%E4%BB%B6/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/7-IFramework-Unity-%E4%BA%8B%E4%BB%B6/</url>
       
-        <content type="html"><![CDATA[<pre><code class="csharp">public class Test : IFramework.Singleton.Singleton&lt;Test&gt;&#123;    internal void Dosth()    &#123;           &#125;&#125;//场景内单例物体路径[IFramework.Singleton.MonoSingletonPath(&quot;xx/xx&quot;)]public class TestMono : IFramework.Singleton.MonoSingleton&lt;TestMono&gt;&#123;    void Use()    &#123;        Test.instance.Dosth();        TestMono.instance.Dosth();    &#125;    private void Dosth()    &#123;            &#125;&#125;</code></pre>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
       
       <categories>
@@ -621,11 +513,11 @@
     
     
     <entry>
-      <title>7-IFramework-Unity-事件</title>
-      <link href="/2023/07/24/Doc/IFramework-Unity/7-IFramework-Unity-%E4%BA%8B%E4%BB%B6/"/>
-      <url>/2023/07/24/Doc/IFramework-Unity/7-IFramework-Unity-%E4%BA%8B%E4%BB%B6/</url>
+      <title>6-IFramework-Unity-单例</title>
+      <link href="/2023/07/24/Doc/IFramework-Unity/6-IFramework-Unity-%E5%8D%95%E4%BE%8B/"/>
+      <url>/2023/07/24/Doc/IFramework-Unity/6-IFramework-Unity-%E5%8D%95%E4%BE%8B/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<pre><code class="csharp">public class Test : IFramework.Singleton.Singleton&lt;Test&gt;&#123;    internal void Dosth()    &#123;           &#125;&#125;//场景内单例物体路径[IFramework.Singleton.MonoSingletonPath(&quot;xx/xx&quot;)]public class TestMono : IFramework.Singleton.MonoSingleton&lt;TestMono&gt;&#123;    void Use()    &#123;        Test.instance.Dosth();        TestMono.instance.Dosth();    &#125;    private void Dosth()    &#123;            &#125;&#125;</code></pre>]]></content>
       
       
       <categories>
